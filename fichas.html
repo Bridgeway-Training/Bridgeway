@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bridgeway · English Practice</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bridgeNavy: '#1C2B3F',
+            bridgeTeal: '#4EC7C4',
+          },
+          boxShadow: { soft: '0 10px 30px rgba(0,0,0,.10)' },
+          keyframes: {
+            pulsePop: { '0%':{transform:'scale(1)'}, '50%':{transform:'scale(1.03)'}, '100%':{transform:'scale(1)'} },
+            swing: { '0%':{transform:'rotate(0)'}, '25%':{transform:'rotate(2deg)'}, '75%':{transform:'rotate(-2deg)'}, '100%':{transform:'rotate(0)'} },
+            shake: { '0%,100%':{transform:'translateX(0)'}, '20%':{transform:'translateX(-6px)'}, '40%':{transform:'translateX(6px)'}, '60%':{transform:'translateX(-4px)'}, '80%':{transform:'translateX(4px)'} },
+            floaty: { '0%':{transform:'translateY(0)'}, '50%':{transform:'translateY(-6px)'}, '100%':{transform:'translateY(0)'} },
+            gradient: { '0%':{backgroundPosition:'0% 50%'}, '50%':{backgroundPosition:'100% 50%'}, '100%':{backgroundPosition:'0% 50%'} },
+          },
+          animation: {
+            pulsePop:'pulsePop .6s ease',
+            swing:'swing .8s ease-in-out',
+            shake:'shake .5s ease',
+            floaty:'floaty 6s ease-in-out infinite',
+            gradient:'gradient 8s ease infinite'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    html,body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+    :root{color-scheme:light dark}
+    .focus-ring:focus{outline:3px solid #4EC7C4; outline-offset:2px}
+    .confetti{position:fixed; inset:0; pointer-events:none; z-index:60}
+  </style>
+</head>
+<body class="min-h-full bg-gradient-to-br from-bridgeNavy via-bridgeNavy to-bridgeTeal bg-[length:200%_200%] animate-gradient text-slate-900 dark:text-slate-100">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/85 dark:bg-slate-900/80 shadow-soft">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <!-- Inline SVG Logo Bridgeway (siempre visible) -->
+        <svg aria-label="Bridgeway logo" viewBox="0 0 420 90" class="h-10 w-auto">
+          <title>Bridgeway</title>
+          <rect width="420" height="90" fill="none"></rect>
+          <text x="5" y="63" font-size="56" font-weight="800" fill="#1C2B3F" font-family="Inter,Segoe UI,Arial,sans-serif">Bridge</text>
+          <text x="198" y="63" font-size="56" font-weight="800" fill="#4EC7C4" font-family="Inter,Segoe UI,Arial,sans-serif">way</text>
+          <!-- arco -->
+          <path d="M220,25 C280,-5 360,-5 405,40" fill="none" stroke="#4EC7C4" stroke-width="10" stroke-linecap="round"/>
+        </svg>
+        <div class="leading-tight">
+          <h1 class="text-xl font-extrabold text-bridgeNavy dark:text-teal-200" data-i18n="appTitle">Bridgeway · English Practice App</h1>
+          <p class="text-xs text-slate-600 dark:text-slate-300">Adverbs of Frequency · Present Simple (3rd) · Editing Practice</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <!-- Language -->
+        <label class="text-sm text-slate-700 dark:text-slate-200" for="langSel" data-i18n="language">Language</label>
+        <select id="langSel" class="focus-ring text-sm px-2 py-1 rounded-lg border bg-white dark:bg-slate-800">
+          <option value="en">English</option>
+          <option value="ru">Русский</option>
+          <option value="ro">Română</option>
+        </select>
+        <!-- data buttons -->
+        <button id="clearStorageBtn" class="focus-ring px-3 py-2 rounded-xl text-sm bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-900/30 dark:text-rose-300" data-i18n="clearData">Clear data</button>
+        <button id="resetAllBtn" class="focus-ring px-3 py-2 rounded-xl text-sm bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700" data-i18n="resetAll">Reset all</button>
+        <!-- Dark mode -->
+        <label class="inline-flex items-center gap-2 text-sm cursor-pointer ml-2" title="Theme">
+          <input id="themeToggle" type="checkbox" class="sr-only" />
+          <span class="h-5 w-9 bg-slate-300 dark:bg-slate-700 rounded-full relative">
+            <span class="dot absolute left-0 top-0 h-5 w-5 bg-white dark:bg-slate-200 rounded-full shadow transition-transform translate-x-0 dark:translate-x-4"></span>
+          </span>
+          <span class="text-slate-700 dark:text-slate-200" data-i18n="darkMode">Dark mode</span>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <!-- Instructions -->
+  <section class="max-w-6xl mx-auto px-4 mt-6">
+    <div class="rounded-2xl p-4 bg-white/90 dark:bg-slate-800/80 border border-white/50 dark:border-slate-700 shadow-soft animate-swing">
+      <h2 class="font-bold text-bridgeNavy dark:text-teal-200 mb-1" data-i18n="instructionsTitle">How to use</h2>
+      <ul class="list-disc pl-5 text-sm text-slate-700 dark:text-slate-300" data-i18n="instructionsList">
+        <li>Open this file in your browser.</li>
+        <li>Use the tabs to switch section without losing progress.</li>
+        <li>Click an option to get instant feedback. Items lock after answering.</li>
+        <li>Progress &amp; counters are saved locally; use “Clear data” to wipe.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <nav class="max-w-6xl mx-auto px-4 mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2" role="tablist" aria-label="Sections">
+    <button role="tab" class="tab focus-ring px-4 py-3 rounded-2xl border bg-white/90 hover:-translate-y-0.5 hover:shadow-soft transition transform data-[active=true]:ring-2 data-[active=true]:ring-bridgeTeal" data-target="panel-adv" data-i18n="tab1">Adverbs of Frequency</button>
+    <button role="tab" class="tab focus-ring px-4 py-3 rounded-2xl border bg-white/90 hover:-translate-y-0.5 hover:shadow-soft transition transform" data-target="panel-pres" data-i18n="tab2">Present Simple – 3rd person (-s/-es/-ies)</button>
+    <button role="tab" class="tab focus-ring px-4 py-3 rounded-2xl border bg-white/90 hover:-translate-y-0.5 hover:shadow-soft transition transform" data-target="panel-edit" data-i18n="tab3">Editing Practice – Add -s/-es/-ies</button>
+  </nav>
+
+  <!-- Panels -->
+  <main class="max-w-6xl mx-auto px-4 py-6 space-y-6">
+    <!-- Panel: Adverbs -->
+    <section id="panel-adv" role="tabpanel" class="panel rounded-2xl border bg-white/95 dark:bg-slate-800/90 p-4 shadow-soft">
+      <header class="flex items-center gap-4 mb-4">
+        <!-- Nota: si quieres miniaturas, inserta data URI aquí -->
+        <div class="h-16 w-16 rounded-xl border bg-gradient-to-br from-bridgeTeal to-bridgeNavy text-white grid place-content-center text-xs font-bold animate-floaty">FICHA<br>1</div>
+        <div>
+          <h3 class="text-xl font-bold" data-i18n="tab1">Adverbs of Frequency</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300" data-i18n="advDesc">Complete the 12 blanks with the best adverb.</p>
+        </div>
+      </header>
+      <div id="adv-quiz" class="quiz space-y-4" aria-live="polite"></div>
+      <footer class="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <div class="text-sm" id="adv-stats" aria-live="polite"></div>
+        <div class="flex gap-2">
+          <button class="btn-finish focus-ring px-3 py-2 rounded-xl bg-emerald-100 text-emerald-900 hover:scale-[1.02] transition dark:bg-emerald-900/30 dark:text-emerald-200" data-section="adv" data-i18n="finish">Finish section</button>
+          <button class="btn-retry focus-ring px-3 py-2 rounded-xl bg-bridgeTeal text-bridgeNavy font-semibold hover:scale-[1.02] transition" data-section="adv" data-i18n="retry">Retry section</button>
+        </div>
+      </footer>
+    </section>
+
+    <!-- Panel: Present -->
+    <section id="panel-pres" role="tabpanel" class="panel hidden rounded-2xl border bg-white/95 dark:bg-slate-800/90 p-4 shadow-soft">
+      <header class="flex items-center gap-4 mb-4">
+        <div class="h-16 w-16 rounded-xl border bg-gradient-to-br from-bridgeTeal to-bridgeNavy text-white grid place-content-center text-xs font-bold animate-floaty">FICHA<br>2</div>
+        <div>
+          <h3 class="text-xl font-bold" data-i18n="tab2">Present Simple – 3rd person</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300" data-i18n="presDesc">Rules -s/-es/-ies, exceptions, special cases.</p>
+        </div>
+      </header>
+      <div id="pres-quiz" class="quiz space-y-4" aria-live="polite"></div>
+      <footer class="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <div class="text-sm" id="pres-stats" aria-live="polite"></div>
+        <div class="flex gap-2">
+          <button class="btn-finish focus-ring px-3 py-2 rounded-xl bg-emerald-100 text-emerald-900 hover:scale-[1.02] transition dark:bg-emerald-900/30 dark:text-emerald-200" data-section="pres" data-i18n="finish">Finish section</button>
+          <button class="btn-retry focus-ring px-3 py-2 rounded-xl bg-bridgeTeal text-bridgeNavy font-semibold hover:scale-[1.02] transition" data-section="pres" data-i18n="retry">Retry section</button>
+        </div>
+      </footer>
+    </section>
+
+    <!-- Panel: Editing -->
+    <section id="panel-edit" role="tabpanel" class="panel hidden rounded-2xl border bg-white/95 dark:bg-slate-800/90 p-4 shadow-soft">
+      <header class="flex items-center gap-4 mb-4">
+        <div class="h-16 w-16 rounded-xl border bg-gradient-to-br from-bridgeTeal to-bridgeNavy text-white grid place-content-center text-xs font-bold animate-floaty">FICHA<br>3</div>
+        <div>
+          <h3 class="text-xl font-bold" data-i18n="tab3">Editing Practice – Add -s/-es/-ies</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300" data-i18n="editDesc">Fix the 20 sentences to 3rd person.</p>
+        </div>
+      </header>
+      <div id="edit-quiz" class="quiz space-y-4" aria-live="polite"></div>
+      <footer class="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <div class="text-sm" id="edit-stats" aria-live="polite"></div>
+        <div class="flex gap-2">
+          <button class="btn-finish focus-ring px-3 py-2 rounded-xl bg-emerald-100 text-emerald-900 hover:scale-[1.02] transition dark:bg-emerald-900/30 dark:text-emerald-200" data-section="edit" data-i18n="finish">Finish section</button>
+          <button class="btn-retry focus-ring px-3 py-2 rounded-xl bg-bridgeTeal text-bridgeNavy font-semibold hover:scale-[1.02] transition" data-section="edit" data-i18n="retry">Retry section</button>
+        </div>
+      </footer>
+    </section>
+
+    <!-- Global -->
+    <section class="rounded-2xl border bg-white/90 dark:bg-slate-800/80 p-4 shadow-soft">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div id="global-stats" class="text-sm" aria-live="polite"></div>
+        <div class="flex gap-2">
+          <button id="resetSectionBtn" class="focus-ring px-3 py-2 rounded-xl bg-amber-100 text-amber-900 hover:scale-[1.02] transition dark:bg-amber-900/40 dark:text-amber-200" data-i18n="resetActive">Reset active section</button>
+          <button id="resetAllBtn2" class="focus-ring px-3 py-2 rounded-xl bg-slate-100 hover:scale-[1.02] transition dark:bg-slate-800 dark:hover:bg-slate-700" data-i18n="resetAll">Reset all</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Confetti layer + Final modal -->
+  <div id="confetti" class="confetti"></div>
+  <div id="finalModal" class="fixed inset-0 hidden items-center justify-center bg-slate-900/60 z-50">
+    <div class="max-w-md w-full rounded-2xl bg-white dark:bg-slate-900 p-5 shadow-soft">
+      <h3 class="text-xl font-bold mb-1" data-i18n="finalTitle">Bridgeway says:</h3>
+      <p id="finalMsg" class="text-slate-700 dark:text-slate-300 mb-3"></p>
+      <div id="finalScore" class="font-semibold mb-4"></div>
+      <div class="flex justify-end gap-2">
+        <button id="finalClose" class="focus-ring px-3 py-2 rounded-xl bg-bridgeTeal text-bridgeNavy font-semibold hover:scale-[1.02] transition" data-i18n="close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  // ===== Utilities
+  const $ = (sel, root=document) => root.querySelector(sel);
+  const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+  const shuffle = (arr) => arr.map(v => [Math.random(), v]).sort((a,b)=>a[0]-b[0]).map(v=>v[1]);
+  const STORAGE_KEY='eng-practice-v3', THEME_KEY='theme-dark', LANG_KEY='ui-lang';
+  const save = (o)=>localStorage.setItem(STORAGE_KEY,JSON.stringify(o));
+  const load = ()=>JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+
+  // ===== I18N (English / Russian / Romanian)
+  const I18N = {
+    en: {
+      appTitle:"Bridgeway · English Practice App", language:"Language", darkMode:"Dark mode",
+      instructionsTitle:"How to use",
+      instructionsList:`<li>Open this file in your browser.</li><li>Use the tabs to switch section without losing progress.</li><li>Click an option to get instant feedback. Items lock after answering.</li><li>Progress is saved; use “Clear data” to wipe.</li>`,
+      tab1:"Adverbs of Frequency", tab2:"Present Simple – 3rd person (-s/-es/-ies)", tab3:"Editing Practice – Add -s/-es/-ies",
+      advDesc:"Complete the 12 blanks with the best adverb.",
+      presDesc:"Rules -s/-es/-ies, exceptions, special cases.",
+      editDesc:"Fix the 20 sentences to 3rd person.",
+      clearData:"Clear data", resetAll:"Reset all", resetActive:"Reset active section", retry:"Retry section", finish:"Finish section", close:"Close",
+      correct:"Great! ", incorrect:(correct)=>`Not quite. The correct answer is “${correct}”. `,
+      finalTitle:"Bridgeway says:",
+      finalMsgExcellent:"Outstanding work! Your consistency is inspiring — keep crossing that bridge to fluency. 🌉🚀",
+      finalMsgGood:"Nice progress! Every step counts. Keep going — Bridgeway is cheering for you. 🌟",
+      finalMsgKeep:"Great effort! Mistakes are steps forward. You’ve got this! 💪",
+      stats:(c,w,r)=>`Correct: ${c} · Wrong: ${w} · Remaining: ${r}`,
+      statsGlobal:(c,w,rem,total)=>`Global · Correct: ${c} · Wrong: ${w} · Remaining: ${rem} / ${total}`,
+    },
+    ru: {
+      appTitle:"Bridgeway · Тренажёр английского",
+      language:"Язык", darkMode:"Тёмная тема",
+      instructionsTitle:"Как пользоваться",
+      instructionsList:`<li>Откройте файл в браузере.</li><li>Переключайтесь между вкладками — прогресс не теряется.</li><li>Нажмите на вариант и сразу получите ответ. Вопрос блокируется после ответа.</li><li>Прогресс сохраняется; нажмите «Очистить данные» для сброса.</li>`,
+      tab1:"Наречия частоты", tab2:"Present Simple — 3-е лицо (-s/-es/-ies)", tab3:"Редактирование — добавь -s/-es/-ies",
+      advDesc:"Заполните 12 пропусков подходящим наречием.",
+      presDesc:"Правила -s/-es/-ies, исключения и особые случаи.",
+      editDesc:"Исправьте 20 предложений в 3-м лице.",
+      clearData:"Очистить данные", resetAll:"Сбросить всё", resetActive:"Сбросить текущий раздел", retry:"Повторить раздел", finish:"Завершить раздел", close:"Закрыть",
+      correct:"Отлично! ", incorrect:(correct)=>`Почти. Правильно: «${correct}». `,
+      finalTitle:"Bridgeway говорит:",
+      finalMsgExcellent:"Превосходно! Ваша настойчивость вдохновляет — продолжайте путь к свободной речи. 🌉🚀",
+      finalMsgGood:"Отличный прогресс! Каждый шаг важен. Мы верим в вас. 🌟",
+      finalMsgKeep:"Хорошая работа! Ошибки — ступени вперёд. У вас всё получится! 💪",
+      stats:(c,w,r)=>`Верно: ${c} · Неверно: ${w} · Осталось: ${r}`,
+      statsGlobal:(c,w,rem,total)=>`Итог · Верно: ${c} · Неверно: ${w} · Осталось: ${rem} / ${total}`,
+    },
+    ro: {
+      appTitle:"Bridgeway · Exerciții de engleză",
+      language:"Limbă", darkMode:"Mod întunecat",
+      instructionsTitle:"Cum se folosește",
+      instructionsList:`<li>Deschide fișierul în browser.</li><li>Schimbă între secțiuni din tab-uri fără să pierzi progresul.</li><li>Alege o opțiune și primești feedback imediat. Itemul se blochează după răspuns.</li><li>Progresul se salvează; folosește „Șterge datele” pentru reset.</li>`,
+      tab1:"Adverbe de frecvență", tab2:"Present Simple – persoana a 3-a (-s/-es/-ies)", tab3:"Editare – adaugă -s/-es/-ies",
+      advDesc:"Completează cele 12 spații cu cel mai bun adverb.",
+      presDesc:"Reguli -s/-es/-ies, excepții și cazuri speciale.",
+      editDesc:"Corectează cele 20 de propoziții la persoana a 3-a.",
+      clearData:"Șterge datele", resetAll:"Resetează tot", resetActive:"Resetează secțiunea activă", retry:"Reia secțiunea", finish:"Finalizează secțiunea", close:"Închide",
+      correct:"Perfect! ", incorrect:(correct)=>`Aproape. Răspunsul corect este „${correct}”. `,
+      finalTitle:"Mesaj Bridgeway:",
+      finalMsgExcellent:"Excelent! Ritmul tău inspiră — continuă drumul spre fluență. 🌉🚀",
+      finalMsgGood:"Progres frumos! Fiecare pas contează. Continuă! 🌟",
+      finalMsgKeep:"Efort foarte bun! Greșelile te împing înainte. Poți reuși! 💪",
+      stats:(c,w,r)=>`Corecte: ${c} · Greșite: ${w} · Rămase: ${r}`,
+      statsGlobal:(c,w,rem,total)=>`Global · Corecte: ${c} · Greșite: ${w} · Rămase: ${rem} / ${total}`,
+    }
+  };
+
+  // confetti
+  const COLORS=['#1C2B3F','#2C425E','#4EC7C4','#41b7b4','#0ea5a8'];
+  function confetti(){
+    const layer=$('#confetti'); if(!layer) return;
+    layer.innerHTML=''; const n=90;
+    for(let i=0;i<n;i++){
+      const d=document.createElement('div'), sz=6+Math.random()*8;
+      Object.assign(d.style,{position:'absolute',top:'-10px',left:(Math.random()*100)+'vw',width:sz+'px',height:sz+'px',borderRadius:'2px',background:COLORS[i%COLORS.length],opacity:'.9'});
+      layer.appendChild(d);
+      const dur=1200+Math.random()*900;
+      d.animate([{transform:'translateY(0) rotate(0)'},{transform:`translateY(${window.innerHeight+60}px) rotate(${Math.random()*720-360}deg)`}],{duration:dur,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'});
+      setTimeout(()=>d.remove(),dur+120);
+    }
+  }
+
+  // ===== Questions from the worksheets (transcribed exactly)
+  const advQuestions=[
+    { prompt:"1) My brother is never sad. He’s ________________ happy.", options:["always","usually","often","sometimes"], correctIndex:0, explanation:"If he is never sad, he is always happy."},
+    { prompt:"2) I was late for work only one time last year. I’m ________________ late.", options:["rarely","always","often","sometimes"], correctIndex:0, explanation:"‘Only one time’ ⇒ rarely."},
+    { prompt:"3) Mary failed only one test in high school. She ________________ passed her tests.", options:["almost always","never","hardly ever","seldom"], correctIndex:0, explanation:"Only once ⇒ almost always passed."},
+    { prompt:"4) I always remember to do my homework. I ________________ forget to do it.", options:["never","often","sometimes","usually"], correctIndex:0, explanation:"Always remember ⇒ never forget."},
+    { prompt:"5) Steven seldom goes to a cinema. He ________________ sees movies.", options:["rarely","always","usually","often"], correctIndex:0, explanation:"Seldom ⇒ rarely."},
+    { prompt:"6) Judy saw a doctor for the first time in three years. She ________________ gets sick.", options:["hardly ever","often","usually","always"], correctIndex:0, explanation:"First time in 3 years ⇒ hardly ever."},
+    { prompt:"7) I get up at five o’clock seven days a week. I ________________ get up early.", options:["always","sometimes","often","usually"], correctIndex:0, explanation:"Every day ⇒ always."},
+    { prompt:"8) It’s always hot and sunny where I live. That’s why I ________________ see snow.", options:["never","often","sometimes","usually"], correctIndex:0, explanation:"Always hot ⇒ never see snow."},
+    { prompt:"9) A: Do you ever drink coffee? B: Yes, but only ________________, not often.", options:["sometimes","always","usually","never"], correctIndex:0, explanation:"‘Only … not often’ ⇒ sometimes."},
+    { prompt:"10) My sister almost never eats burgers and fries. She ________________ eats healthy foods.", options:["usually","rarely","never","hardly ever"], correctIndex:0, explanation:"Almost never junk ⇒ usually healthy."},
+    { prompt:"11) I ________________ take a bus to class, maybe three or four days a week.", options:["often","always","never","hardly ever"], correctIndex:0, explanation:"3–4 days/week ⇒ often."},
+    { prompt:"12) A: Do you ever watch action movies? B: No, never. Well, I watched an action movie a few years ago, so I guess should say ________________.", options:["hardly ever","always","often","usually"], correctIndex:0, explanation:"Hardly ever."},
+  ];
+
+  const presQuestions=[
+    { prompt:"He ____ TV. (watch)", options:["watch","watches","watchs","watchez"], correctIndex:1, explanation:"-tch ⇒ adds -es."},
+    { prompt:"She ____ English. (teach)", options:["teachs","teaches","teach","teachies"], correctIndex:1, explanation:"-ch ⇒ adds -es."},
+    { prompt:"He ____ his clothes. (wash)", options:["wash","washes","washs","washez"], correctIndex:1, explanation:"-sh ⇒ adds -es."},
+    { prompt:"She ____ her friends. (miss)", options:["miss","misses","misss","mises"], correctIndex:1, explanation:"-ss ⇒ adds -es."},
+    { prompt:"He ____ to school. (go)", options:["goes","gos","go","goe"], correctIndex:0, explanation:"-o ⇒ adds -es."},
+    { prompt:"She ____ bicycles. (fix)", options:["fixes","fixs","fix","fixies"], correctIndex:0, explanation:"-x ⇒ adds -es."},
+    { prompt:"He ____ too much. (worry)", options:["worrys","worries","worrie","worriez"], correctIndex:1, explanation:"Consonant+y ⇒ -ies."},
+    { prompt:"She ____ to work. (hurry)", options:["hurrys","hurries","hurry","huries"], correctIndex:1, explanation:"Consonant+y ⇒ -ies."},
+    { prompt:"He ____ English. (study)", options:["studies","studys","study","studyies"], correctIndex:0, explanation:"Consonant+y ⇒ -ies."},
+    { prompt:"She ____ soccer. (play)", options:["plays","plaies","play","playes"], correctIndex:0, explanation:"Vowel+y ⇒ just -s."},
+    { prompt:"He ____ lunch. (buy)", options:["buys","buyes","buy","buies"], correctIndex:0, explanation:"Vowel+y ⇒ just -s."},
+    { prompt:"She ____ two cats. (have)", options:["have","haves","has","hases"], correctIndex:2, explanation:"Irregular ⇒ has."},
+    { prompt:"____ she work? (question, verb doesn’t change)", options:["Does","Do","Is","Has"], correctIndex:0, explanation:"Use ‘Does’."},
+    { prompt:"He ____ watch TV. (negative)", options:["doesn't","don't","isn't","hasn't"], correctIndex:0, explanation:"Doesn't + base verb."},
+    { prompt:"She ____ fix bicycles. (modal)", options:["can","cans","musts","shoulds"], correctIndex:0, explanation:"Modals + base verb."},
+  ];
+
+  const editQuestions=[
+    { prompt:"Correct: “…but he like it.”", options:["he likes it","he like it","he liked it","he like’s it"], correctIndex:0, explanation:"3rd person ⇒ likes."},
+    { prompt:"Correct: “He usually get up …”", options:["He usually gets up","He usually get up","He usually is get up","He usually getting up"], correctIndex:0, explanation:"gets."},
+    { prompt:"Correct: “…after his alarm clock wake him up.”", options:["wakes","wake","waked","is wake"], correctIndex:0, explanation:"wakes."},
+    { prompt:"Correct: “First, he brush his teeth …”", options:["brushes","brush","is brushing","brushed"], correctIndex:0, explanation:"brushes."},
+    { prompt:"Correct: “…and shave and wash his face.”", options:["shaves and washes","shave and washes","shaves and wash","shave and wash"], correctIndex:0, explanation:"both -s/-es."},
+    { prompt:"Correct: “Then, he get dressed …”", options:["he gets dressed","he get dressed","he is get dressed","he getting dressed"], correctIndex:0, explanation:"gets dressed."},
+    { prompt:"Correct: “…and go downstairs…”", options:["goes downstairs","go downstairs","is go downstairs","going downstairs"], correctIndex:0, explanation:"goes."},
+    { prompt:"Correct: “He take a bus to work …”", options:["He takes a bus","He take a bus","He taking a bus","He is take a bus"], correctIndex:0, explanation:"takes."},
+    { prompt:"Correct: “…and he always arrive at his office…”", options:["arrives","arrive","is arrive","arriving"], correctIndex:0, explanation:"arrives."},
+    { prompt:"Correct: “…because he finish work and hurry back home…”", options:["finishes and hurries","finish and hurries","finishes and hurry","finish and hurry"], correctIndex:0, explanation:"both 3rd person."},
+    { prompt:"Correct: “…and see his wife and children again.”", options:["sees","see","is see","seeing"], correctIndex:0, explanation:"sees."},
+    { prompt:"Correct: “…after that he spend time with his wife and kids…”", options:["he spends time","he spend time","he is spend time","he spending time"], correctIndex:0, explanation:"spends."},
+    { prompt:"Correct: “…he do exercise in the evening…”", options:["he does exercise","he do exercise","he is do exercise","he doing exercise"], correctIndex:0, explanation:"does."},
+    { prompt:"Correct: “He think that this is very important!”", options:["He thinks","He think","He is think","He thinking"], correctIndex:0, explanation:"thinks."},
+    { prompt:"Correct: “…at about 9:30, he go to bed…”", options:["he goes to bed","he go to bed","he going to bed","he is go to bed"], correctIndex:0, explanation:"goes."},
+    { prompt:"Correct: “…read for a while…”", options:["reads","read","is read","reading"], correctIndex:0, explanation:"reads."},
+    { prompt:"Correct: “…and then fall asleep.”", options:["falls","fall","is fall","falles"], correctIndex:0, explanation:"falls."},
+    { prompt:"Correct: “…on weekends and holidays he love to fly airplanes…”", options:["he loves to fly","he love to fly","he is love to fly","he loved to fly"], correctIndex:0, explanation:"loves."},
+    { prompt:"Comprehension: “Five o’clock is his favorite time of the day.” Why?", options:["Because he finishes work and goes home","Because he starts work","Because he goes to bed","Because he goes to the cinema"], correctIndex:0, explanation:"He finishes work and returns home."},
+    { prompt:"Text fact: What are his sons’ names?", options:["Thomas and Patrick","John and Peter","Mike and Judy","Steven and Mary"], correctIndex:0, explanation:"Thomas & Patrick."},
+  ];
+
+  // ===== Engine
+  const sections={
+    adv:{elQuiz:$('#adv-quiz'),elStats:$('#adv-stats'),questions:advQuestions},
+    pres:{elQuiz:$('#pres-quiz'),elStats:$('#pres-stats'),questions:presQuestions},
+    edit:{elQuiz:$('#edit-quiz'),elStats:$('#edit-stats'),questions:editQuestions},
+  };
+
+  let state=load(); for(const k of Object.keys(sections)){ if(!state[k]) state[k]={order:[],answered:{},correct:0,wrong:0}; }
+
+  function renderSection(key){
+    const sec=sections[key];
+    if(!state[key].order.length) state[key].order=shuffle([...sec.questions.keys()]);
+    const container=sec.elQuiz; container.innerHTML='';
+    state[key].order.forEach((qIndex,idx)=>{
+      const q=sec.questions[qIndex], order=shuffle([0,1,2,3]), correctShuffled=order.indexOf(q.correctIndex);
+      const card=document.createElement('article');
+      card.className='rounded-xl border p-4 bg-white/90 dark:bg-slate-900/50 shadow-sm transition animate-pulsePop';
+      card.innerHTML='<div class="flex items-start gap-3"><div class="flex-1">'
+        +'<div class="font-medium text-slate-800 dark:text-slate-100">'+q.prompt+'</div>'
+        +'<div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2" role="radiogroup" aria-label="Options">'
+        +order.map((opt,i)=>'<button class="option focus-ring px-3 py-2 text-left rounded-lg border bg-slate-50 hover:bg-bridgeTeal/20 hover:translate-x-0.5 transition dark:bg-slate-800" role="radio" aria-checked="false" data-correct="'+(i===correctShuffled)+'" data-qkey="'+key+'" data-qindex="'+qIndex+'">'+q.options[opt]+'</button>').join('')
+        +'</div><div class="mt-2 h-6 text-sm" aria-live="polite"></div>'
+        +'<div class="mt-3 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"><div class="progress h-2 bg-gradient-to-r from-bridgeNavy to-bridgeTeal w-0"></div></div>'
+        +'</div><span class="ml-2 inline-flex items-center justify-center rounded-full h-7 w-7 bg-bridgeTeal/20 text-bridgeNavy text-sm">'+(idx+1)+'</span></div>';
+
+      const answered=state[key].answered[qIndex];
+      if(answered) lockCard(card, answered.correct, q, answered.chosenText);
+      container.appendChild(card);
+    });
+
+    container.addEventListener('click', (e)=>{
+      const btn=e.target.closest('button.option'); if(!btn) return;
+      if(btn.closest('article').classList.contains('disabled')) return;
+      const correct=btn.dataset.correct==='true';
+      const qIndex=parseInt(btn.dataset.qindex);
+      const chosenText=btn.textContent.trim();
+      const q=sections[key].questions[qIndex];
+
+      lockCard(btn.closest('article'), correct, q, chosenText);
+      state[key].answered[qIndex]={correct,chosenText};
+      if(correct) state[key].correct++; else state[key].wrong++;
+      save(state); updateStats(key); updateGlobal();
+
+      // Motivación automática
+      const msg = correct ? t('correct') + (q.explanation||'') : t('incorrect')(q.options[q.correctIndex]) + (q.explanation||'');
+      toast(msg, !correct);
+      if(correct) confetti();
+    });
+  }
+
+  function lockCard(card, correct, q, chosenText){
+    card.classList.add('disabled');
+    const btns=$$('.option',card);
+    btns.forEach(b=>b.classList.add('pointer-events-none'));
+    btns.forEach(b=>{
+      const isCorrect=b.dataset.correct==='true';
+      b.classList.remove('border');
+      if(isCorrect) b.classList.add('border-emerald-500','bg-emerald-50','dark:bg-emerald-900/20');
+      if(!isCorrect && b.textContent.trim()===chosenText && !correct) b.classList.add('border-rose-500','bg-rose-50','dark:bg-rose-900/30','animate-shake');
+    });
+    const fb=$('div[aria-live]',card);
+    fb.textContent = correct ? (t('correct') + (q.explanation||'')) : (t('incorrect')(q.options[q.correctIndex]) + (q.explanation||''));
+    $('.progress',card).style.width='100%';
+  }
+
+  function updateStats(key){
+    const total=sections[key].questions.length;
+    const answered=Object.keys(state[key].answered).length;
+    const remaining=total-answered;
+    sections[key].elStats.textContent=t('stats')(state[key].correct,state[key].wrong,remaining);
+  }
+  function updateGlobal(){
+    const keys=Object.keys(sections);
+    const total=keys.map(k=>sections[k].questions.length).reduce((a,b)=>a+b,0);
+    const correct=keys.map(k=>state[k].correct).reduce((a,b)=>a+b,0);
+    const wrong=keys.map(k=>state[k].wrong).reduce((a,b)=>a+b,0);
+    const answered=keys.map(k=>Object.keys(state[k].answered).length).reduce((a,b)=>a+b,0);
+    $('#global-stats').textContent=t('statsGlobal')(correct,wrong,total-answered,total);
+  }
+  function resetSection(key){
+    state[key]={order:shuffle([...sections[key].questions.keys()]),answered:{},correct:0,wrong:0};
+    save(state); renderSection(key); updateStats(key); updateGlobal();
+  }
+  function resetAll(){
+    for(const k of Object.keys(sections)) state[k]={order:shuffle([...sections[k].questions.keys()]),answered:{},correct:0,wrong:0};
+    save(state); for(const k of Object.keys(sections)) renderSection(k),updateStats(k); updateGlobal();
+  }
+  function finishedSectionMessage(pct){
+    if(pct>=90) return t('finalMsgExcellent');
+    if(pct>=60) return t('finalMsgGood');
+    return t('finalMsgKeep');
+  }
+
+  // toasts
+  function toast(text, danger=false){
+    const el=document.createElement('div');
+    el.className='fixed bottom-4 right-4 px-4 py-3 rounded-xl shadow-soft bg-white/95 dark:bg-slate-800/95 border '+(danger?'border-rose-400':'border-emerald-400')+' animate-pulsePop z-50';
+    el.textContent=text; document.body.appendChild(el); setTimeout(()=>el.remove(),2200);
+  }
+
+  // Tabs
+  function setActive(id){
+    $$('.panel').forEach(p=>p.classList.add('hidden'));
+    const panel=document.getElementById(id); panel.classList.remove('hidden');
+    $$('.tab').forEach(t=>t.dataset.active='false');
+    $$('.tab[data-target="'+id+'"]')[0].dataset.active='true';
+  }
+  $$('.tab').forEach(t=>{
+    t.addEventListener('click',()=>setActive(t.dataset.target));
+    t.addEventListener('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); setActive(t.dataset.target); }});
+  });
+
+  // Final modal helpers
+  function openFinal(sectionKey){
+    const total=sections[sectionKey].questions.length;
+    const c=state[sectionKey].correct, w=state[sectionKey].wrong, ans=Object.keys(state[sectionKey].answered).length;
+    const pct=Math.round((c/total)*100);
+    $('#finalMsg').textContent=finishedSectionMessage(pct);
+    $('#finalScore').textContent=`Score: ${c}/${total} (${pct}%)`;
+    $('#finalModal').classList.remove('hidden');
+    confetti();
+  }
+  $('#finalClose').addEventListener('click',()=>$('#finalModal').classList.add('hidden'));
+
+  // Buttons
+  $('#resetAllBtn').addEventListener('click', resetAll);
+  $('#resetAllBtn2').addEventListener('click', resetAll);
+  $('#resetSectionBtn').addEventListener('click', ()=>{
+    const visible=$$('.panel').find(p=>!p.classList.contains('hidden'));
+    if(visible) resetSection(visible.id.split('-')[1]);
+  });
+  $('#clearStorageBtn').addEventListener('click', ()=>{
+    localStorage.removeItem(STORAGE_KEY); localStorage.removeItem(THEME_KEY); localStorage.removeItem(LANG_KEY);
+    toast('Data cleared 🧹');
+  });
+
+  // Finish buttons
+  $$('.btn-finish').forEach(b=>b.addEventListener('click',()=>openFinal(b.dataset.section)));
+  $$('.btn-retry').forEach(b=>b.addEventListener('click',()=>resetSection(b.dataset.section)));
+
+  // Theme + language
+  const themeToggle=$('#themeToggle');
+  const initTheme=()=>{ const on=localStorage.getItem(THEME_KEY)==='1'; document.documentElement.classList.toggle('dark',on); themeToggle.checked=on; };
+  themeToggle.addEventListener('change',()=>{ const on=themeToggle.checked; document.documentElement.classList.toggle('dark',on); localStorage.setItem(THEME_KEY,on?'1':'0'); });
+  initTheme();
+
+  const langSel=$('#langSel');
+  function t(key){ const lang=localStorage.getItem(LANG_KEY)||'en'; return I18N[lang][key]; }
+  function applyI18N(){
+    const lang=localStorage.getItem(LANG_KEY)||'en';
+    document.documentElement.lang=lang;
+    $$('[data-i18n]').forEach(el=>{
+      const key=el.getAttribute('data-i18n');
+      const val=I18N[lang][key];
+      if(!val) return;
+      if(key==='instructionsList') el.innerHTML=val; else el.textContent=val;
+    });
+    // update stats text
+    for(const k of Object.keys(sections)) updateStats(k);
+    updateGlobal();
+  }
+  langSel.value=localStorage.getItem(LANG_KEY)||'en';
+  langSel.addEventListener('change',()=>{ localStorage.setItem(LANG_KEY,langSel.value); applyI18N(); toast('✓'); });
+
+  // Init rendering
+  Object.keys(sections).forEach(k=>{ if(!state[k].order.length) state[k].order=shuffle([...sections[k].questions.keys()]); });
+  save(state);
+  Object.keys(sections).forEach(k=>{ renderSection(k); updateStats(k); });
+  applyI18N(); setActive('panel-adv');
+  updateGlobal();
+  </script>
+</body>
+</html>
