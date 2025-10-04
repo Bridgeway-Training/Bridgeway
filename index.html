@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sol · Restaurante en Córdoba</title>
+  <meta name="description" content="Sol, restaurante de alta cocina en Córdoba, España. Reservas online, carta de temporada y una experiencia cálida y elegante inspirada en el sol." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'Apple Color Emoji', 'Segoe UI Emoji'] },
+          colors: {
+            gold: {
+              DEFAULT: '#d4af37', // warm gold
+              soft: '#e6c766',
+              dark: '#b8962d'
+            },
+            night: {
+              900: '#0a0a0a',
+              800: '#0f0f12',
+              700: '#17171b'
+            }
+          },
+          boxShadow: {
+            lux: '0 10px 30px -10px rgba(212,175,55,0.25)'
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
+            spinSlow: { to: { transform: 'rotate(360deg)' } },
+            fadeUp: { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            spinSlow: 'spinSlow 20s linear infinite',
+            fadeUp: 'fadeUp 700ms ease both'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Accessible focus ring tuned to gold */
+    :root { --ring: #d4af37; }
+    *:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      .motion-safe\:animate-float, .motion-safe\:animate-spinSlow, .motion-safe\:transition-all, .motion-safe\:duration-500, .motion-safe\:duration-700, .motion-safe\:duration-300 { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-night-900 text-white font-sans antialiased selection:bg-gold/20 selection:text-white">
+  <!-- Navigation -->
+  <header class="fixed inset-x-0 top-0 z-50 backdrop-blur bg-night-900/70 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="#top" class="flex items-center gap-3 group" aria-label="Inicio · Sol">
+        <!-- Animated Sun Logo -->
+        <div class="relative">
+          <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <radialGradient id="g" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fff3c4"/>
+                <stop offset="60%" stop-color="#f3d27a"/>
+                <stop offset="100%" stop-color="#d4af37"/>
+              </radialGradient>
+            </defs>
+            <circle cx="32" cy="32" r="12" fill="url(#g)"></circle>
+            <g class="motion-safe:animate-spinSlow" style="transform-origin: 32px 32px">
+              <g stroke="#d4af37" stroke-width="2" stroke-linecap="round">
+                <line x1="32" y1="2" x2="32" y2="12"/>
+                <line x1="32" y1="52" x2="32" y2="62"/>
+                <line x1="2" y1="32" x2="12" y2="32"/>
+                <line x1="52" y1="32" x2="62" y2="32"/>
+                <line x1="11" y1="11" x2="18" y2="18"/>
+                <line x1="46" y1="46" x2="53" y2="53"/>
+                <line x1="46" y1="18" x2="53" y2="11"/>
+                <line x1="11" y1="53" x2="18" y2="46"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <span class="text-lg font-semibold tracking-wide">Sol</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm">
+        <a href="#reserva" class="hover:text-gold transition-colors">Reservas</a>
+        <a href="#carta" class="hover:text-gold transition-colors">Carta</a>
+        <a href="#faq" class="hover:text-gold transition-colors">FAQ</a>
+        <a href="#contacto" class="hover:text-gold transition-colors">Contacto</a>
+      </nav>
+
+      <a href="#reserva" class="hidden sm:inline-flex items-center gap-2 bg-gold text-night-900 font-medium px-4 py-2 rounded-xl shadow-lux hover:bg-gold-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 transition" aria-label="Reservar mesa">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg>
+        Reservar
+      </a>
+
+      <!-- Mobile menu -->
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/5" aria-label="Abrir menú"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+    <div id="mobileNav" class="md:hidden hidden border-t border-white/5">
+      <div class="px-4 py-3 space-y-2">
+        <a href="#reserva" class="block py-2 hover:text-gold">Reservas</a>
+        <a href="#carta" class="block py-2 hover:text-gold">Carta</a>
+        <a href="#faq" class="block py-2 hover:text-gold">FAQ</a>
+        <a href="#contacto" class="block py-2 hover:text-gold">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="top" class="relative h-[100svh] w-full overflow-hidden">
+    <picture>
+      <!-- High-quality, royalty-free Unsplash image -->
+      <source srcset="https://images.unsplash.com/photo-1541542684-4a9c58a2c9b8?q=80&w=1920&auto=format&fit=crop" media="(min-width: 1024px)">
+      <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1200&auto=format&fit=crop" alt="Ambiente cálido y elegante del restaurante Sol en Córdoba" class="absolute inset-0 w-full h-full object-cover" />
+    </picture>
+    <div class="absolute inset-0 bg-gradient-to-b from-night-900/30 via-night-900/60 to-night-900"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs tracking-wide uppercase">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold animate-pulse" aria-hidden="true"></span>
+          Nueva temporada · Córdoba
+        </div>
+        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+          Calidez y elegancia inspiradas en el <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-soft">Sol</span>
+        </h1>
+        <p class="mt-4 text-lg text-white/80">Alta cocina mediterránea con un guiño andaluz. Ingredientes de temporada, técnica impecable y hospitalidad luminosa en el corazón de Córdoba.</p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a href="#reserva" class="group inline-flex items-center gap-2 bg-gold text-night-900 font-semibold px-6 py-3 rounded-2xl shadow-lux hover:bg-gold-soft transition motion-safe:duration-300">
+            Reservar mesa
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="#carta" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl border border-white/10 hover:border-gold/60 hover:text-gold transition motion-safe:duration-300" aria-label="Ver carta">Ver carta</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating decor sun -->
+    <div class="absolute right-6 bottom-10 opacity-80 pointer-events-none">
+      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" class="motion-safe:animate-float" aria-hidden="true">
+        <circle cx="60" cy="60" r="26" fill="#d4af37" fill-opacity="0.15" />
+        <circle cx="60" cy="60" r="44" stroke="#d4af37" stroke-opacity="0.25" stroke-width="1.5" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Reservations -->
+  <section id="reserva" class="relative py-20 bg-night-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-start">
+
+        <!-- Booking Card -->
+        <div class="bg-night-900/80 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl">
+          <h2 class="text-3xl font-bold">Reservas</h2>
+          <p class="mt-2 text-white/70">Una experiencia exquisita comienza con una reserva sencilla. Completa el formulario y confirma al instante.</p>
+
+          <form id="bookingForm" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4" autocomplete="on" aria-describedby="bookingStatus">
+            <div>
+              <label for="date" class="block text-sm text-white/70 mb-1">Fecha</label>
+              <input id="date" name="date" type="date" required class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
+            </div>
+            <div>
+              <label for="time" class="block text-sm text-white/70 mb-1">Hora</label>
+              <input id="time" name="time" type="time" required class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
+            </div>
+            <div>
+              <label for="guests" class="block text-sm text-white/70 mb-1">Comensales</label>
+              <select id="guests" name="guests" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60" aria-label="Número de comensales">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+              </select>
+            </div>
+            <div>
+              <label for="name" class="block text-sm text-white/70 mb-1">Nombre</label>
+              <input id="name" name="name" type="text" required placeholder="Nombre y apellidos" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
+            </div>
+            <div>
+              <label for="phone" class="block text-sm text-white/70 mb-1">Teléfono</label>
+              <input id="phone" name="phone" type="tel" required placeholder="+34 600 000 000" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
+            </div>
+            <div>
+              <label for="email" class="block text-sm text-white/70 mb-1">Email</label>
+              <input id="email" name="email" type="email" required placeholder="tu@email.com" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="notes" class="block text-sm text-white/70 mb-1">Notas</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Alergias, preferencias..." class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"></textarea>
+            </div>
+            <div class="sm:col-span-2 flex items-center justify-between gap-4 mt-2">
+              <p class="text-xs text-white/60">Al enviar aceptas nuestra <a href="#" class="text-gold hover:underline">política de privacidad</a>.</p>
+              <button type="submit" class="group inline-flex items-center gap-2 bg-gold text-night-900 font-semibold px-5 py-2.5 rounded-xl shadow-lux hover:bg-gold-soft transition motion-safe:duration-300">
+                Confirmar reserva
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </form>
+
+          <!-- Status -->
+          <div id="bookingStatus" class="mt-4 hidden rounded-xl border border-gold/40 bg-gold/10 p-4 text-sm" role="status" aria-live="polite"></div>
+        </div>
+
+        <!-- Info Card -->
+        <aside class="bg-gradient-to-br from-night-900 via-night-900/90 to-night-800 border border-white/10 rounded-3xl p-6 sm:p-8">
+          <h3 class="text-2xl font-semibold">Horarios & Ubicación</h3>
+          <div class="mt-6 space-y-6">
+            <div class="flex items-start gap-4">
+              <svg class="h-6 w-6 text-gold flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M21 8H7"/><path d="M7 12h14"/><path d="M7 16h14"/></svg>
+              <div>
+                <p class="font-medium">Horario</p>
+                <p class="text-white/70">L–J: 13:30–16:00 / 20:30–23:30<br>V–S: 13:30–16:30 / 20:30–00:00<br>D: 13:30–16:00</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <svg class="h-6 w-6 text-gold flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>
+                <p class="font-medium">Dirección</p>
+                <p class="text-white/70">Calle del Sol, 12 · 14003 Córdoba, España</p>
+                <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Córdoba%20Calle%20del%20Sol%2012" class="inline-flex items-center gap-2 text-gold hover:underline mt-1">Ver en Maps <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <svg class="h-6 w-6 text-gold flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L9 10a16 16 0 0 0 5 5l.81-1.09a2 2 0 0 1 2.11-.45c.76.24 1.55.42 2.36.54A2 2 0 0 1 22 16.92Z"/></svg>
+              <div>
+                <p class="font-medium">Contacto</p>
+                <p class="text-white/70">+34 957 000 000 · <a class="text-gold hover:underline" href="mailto:hola@solcordoba.es">hola@solcordoba.es</a></p>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="carta" class="relative py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-6">
+        <div>
+          <h2 class="text-3xl font-bold">Carta de temporada</h2>
+          <p class="mt-2 text-white/70">Sabores mediterráneos con esencia andaluza. Productos locales y de temporada.</p>
+        </div>
+        <div class="hidden sm:flex items-center gap-3" aria-label="Controles del carrusel de platos">
+          <button id="prevSlide" class="p-2 rounded-lg border border-white/10 hover:border-gold/60" aria-label="Plato anterior">◀</button>
+          <button id="nextSlide" class="p-2 rounded-lg border border-white/10 hover:border-gold/60" aria-label="Siguiente plato">▶</button>
+        </div>
+      </div>
+
+      <!-- Slider -->
+      <div class="mt-8 relative">
+        <div id="slider" class="overflow-hidden rounded-3xl border border-white/10">
+          <div id="sliderTrack" class="flex transition-transform duration-500 will-change-transform">
+            <!-- Slide 1 -->
+            <figure class="min-w-full h-72 sm:h-96 relative">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920&auto=format&fit=crop" alt="Plato de alta cocina con mariscos frescos" class="w-full h-full object-cover" />
+              <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm">Mariscos del día con cítricos</figcaption>
+            </figure>
+            <!-- Slide 2 -->
+            <figure class="min-w-full h-72 sm:h-96 relative">
+              <img src="https://images.unsplash.com/photo-1543332164-6e82f355badc?q=80&w=1920&auto=format&fit=crop" alt="Carne a la brasa perfectamente sellada" class="w-full h-full object-cover" />
+              <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm">Lomo de ternera a la brasa</figcaption>
+            </figure>
+            <!-- Slide 3 -->
+            <figure class="min-w-full h-72 sm:h-96 relative">
+              <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1920&auto=format&fit=crop" alt="Postre elegante con frutas frescas" class="w-full h-full object-cover" />
+              <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm">Texturas de cítricos y frutos rojos</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu Grid -->
+      <div class="mt-12 grid md:grid-cols-2 gap-8">
+        <!-- Food -->
+        <div class="bg-night-900/70 border border-white/10 rounded-3xl p-6">
+          <h3 class="text-2xl font-semibold">Cocina</h3>
+          <ul class="mt-6 space-y-5">
+            <li class="flex items-start justify-between gap-6">
+              <div>
+                <p class="font-medium">Salmorejo de la casa</p>
+                <p class="text-sm text-white/60">Tomate de temporada, AOVE, jamón ibérico crujiente</p>
+              </div>
+              <span class="text-gold font-medium">12€</span>
+            </li>
+            <li class="flex items-start justify-between gap-6">
+              <div>
+                <p class="font-medium">Pulpo braseado</p>
+                <p class="text-sm text-white/60">Patata cremosa, pimentón de la Vera</p>
+              </div>
+              <span class="text-gold font-medium">22€</span>
+            </li>
+            <li class="flex items-start justify-between gap-6">
+              <div>
+                <p class="font-medium">Merluza al pil-pil</p>
+                <p class="text-sm text-white/60">Emulsión de ajo, lima y perejil</p>
+              </div>
+              <span class="text-gold font-medium">24€</span>
+            </li>
+            <li class="flex items-start justify-between gap-6">
+              <div>
+                <p class="font-medium">Presa ibérica</p>
+                <p class="text-sm text-white/60">Glaseado de miel y tomillo, zanahoria asada</p>
+              </div>
+              <span class="text-gold font-medium">26€</span>
+            </li>
+          </ul>
+        </div>
+        <!-- Drinks -->
+        <div class="bg-night-900/70 border border-white/10 rounded-3xl p-6">
+          <h3 class="text-2xl font-semibold">Bodega</h3>
+          <ul class="mt-6 space-y-5">
+            <li class="flex items-start justify-between gap-6">
+              <div>
+                <p class="font-medium">Vino blanco de la casa</p>
+                <p class="text-sm text-white/60">D.O. Montilla-Moriles, afrutado y fresco</p>
+              </div>
+              <span class="text-gold font-medium">4€ / copa</span>
+            </li>
+            <li class="flex items-start justify-between gap-6">
+              <div>
+                <p class="font-medium">Sangría clásica</p>
+                <p class="text-sm text-white/60">Fruta de temporada, toque cítrico</p>
+              </div>
+              <span class="text-gold font-medium">8€</span>
+            </li>
+            <li class="flex items-start justify-between gap-6">
+              <div>
+                <p class="font-medium">Vermut artesano</p>
+                <p class="text-sm text-white/60">Notas herbales y amargas</p>
+              </div>
+              <span class="text-gold font-medium">6€</span>
+            </li>
+            <li class="flex items-start justify-between gap-6">
+              <div>
+                <p class="font-medium">Espumoso brut nature</p>
+                <p class="text-sm text-white/60">Final seco, burbuja fina</p>
+              </div>
+              <span class="text-gold font-medium">30€</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faq" class="relative py-20 bg-night-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold">Preguntas frecuentes</h2>
+      <div class="mt-8 divide-y divide-white/10 border border-white/10 rounded-3xl overflow-hidden">
+        <!-- Item -->
+        <details class="group p-6 open:bg-white/5">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+            <h3 class="font-medium">¿Ofrecen opciones para alergias o dietas especiales?</h3>
+            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="mt-3 text-white/70">Sí. Indícalo al realizar la reserva o a tu llegada. Nuestro equipo ajustará los platos para garantizar tu seguridad y disfrute.</p>
+        </details>
+        <details class="group p-6 open:bg-white/5">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+            <h3 class="font-medium">¿Hay menú degustación?</h3>
+            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="mt-3 text-white/70">Sí, ofrecemos un menú degustación estacional con maridaje opcional. Pregunta a nuestro equipo en sala para más detalles.</p>
+        </details>
+        <details class="group p-6 open:bg-white/5">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+            <h3 class="font-medium">¿Disponen de terraza?</h3>
+            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="mt-3 text-white/70">Sí, contamos con una terraza íntima ideal para las noches templadas cordobesas. Se asigna por orden de llegada.</p>
+        </details>
+        <details class="group p-6 open:bg-white/5">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+            <h3 class="font-medium">¿Puedo hacer un evento privado?</h3>
+            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="mt-3 text-white/70">Por supuesto. Escríbenos a <a class="text-gold hover:underline" href="mailto:eventos@solcordoba.es">eventos@solcordoba.es</a> indicando fecha, número de asistentes y tipo de evento.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contacto" class="border-t border-white/10 bg-night-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="flex items-center gap-3">
+          <!-- Reuse logo -->
+          <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="32" cy="32" r="12" fill="#d4af37" fill-opacity="0.8"></circle></svg>
+          <span class="text-lg font-semibold">Sol</span>
+        </div>
+        <p class="mt-4 text-white/70 max-w-sm">Restaurante de alta cocina en Córdoba. Lujo contemporáneo, hospitalidad cálida.</p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-3">Contacto</h4>
+        <ul class="space-y-2 text-white/80">
+          <li>Calle del Sol, 12 · 14003 Córdoba</li>
+          <li>+34 957 000 000</li>
+          <li><a class="text-gold hover:underline" href="mailto:hola@solcordoba.es">hola@solcordoba.es</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-3">Síguenos</h4>
+        <div class="flex items-center gap-3">
+          <a href="#" aria-label="Instagram" class="p-2 rounded-lg border border-white/10 hover:border-gold/60 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="p-2 rounded-lg border border-white/10 hover:border-gold/60 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="X" class="p-2 rounded-lg border border-white/10 hover:border-gold/60 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4l16 16M20 4 4 20"/></svg>
+          </a>
+        </div>
+        <div class="mt-4">
+          <a href="#reserva" class="inline-flex items-center gap-2 text-sm text-night-900 bg-gold px-4 py-2 rounded-xl hover:bg-gold-soft transition">Reservar ahora <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 py-6 text-center text-xs text-white/50">© <span id="year"></span> Sol · Córdoba · Todos los derechos reservados</div>
+  </footer>
+
+  <!-- Toast / Modal -->
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] hidden">
+    <div class="bg-night-800 border border-gold/40 text-white rounded-2xl px-5 py-3 shadow-lux flex items-center gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+      <p id="toastMsg" class="text-sm"></p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile nav toggle
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      const nav = document.getElementById('mobileNav');
+      nav.classList.toggle('hidden');
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Booking form (demo-only validation + confirmation)
+    const bookingForm = document.getElementById('bookingForm');
+    const bookingStatus = document.getElementById('bookingStatus');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(bookingForm);
+      const date = data.get('date');
+      const time = data.get('time');
+      const name = data.get('name');
+      const guests = data.get('guests');
+
+      if(!date || !time || !name) {
+        showStatus('Por favor completa los campos obligatorios.', true);
+        return;
+      }
+
+      const message = `¡Gracias, ${name}! Tu reserva para ${guests} el ${new Date(date).toLocaleDateString()} a las ${time} ha sido registrada.`;
+      showStatus(message);
+      showToast('Reserva enviada. Te hemos enviado un email de confirmación (demo).');
+      bookingForm.reset();
+    });
+
+    function showStatus(msg, isError = false){
+      bookingStatus.classList.remove('hidden');
+      bookingStatus.classList.toggle('border-red-500/40', isError);
+      bookingStatus.classList.toggle('bg-red-500/10', isError);
+      bookingStatus.textContent = msg;
+      bookingStatus.focus?.();
+    }
+
+    function showToast(msg){
+      toastMsg.textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(()=> toast.classList.add('hidden'), 3500);
+    }
+
+    // Simple slider
+    const track = document.getElementById('sliderTrack');
+    const slides = track.children;
+    let index = 0;
+
+    function updateSlider(){
+      const w = track.querySelector('figure').clientWidth;
+      track.style.transform = `translateX(-${index * w}px)`;
+    }
+
+    document.getElementById('nextSlide').addEventListener('click', ()=>{ index = (index + 1) % slides.length; updateSlider(); });
+    document.getElementById('prevSlide').addEventListener('click', ()=>{ index = (index - 1 + slides.length) % slides.length; updateSlider(); });
+    window.addEventListener('resize', updateSlider);
+    // Auto-play
+    setInterval(()=>{ index = (index + 1) % slides.length; updateSlider(); }, 5000);
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('animate-fadeUp'); observer.unobserve(e.target); }
+      })
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('#reserva .bg-night-900\\/80, #carta .bg-night-900\\/70, #faq details').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
