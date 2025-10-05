@@ -411,6 +411,11 @@
           </div>
           <div class="lg:col-span-2 space-y-6" id="resourceList" aria-live="polite"></div>
         </div>
+        <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-3" id="chatResponses" role="status"></div>
+        <label class="block">
+          <span class="sr-only">Chat input</span>
+          <input type="text" id="chatInput" class="w-full rounded-full border border-slate-200 dark:border-slate-700 px-3 py-2" placeholder="Type price, company, kids..." />
+        </label>
       </div>
     </section>
 
@@ -453,6 +458,9 @@
           <button class="px-6 py-3 rounded-full bg-white text-bw-bridge font-semibold" data-scroll="#levelTest" data-i18n="cta_level_test">Take the level test</button>
           <button class="px-6 py-3 rounded-full border border-white/60 text-white font-semibold" data-modal-open="freeClass" data-i18n="cta_free_class">Book your free class</button>
         </div>
+        <button id="closeAdmin" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800" aria-label="Close admin" data-testid="admin-close">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m6 18 12-12M6 6l12 12"/></svg>
+        </button>
       </div>
     </section>
   </main>
@@ -542,6 +550,39 @@
           <p class="mt-2 text-sm" data-i18n="modal_success_text">We are redirecting you to the summary below. Check your inbox for confirmation and WhatsApp for reminders.</p>
         </div>
       </div>
+      <button id='submitReading' class='px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white'>Next</button>
+    </article>
+  `;
+  qs('#submitReading').addEventListener('click', () => {
+    const choice = Number((formData => formData.get('reading'))(new FormData(container.querySelector('article'))));
+    if (Number.isNaN(choice)) return;
+    testState.readingAnswer = choice;
+    testState.stage = 'speaking';
+    saveTestProgress();
+    renderSpeakingTask();
+  });
+  updateProgressBar();
+};
+
+let recognition;
+
+const stopRecognition = () => {
+  if (recognition) {
+    recognition.stop();
+    recognition = null;
+  }
+};
+
+const renderSpeakingTask = () => {
+  const container = qs('#testContent');
+  const supportSpeech = featureFlags.speechInput && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window);
+  container.innerHTML = `
+    <div class='space-y-4'>
+      <p class='text-sm text-slate-500'>Speaking</p>
+      <p class='text-lg font-semibold text-bw-bridge dark:text-white'>${speakingTask.prompt}</p>
+      <div id='speechControls' class='space-y-3'></div>
+      <textarea id='speakingFallback' class='w-full rounded-2xl border border-slate-200 dark:border-slate-700 p-3' rows='4' placeholder='${speakingTask.fallback}'></textarea>
+      <button id='submitSpeaking' class='px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white'>Finish</button>
     </div>
   </div>
   <div class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur p-4" id="guaranteeModal" role="dialog" aria-modal="true" aria-labelledby="guaranteeTitle">
