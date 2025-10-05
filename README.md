@@ -46,3 +46,10 @@ Los flujos de red (prefetch, reserva de clase, etc.) utilizan `setTimeout` para 
 ## Persistencia ligera
 
 Las banderas `user_test_completed` y `user_booked_class`, así como el progreso del modal, se guardan en `localStorage` mediante `storageSafe`. Si el almacenamiento falla, se registra un aviso y la app continúa en modo volátil.
+
+## Checklist de QA rápido
+
+- **Navegación accesible**: los submenús del header utilizan `aria-expanded`, roles de menú y navegación con flechas.
+- **Modal Clase Gratis**: focus trap, feedback `aria-live` y generación de `.ics` aunque el navegador bloquee descargas.
+- **Internacionalización**: selector persistente, rutas espejo `/en|/ro|/ru/` y mensajes con degradación limpia a EN.
+- **Persistencia y estados**: indicadores de carga global, restauración de scroll y flags de progreso almacenadas en el cliente.
