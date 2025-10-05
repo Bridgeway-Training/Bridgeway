@@ -1,0 +1,130 @@
+{
+  "lang": "ro",
+  "app": {
+    "title": "Demo interacțiune Bridgeway",
+    "skip": "Sari la conținut"
+  },
+  "navigation": {
+    "programs": "Programe",
+    "methodology": "Metodologie",
+    "teachers": "Profesori",
+    "pricing": "Prețuri",
+    "resources": "Resurse",
+    "freeClass": "Clasă gratuită",
+    "menu": "Meniu",
+    "languages": {
+      "en": "EN",
+      "ro": "RO",
+      "ru": "RU"
+    },
+    "programItems": {
+      "generalEnglish": "Engleză generală",
+      "businessEnglish": "Engleză de afaceri",
+      "youngLearners": "Tineri & copii",
+      "examPrep": "Examene internaționale"
+    },
+    "resourceItems": {
+      "blog": "Blog",
+      "placement": "Test de nivel",
+      "guides": "Ghiduri",
+      "tips": "Sfaturi"
+    }
+  },
+  "breadcrumbs": {
+    "home": "Acasă"
+  },
+  "modal": {
+    "title": "Rezervă clasa gratuită",
+    "step": "Pasul {{step}} din 3",
+    "steps": {
+      "details": "Date",
+      "schedule": "Programare",
+      "confirm": "Confirmare"
+    },
+    "labels": {
+      "name": "Nume complet",
+      "email": "Email",
+      "phone": "Telefon",
+      "timezone": "Ora locală: {{tz}}",
+      "date": "Data preferată",
+      "time": "Ora preferată",
+      "notes": "Note"
+    },
+    "actions": {
+      "next": "Următorul",
+      "back": "Înapoi",
+      "submit": "Trimite",
+      "close": "Închide",
+      "addToCalendar": "Adaugă în calendar",
+      "downloadIcs": "Descarcă .ics",
+      "cancel": "Anulează",
+      "reschedule": "Reprogramează"
+    },
+    "feedback": {
+      "loading": "Se trimite…",
+      "success": "Rezervare confirmată!",
+      "error": "A apărut o eroare. Încearcă din nou."
+    },
+    "addons": {
+      "google": "Google Calendar",
+      "apple": "Apple Calendar",
+      "outlook": "Outlook"
+    },
+    "confirmLeave": "Ai date nesalvate. Sigur vrei să închizi?"
+  },
+  "fab": {
+    "label": "Clasă gratuită",
+    "test": "Test de nivel",
+    "contact": "Contact",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "form": "Formular"
+  },
+  "errors": {
+    "404": {
+      "title": "Pagina nu a fost găsită",
+      "cta": "Înapoi acasă"
+    },
+    "500": {
+      "title": "Ceva nu a mers",
+      "cta": "Reîncearcă"
+    },
+    "empty": {
+      "title": "Niciun rezultat",
+      "message": "Ajustează filtrele sau vezi elementele populare.",
+      "cta": "Vezi resurse"
+    },
+    "global": {
+      "home": "Mergi la început",
+      "class": "Rezervă o clasă gratuită"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": "Schelet de interacțiune Bridgeway"
+    },
+    "programs": {
+      "title": "Programe",
+      "business": "Engleză de afaceri"
+    },
+    "methodology": {
+      "title": "Metodologie"
+    },
+    "teachers": {
+      "title": "Profesori"
+    },
+    "pricing": {
+      "title": "Prețuri"
+    },
+    "resources": {
+      "blog": "Blog",
+      "test": "Test de nivel",
+      "guides": "Ghiduri",
+      "tips": "Sfaturi"
+    },
+    "thanks": {
+      "title": "Mulțumim pentru rezervare",
+      "message": "Ți-am trimis detaliile prin email."
+    }
+  }
+}

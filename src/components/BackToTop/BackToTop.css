@@ -1,0 +1,20 @@
+.back-to-top {
+  position: fixed;
+  bottom: calc(90px + env(safe-area-inset-bottom));
+  right: calc(16px + env(safe-area-inset-right));
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  border: 1px solid var(--color-border);
+  background: var(--color-contrast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity var(--transition-duration) var(--transition-ease);
+}
+
+.back-to-top[aria-hidden='true'] {
+  pointer-events: none;
+  opacity: 0;
+}
