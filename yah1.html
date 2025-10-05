@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo UI — Menú + Interacciones (Monocromática)</title>
+  <meta name="description" content="Demostración monocromática de navegación, i18n, accesibilidad, FAB y modal de Clase Gratis. Un solo archivo, sin backend." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'] },
+          boxShadow: {
+            soft: '0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.08)'
+          }
+        }
+      },
+      corePlugins: { preflight: true }
+    };
+  </script>
+  <style>
+    /* ====== Variables escala de grises (modo monocromático) ====== */
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #6b7280; /* gray-500 */
+      --b1: #000000; /* negro puro */
+      --b2: #1f2937; /* gray-800 */
+      --b3: #374151; /* gray-700 */
+      --b4: #4b5563; /* gray-600 */
+      --b5: #9ca3af; /* gray-400 */
+      --b6: #e5e7eb; /* gray-200 */
+      --b7: #f3f4f6; /* gray-100 */
+      --focus: #000; /* outline visible en B/N */
+      --hr: #e5e7eb;
+    }
+    [data-theme="dark"]:root {
+      --bg: #0b0b0b;
+      --fg: #f5f5f5;
+      --muted: #9ca3af;
+      --b1: #fff;
+      --b2: #d1d5db;
+      --b3: #9ca3af;
+      --b4: #6b7280;
+      --b5: #4b5563;
+      --b6: #1f2937;
+      --b7: #111827;
+      --focus: #fff;
+      --hr: #1f2937;
+    }
+
+    html, body { background: var(--bg); color: var(--fg); }
+
+    /* Alto contraste (respeta preferencia del SO) */
+    @media (forced-colors: active) {
+      :root { --focus: CanvasText; }
+      * { forced-color-adjust: auto; }
+    }
+
+    /* Focus visible en todos los interactivos */
+    :is(a, button, [role="button"], input, select, textarea, [tabindex]) :focus,
+    :is(a, button, [role="button"], input, select, textarea, [tabindex]):focus {
+      outline: 2px solid var(--focus) !important;
+      outline-offset: 2px !important;
+    }
+
+    /* Prefiere reducir movimiento: desactivar animaciones no esenciales */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+    }
+
+    /* Sticky Header stable */
+    .sticky-safe { position: sticky; top: 0; z-index: 40; will-change: transform; backface-visibility: hidden; }
+
+    /* Slide-in para menú móvil */
+    .drawer-enter { transform: translateX(100%); opacity: 0; }
+    .drawer-enter-active { transform: translateX(0); opacity: 1; transition: transform 180ms ease, opacity 120ms linear; }
+    .drawer-leave { transform: translateX(0); opacity: 1; }
+    .drawer-leave-active { transform: translateX(100%); opacity: 0; transition: transform 180ms ease, opacity 120ms linear; }
+
+    /* Barra de carga superior */
+    #global-loadbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--b2); z-index: 50; transition: width .2s ease; }
+
+    /* Ocultar scroll cuando drawer abierto sin salto */
+    body.lock-scroll { overflow: hidden; padding-right: var(--scrollbar-comp, 0px); }
+
+    /* Cards monocromáticas */
+    .card { background: var(--b7); border: 1px solid var(--hr); box-shadow: var(--tw-shadow, 0 0 #0000), 0 10px 15px -3px rgb(0 0 0 / .08), 0 4px 6px -4px rgb(0 0 0 / .08); }
+
+    /* Back-to-top */
+    .to-top { position: fixed; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 30; }
+  </style>
+</head>
+<body class="font-sans antialiased">
+  <!-- Enlace Skip to content -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded border" data-testid="skip-link">Saltar al contenido</a>
+
+  <!-- Barra de carga global -->
+  <div id="global-loadbar" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header id="site-header" class="sticky-safe bg-[var(--bg)]/95 backdrop-blur border-b border-[var(--hr)]" data-testid="header">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 h-[68px] flex items-center justify-between">
+      <div class="flex items-center gap-6 min-w-0">
+        <a href="/" data-link data-testid="logo" class="flex items-center gap-2 text-sm font-semibold tracking-tight" aria-label="Inicio">
+          <span class="inline-block w-8 h-8 rounded bg-[var(--b6)]"></span>
+          <span class="truncate">School Demo</span>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center gap-5" aria-label="Principal">
+          <div class="relative" data-testid="menu-programas">
+            <button class="px-2 py-1" aria-haspopup="true" aria-expanded="false" aria-controls="menu-programas-panel" data-testid="menu-programas-trigger">Programas</button>
+            <div id="menu-programas-panel" role="menu" aria-label="Submenú Programas" class="absolute left-0 mt-2 w-64 card rounded-xl p-2 hidden" data-testid="menu-programas-panel">
+              <a class="block px-3 py-2 rounded hover:bg-[var(--b6)]" role="menuitem" href="/programas/ingles-general" data-link>Inglés General</a>
+              <a class="block px-3 py-2 rounded hover:bg-[var(--b6)]" role="menuitem" href="/programas/business-english" data-link>Business English</a>
+              <a class="block px-3 py-2 rounded hover:bg-[var(--b6)]" role="menuitem" href="/programas/jovenes-ninos" data-link>Jóvenes &amp; Niños</a>
+              <a class="block px-3 py-2 rounded hover:bg-[var(--b6)]" role="menuitem" href="/programas/examenes" data-link>Exámenes Internacionales</a>
+            </div>
+          </div>
+          <a class="px-2 py-1" href="/metodologia" data-link data-testid="menu-metodologia">Metodología</a>
+          <a class="px-2 py-1" href="/profesores" data-link data-testid="menu-profesores">Profesores</a>
+          <a class="px-2 py-1" href="/precios" data-link data-testid="menu-precios">Precios</a>
+          <div class="relative" data-testid="menu-recursos">
+            <button class="px-2 py-1" aria-haspopup="true" aria-expanded="false" aria-controls="menu-recursos-panel" data-testid="menu-recursos-trigger">Recursos</button>
+            <div id="menu-recursos-panel" role="menu" aria-label="Submenú Recursos" class="absolute left-0 mt-2 w-64 card rounded-xl p-2 hidden" data-testid="menu-recursos-panel">
+              <a class="block px-3 py-2 rounded hover:bg-[var(--b6)]" role="menuitem" href="/recursos/blog" data-link>Blog</a>
+              <a class="block px-3 py-2 rounded hover:bg-[var(--b6)]" role="menuitem" href="/recursos/test-nivel" data-link>Test de Nivel</a>
+              <a class="block px-3 py-2 rounded hover:bg-[var(--b6)]" role="menuitem" href="/recursos/guias" data-link>Guías</a>
+              <a class="block px-3 py-2 rounded hover:bg-[var(--b6)]" role="menuitem" href="/recursos/consejos" data-link>Consejos</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button id="cta-free-class" class="hidden md:inline-flex px-4 h-10 items-center rounded-lg border border-[var(--b2)] bg-[var(--b1)] text-white text-sm font-semibold shadow hover:opacity-90 active:opacity-80" data-testid="cta-header">Clase Gratis</button>
+
+        <!-- Idiomas -->
+        <div class="hidden md:flex items-center gap-2" aria-label="Selector de idioma" data-testid="lang-switcher-desktop">
+          <button data-lang="en" class="px-2 py-1 rounded underline-offset-4 hover:underline">EN</button>
+          <span aria-hidden="true">|</span>
+          <button data-lang="ro" class="px-2 py-1 rounded underline-offset-4 hover:underline">RO</button>
+          <span aria-hidden="true">|</span>
+          <button data-lang="ru" class="px-2 py-1 rounded underline-offset-4 hover:underline">RU</button>
+        </div>
+
+        <!-- Móvil: botones -->
+        <div class="md:hidden flex items-center gap-2">
+          <button id="btn-mobile-lang" aria-label="Idioma" class="w-11 h-11 grid place-items-center rounded-lg border" data-testid="btn-mobile-lang">🌐</button>
+          <button id="btn-mobile-menu" aria-label="Menú" class="w-11 h-11 grid place-items-center rounded-lg border" data-testid="btn-mobile-menu">☰</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FAB Fallback Menú (si sticky falla) -->
+  <button id="fab-menu-fallback" class="hidden to-top left-auto right-auto translate-y-0 px-3 py-2 rounded-full border bg-[var(--b1)] text-white" aria-label="Abrir menú" data-testid="fab-menu-fallback">Menú</button>
+
+  <!-- Drawer móvil -->
+  <div id="mobile-drawer" class="fixed inset-0 z-40 hidden" aria-hidden="true" data-testid="mobile-drawer-overlay">
+    <div class="absolute inset-0 bg-black/40" data-drawer-close></div>
+    <aside role="dialog" aria-modal="true" aria-label="Menú" class="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-[var(--bg)] border-l border-[var(--hr)] p-4 drawer-enter card rounded-l-xl" data-testid="mobile-drawer">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm font-semibold">Menú</span>
+        <button data-drawer-close aria-label="Cerrar" class="w-10 h-10 grid place-items-center border rounded-lg">✕</button>
+      </div>
+      <nav aria-label="Principal móvil" class="space-y-2">
+        <details>
+          <summary class="cursor-pointer select-none px-2 py-2 rounded hover:bg-[var(--b6)]" data-testid="mobile-programas">Programas</summary>
+          <div class="pl-3 mt-1 space-y-1">
+            <a class="block px-2 py-2 rounded hover:bg-[var(--b6)]" href="/programas/ingles-general" data-link>Inglés General</a>
+            <a class="block px-2 py-2 rounded hover:bg-[var(--b6)]" href="/programas/business-english" data-link>Business English</a>
+            <a class="block px-2 py-2 rounded hover:bg-[var(--b6)]" href="/programas/jovenes-ninos" data-link>Jóvenes &amp; Niños</a>
+            <a class="block px-2 py-2 rounded hover:bg-[var(--b6)]" href="/programas/examenes" data-link>Exámenes Internacionales</a>
+          </div>
+        </details>
+        <a class="block px-2 py-2 rounded hover:bg-[var(--b6)]" href="/metodologia" data-link>Metodología</a>
+        <a class="block px-2 py-2 rounded hover:bg-[var(--b6)]" href="/profesores" data-link>Profesores</a>
+        <a class="block px-2 py-2 rounded hover:bg-[var(--b6)]" href="/precios" data-link>Precios</a>
+        <details>
+          <summary class="cursor-pointer select-none px-2 py-2 rounded hover:bg-[var(--b6)]" data-testid="mobile-recursos">Recursos</summary>
+          <div class="pl-3 mt-1 space-y-1">
+            <a class="block px-2 py-2 rounded hover:bg-[var(--b6)]" href="/recursos/blog" data-link>Blog</a>
+            <a class="block px-2 py-2 rounded hover:bg-[var(--b6)]" href="/recursos/test-nivel" data-link>Test de Nivel</a>
+            <a class="block px-2 py-2 rounded hover:bg-[var(--b6)]" href="/recursos/guias" data-link>Guías</a>
+            <a class="block px-2 py-2 rounded hover:bg-[var(--b6)]" href="/recursos/consejos" data-link>Consejos</a>
+          </div>
+        </details>
+      </nav>
+
+      <div class="mt-4 border-t border-[var(--hr)] pt-3">
+        <button id="cta-free-class-mobile" class="w-full h-11 rounded-lg border border-[var(--b2)] bg-[var(--b1)] text-white text-sm font-semibold shadow mb-3" data-testid="cta-mobile">Clase Gratis</button>
+        <div aria-label="Idiomas" class="flex items-center gap-2" data-testid="lang-switcher-mobile">
+          <button data-lang="en" class="px-2 py-1 rounded underline-offset-4 hover:underline">EN</button>
+          <span aria-hidden="true">|</span>
+          <button data-lang="ro" class="px-2 py-1 rounded underline-offset-4 hover:underline">RO</button>
+          <span aria-hidden="true">|</span>
+          <button data-lang="ru" class="px-2 py-1 rounded underline-offset-4 hover:underline">RU</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- FAB acciones rápidas -->
+  <div class="to-top" id="fab-qa-wrap" data-testid="fab-quick-actions">
+    <button id="fab-cta" class="rounded-full shadow-soft border bg-[var(--b1)] text-white px-4 h-12" aria-haspopup="true" aria-expanded="false">Clase Gratis</button>
+    <div id="fab-menu" class="hidden mt-2 card rounded-xl p-2" role="menu" aria-label="Acciones rápidas">
+      <a role="menuitem" class="block px-3 py-2 rounded hover:bg-[var(--b6)]" href="/recursos/test-nivel" data-link>Test de Nivel</a>
+      <button role="menuitem" class="block w-full text-left px-3 py-2 rounded hover:bg-[var(--b6)]" data-action="contact">Contactar</button>
+    </div>
+  </div>
+
+  <!-- Modal Clase Gratis (3 pasos) -->
+  <div id="modal-free-class" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative mx-auto my-10 max-w-2xl w-[92%] card rounded-2xl p-4" role="document">
+      <div class="flex items-center justify-between">
+        <h2 id="modal-title" class="text-lg font-semibold">Clase Gratis</h2>
+        <button id="modal-close" aria-label="Cerrar" class="w-10 h-10 grid place-items-center border rounded-lg">✕</button>
+      </div>
+      <p id="modal-live" class="sr-only" aria-live="polite"></p>
+      <div id="modal-steps" class="mt-3">
+        <!-- Stepper -->
+        <ol class="flex items-center gap-2 text-xs text-[var(--muted)]">
+          <li><span class="step-badge inline-flex w-6 h-6 items-center justify-center rounded-full border">1</span> Datos</li>
+          <li class="before:content-['—'] before:mx-2"></li>
+          <li><span class="step-badge inline-flex w-6 h-6 items-center justify-center rounded-full border">2</span> Agenda</li>
+          <li class="before:content-['—'] before:mx-2"></li>
+          <li><span class="step-badge inline-flex w-6 h-6 items-center justify-center rounded-full border">3</span> Confirmación</li>
+        </ol>
+
+        <!-- Paso 1: Datos -->
+        <form id="step-1" class="mt-4 space-y-3" data-testid="modal-step-1">
+          <div>
+            <label class="block text-sm mb-1" for="name">Nombre</label>
+            <input id="name" name="name" required type="text" class="w-full h-11 rounded-lg border px-3 bg-[var(--bg)]" inputmode="text" />
+            <p class="text-xs text-[var(--muted)]" id="name-help">Tu nombre</p>
+          </div>
+          <div>
+            <label class="block text-sm mb-1" for="email">Email</label>
+            <input id="email" name="email" required type="email" class="w-full h-11 rounded-lg border px-3 bg-[var(--bg)]" inputmode="email" aria-describedby="email-err" />
+            <p id="email-err" class="text-xs text-red-600 hidden">Email inválido</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <input id="terms" name="terms" type="checkbox" class="w-4 h-4" required />
+            <label for="terms" class="text-sm">Acepto los términos</label>
+          </div>
+          <div class="flex gap-2 justify-end pt-2">
+            <button type="button" data-action="cancel" class="h-10 px-4 rounded-lg border">Cancelar</button>
+            <button type="submit" class="h-10 px-4 rounded-lg border bg-[var(--b1)] text-white" data-testid="btn-next">Siguiente</button>
+          </div>
+        </form>
+
+        <!-- Paso 2: Agenda -->
+        <form id="step-2" class="mt-4 space-y-3 hidden" data-testid="modal-step-2">
+          <p class="text-sm">Hora local: <span id="tz-label">—</span></p>
+          <label class="block text-sm mb-1" for="slot">Selecciona horario</label>
+          <select id="slot" name="slot" required class="w-full h-11 rounded-lg border px-3 bg-[var(--bg)]">
+            <option value="" disabled selected>Elige una opción…</option>
+          </select>
+          <div class="flex gap-2 justify-between pt-2">
+            <button type="button" data-action="back" class="h-10 px-4 rounded-lg border">Atrás</button>
+            <div class="flex gap-2">
+              <button type="button" data-action="cancel" class="h-10 px-4 rounded-lg border">Cancelar</button>
+              <button type="submit" class="h-10 px-4 rounded-lg border bg-[var(--b1)] text-white" data-testid="btn-next-2">Confirmar</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Paso 3: Confirmación -->
+        <div id="step-3" class="mt-4 space-y-3 hidden" data-testid="modal-step-3">
+          <div class="p-3 rounded-lg border bg-[var(--b7)]">
+            <p class="font-medium">¡Reserva confirmada!</p>
+            <p class="text-sm text-[var(--muted)]">Te enviamos un email con los detalles.</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <a id="add-google" class="px-3 h-10 rounded-lg border inline-flex items-center" href="#" target="_blank" rel="noopener">Añadir a Google</a>
+            <a id="add-apple" class="px-3 h-10 rounded-lg border inline-flex items-center" href="#" target="_blank" rel="noopener">Añadir a Apple</a>
+            <a id="add-outlook" class="px-3 h-10 rounded-lg border inline-flex items-center" href="#" target="_blank" rel="noopener">Añadir a Outlook</a>
+            <a id="download-ics" class="px-3 h-10 rounded-lg border inline-flex items-center" href="#">Descargar .ics</a>
+          </div>
+          <div class="flex gap-2 justify-between pt-2">
+            <a href="/gracias" data-link class="h-10 px-4 rounded-lg border bg-[var(--b7)] inline-flex items-center">Ir a Gracias</a>
+            <div class="flex gap-2">
+              <a href="/reprogramar" data-link class="h-10 px-4 rounded-lg border inline-flex items-center">Reprogramar</a>
+              <a href="/cancelar" data-link class="h-10 px-4 rounded-lg border inline-flex items-center">Cancelar</a>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <a class="px-3 h-10 rounded-lg border inline-flex items-center" href="https://wa.me/000000000" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="px-3 h-10 rounded-lg border inline-flex items-center" href="https://t.me/username" target="_blank" rel="noopener">Telegram</a>
+            <a class="px-3 h-10 rounded-lg border inline-flex items-center" href="mailto:hello@example.com">Email</a>
+          </div>
+          <div class="flex justify-end pt-2">
+            <button id="modal-done" class="h-10 px-4 rounded-lg border bg-[var(--b1)] text-white">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <main id="main" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 mt-8 mb-24">
+    <section id="hero" class="py-12">
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">Demostración monocromática</h1>
+      <p class="mt-2 text-[var(--muted)] max-w-2xl">Menú accesible (desktop/móvil), i18n con rutas espejo, modal 3 pasos “Clase Gratis”, FAB seguro, estados de carga, breadcrumbs y fallbacks. Todo en un único archivo.</p>
+      <div class="mt-6 flex gap-3">
+        <button class="h-11 px-5 rounded-lg border bg-[var(--b1)] text-white" id="hero-cta">Clase Gratis</button>
+        <a href="/recursos/test-nivel" data-link class="h-11 px-5 rounded-lg border inline-flex items-center">Test de Nivel</a>
+      </div>
+    </section>
+
+    <!-- Breadcrumbs -->
+    <nav id="breadcrumbs" aria-label="Breadcrumb" class="hidden text-sm mb-4" data-testid="breadcrumbs"></nav>
+
+    <!-- Page containers (simulan rutas) -->
+    <section id="page-content" class="space-y-6">
+      <!-- Home -->
+      <div data-route="/" class="route">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="card rounded-2xl p-5">
+            <h3 class="font-semibold mb-2">Programas</h3>
+            <p class="text-sm text-[var(--muted)]">Explora las opciones y abre submenús con teclado o ratón.</p>
+          </div>
+          <div class="card rounded-2xl p-5">
+            <h3 class="font-semibold mb-2">Metodología</h3>
+            <p class="text-sm text-[var(--muted)]">Página simple con breadcrumbs.</p>
+          </div>
+          <div class="card rounded-2xl p-5">
+            <h3 class="font-semibold mb-2">Recursos</h3>
+            <p class="text-sm text-[var(--muted)]">Blog, Test, Guías y Consejos con estados vacío y carga.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Programas index -->
+      <div data-route="/programas" class="route hidden">
+        <h2 class="text-2xl font-semibold">Programas</h2>
+        <ul class="mt-3 grid sm:grid-cols-2 gap-3">
+          <li class="card rounded-xl p-4"><a data-link href="/programas/ingles-general" class="font-medium underline">Inglés General</a></li>
+          <li class="card rounded-xl p-4"><a data-link href="/programas/business-english" class="font-medium underline">Business English</a></li>
+          <li class="card rounded-xl p-4"><a data-link href="/programas/jovenes-ninos" class="font-medium underline">Jóvenes &amp; Niños</a></li>
+          <li class="card rounded-xl p-4"><a data-link href="/programas/examenes" class="font-medium underline">Exámenes Internacionales</a></li>
+        </ul>
+      </div>
+
+      <div data-route="/programas/ingles-general" class="route hidden"><h2 class="text-2xl font-semibold">Inglés General</h2><p class="text-[var(--muted)]">Contenido de ejemplo.</p></div>
+      <div data-route="/programas/business-english" class="route hidden"><h2 class="text-2xl font-semibold">Business English</h2><p class="text-[var(--muted)]">Contenido de ejemplo.</p></div>
+      <div data-route="/programas/jovenes-ninos" class="route hidden"><h2 class="text-2xl font-semibold">Jóvenes &amp; Niños</h2><p class="text-[var(--muted)]">Contenido de ejemplo.</p></div>
+      <div data-route="/programas/examenes" class="route hidden"><h2 class="text-2xl font-semibold">Exámenes Internacionales</h2><p class="text-[var(--muted)]">Contenido de ejemplo.</p></div>
+
+      <div data-route="/metodologia" class="route hidden"><h2 class="text-2xl font-semibold">Metodología</h2><p class="text-[var(--muted)]">Nuestra aproximación y prácticas recomendadas.</p></div>
+      <div data-route="/profesores" class="route hidden"><h2 class="text-2xl font-semibold">Profesores</h2><p class="text-[var(--muted)]">Conoce al equipo.</p></div>
+      <div data-route="/precios" class="route hidden"><h2 class="text-2xl font-semibold">Precios</h2><p class="text-[var(--muted)]">Planes y paquetes.</p></div>
+
+      <div data-route="/recursos/blog" class="route hidden"><h2 class="text-2xl font-semibold">Blog</h2><div id="blog-list" class="mt-3 grid sm:grid-cols-2 gap-3"></div></div>
+      <div data-route="/recursos/test-nivel" class="route hidden">
+        <h2 class="text-2xl font-semibold">Test de Nivel</h2>
+        <div class="mt-3 card rounded-xl p-4">
+          <p id="test-progress" class="text-sm mb-2">Progreso: 0%</p>
+          <div class="flex gap-2">
+            <button id="test-start" class="h-10 px-4 rounded-lg border bg-[var(--b7)]">Comenzar</button>
+            <button id="test-abandon" class="h-10 px-4 rounded-lg border">Abandonar</button>
+          </div>
+        </div>
+      </div>
+      <div data-route="/recursos/guias" class="route hidden"><h2 class="text-2xl font-semibold">Guías</h2><p class="text-[var(--muted)]">Próximamente…</p></div>
+      <div data-route="/recursos/consejos" class="route hidden"><h2 class="text-2xl font-semibold">Consejos</h2><p class="text-[var(--muted)]">Próximamente…</p></div>
+
+      <div data-route="/gracias" class="route hidden"><h2 class="text-2xl font-semibold">¡Gracias!</h2><p class="text-[var(--muted)]">Tu clase ha sido reservada. Revisa tu calendario.</p></div>
+      <div data-route="/reprogramar" class="route hidden"><h2 class="text-2xl font-semibold">Reprogramar</h2><p class="text-[var(--muted)]">Funcionalidad simulada.</p></div>
+      <div data-route="/cancelar" class="route hidden"><h2 class="text-2xl font-semibold">Cancelar</h2><p class="text-[var(--muted)]">Funcionalidad simulada.</p></div>
+
+      <!-- Páginas de error/empty -->
+      <div data-route="/404" class="route hidden">
+        <div class="text-center card rounded-2xl p-8">
+          <h2 class="text-2xl font-semibold mb-2">404 — Página no encontrada</h2>
+          <p class="text-[var(--muted)] mb-4">La página solicitada no existe en este idioma.</p>
+          <div class="flex gap-2 justify-center">
+            <a href="/" data-link class="h-10 px-4 rounded-lg border">Ir al Inicio</a>
+            <button class="h-10 px-4 rounded-lg border bg-[var(--b1)] text-white" id="error-cta">Clase Gratis</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Back to top -->
+  <button id="btn-to-top" class="to-top hidden h-10 px-4 rounded-full border bg-[var(--b7)]" aria-label="Volver arriba">↑</button>
+
+  <!-- Tema -->
+  <div class="fixed bottom-2 left-2 z-30">
+    <label class="inline-flex items-center gap-2 text-xs border rounded-full px-3 py-2 bg-[var(--b7)]">
+      <input id="toggle-theme" type="checkbox" class="w-4 h-4" />
+      <span>Alto contraste / Oscuro</span>
+    </label>
+  </div>
+
+  <script>
+    /*****************
+     * Utilidades
+     *****************/
+    const qs = (sel, el=document) => el.querySelector(sel);
+    const qsa = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+
+    // storageSafe: persistencia con try/catch
+    const storageSafe = {
+      get(k, fallback=null) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fallback; } catch { return fallback; } },
+      set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* capacidad llena/incógnito */ console.info('Persistencia no disponible'); } },
+      del(k) { try { localStorage.removeItem(k); } catch {}
+      }
+    };
+
+    // prefers
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // tz util
+    const getTimeZone = () => {
+      try { return Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/Chisinau'; }
+      catch { return 'Europe/Chisinau'; }
+    };
+
+    // Live load bar (acciones > 800ms)
+    const loadbar = (() => {
+      const el = qs('#global-loadbar'); let timer; let active=false;
+      return {
+        start() { if (timer) clearTimeout(timer); timer = setTimeout(() => { el.style.width='20%'; active=true; }, 800); },
+        progress(p) { if (active) el.style.width = p + '%'; },
+        end() { if (timer) clearTimeout(timer); el.style.width='100%'; setTimeout(()=>{ el.style.width='0%'; active=false; }, 200); }
+      };
+    })();
+
+    // Focus trap genérico
+    function trapFocus(container, firstFocusEl) {
+      const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
+      const focusables = () => qsa(FOCUSABLE, container).filter(n => n.offsetParent !== null);
+      function handle(e){
+        if (e.key === 'Tab') {
+          const items = focusables();
+          if (!items.length) return;
+          const first = items[0];
+          const last = items[items.length-1];
+          if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+          else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+        } else if (e.key === 'Escape') {
+          container.dispatchEvent(new CustomEvent('trap:escape'));
+        }
+      }
+      container.addEventListener('keydown', handle);
+      if (firstFocusEl) firstFocusEl.focus();
+      return () => container.removeEventListener('keydown', handle);
+    }
+
+    // Scroll restauración por ruta
+    const scrollPositions = new Map();
+
+    /*****************
+     * i18n mínimo con rutas espejo /en|/ro|/ru
+     *****************/
+    const SUP_LANGS = ['en','ro','ru'];
+    let currentLang = storageSafe.get('lang') || (navigator.language||'en').slice(0,2).toLowerCase();
+    if (!SUP_LANGS.includes(currentLang)) currentLang = 'en';
+    document.documentElement.lang = currentLang;
+
+    const dict = {
+      en: { heroTitle: 'Monochrome demo', freeClass: 'Free Class', notFound: 'Page not found', localTime: 'Local time' },
+      ro: { heroTitle: 'Demonstrație monocromă', freeClass: 'Clasă Gratuită', notFound: 'Pagina nu a fost găsită', localTime: 'Ora locală' },
+      ru: { heroTitle: 'Монохромная демонстрация', freeClass: 'Бесплатный урок', notFound: 'Страница не найдена', localTime: 'Местное время' },
+    };
+
+    function setLang(lang){
+      if(!SUP_LANGS.includes(lang)) { console.warn('Missing translations. Fallback EN'); lang='en'; }
+      currentLang = lang; storageSafe.set('lang', lang);
+      document.documentElement.lang = lang;
+      // hreflang demo (no SEO real en file://):
+      document.querySelectorAll('link[rel="alternate"]').forEach(n=>n.remove());
+      SUP_LANGS.forEach(l=>{
+        const link=document.createElement('link');
+        link.rel='alternate'; link.hreflang=l; link.href=location.origin + '/' + l + location.pathname;
+        document.head.appendChild(link);
+      });
+      // Mantener ruta/scroll/estado in-place
+      const path = normalizePath(getPath());
+      navigate(rewritePathLang(path, lang), { replace: true, preserveScroll: true });
+    }
+
+    // Listeners selector de idioma
+    qsa('[data-lang]').forEach(btn=>btn.addEventListener('click', (e)=>{ setLang(e.currentTarget.getAttribute('data-lang')); }));
+    qs('#btn-mobile-lang')?.addEventListener('click', ()=>{ const next = SUP_LANGS[(SUP_LANGS.indexOf(currentLang)+1)%SUP_LANGS.length]; setLang(next); });
+
+    /*****************
+     * Router SPA (History API) con rutas espejo por idioma
+     *****************/
+    const routes = new Set([
+      '/', '/programas', '/programas/ingles-general', '/programas/business-english', '/programas/jovenes-ninos', '/programas/examenes',
+      '/metodologia', '/profesores', '/precios',
+      '/recursos/blog', '/recursos/test-nivel', '/recursos/guias', '/recursos/consejos',
+      '/gracias', '/reprogramar', '/cancelar'
+    ]);
+
+    function normalizePath(path){
+      // Quitar prefijo de lenguaje si presente
+      for (const l of SUP_LANGS) {
+        if (path.startsWith('/'+l+'/')) return path.slice(3);
+        if (path==='/'+l) return '/';
+      }
+      return path;
+    }
+    function getPath(){ return location.pathname.replace(/\/index.html$/, '') || '/'; }
+    function rewritePathLang(path, lang){ return (lang ? '/' + lang : '') + (path.startsWith('/')?path:'/'+path); }
+
+    function navigate(path, { replace=false, preserveScroll=false } = {}){
+      const current = getPath();
+      const normalized = normalizePath(path);
+      const target = routes.has(normalized) ? normalized : '/404';
+      // Guardar scroll actual
+      if (!preserveScroll) scrollPositions.set(current, window.scrollY);
+      const url = rewritePathLang(target, currentLang);
+      if (replace) history.replaceState({ path: target }, '', url); else history.pushState({ path: target }, '', url);
+      renderRoute(target);
+    }
+
+    function renderRoute(path){
+      // breadcrumbs
+      const bc = qs('#breadcrumbs');
+      const mapTitles = {
+        '/': 'Inicio', '/programas':'Programas', '/programas/ingles-general':'Inglés General', '/programas/business-english':'Business English', '/programas/jovenes-ninos':'Jóvenes & Niños', '/programas/examenes':'Exámenes Internacionales',
+        '/metodologia':'Metodología', '/profesores':'Profesores', '/precios':'Precios',
+        '/recursos/blog':'Blog', '/recursos/test-nivel':'Test de Nivel', '/recursos/guias':'Guías', '/recursos/consejos':'Consejos',
+        '/gracias':'Gracias', '/reprogramar':'Reprogramar', '/cancelar':'Cancelar', '/404':'404'
+      };
+
+      qsa('.route').forEach(n=>n.classList.add('hidden'));
+      const page = qs(`.route[data-route="${path}"]`);
+      if (page) page.classList.remove('hidden');
+
+      // marcar aria-current
+      qsa('a[aria-current="page"]').forEach(a=>a.removeAttribute('aria-current'));
+      qsa('a[data-link]').forEach(a=>{ if (normalizePath(new URL(a.href, location.origin).pathname)===path) a.setAttribute('aria-current','page'); });
+
+      // breadcrumbs
+      const crumbs = [];
+      function pushCrumb(p){
+        if (!mapTitles[p]) return;
+        const href = rewritePathLang(p, currentLang);
+        crumbs.push(`<a href="${href}" data-link class="underline underline-offset-4">${mapTitles[p]}</a>`);
+      }
+      if (path==='/' || path==='/404') { bc.classList.add('hidden'); }
+      else {
+        bc.classList.remove('hidden');
+        bc.innerHTML = `Inicio &gt; ${(() => {
+          const parts = path.split('/').filter(Boolean);
+          let acc=''; const items=[]; for(const seg of parts){ acc += '/' + seg; items.push(acc); }
+          const links = items.map((p,i)=> i<items.length-1 ? `<a href="${rewritePathLang(p,currentLang)}" data-link class="underline underline-offset-4">${mapTitles[p]}</a>` : `<span>${mapTitles[p]}</span>`);
+          return links.join(' &gt; ');
+        })()}`;
+      }
+
+      // restaurar scroll
+      const prevScroll = scrollPositions.get(path) || 0; window.scrollTo({ top: prevScroll, behavior: prefersReduced ? 'auto' : 'smooth' });
+
+      // páginas que cargan datos simulados
+      if (path==='/recursos/blog') loadBlog();
+    }
+
+    // Delegación para <a data-link>
+    document.addEventListener('click', (e)=>{
+      const a = e.target.closest('a[data-link]');
+      if (!a) return;
+      const url = new URL(a.href, location.origin);
+      e.preventDefault();
+      loadbar.start();
+      setTimeout(()=>{ // simula retardo de ruta
+        navigate(url.pathname);
+        loadbar.end();
+      }, 250);
+    });
+
+    window.addEventListener('popstate', () => { renderRoute(normalizePath(getPath())); });
+
+    /*****************
+     * Submenús accesibles (desktop)
+     *****************/
+    function setupDesktopMenu(rootSel, panelId){
+      const root = qs(rootSel);
+      if (!root) return;
+      const trigger = qs('button', root); const panel = qs('#'+panelId);
+      let open = false; let restoreFocusEl = null;
+      function openPanel(){ panel.classList.remove('hidden'); trigger.setAttribute('aria-expanded','true'); open=true; panel.dataset.open='1'; panel.firstElementChild?.focus(); }
+      function closePanel(){ panel.classList.add('hidden'); trigger.setAttribute('aria-expanded','false'); open=false; delete panel.dataset.open; if (restoreFocusEl) restoreFocusEl.focus(); restoreFocusEl=null; }
+      trigger.addEventListener('mouseenter', ()=>openPanel());
+      trigger.addEventListener('focus', ()=>openPanel());
+      root.addEventListener('mouseleave', (e)=>{ if (!root.contains(document.activeElement)) closePanel(); });
+      panel.addEventListener('keydown', (e)=>{
+        const items = qsa('[role="menuitem"]', panel);
+        let idx = items.indexOf(document.activeElement);
+        if (e.key==='ArrowDown'){ idx = (idx+1+items.length)%items.length; items[idx].focus(); e.preventDefault(); }
+        if (e.key==='ArrowUp'){ idx = (idx-1+items.length)%items.length; items[idx].focus(); e.preventDefault(); }
+        if (e.key==='Escape'){ restoreFocusEl = trigger; closePanel(); }
+      });
+      trigger.addEventListener('keydown', (e)=>{ if (e.key==='Escape' && open) { restoreFocusEl = trigger; closePanel(); }});
+      document.addEventListener('click', (e)=>{ if (open && !root.contains(e.target)) closePanel(); });
+    }
+    setupDesktopMenu('[data-testid="menu-programas"]', 'menu-programas-panel');
+    setupDesktopMenu('[data-testid="menu-recursos"]', 'menu-recursos-panel');
+
+    /*****************
+     * Mobile drawer
+     *****************/
+    const drawerOverlay = qs('#mobile-drawer');
+    const drawer = qs('#mobile-drawer aside');
+    const btnMobileMenu = qs('#btn-mobile-menu');
+    let untrapDrawer=null; let drawerOriginBtn=null;
+    function openDrawer(origin){
+      drawerOriginBtn = origin; drawerOverlay.classList.remove('hidden');
+      drawer.classList.remove('drawer-leave','drawer-leave-active');
+      drawer.classList.add('drawer-enter');
+      requestAnimationFrame(()=>{ drawer.classList.add('drawer-enter-active'); });
+      // body scroll lock con compensación de scrollbar
+      const scrollbar = window.innerWidth - document.documentElement.clientWidth; document.body.style.setProperty('--scrollbar-comp', scrollbar+'px'); document.body.classList.add('lock-scroll');
+      untrapDrawer = trapFocus(drawer, qs('[data-testid="mobile-programas"]'));
+      drawer.addEventListener('trap:escape', closeDrawer, { once: true });
+    }
+    function closeDrawer(){
+      drawer.classList.remove('drawer-enter','drawer-enter-active');
+      drawer.classList.add('drawer-leave');
+      requestAnimationFrame(()=>{ drawer.classList.add('drawer-leave-active'); });
+      setTimeout(()=>{ drawerOverlay.classList.add('hidden'); document.body.classList.remove('lock-scroll'); if (untrapDrawer) untrapDrawer(); if (drawerOriginBtn) drawerOriginBtn.focus(); }, 200);
+    }
+    btnMobileMenu?.addEventListener('click', ()=>openDrawer(btnMobileMenu));
+    drawerOverlay?.addEventListener('click', (e)=>{ if (e.target.hasAttribute('data-drawer-close')) closeDrawer(); });
+    qsa('[data-drawer-close]', drawerOverlay).forEach(b=>b.addEventListener('click', closeDrawer));
+
+    /*****************
+     * FAB acciones rápidas y autocultivo por teclado/modal
+     *****************/
+    const fab = qs('#fab-qa-wrap');
+    const fabBtn = qs('#fab-cta');
+    const fabMenu = qs('#fab-menu');
+    fabBtn.addEventListener('click', ()=>{
+      const open = !fabMenu.classList.contains('hidden');
+      fabBtn.setAttribute('aria-expanded', String(!open));
+      fabMenu.classList.toggle('hidden');
+    });
+    fab.addEventListener('keydown', (e)=>{ if (e.key==='Escape'){ fabMenu.classList.add('hidden'); fabBtn.setAttribute('aria-expanded','false'); fabBtn.focus(); }});
+
+    // Auto-ocultar con teclado virtual / modal activo
+    function setFabVisible(v){ fab.style.display = v ? '' : 'none'; }
+    if (window.visualViewport){
+      window.visualViewport.addEventListener('resize', ()=>{
+        const coveredByKeyboard = window.innerHeight - window.visualViewport.height > 150;
+        setFabVisible(!coveredByKeyboard && qs('#modal-free-class').classList.contains('hidden'));
+      });
+    }
+
+    /*****************
+     * Modal Clase Gratis (3 pasos)
+     *****************/
+    const modal = qs('#modal-free-class');
+    const modalDoc = modal.querySelector('[role="document"]');
+    const modalClose = qs('#modal-close');
+    const ctaHeader = qs('#cta-free-class');
+    const ctaMobile = qs('#cta-free-class-mobile');
+    const heroCta = qs('#hero-cta');
+    const errorCta = qs('#error-cta');
+    const modalLive = qs('#modal-live');
+    const steps = [qs('#step-1'), qs('#step-2'), qs('#step-3')];
+    let untrapModal=null; let originBtn=null; let stepIdx = storageSafe.get('modal.stepIdx', 0); let modalData = storageSafe.get('modal.data', {});
+
+    function openModal(origin){
+      originBtn = origin; modal.classList.remove('hidden');
+      // Overlay inmediato; contenido puede tardar
+      untrapModal = trapFocus(modalDoc, qs('#name'));
+      modalDoc.addEventListener('trap:escape', closeModal, { once: true });
+      setFabVisible(false);
+      showStep(stepIdx);
+      navigator.vibrate?.(20);
+    }
+    function closeModal(){ modal.classList.add('hidden'); if (untrapModal) untrapModal(); if (originBtn) originBtn.focus(); setFabVisible(true); }
+
+    function showStep(i){ steps.forEach((s,idx)=> s.classList.toggle('hidden', idx!==i));
+      qsa('.step-badge').forEach((b,idx)=>{ b.classList.toggle('bg-[var(--b1)]', idx<=i); b.classList.toggle('text-white', idx<=i); });
+      storageSafe.set('modal.stepIdx', i);
+    }
+
+    function validateEmail(v){ return /.+@.+\..+/.test(v); }
+
+    function populateSlots(){ const sel = qs('#slot'); sel.innerHTML = '<option disabled selected>Elige una opción…</option>'; const base = Date.now()+86400000; for(let i=0;i<6;i++){ const d = new Date(base + i*86400000); const opt = document.createElement('option'); opt.value = d.toISOString(); opt.textContent = d.toLocaleString([], { dateStyle:'medium', timeStyle:'short' }); sel.appendChild(opt);} }
+
+    // Eventos
+    [ctaHeader, ctaMobile, heroCta, errorCta, qs('#fab-cta')].forEach(btn=> btn && btn.addEventListener('click', ()=> openModal(btn)));
+    modalClose.addEventListener('click', closeModal);
+
+    // Paso 1
+    qs('#step-1').addEventListener('submit', (e)=>{
+      e.preventDefault(); const form = e.currentTarget; const name = form.name.value.trim(); const email=form.email.value.trim(); const terms=form.terms.checked;
+      const emailErr = qs('#email-err');
+      if (!validateEmail(email)) { emailErr.classList.remove('hidden'); form.email.setAttribute('aria-invalid','true'); form.email.focus(); return; } else { emailErr.classList.add('hidden'); form.email.removeAttribute('aria-invalid'); }
+      if (!terms) { form.terms.focus(); return; }
+      modalData = { ...modalData, name, email };
+      storageSafe.set('modal.data', modalData);
+      showStep(1);
+      // Cargar agenda con retardo simulado
+      modalLive.textContent = 'Cargando…'; loadbar.start();
+      setTimeout(()=>{ qs('#tz-label').textContent = getTimeZone(); populateSlots(); modalLive.textContent=''; loadbar.end(); }, 600);
+    });
+
+    // Paso 2
+    qs('#step-2').addEventListener('submit', (e)=>{
+      e.preventDefault(); const sel = qs('#slot'); if (!sel.value) { sel.focus(); return; }
+      modalData.slot = sel.value; storageSafe.set('modal.data', modalData);
+      // Anti doble envío + idempotencia simulada
+      const btn = qs('#step-2 [type="submit"]'); btn.disabled=true; btn.textContent='Enviando…'; modalLive.textContent='Enviando…';
+      loadbar.start();
+      setTimeout(()=>{ btn.disabled=false; btn.textContent='Confirmar'; modalLive.textContent='Reserva confirmada'; storageSafe.set('user_booked_class', true); showStep(2); setupCalendarLinks(); loadbar.end(); }, 1200);
+    });
+    qs('#step-2 [data-action="back"]').addEventListener('click', ()=> showStep(0));
+    qsa('[data-action="cancel"]').forEach(b=> b.addEventListener('click', ()=>{ if (confirm('¿Salir? Los datos no enviados podrían perderse.')) { storageSafe.del('modal.stepIdx'); storageSafe.del('modal.data'); stepIdx=0; closeModal(); } }));
+
+    // Paso 3
+    qs('#modal-done').addEventListener('click', ()=>{ closeModal(); navigate('/gracias'); });
+
+    function setupCalendarLinks(){
+      const title = 'Clase%20Gratis'; const start = new Date(modalData.slot);
+      const end = new Date(start.getTime()+45*60000);
+      const details = 'Demo%20de%20reserva'; const location = 'Online';
+      const pad=(n)=> String(n).padStart(2,'0'); const fmt=(d)=> `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}00Z`;
+      const dates = `${fmt(start)}/${fmt(end)}`;
+      qs('#add-google').href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+      qs('#add-apple').href = '#';
+      qs('#add-outlook').href = '#';
+      // .ics dinámico + fallback
+      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Demo//Free Class//ES\nBEGIN:VEVENT\nUID:${Date.now()}@demo\nDTSTAMP:${fmt(new Date())}\nDTSTART:${fmt(start)}\nDTEND:${fmt(end)}\nSUMMARY:Clase Gratis\nDESCRIPTION:Demo de reserva\nLOCATION:Online\nEND:VEVENT\nEND:VCALENDAR`;
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+      const a = qs('#download-ics'); a.href=url; a.download='free-class.ics';
+    }
+
+    /*****************
+     * Blog (simula carga/empty/error)
+     *****************/
+    function loadBlog(){
+      const wrap = qs('#blog-list'); wrap.innerHTML='';
+      // skeletons
+      for(let i=0;i<4;i++){
+        const sk = document.createElement('div'); sk.className='rounded-xl border p-4 animate-pulse'; sk.innerHTML='<div class="h-4 bg-[var(--b6)] rounded w-1/2 mb-2"></div><div class="h-3 bg-[var(--b6)] rounded w-2/3"></div>'; wrap.appendChild(sk);
+      }
+      loadbar.start();
+      setTimeout(()=>{
+        wrap.innerHTML='';
+        const state = Math.random();
+        if (state < 0.2) { // error
+          const err = document.createElement('div'); err.className='card rounded-xl p-4'; err.innerHTML='<p>Error de red.</p><div class="mt-2 flex gap-2"><a data-link href="/" class="h-10 px-4 rounded-lg border">Ir al Inicio</a><button class="h-10 px-4 rounded-lg border bg-[var(--b1)] text-white" id="retry-blog">Reintentar</button></div>'; wrap.appendChild(err);
+          qs('#retry-blog')?.addEventListener('click', loadBlog);
+        } else if (state < 0.4) { // vacío
+          const emp = document.createElement('div'); emp.className='card rounded-xl p-4'; emp.innerHTML='<p>Sin resultados. Prueba ajustar filtros.</p>'; wrap.appendChild(emp);
+        } else {
+          for(let i=1;i<=6;i++){
+            const card=document.createElement('a'); card.href='#'; card.className='card rounded-xl p-4 block'; card.innerHTML=`<h3 class="font-semibold">Artículo ${i}</h3><p class="text-sm text-[var(--muted)]">Resumen corto…</p>`; wrap.appendChild(card);
+          }
+        }
+        loadbar.end();
+      }, 900);
+    }
+
+    /*****************
+     * Back to top
+     *****************/
+    const toTop = qs('#btn-to-top');
+    window.addEventListener('scroll', ()=>{ toTop.classList.toggle('hidden', window.scrollY < 500); });
+    toTop.addEventListener('click', ()=> window.scrollTo({ top:0, behavior: prefersReduced ? 'auto' : 'smooth' }));
+
+    /*****************
+     * Tema alto contraste / oscuro
+     *****************/
+    const chkTheme = qs('#toggle-theme');
+    const savedTheme = storageSafe.get('theme'); if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+    chkTheme.checked = document.documentElement.dataset.theme==='dark';
+    chkTheme.addEventListener('change', ()=>{ const t = chkTheme.checked ? 'dark' : 'light'; document.documentElement.dataset.theme = t; storageSafe.set('theme', t); });
+
+    /*****************
+     * Sticky fallback → FAB Menú
+     *****************/
+    (function stickyFallback(){
+      const test = document.createElement('div'); test.style.position='sticky'; if (test.style.position!=='sticky') { qs('#fab-menu-fallback').classList.remove('hidden'); }
+    })();
+
+    /*****************
+     * Prefetch moderado (simulado): hover/focus
+     *****************/
+    function prefetch(link){ /* Sin backend; simulamos */ console.log('prefetch', link.getAttribute('href')); }
+    qsa('a[data-link]').forEach(a=>{ a.addEventListener('mouseenter', ()=>prefetch(a)); a.addEventListener('focus', ()=>prefetch(a)); });
+
+    // Idioma autodetección primera visita
+    (function init(){
+      // Lang desde URL si viene con prefijo
+      const rawPath = getPath();
+      const hasLangPrefix = SUP_LANGS.some(l=> rawPath.startsWith('/'+l+'/') || rawPath===('/'+l));
+      if (hasLangPrefix) {
+        const l = rawPath.split('/')[1]; if (SUP_LANGS.includes(l)) currentLang = l; document.documentElement.lang = currentLang; storageSafe.set('lang', currentLang);
+      }
+      // Render inicial
+      renderRoute(normalizePath(rawPath));
+      // Accesos rápidos FAB → Contactar
+      qs('[data-action="contact"]').addEventListener('click', ()=> alert('Abrir WhatsApp/Telegram/formulario (simulado).'));
+    })();
+  </script>
+</body>
+</html>
