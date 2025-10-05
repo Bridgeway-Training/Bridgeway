@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BridgeWay English Academy – Fluent results in weeks</title>
+  <meta name="description" content="BridgeWay connects ambitious learners with expert English teachers. Take the placement test, book your free class and unlock fluent results fast." />
+  <meta property="og:title" content="BridgeWay English Academy – Fluent results in weeks" />
+  <meta property="og:description" content="BridgeWay connects ambitious learners with expert English teachers. Take the placement test, book your free class and unlock fluent results fast." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bridgeway.academy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BridgeWay English Academy – Fluent results in weeks" />
+  <meta name="twitter:description" content="BridgeWay connects ambitious learners with expert English teachers. Take the placement test, book your free class and unlock fluent results fast." />
+  <meta name="theme-color" content="#0A0F4C" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            'bw-bridge': '#0A0F4C',
+            'bw-way': '#4967E4'
+          },
+          boxShadow: {
+            glow: '0 0 25px rgba(73,103,228,0.45)'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' }
+            },
+            fadeInUp: {
+              '0%': { opacity: 0, transform: 'translateY(16px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' }
+            },
+            pulseSoft: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(73,103,228,0.45)' },
+              '50%': { boxShadow: '0 0 0 16px rgba(73,103,228,0)' }
+            }
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            fadeInUp: 'fadeInUp 0.4s ease-out both',
+            pulseSoft: 'pulseSoft 2.5s ease-out infinite'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #f8fafc;
+    }
+    @media (prefers-color-scheme: dark) {
+      html:not(.force-light) body {
+        background-color: #0b1120;
+      }
+    }
+    .no-transition * {
+      transition-duration: 0s !important;
+    }
+  </style>
+  <link rel="manifest" id="dynamic-manifest" href="data:application/manifest+json,{ }">
+  <script>
+    const CRM_WEBHOOK_URL = "";      // optional
+    const EMAIL_WEBHOOK_URL = "";    // optional
+    const BASE_PRICES = { essential: 12, pro: 16, premium: 22 }; // €/hour example
+    const COUPONS = { BRIDGE10: 0.10, BUSINESS15: 0.15 };
+
+    const i18n = {
+      en: {
+        localeName: 'English',
+        metaTitle: 'BridgeWay English Academy – Fluent results in weeks',
+        metaDescription: 'BridgeWay connects ambitious learners with expert English teachers. Take the placement test, book your free class and unlock fluent results fast.',
+        menu: ['Home', 'Programs', 'Methodology', 'Teachers', 'Pricing', 'Resources', 'Free Class'],
+        heroHeadline: 'Decide in 5 seconds: BridgeWay makes fluent English inevitable.',
+        heroSubtitle: 'Placement test, adaptive coaching and WhatsApp accountability so you grow confident fast.',
+        heroPrimary: 'Book your free class',
+        heroSecondary: 'Take the level test',
+        heroSecondaryBusiness: 'Plan for companies',
+        personalizationBadge: 'Personalized for you',
+        stickyOffer: 'Free placement test today — secure your spot.',
+        consentTitle: 'We respect your privacy',
+        consentDesc: 'We use cookies to personalize learning and measure results. Accept to enable analytics and improvements.',
+        consentAccept: 'Accept & continue',
+        consentDecline: 'Only essential',
+        darkMode: 'Theme',
+        language: 'Language',
+        backToTop: 'Back to top',
+        freeClassTitle: 'Book your free class',
+        freeClassSubtitle: 'Choose a time that works. It takes less than 20 seconds.',
+        nameLabel: 'Full name',
+        emailLabel: 'Email',
+        phoneLabel: 'Phone',
+        goalLabel: 'Goal',
+        ageLabel: 'Age (if for kids)',
+        goalPlaceholder: 'Select your goal',
+        agePlaceholder: 'Age',
+        validationRequired: 'Required field',
+        validationEmail: 'Enter a valid email',
+        validationPhone: 'Use digits only',
+        slotLabel: 'Select a time slot',
+        noSlots: 'All slots booked. Message us on WhatsApp to arrange a time.',
+        submit: 'Confirm booking',
+        submitting: 'Submitting…',
+        successTitle: 'Thank you! Your free class is scheduled.',
+        successSubtitle: 'Check your inbox. We also prepared calendar links and WhatsApp confirmation.',
+        addCalendar: 'Add to calendar',
+        downloadICS: 'Download .ics',
+        googleCalendar: 'Add to Google Calendar',
+        appleCalendar: 'Add to Apple Calendar',
+        outlookCalendar: 'Add to Outlook',
+        whatsappConfirm: 'Confirm via WhatsApp',
+        exportLeads: 'Export leads',
+        adminTitle: 'BridgeWay Admin tools',
+        adminVariant: 'Hero copy variant',
+        adminFeatureFlags: 'Feature flags',
+        adminConfetti: 'Trigger confetti',
+        adminToast: 'Show toast',
+        adminLeads: 'Leads',
+        adminResults: 'Level test results',
+        adminExport: 'Export JSON',
+        adminClose: 'Close admin',
+        adminExitIntent: 'Exit-intent modal',
+        adminStickyBar: 'Sticky offer bar',
+        adminSpeech: 'Speech input',
+        programsTitle: 'Programs built for real-life English',
+        methodologyTitle: 'Methodology',
+        teachersTitle: 'Meet the teachers',
+        pricingTitle: 'Pricing plans',
+        resourcesTitle: 'Resources',
+        testimonialHeadline: 'Learners love BridgeWay',
+        levelTestTitle: 'Adaptive level test',
+        levelTestStart: 'Start the test',
+        levelTestResume: 'Resume where you left',
+        levelTestSpeakingPlaceholder: 'Describe your learning goals',
+        levelTestComplete: 'See my result',
+        levelTestDownload: 'Download results',
+        levelTestSummary: 'Copy summary',
+        programsConfiguratorTitle: 'Personalize your program',
+        programsConfiguratorCTA: 'View suggested plan',
+        programsConfiguratorResult: 'Your recommended plan',
+        faqTitle: 'Your questions answered',
+        timelineTitle: 'The BridgeWay journey',
+        teachersFilterLabel: 'Filter teachers',
+        pricingToggle: 'Billing cycle',
+        pricingMonthly: 'Monthly',
+        pricingQuarterly: 'Quarterly',
+        couponLabel: 'Have a coupon?',
+        applyCoupon: 'Apply coupon',
+        couponApplied: 'Coupon applied',
+        invalidCoupon: 'Coupon not valid',
+        guarantee: '100% money-back guarantee',
+        guaranteeMore: 'See conditions',
+        guaranteeBody: 'If you attend the first four classes and are not satisfied, we refund you.',
+        resourcesSearch: 'Search resources',
+        chatTitle: 'Need a hand?',
+        chatOptions: ['Book class', 'Level test', 'Quick question'],
+        chatFallback: 'How can we help?',
+        chatContactLabel: 'Your question',
+        chatSend: 'Send',
+        exitIntentTitle: 'Before you go…',
+        exitIntentDesc: 'Download our Business English cheatsheet and keep improving offline.',
+        exitIntentCTA: 'Download PDF guide',
+        resourcesCTA: 'Take the test',
+        breadcrumbs: ['Home', 'Programs', 'Methodology', 'Teachers', 'Pricing', 'Resources'],
+        metrics: ['92% move up one CEFR level in 12 weeks', '4.9/5 average satisfaction', 'Trusted by 140+ companies'],
+        whatsappNote: 'Uses international WhatsApp format +44 7700 900123',
+        contactPhone: '+44 7700 900123',
+        contactWhatsApp: 'https://wa.me/447700900123'
+      },
+      ru: {
+        localeName: 'Русский',
+        metaTitle: 'BridgeWay — Онлайн академия английского',
+        metaDescription: 'BridgeWay соединяет мотивированных студентов с преподавателями-экспертами. Пройди тест, запишись на бесплатный урок и говори уверенно.',
+        menu: ['Главная', 'Программы', 'Методика', 'Преподаватели', 'Цены', 'Ресурсы', 'Бесплатный урок'],
+        heroHeadline: 'Реши за 5 секунд: с BridgeWay свободный английский неизбежен.',
+        heroSubtitle: 'Тест, адаптивные занятия и поддержка в WhatsApp — чтобы уверенность пришла быстро.',
+        heroPrimary: 'Запишись на бесплатный урок',
+        heroSecondary: 'Пройди тест на уровень',
+        heroSecondaryBusiness: 'План для компаний',
+        personalizationBadge: 'Персональный подход',
+        stickyOffer: 'Бесплатный тест по определению уровня сегодня.',
+        consentTitle: 'Мы заботимся о данных',
+        consentDesc: 'Мы используем файлы cookie для персонализации и аналитики. Прими, чтобы включить улучшения.',
+        consentAccept: 'Принять',
+        consentDecline: 'Только необходимые',
+        darkMode: 'Тема',
+        language: 'Язык',
+        backToTop: 'Наверх',
+        freeClassTitle: 'Запишись на бесплатный урок',
+        freeClassSubtitle: 'Выбери удобное время. Это займёт меньше 20 секунд.',
+        nameLabel: 'Имя и фамилия',
+        emailLabel: 'Email',
+        phoneLabel: 'Телефон',
+        goalLabel: 'Цель',
+        ageLabel: 'Возраст (если для детей)',
+        goalPlaceholder: 'Выбери цель',
+        agePlaceholder: 'Возраст',
+        validationRequired: 'Обязательное поле',
+        validationEmail: 'Введите корректный email',
+        validationPhone: 'Только цифры',
+        slotLabel: 'Выбери время',
+        noSlots: 'Все слоты заняты. Напишите нам в WhatsApp, чтобы подобрать время.',
+        submit: 'Подтвердить запись',
+        submitting: 'Отправка…',
+        successTitle: 'Спасибо! Урок подтверждён.',
+        successSubtitle: 'Проверьте почту. Мы подготовили ссылки для календаря и WhatsApp.',
+        addCalendar: 'Добавить в календарь',
+        downloadICS: 'Скачать .ics',
+        googleCalendar: 'Добавить в Google',
+        appleCalendar: 'Добавить в Apple',
+        outlookCalendar: 'Добавить в Outlook',
+        whatsappConfirm: 'Подтвердить в WhatsApp',
+        exportLeads: 'Экспорт лидов',
+        adminTitle: 'Инструменты BridgeWay',
+        adminVariant: 'Вариант хедера',
+        adminFeatureFlags: 'Фичи',
+        adminConfetti: 'Конфетти',
+        adminToast: 'Тост',
+        adminLeads: 'Лиды',
+        adminResults: 'Результаты теста',
+        adminExport: 'Экспорт JSON',
+        adminClose: 'Закрыть',
+        adminExitIntent: 'Выходное окно',
+        adminStickyBar: 'Липкая плашка',
+        adminSpeech: 'Речь',
+        programsTitle: 'Программы для реального английского',
+        methodologyTitle: 'Методика',
+        teachersTitle: 'Преподаватели',
+        pricingTitle: 'Тарифы',
+        resourcesTitle: 'Ресурсы',
+        testimonialHeadline: 'Студенты рекомендуют BridgeWay',
+        levelTestTitle: 'Адаптивный тест уровня',
+        levelTestStart: 'Начать тест',
+        levelTestResume: 'Продолжить',
+        levelTestSpeakingPlaceholder: 'Опишите свои цели обучения',
+        levelTestComplete: 'Узнать результат',
+        levelTestDownload: 'Скачать результаты',
+        levelTestSummary: 'Скопировать резюме',
+        programsConfiguratorTitle: 'Подбери программу',
+        programsConfiguratorCTA: 'Показать план',
+        programsConfiguratorResult: 'Рекомендация',
+        faqTitle: 'Ответы на частые вопросы',
+        timelineTitle: 'Путь в BridgeWay',
+        teachersFilterLabel: 'Фильтровать преподавателей',
+        pricingToggle: 'Тип оплаты',
+        pricingMonthly: 'Ежемесячно',
+        pricingQuarterly: 'Ежеквартально',
+        couponLabel: 'Есть купон?',
+        applyCoupon: 'Применить',
+        couponApplied: 'Купон применён',
+        invalidCoupon: 'Купон недействителен',
+        guarantee: '100% гарантия возврата',
+        guaranteeMore: 'Условия',
+        guaranteeBody: 'Если после четырёх занятий вы не довольны, вернём оплату.',
+        resourcesSearch: 'Поиск материалов',
+        chatTitle: 'Нужна помощь?',
+        chatOptions: ['Записаться', 'Тест', 'Вопрос'],
+        chatFallback: 'Чем помочь?',
+        chatContactLabel: 'Ваш вопрос',
+        chatSend: 'Отправить',
+        exitIntentTitle: 'Перед уходом…',
+        exitIntentDesc: 'Скачайте PDF шпаргалку по бизнес-английскому.',
+        exitIntentCTA: 'Скачать PDF',
+        resourcesCTA: 'Пройди тест',
+        breadcrumbs: ['Главная', 'Программы', 'Методика', 'Преподаватели', 'Цены', 'Ресурсы'],
+        metrics: ['92% переходят на уровень выше за 12 недель', 'Средняя оценка 4.9/5', 'Нам доверяют 140+ компаний'],
+        whatsappNote: 'Используется международный формат WhatsApp +44 7700 900123',
+        contactPhone: '+44 7700 900123',
+        contactWhatsApp: 'https://wa.me/447700900123'
+      },
+      ro: {
+        localeName: 'Română',
+        metaTitle: 'BridgeWay – Academia de limba engleză online',
+        metaDescription: 'BridgeWay conectează cursanți ambițioși cu profesori experți. Fă testul de nivel, rezervă lecția gratuită și vorbește fluent rapid.',
+        menu: ['Acasă', 'Programe', 'Metodologie', 'Profesori', 'Prețuri', 'Resurse', 'Lecție gratuită'],
+        heroHeadline: 'Decide în 5 secunde: BridgeWay garantează engleza fluentă.',
+        heroSubtitle: 'Test de nivel, coaching adaptiv și responsabilitate pe WhatsApp pentru rezultate rapide.',
+        heroPrimary: 'Programează lecția gratuită',
+        heroSecondary: 'Fă testul de nivel',
+        heroSecondaryBusiness: 'Plan pentru companii',
+        personalizationBadge: 'Personalizat pentru tine',
+        stickyOffer: 'Test de nivel gratuit astăzi — rezervă locul.',
+        consentTitle: 'Respectăm confidențialitatea',
+        consentDesc: 'Folosim cookie-uri pentru personalizare și analiză. Acceptă pentru a activa îmbunătățirile.',
+        consentAccept: 'Acceptă',
+        consentDecline: 'Doar esențial',
+        darkMode: 'Temă',
+        language: 'Limbă',
+        backToTop: 'Sus',
+        freeClassTitle: 'Programează lecția gratuită',
+        freeClassSubtitle: 'Alege un interval potrivit. Durează sub 20 de secunde.',
+        nameLabel: 'Nume complet',
+        emailLabel: 'Email',
+        phoneLabel: 'Telefon',
+        goalLabel: 'Obiectiv',
+        ageLabel: 'Vârstă (pentru copii)',
+        goalPlaceholder: 'Alege obiectivul',
+        agePlaceholder: 'Vârstă',
+        validationRequired: 'Câmp obligatoriu',
+        validationEmail: 'Introdu un email valid',
+        validationPhone: 'Doar cifre',
+        slotLabel: 'Alege intervalul',
+        noSlots: 'Toate intervalele sunt rezervate. Scrie-ne pe WhatsApp pentru o soluție.',
+        submit: 'Confirmă rezervarea',
+        submitting: 'Se trimite…',
+        successTitle: 'Mulțumim! Lecția este programată.',
+        successSubtitle: 'Verifică emailul. Ți-am pregătit linkuri de calendar și WhatsApp.',
+        addCalendar: 'Adaugă în calendar',
+        downloadICS: 'Descarcă .ics',
+        googleCalendar: 'Adaugă în Google Calendar',
+        appleCalendar: 'Adaugă în Apple Calendar',
+        outlookCalendar: 'Adaugă în Outlook',
+        whatsappConfirm: 'Confirmă pe WhatsApp',
+        exportLeads: 'Exportă leaduri',
+        adminTitle: 'Panou BridgeWay',
+        adminVariant: 'Variantă hero',
+        adminFeatureFlags: 'Funcții',
+        adminConfetti: 'Confetti',
+        adminToast: 'Toast',
+        adminLeads: 'Leaduri',
+        adminResults: 'Rezultate test',
+        adminExport: 'Exportă JSON',
+        adminClose: 'Închide',
+        adminExitIntent: 'Fereastră exit-intent',
+        adminStickyBar: 'Bară promoțională',
+        adminSpeech: 'Recunoaștere vocală',
+        programsTitle: 'Programe pentru engleză reală',
+        methodologyTitle: 'Metodologie',
+        teachersTitle: 'Profesorii',
+        pricingTitle: 'Tarife',
+        resourcesTitle: 'Resurse',
+        testimonialHeadline: 'Cursanții adoră BridgeWay',
+        levelTestTitle: 'Test adaptiv de nivel',
+        levelTestStart: 'Începe testul',
+        levelTestResume: 'Reia testul',
+        levelTestSpeakingPlaceholder: 'Descrie obiectivele tale',
+        levelTestComplete: 'Vezi rezultatul',
+        levelTestDownload: 'Descarcă rezultatele',
+        levelTestSummary: 'Copiază rezumatul',
+        programsConfiguratorTitle: 'Personalizează programul',
+        programsConfiguratorCTA: 'Vezi planul recomandat',
+        programsConfiguratorResult: 'Plan recomandat',
+        faqTitle: 'Întrebări frecvente',
+        timelineTitle: 'Drumul BridgeWay',
+        teachersFilterLabel: 'Filtrează profesorii',
+        pricingToggle: 'Ciclu de plată',
+        pricingMonthly: 'Lunar',
+        pricingQuarterly: 'Trimestrial',
+        couponLabel: 'Ai cupon?',
+        applyCoupon: 'Aplică',
+        couponApplied: 'Cupon aplicat',
+        invalidCoupon: 'Cupon invalid',
+        guarantee: 'Garanție de rambursare 100%',
+        guaranteeMore: 'Condiții',
+        guaranteeBody: 'Dacă după primele patru lecții nu ești mulțumit, îți returnăm banii.',
+        resourcesSearch: 'Caută resurse',
+        chatTitle: 'Ai nevoie de ajutor?',
+        chatOptions: ['Rezervă lecția', 'Test de nivel', 'Întrebare rapidă'],
+        chatFallback: 'Cu ce te ajutăm?',
+        chatContactLabel: 'Întrebarea ta',
+        chatSend: 'Trimite',
+        exitIntentTitle: 'Înainte să pleci…',
+        exitIntentDesc: 'Descarcă ghidul PDF de engleză pentru business.',
+        exitIntentCTA: 'Descarcă PDF',
+        resourcesCTA: 'Fă testul',
+        breadcrumbs: ['Acasă', 'Programe', 'Metodologie', 'Profesori', 'Prețuri', 'Resurse'],
+        metrics: ['92% urcă un nivel CEFR în 12 săptămâni', '4.9/5 satisfacție medie', 'Încrederea a 140+ companii'],
+        whatsappNote: 'Folosește formatul internațional WhatsApp +44 7700 900123',
+        contactPhone: '+44 7700 900123',
+        contactWhatsApp: 'https://wa.me/447700900123'
+      }
+    };
+  </script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+  <div id="top"></div>
+  <div id="sticky-offer" class="hidden fixed top-0 inset-x-0 z-40 translate-y-[-100%] bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way text-white text-sm md:text-base">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2">
+      <span data-i18n="stickyOffer"></span>
+      <button data-testid="sticky-offer-cta" class="rounded-full bg-white/10 px-4 py-1 text-sm font-semibold transition hover:bg-white/20" data-action="open-free-class">Book</button>
+    </div>
+  </div>
+  <header id="main-header" class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur shadow transition-all duration-300 dark:bg-slate-900/95">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <a href="#top" class="flex items-center gap-2" aria-label="BridgeWay home">
+        <span class="text-2xl font-bold"><span class="text-bw-bridge">Bridge</span><span class="text-bw-way">Way</span></span>
+        <span class="sr-only">BridgeWay</span>
+      </a>
+      <nav class="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
+        <a data-menu="0" href="#home" class="menu-link text-sm font-semibold text-slate-700 transition hover:text-bw-way dark:text-slate-200">Home</a>
+        <a data-menu="1" href="#programs" class="menu-link text-sm font-semibold text-slate-700 transition hover:text-bw-way dark:text-slate-200">Programs</a>
+        <a data-menu="2" href="#methodology" class="menu-link text-sm font-semibold text-slate-700 transition hover:text-bw-way dark:text-slate-200">Methodology</a>
+        <a data-menu="3" href="#teachers" class="menu-link text-sm font-semibold text-slate-700 transition hover:text-bw-way dark:text-slate-200">Teachers</a>
+        <a data-menu="4" href="#pricing" class="menu-link text-sm font-semibold text-slate-700 transition hover:text-bw-way dark:text-slate-200">Pricing</a>
+        <a data-menu="5" href="#resources" class="menu-link text-sm font-semibold text-slate-700 transition hover:text-bw-way dark:text-slate-200">Resources</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <div class="hidden pr-3 text-xs font-medium uppercase tracking-wide text-bw-bridge lg:flex lg:flex-col lg:items-end">
+          <a data-testid="header-whatsapp" class="flex items-center gap-1 text-bw-way hover:text-bw-way/80" href="https://wa.me/447700900123" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12c0 1.63.39 3.169 1.08 4.53L2 22l5.646-1.053A9.953 9.953 0 0 0 12 22z"/><path d="M16.5 14.5c-.5 1-2 1.5-2 1.5s-3.5-1-5-4.5 0-5 0-5 1-1.5 1.5-1.5.5.5.5.5"/></svg>
+            <span>WhatsApp</span>
+          </a>
+          <a data-testid="header-call" class="flex items-center gap-1 text-bw-bridge hover:text-bw-bridge/80" href="tel:+447700900123" aria-label="Call BridgeWay">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 4h3l2 5-1.5 1.5a11 11 0 0 0 5 5L14 14l5 2v3a1 1 0 0 1-1 1 16 16 0 0 1-13-13 1 1 0 0 1 1-1z"/></svg>
+            <span>Call</span>
+          </a>
+        </div>
+        <div class="relative" aria-label="Language">
+          <button data-testid="language-toggle" id="language-button" class="flex items-center gap-1 rounded-full border border-slate-200 px-3 py-1 text-sm font-semibold text-slate-700 transition hover:border-bw-way hover:text-bw-way dark:border-slate-700 dark:text-slate-100" aria-haspopup="listbox" aria-expanded="false">
+            <span data-i18n="language">Language</span>
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.25a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z"/></svg>
+          </button>
+          <ul id="language-menu" class="absolute right-0 mt-2 hidden w-40 rounded-lg border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-800" role="listbox">
+            <li><button class="w-full px-4 py-2 text-left text-sm hover:bg-slate-100 dark:hover:bg-slate-700" data-lang="en">English</button></li>
+            <li><button class="w-full px-4 py-2 text-left text-sm hover:bg-slate-100 dark:hover:bg-slate-700" data-lang="ru">Русский</button></li>
+            <li><button class="w-full px-4 py-2 text-left text-sm hover:bg-slate-100 dark:hover:bg-slate-700" data-lang="ro">Română</button></li>
+          </ul>
+        </div>
+        <button id="theme-toggle" aria-label="Toggle theme" data-testid="theme-toggle" class="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-bw-way hover:text-bw-way dark:border-slate-700 dark:text-slate-100">
+          <svg id="theme-icon" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3v1M12 20v1M4.22 4.22l.7.7M18.36 18.36l.7.7M1 12h1M22 12h1M4.22 19.78l.7-.7M18.36 5.64l.7-.7"/><circle cx="12" cy="12" r="4"/></svg>
+        </button>
+        <button data-testid="header-free-class" data-action="open-free-class" class="hidden rounded-full bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way px-5 py-2 text-sm font-semibold text-white shadow transition duration-300 hover:shadow-glow focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60 lg:block">Free Class</button>
+        <button id="mobile-menu" class="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-bw-way hover:text-bw-way dark:border-slate-700 dark:text-slate-100 lg:hidden" aria-label="Open menu">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-drawer" class="hidden border-t border-slate-200 bg-white px-4 py-4 dark:border-slate-700 dark:bg-slate-900 lg:hidden">
+      <nav class="flex flex-col gap-3" aria-label="Mobile navigation">
+        <a href="#home" class="menu-link text-base font-semibold text-slate-800 transition hover:text-bw-way dark:text-slate-200">Home</a>
+        <a href="#programs" class="menu-link text-base font-semibold text-slate-800 transition hover:text-bw-way dark:text-slate-200">Programs</a>
+        <a href="#methodology" class="menu-link text-base font-semibold text-slate-800 transition hover:text-bw-way dark:text-slate-200">Methodology</a>
+        <a href="#teachers" class="menu-link text-base font-semibold text-slate-800 transition hover:text-bw-way dark:text-slate-200">Teachers</a>
+        <a href="#pricing" class="menu-link text-base font-semibold text-slate-800 transition hover:text-bw-way dark:text-slate-200">Pricing</a>
+        <a href="#resources" class="menu-link text-base font-semibold text-slate-800 transition hover:text-bw-way dark:text-slate-200">Resources</a>
+        <button data-action="open-free-class" class="rounded-full bg-gradient-to-r from-bw-bridge to-bw-way px-5 py-2 text-sm font-semibold text-white shadow focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60">Free Class</button>
+      </nav>
+    </div>
+  </header>
+  <main class="mt-28" id="home">
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 -z-10 bg-gradient-to-br from-bw-bridge via-[#1d2a8a] to-bw-way opacity-90" aria-hidden="true"></div>
+      <div class="absolute inset-0 -z-10" id="hero-parallax" aria-hidden="true"></div>
+      <div class="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-20 text-white lg:flex-row">
+        <div class="w-full space-y-6 lg:w-3/5">
+          <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1 text-sm font-semibold">
+            <span aria-live="polite" data-i18n="personalizationBadge">Personalized for you</span>
+            <span class="h-2 w-2 rounded-full bg-emerald-300"></span>
+          </div>
+          <h1 class="text-4xl font-bold sm:text-5xl" data-i18n="heroHeadline">Decide in 5 seconds: BridgeWay makes fluent English inevitable.</h1>
+          <p class="max-w-xl text-lg text-slate-100" data-i18n="heroSubtitle">Placement test, adaptive coaching and WhatsApp accountability so you grow confident fast.</p>
+          <div class="flex flex-wrap items-center gap-4" role="group">
+            <button data-testid="hero-free-class" data-action="open-free-class" class="rounded-full bg-white px-6 py-3 text-base font-semibold text-bw-bridge shadow-lg shadow-bw-way/40 transition hover:-translate-y-0.5 hover:shadow-glow focus:outline-none focus-visible:ring focus-visible:ring-white/60" data-i18n="heroPrimary">Book your free class</button>
+            <button data-testid="hero-secondary" id="hero-secondary" class="rounded-full border border-white/60 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus:outline-none focus-visible:ring focus-visible:ring-white/60" data-action="hero-secondary">Take the level test</button>
+          </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div class="rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur">
+              <p class="text-sm font-medium uppercase tracking-wide" data-i18n="metrics-0">92% move up one CEFR level in 12 weeks</p>
+            </div>
+            <div class="rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur">
+              <p class="text-sm font-medium uppercase tracking-wide" data-i18n="metrics-1">4.9/5 average satisfaction</p>
+            </div>
+            <div class="rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur">
+              <p class="text-sm font-medium uppercase tracking-wide" data-i18n="metrics-2">Trusted by 140+ companies</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-sm text-slate-200">
+            <svg class="h-6 w-6 animate-float" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            <span data-i18n="whatsappNote">Uses international WhatsApp format +44 7700 900123</span>
+          </div>
+        </div>
+        <div class="w-full space-y-6 rounded-3xl bg-white/10 p-8 backdrop-blur-lg lg:w-2/5">
+          <p class="text-sm font-semibold uppercase tracking-wide text-emerald-200">Live dashboard</p>
+          <div class="flex items-center justify-between text-sm text-slate-100">
+            <span>Variant</span>
+            <span id="variant-indicator" class="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold">A</span>
+          </div>
+          <div class="flex items-center justify-between text-sm text-slate-100">
+            <span>UTM source</span>
+            <span id="utm-source">—</span>
+          </div>
+          <div class="flex items-center justify-between text-sm text-slate-100">
+            <span>Referrer</span>
+            <span id="referrer-indicator">—</span>
+          </div>
+          <div class="flex items-center justify-between text-sm text-slate-100">
+            <span>Today's bookings</span>
+            <span id="booking-count">0</span>
+          </div>
+          <button data-action="hero-secondary" class="w-full rounded-full bg-white/10 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring focus-visible:ring-white/60" data-i18n="resourcesCTA">Take the test</button>
+        </div>
+      </div>
+      <div class="flex justify-center pb-6" aria-hidden="true">
+        <button data-testid="scroll-down" class="group flex flex-col items-center gap-1 text-white/80 transition hover:text-white" data-action="scroll-next">
+          <svg class="h-6 w-6 transition group-hover:translate-y-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          <span class="text-xs uppercase tracking-wide">Scroll</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="programs" class="bg-white py-20 dark:bg-slate-950">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-wide text-bw-way" data-i18n="programsTitle">Programs built for real-life English</p>
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white">BridgeWay Paths</h2>
+          </div>
+          <div class="relative w-full max-w-md rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900">
+            <p class="text-sm font-semibold" data-i18n="programsConfiguratorTitle">Personalize your program</p>
+            <div class="mt-3 space-y-3">
+              <label class="block text-sm font-medium text-slate-600 dark:text-slate-300" for="config-goal">Goal</label>
+              <select id="config-goal" class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-800" data-testid="config-goal">
+                <option value="fluency">Fluency</option>
+                <option value="business">Business</option>
+                <option value="exams">IELTS/TOEFL</option>
+                <option value="kids">Kids & Teens</option>
+              </select>
+              <label class="block text-sm font-medium text-slate-600 dark:text-slate-300" for="config-availability">Availability</label>
+              <select id="config-availability" class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-800">
+                <option value="morning">Morning</option>
+                <option value="evening">Evening</option>
+                <option value="weekend">Weekend</option>
+              </select>
+              <label class="block text-sm font-medium text-slate-600 dark:text-slate-300" for="config-payment">Payment preference</label>
+              <select id="config-payment" class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-800">
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+              </select>
+              <button data-testid="config-cta" id="config-submit" class="w-full rounded-full bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way px-4 py-2 text-sm font-semibold text-white shadow transition hover:shadow-glow focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60" data-i18n="programsConfiguratorCTA">View suggested plan</button>
+              <div id="config-result" class="hidden rounded-xl border border-slate-200 bg-white/70 p-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-800/70 dark:text-slate-200" data-i18n="programsConfiguratorResult">Your recommended plan</div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <article class="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow transition hover:-translate-y-1 hover:shadow-xl focus-within:ring focus-within:ring-bw-way/40 dark:border-slate-700 dark:bg-slate-900">
+            <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way"></div>
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Essential Fluency</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Two live sessions/week, focus on confidence, personalized feedback, weekly missions.</p>
+            <button class="mt-4 inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-bw-way transition hover:border-bw-way focus:outline-none focus-visible:ring focus-visible:ring-bw-way/50" data-action="open-program" data-program="Essential Fluency">View program</button>
+          </article>
+          <article class="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow transition hover:-translate-y-1 hover:shadow-xl focus-within:ring focus-within:ring-bw-way/40 dark:border-slate-700 dark:bg-slate-900">
+            <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way"></div>
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Business Impact</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Leadership English, real pitches, email mastery, negotiation simulations.</p>
+            <button class="mt-4 inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-bw-way transition hover:border-bw-way focus:outline-none focus-visible:ring focus-visible:ring-bw-way/50" data-action="open-program" data-program="Business Impact">View program</button>
+          </article>
+          <article class="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow transition hover:-translate-y-1 hover:shadow-xl focus-within:ring focus-within:ring-bw-way/40 dark:border-slate-700 dark:bg-slate-900">
+            <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way"></div>
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Exam Accelerator</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">IELTS/TOEFL strategy, timed drills, expert feedback, score guarantees.</p>
+            <button class="mt-4 inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-bw-way transition hover:border-bw-way focus:outline-none focus-visible:ring focus-visible:ring-bw-way/50" data-action="open-program" data-program="Exam Accelerator">View program</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="methodology" class="relative bg-slate-50 py-20 dark:bg-slate-900">
+      <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-r from-bw-bridge/10 via-transparent to-bw-way/10"></div>
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-wide text-bw-way" data-i18n="timelineTitle">The BridgeWay journey</p>
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white" data-i18n="methodologyTitle">Methodology</h2>
+            <p class="mt-3 max-w-2xl text-base text-slate-600 dark:text-slate-300">Diagnostic intelligence, micro-coaching and community accountability keep you progressing.</p>
+          </div>
+          <div class="flex items-center gap-6 rounded-2xl border border-slate-200 bg-white/70 p-6 dark:border-slate-700 dark:bg-slate-800/70">
+            <div>
+              <p class="text-4xl font-bold text-bw-way">92%</p>
+              <p class="text-sm text-slate-600 dark:text-slate-300">move up one level in 12 weeks*</p>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">*Based on 2023-2024 BridgeWay graduate cohort.</p>
+          </div>
+        </div>
+        <ol class="mt-12 grid gap-6 md:grid-cols-2" id="methodology-timeline">
+          <!-- Steps inserted via JS -->
+        </ol>
+      </div>
+    </section>
+
+    <section id="teachers" class="bg-white py-20 dark:bg-slate-950">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white" data-i18n="teachersTitle">Meet the teachers</h2>
+            <p class="mt-2 max-w-2xl text-base text-slate-600 dark:text-slate-300">CELTA/DELTA certified experts with business, exam and communication backgrounds.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <label class="text-sm font-medium text-slate-600 dark:text-slate-300" for="teacher-area" data-i18n="teachersFilterLabel">Filter teachers</label>
+            <select id="teacher-area" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-900">
+              <option value="all">All</option>
+              <option value="general">General</option>
+              <option value="business">Business</option>
+              <option value="exams">Exams</option>
+            </select>
+            <select id="teacher-language" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-900">
+              <option value="all">Languages</option>
+              <option value="es">ES</option>
+              <option value="ru">RU</option>
+              <option value="ro">RO</option>
+            </select>
+            <select id="teacher-cert" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-900">
+              <option value="all">Certifications</option>
+              <option value="celta">CELTA</option>
+              <option value="delta">DELTA</option>
+              <option value="ma">MA TESOL</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3" id="teacher-grid"></div>
+      </div>
+    </section>
+
+    <section id="pricing" class="relative overflow-hidden bg-slate-50 py-20 dark:bg-slate-900">
+      <div class="absolute inset-0 -z-10 bg-gradient-to-br from-white via-transparent to-bw-way/10 dark:from-slate-900"></div>
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white" data-i18n="pricingTitle">Pricing plans</h2>
+            <p class="mt-2 text-base text-slate-600 dark:text-slate-300">Transparent pricing per hour with flexible bundles and quarterly savings.</p>
+          </div>
+          <div class="flex items-center gap-3 rounded-full border border-slate-200 bg-white p-1 text-sm font-semibold dark:border-slate-700 dark:bg-slate-800">
+            <span class="rounded-full px-3 py-1" data-i18n="pricingMonthly">Monthly</span>
+            <label class="relative inline-flex cursor-pointer items-center">
+              <input type="checkbox" id="billing-toggle" class="peer sr-only" />
+              <span class="h-6 w-12 rounded-full bg-slate-300 transition peer-checked:bg-bw-way"></span>
+              <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition peer-checked:translate-x-6"></span>
+            </label>
+            <span class="rounded-full bg-bw-way px-3 py-1 text-white" data-i18n="pricingQuarterly">Quarterly</span>
+          </div>
+        </div>
+        <div class="mt-8 grid gap-6 md:grid-cols-3">
+          <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg dark:border-slate-700 dark:bg-slate-900">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Essential</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Confidence, pronunciation and grammar fundamentals.</p>
+            <div class="mt-4 text-3xl font-bold text-bw-way" id="price-essential">€0</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">1-3 learners per pod. Cancel anytime.</p>
+            <button data-tier="essential" data-testid="pricing-cta-essential" data-action="open-free-class" class="mt-6 w-full rounded-full bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way px-4 py-2 text-sm font-semibold text-white shadow transition hover:shadow-glow focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60">Start now</button>
+          </div>
+          <div class="rounded-3xl border border-bw-way bg-white p-6 shadow-xl dark:border-bw-way/60 dark:bg-slate-900">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Pro</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">High-intensity fluency with coach feedback and weekly labs.</p>
+            <div class="mt-4 text-3xl font-bold text-bw-way" id="price-pro">€0</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Best for professionals needing quick wins.</p>
+            <button data-tier="pro" data-testid="pricing-cta-pro" data-action="open-free-class" class="mt-6 w-full rounded-full bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way px-4 py-2 text-sm font-semibold text-white shadow transition hover:shadow-glow focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60">Start now</button>
+          </div>
+          <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg dark:border-slate-700 dark:bg-slate-900">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Premium</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Executive coach, immersion labs, personalized reports.</p>
+            <div class="mt-4 text-3xl font-bold text-bw-way" id="price-premium">€0</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Unlimited speaking club & strategy sessions.</p>
+            <button data-tier="premium" data-testid="pricing-cta-premium" data-action="open-free-class" class="mt-6 w-full rounded-full bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way px-4 py-2 text-sm font-semibold text-white shadow transition hover:shadow-glow focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60">Start now</button>
+          </div>
+        </div>
+        <div class="mt-8 flex flex-col gap-4 rounded-3xl border border-dashed border-bw-way/60 bg-white p-6 dark:border-bw-way/40 dark:bg-slate-900">
+          <label class="text-sm font-semibold text-slate-600 dark:text-slate-300" for="hours-slider">Hours per week: <span id="hours-value" class="font-bold">2</span></label>
+          <input id="hours-slider" type="range" min="1" max="8" value="2" class="w-full" />
+          <label class="text-sm font-semibold text-slate-600 dark:text-slate-300" for="coupon-input" data-i18n="couponLabel">Have a coupon?</label>
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <input id="coupon-input" class="flex-1 rounded-full border border-slate-200 px-4 py-2 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-900" placeholder="BRIDGE10" />
+            <button id="apply-coupon" data-testid="apply-coupon" class="rounded-full border border-bw-way px-4 py-2 text-sm font-semibold text-bw-way transition hover:bg-bw-way hover:text-white focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60" data-i18n="applyCoupon">Apply coupon</button>
+          </div>
+          <div id="coupon-feedback" class="text-sm font-semibold text-emerald-500"></div>
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" id="pricing-summary"></div>
+          <div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+            <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-200" data-i18n="guarantee">100% money-back guarantee</span>
+            <button id="guarantee-button" class="text-bw-way underline decoration-dotted underline-offset-4" data-i18n="guaranteeMore">See conditions</button>
+          </div>
+          <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Stripe</span><span>PayPal</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources" class="bg-white py-20 dark:bg-slate-950">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white" data-i18n="resourcesTitle">Resources</h2>
+            <p class="mt-2 max-w-2xl text-base text-slate-600 dark:text-slate-300">Curated guides, videos and exercises. Search and filter instantly.</p>
+          </div>
+          <button data-testid="resources-cta" data-action="hero-secondary" class="rounded-full bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way px-4 py-2 text-sm font-semibold text-white shadow transition hover:shadow-glow focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60" data-i18n="resourcesCTA">Take the test</button>
+        </div>
+        <div class="mt-8 flex flex-col gap-4 lg:flex-row">
+          <div class="flex-1 space-y-4">
+            <div class="relative">
+              <input id="resource-search" data-testid="resource-search" class="w-full rounded-full border border-slate-200 px-5 py-3 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-900" placeholder="Search..." />
+              <div id="search-autocomplete" class="absolute inset-x-0 top-full hidden rounded-2xl border border-slate-200 bg-white shadow dark:border-slate-700 dark:bg-slate-900"></div>
+            </div>
+            <div class="flex flex-wrap gap-2 text-sm">
+              <select id="filter-level" class="rounded-full border border-slate-200 px-4 py-2 focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-900">
+                <option value="all">All levels</option>
+                <option value="A2">A2</option>
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+                <option value="C1">C1</option>
+              </select>
+              <select id="filter-type" class="rounded-full border border-slate-200 px-4 py-2 focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-900">
+                <option value="all">All types</option>
+                <option value="guide">Guide</option>
+                <option value="exercise">Exercise</option>
+                <option value="video">Video</option>
+              </select>
+              <select id="filter-goal" class="rounded-full border border-slate-200 px-4 py-2 focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-900">
+                <option value="all">All goals</option>
+                <option value="work">Work</option>
+                <option value="exam">Exam</option>
+                <option value="travel">Travel</option>
+              </select>
+            </div>
+            <div id="resource-list" class="grid gap-4"></div>
+          </div>
+          <aside class="mt-8 w-full max-w-xl rounded-3xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900 lg:mt-0">
+            <div id="resource-detail" class="space-y-4 text-sm text-slate-700 dark:text-slate-300">
+              <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Select a resource</h3>
+              <p>Use the filters to explore. Click a resource to see details here.</p>
+            </div>
+            <div class="mt-6">
+              <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400">Related</h4>
+              <ul id="resource-related" class="mt-3 space-y-2 text-sm"></ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="level-test" class="relative bg-slate-50 py-20 dark:bg-slate-900">
+      <div class="absolute inset-0 -z-10 bg-gradient-to-br from-bw-bridge/10 via-transparent to-bw-way/10"></div>
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white" data-i18n="levelTestTitle">Adaptive level test</h2>
+            <p class="mt-2 max-w-2xl text-base text-slate-600 dark:text-slate-300">Complete grammar, reading and speaking in under 10 minutes. Resume anytime.</p>
+          </div>
+          <div class="flex gap-3">
+            <button id="test-start" data-testid="test-start" class="rounded-full bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way px-5 py-2 text-sm font-semibold text-white shadow transition hover:shadow-glow focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60" data-i18n="levelTestStart">Start the test</button>
+            <button id="test-resume" data-testid="test-resume" class="hidden rounded-full border border-bw-way px-5 py-2 text-sm font-semibold text-bw-way transition hover:bg-bw-way hover:text-white focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60" data-i18n="levelTestResume">Resume where you left</button>
+          </div>
+        </div>
+        <div class="mt-10 grid gap-6 lg:grid-cols-3">
+          <div class="lg:col-span-2">
+            <div class="flex flex-col gap-6 rounded-3xl border border-slate-200 bg-white p-6 shadow dark:border-slate-700 dark:bg-slate-900" id="test-interface">
+              <div class="flex items-center justify-between">
+                <div class="w-full">
+                  <div class="flex items-center justify-between text-sm font-semibold text-slate-500 dark:text-slate-400">
+                    <span>Progress</span>
+                    <span id="test-progress-label">0%</span>
+                  </div>
+                  <div class="mt-2 h-2 w-full rounded-full bg-slate-200 dark:bg-slate-700">
+                    <div id="test-progress" class="h-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way" style="width:0%"></div>
+                  </div>
+                </div>
+                <span id="test-section-label" class="ml-4 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-bw-way dark:bg-slate-800">Grammar</span>
+              </div>
+              <div id="test-content" class="space-y-4 text-slate-700 dark:text-slate-200">
+                <p>Select start to begin.</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-6">
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Result</h3>
+              <div id="test-result" class="mt-3 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+                <p>The test will estimate your CEFR level.</p>
+              </div>
+              <div class="mt-4 flex flex-col gap-2">
+                <button id="test-complete" data-testid="test-complete" class="hidden rounded-full bg-bw-way px-4 py-2 text-sm font-semibold text-white focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60" data-i18n="levelTestComplete">See my result</button>
+                <button id="test-download" data-testid="test-download" class="hidden rounded-full border border-bw-way px-4 py-2 text-sm font-semibold text-bw-way focus:outline-none focus-visible:ring focus-visible:ring-bw-way/60" data-i18n="levelTestDownload">Download results</button>
+                <button id="test-copy" data-testid="test-copy" class="hidden rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 dark:border-slate-600 dark:text-slate-200" data-i18n="levelTestSummary">Copy summary</button>
+              </div>
+            </div>
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white" data-i18n="testimonialHeadline">Learners love BridgeWay</h3>
+              <div id="testimonial-carousel" class="relative overflow-hidden">
+                <div class="space-y-4" id="testimonial-track"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way py-16 text-white">
+      <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 lg:flex-row">
+        <div>
+          <h2 class="text-3xl font-bold">BridgeWay means progress</h2>
+          <p class="mt-2 max-w-xl text-sm text-slate-100">We combine adaptive technology with human coaching to make sure every learner shows up and succeeds.</p>
+        </div>
+        <div class="flex gap-4">
+          <div class="rounded-2xl bg-white/10 p-4 text-center">
+            <p class="text-4xl font-bold">12k+</p>
+            <p class="text-sm">Classes delivered</p>
+          </div>
+          <div class="rounded-2xl bg-white/10 p-4 text-center">
+            <p class="text-4xl font-bold">38</p>
+            <p class="text-sm">Expert coaches</p>
+          </div>
+          <div class="rounded-2xl bg-white/10 p-4 text-center">
+            <p class="text-4xl font-bold">24/7</p>
+            <p class="text-sm">Support</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-slate-950 py-12 text-slate-200">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="grid gap-8 md:grid-cols-4">
+          <div>
+            <span class="text-2xl font-bold"><span class="text-white">Bridge</span><span class="text-bw-way">Way</span></span>
+            <p class="mt-3 text-sm">BridgeWay Ltd. 221B Baker Street, London.</p>
+            <div class="mt-2 text-sm">
+              <a class="block hover:text-white" href="tel:+447700900123">+44 7700 900123</a>
+              <a class="block hover:text-white" href="mailto:hello@bridgeway.academy">hello@bridgeway.academy</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold uppercase tracking-wide text-slate-400">Navigate</h4>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li><a class="hover:text-white" href="#programs">Programs</a></li>
+              <li><a class="hover:text-white" href="#pricing">Pricing</a></li>
+              <li><a class="hover:text-white" href="#resources">Resources</a></li>
+              <li><button class="hover:text-white" data-action="open-free-class">Free class</button></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold uppercase tracking-wide text-slate-400">Legal</h4>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li><button class="hover:text-white" data-action="open-terms">Terms</button></li>
+              <li><button class="hover:text-white" data-action="open-privacy">Privacy</button></li>
+              <li><a class="hover:text-white" href="https://wa.me/447700900123" target="_blank" rel="noopener">WhatsApp</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold uppercase tracking-wide text-slate-400">Stay in touch</h4>
+            <p class="mt-2 text-sm">Weekly speaking labs, mini challenges and invites to live workshops.</p>
+            <button data-action="hero-secondary" class="mt-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring focus-visible:ring-white/60">Join placement test</button>
+          </div>
+        </div>
+        <div class="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-slate-400">
+          <p>© <span id="year"></span> BridgeWay. All rights reserved.</p>
+          <div class="flex items-center gap-3">
+            <a class="hover:text-white" href="#top" data-action="back-to-top" data-testid="footer-top">Back to top</a>
+            <span>|</span>
+            <button id="consent-manage" class="hover:text-white">Cookie settings</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <button id="back-to-top" data-testid="back-to-top" class="fixed bottom-24 right-4 z-40 hidden rounded-full bg-bw-way p-3 text-white shadow-lg transition hover:bg-bw-way/90 focus:outline-none focus-visible:ring focus-visible:ring-white/60" aria-label="Back to top" data-i18n="backToTop">Back to top</button>
+  <nav id="mobile-dock" class="fixed inset-x-0 bottom-0 z-40 flex items-center justify-around bg-white/95 px-4 py-3 text-sm font-semibold text-slate-700 shadow-[0_-12px_30px_-15px_rgba(10,15,76,0.45)] backdrop-blur dark:bg-slate-900/95">
+    <button class="flex flex-col items-center gap-1" data-action="open-free-class" data-testid="dock-free-class">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+      <span data-i18n="heroPrimary">Book your free class</span>
+    </button>
+    <button class="flex flex-col items-center gap-1" data-action="hero-secondary" data-testid="dock-test">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h18M3 8h18M3 12h10M3 16h10M3 20h10"/></svg>
+      <span data-i18n="heroSecondary">Take the level test</span>
+    </button>
+    <a class="flex flex-col items-center gap-1" href="https://wa.me/447700900123" target="_blank" rel="noopener" data-testid="dock-whatsapp">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12c0 1.63.39 3.169 1.08 4.53L2 22l5.646-1.053A9.953 9.953 0 0 0 12 22z"/><path d="M16.5 14.5c-.5 1-2 1.5-2 1.5s-3.5-1-5-4.5 0-5 0-5 1-1.5 1.5-1.5.5.5.5.5"/></svg>
+      <span>WhatsApp</span>
+    </a>
+  </nav>
+
+  <div id="free-class-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-3xl overflow-hidden rounded-3xl bg-white shadow-xl dark:bg-slate-900">
+      <button class="absolute right-4 top-4 rounded-full bg-slate-100 p-2 text-slate-500 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300" data-action="close-modal" aria-label="Close">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <div class="grid gap-8 p-8 lg:grid-cols-2">
+        <div>
+          <h3 class="text-2xl font-semibold text-slate-900 dark:text-white" data-i18n="freeClassTitle">Book your free class</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="freeClassSubtitle">Choose a time that works. It takes less than 20 seconds.</p>
+          <div class="mt-6 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <p class="flex items-center gap-2"><span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-bw-way/20 text-bw-way">1</span> Instant confirmation + calendar invite</p>
+            <p class="flex items-center gap-2"><span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-bw-way/20 text-bw-way">2</span> WhatsApp reminder 2h before class</p>
+            <p class="flex items-center gap-2"><span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-bw-way/20 text-bw-way">3</span> Personalized plan during the call</p>
+          </div>
+          <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+            <p class="font-semibold">Need support?</p>
+            <a class="mt-1 inline-flex items-center gap-2 text-bw-way" href="tel:+447700900123">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M5 4h3l2 5-1.5 1.5a11 11 0 0 0 5 5L14 14l5 2v3a1 1 0 0 1-1 1 16 16 0 0 1-13-13 1 1 0 0 1 1-1z"/></svg>
+              +44 7700 900123
+            </a>
+          </div>
+        </div>
+        <form id="free-class-form" class="space-y-4" novalidate>
+          <div>
+            <label class="text-sm font-semibold text-slate-600 dark:text-slate-300" for="lead-name" data-i18n="nameLabel">Full name</label>
+            <input id="lead-name" name="name" autocomplete="name" required class="mt-1 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-800" />
+            <p class="mt-1 text-xs text-rose-500" data-field-error="name"></p>
+          </div>
+          <div>
+            <label class="text-sm font-semibold text-slate-600 dark:text-slate-300" for="lead-email" data-i18n="emailLabel">Email</label>
+            <input id="lead-email" name="email" type="email" autocomplete="email" required class="mt-1 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-800" />
+            <p class="mt-1 text-xs text-rose-500" data-field-error="email"></p>
+          </div>
+          <div>
+            <label class="text-sm font-semibold text-slate-600 dark:text-slate-300" for="lead-phone" data-i18n="phoneLabel">Phone</label>
+            <input id="lead-phone" name="phone" inputmode="tel" pattern="[0-9+ ]{6,}" required class="mt-1 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-800" />
+            <p class="mt-1 text-xs text-rose-500" data-field-error="phone"></p>
+          </div>
+          <div>
+            <label class="text-sm font-semibold text-slate-600 dark:text-slate-300" for="lead-goal" data-i18n="goalLabel">Goal</label>
+            <select id="lead-goal" name="goal" required class="mt-1 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-800">
+              <option value="" disabled selected hidden data-i18n="goalPlaceholder">Select your goal</option>
+              <option value="fluency">Fluency</option>
+              <option value="business">Business</option>
+              <option value="exam">Exam</option>
+              <option value="kids">Kids & Teens</option>
+            </select>
+            <p class="mt-1 text-xs text-rose-500" data-field-error="goal"></p>
+          </div>
+          <div>
+            <label class="text-sm font-semibold text-slate-600 dark:text-slate-300" for="lead-age" data-i18n="ageLabel">Age (if for kids)</label>
+            <input id="lead-age" name="age" type="number" min="3" max="80" class="mt-1 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-800" />
+            <p class="mt-1 text-xs text-rose-500" data-field-error="age"></p>
+          </div>
+          <div>
+            <label class="text-sm font-semibold text-slate-600 dark:text-slate-300" for="lead-slot" data-i18n="slotLabel">Select a time slot</label>
+            <select id="lead-slot" name="slot" required class="mt-1 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-800"></select>
+            <p class="mt-1 text-xs text-rose-500" data-field-error="slot"></p>
+          </div>
+          <div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+            <input type="checkbox" id="lead-consent" required class="h-4 w-4 rounded border-slate-300 text-bw-way focus:ring-bw-way" />
+            <label for="lead-consent">I agree to the privacy policy.</label>
+          </div>
+          <button id="lead-submit" data-testid="free-class-submit" type="submit" disabled class="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way px-5 py-3 text-base font-semibold text-white shadow disabled:cursor-not-allowed disabled:opacity-60" data-i18n="submit">Confirm booking</button>
+          <p id="lead-feedback" class="text-sm font-semibold text-emerald-500"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="success-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-2xl overflow-hidden rounded-3xl bg-white p-8 shadow-xl dark:bg-slate-900">
+      <button class="absolute right-4 top-4 rounded-full bg-slate-100 p-2 text-slate-500 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300" data-action="close-success" aria-label="Close">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <div class="space-y-4 text-center">
+        <h3 class="text-2xl font-semibold text-slate-900 dark:text-white" data-i18n="successTitle">Thank you! Your free class is scheduled.</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300" data-i18n="successSubtitle">Check your inbox. We also prepared calendar links and WhatsApp confirmation.</p>
+        <div id="confetti-canvas" class="pointer-events-none"></div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <button id="download-ics" class="rounded-full border border-bw-way px-4 py-2 text-sm font-semibold text-bw-way" data-i18n="downloadICS">Download .ics</button>
+          <button id="google-calendar" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 dark:border-slate-600 dark:text-slate-200" data-i18n="googleCalendar">Add to Google Calendar</button>
+          <button id="apple-calendar" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 dark:border-slate-600 dark:text-slate-200" data-i18n="appleCalendar">Add to Apple Calendar</button>
+          <button id="outlook-calendar" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 dark:border-slate-600 dark:text-slate-200" data-i18n="outlookCalendar">Add to Outlook</button>
+          <a id="whatsapp-confirm" class="col-span-full flex items-center justify-center gap-2 rounded-full bg-bw-way px-4 py-2 text-sm font-semibold text-white" target="_blank" rel="noopener" data-i18n="whatsappConfirm">Confirm via WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" role="status" class="pointer-events-none fixed inset-x-0 top-24 z-50 mx-auto hidden w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-700 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"></div>
+
+  <div id="chat-widget" class="fixed bottom-28 right-4 z-40 flex max-w-xs flex-col rounded-3xl bg-white/95 p-4 text-sm shadow-2xl transition dark:bg-slate-900/95">
+    <button id="chat-toggle" class="flex items-center justify-between gap-3 rounded-2xl bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way px-4 py-2 text-left font-semibold text-white">
+      <span data-i18n="chatTitle">Need a hand?</span>
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div id="chat-body" class="mt-3 space-y-3">
+      <button class="w-full rounded-2xl border border-slate-200 px-4 py-2 text-left font-semibold text-slate-700 transition hover:border-bw-way hover:text-bw-way dark:border-slate-700 dark:text-slate-100" data-chat="book" data-testid="chat-book">Book class</button>
+      <button class="w-full rounded-2xl border border-slate-200 px-4 py-2 text-left font-semibold text-slate-700 transition hover:border-bw-way hover:text-bw-way dark:border-slate-700 dark:text-slate-100" data-chat="test" data-testid="chat-test">Level test</button>
+      <button class="w-full rounded-2xl border border-slate-200 px-4 py-2 text-left font-semibold text-slate-700 transition hover:border-bw-way hover:text-bw-way dark:border-slate-700 dark:text-slate-100" data-chat="question" data-testid="chat-question">Quick question</button>
+      <div class="hidden" id="chat-form">
+        <label class="block text-xs text-slate-500 dark:text-slate-300" data-i18n="chatContactLabel">Your question</label>
+        <textarea id="chat-message" class="mt-2 w-full rounded-2xl border border-slate-200 p-2 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-800"></textarea>
+        <button id="chat-send" class="mt-2 w-full rounded-full bg-bw-way px-4 py-2 text-sm font-semibold text-white" data-i18n="chatSend">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-drawer" class="fixed inset-y-0 right-0 z-50 hidden w-full max-w-sm translate-x-full overflow-y-auto border-l border-slate-200 bg-white p-6 text-sm shadow-xl transition dark:border-slate-700 dark:bg-slate-900">
+    <div class="flex items-center justify-between">
+      <h3 class="text-lg font-semibold text-slate-900 dark:text-white" data-i18n="adminTitle">BridgeWay Admin tools</h3>
+      <button data-action="close-admin" class="rounded-full bg-slate-100 p-2 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300" aria-label="Close">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+    </div>
+    <div class="mt-4 space-y-4">
+      <div>
+        <label class="text-xs font-semibold uppercase tracking-wide text-slate-500" data-i18n="adminVariant">Hero copy variant</label>
+        <select id="variant-select" class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-800">
+          <option value="A">Variant A</option>
+          <option value="B">Variant B</option>
+        </select>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-500" data-i18n="adminFeatureFlags">Feature flags</p>
+        <label class="mt-2 flex items-center justify-between gap-3 rounded-2xl border border-slate-200 px-3 py-2 dark:border-slate-700">
+          <span data-i18n="adminExitIntent">Exit-intent modal</span>
+          <input type="checkbox" id="flag-exit-intent" class="h-4 w-4" />
+        </label>
+        <label class="mt-2 flex items-center justify-between gap-3 rounded-2xl border border-slate-200 px-3 py-2 dark:border-slate-700">
+          <span data-i18n="adminStickyBar">Sticky offer bar</span>
+          <input type="checkbox" id="flag-sticky" class="h-4 w-4" />
+        </label>
+        <label class="mt-2 flex items-center justify-between gap-3 rounded-2xl border border-slate-200 px-3 py-2 dark:border-slate-700">
+          <span data-i18n="adminSpeech">Speech input</span>
+          <input type="checkbox" id="flag-speech" class="h-4 w-4" checked />
+        </label>
+      </div>
+      <div class="flex gap-3">
+        <button id="admin-confetti" class="flex-1 rounded-full border border-bw-way px-4 py-2 font-semibold text-bw-way" data-i18n="adminConfetti">Trigger confetti</button>
+        <button id="admin-toast" class="flex-1 rounded-full border border-slate-300 px-4 py-2 font-semibold text-slate-700 dark:border-slate-600 dark:text-slate-200" data-i18n="adminToast">Show toast</button>
+      </div>
+      <div>
+        <h4 class="text-sm font-semibold text-slate-700 dark:text-slate-200" data-i18n="adminLeads">Leads</h4>
+        <textarea id="admin-leads" class="mt-2 h-32 w-full rounded-2xl border border-slate-200 p-2 text-xs dark:border-slate-700 dark:bg-slate-800" readonly></textarea>
+        <button id="admin-export-leads" class="mt-2 w-full rounded-full bg-bw-way px-4 py-2 font-semibold text-white" data-i18n="adminExport">Export JSON</button>
+      </div>
+      <div>
+        <h4 class="text-sm font-semibold text-slate-700 dark:text-slate-200" data-i18n="adminResults">Level test results</h4>
+        <textarea id="admin-results" class="mt-2 h-32 w-full rounded-2xl border border-slate-200 p-2 text-xs dark:border-slate-700 dark:bg-slate-800" readonly></textarea>
+        <button id="admin-export-results" class="mt-2 w-full rounded-full bg-bw-way px-4 py-2 font-semibold text-white" data-i18n="adminExport">Export JSON</button>
+      </div>
+      <button data-action="close-admin" class="w-full rounded-full border border-slate-300 px-4 py-2 font-semibold text-slate-600 dark:border-slate-600 dark:text-slate-200" data-i18n="adminClose">Close admin</button>
+    </div>
+  </div>
+
+  <div id="exit-intent" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-xl rounded-3xl bg-white p-6 shadow-xl dark:bg-slate-900">
+      <button class="absolute right-4 top-4 rounded-full bg-slate-100 p-2 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300" data-action="close-exit" aria-label="Close">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <h3 class="text-xl font-semibold text-slate-900 dark:text-white" data-i18n="exitIntentTitle">Before you go…</h3>
+      <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="exitIntentDesc">Download our Business English cheatsheet and keep improving offline.</p>
+      <button id="exit-download" class="mt-4 w-full rounded-full bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way px-5 py-3 text-sm font-semibold text-white" data-i18n="exitIntentCTA">Download PDF guide</button>
+    </div>
+  </div>
+
+  <div id="guarantee-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-lg rounded-3xl bg-white p-6 shadow-xl dark:bg-slate-900">
+      <button class="absolute right-4 top-4 rounded-full bg-slate-100 p-2 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300" data-action="close-guarantee" aria-label="Close">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <h3 class="text-xl font-semibold text-slate-900 dark:text-white" data-i18n="guarantee">100% money-back guarantee</h3>
+      <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="guaranteeBody">If you attend the first four classes and are not satisfied, we refund you.</p>
+    </div>
+  </div>
+
+  <div id="terms-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-3xl max-h-[80vh] overflow-y-auto rounded-3xl bg-white p-8 shadow-xl dark:bg-slate-900">
+      <button class="absolute right-4 top-4 rounded-full bg-slate-100 p-2 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300" data-action="close-terms" aria-label="Close">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <h3 class="text-2xl font-semibold text-slate-900 dark:text-white">Terms & Conditions</h3>
+      <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">By booking a class you agree to attend at the scheduled time, provide accurate contact details and respect our code of conduct. Missed classes with less than 12h notice can be rescheduled once. All payments are processed securely. For any questions contact hello@bridgeway.academy.</p>
+    </div>
+  </div>
+
+  <div id="privacy-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-3xl max-h-[80vh] overflow-y-auto rounded-3xl bg-white p-8 shadow-xl dark:bg-slate-900">
+      <button class="absolute right-4 top-4 rounded-full bg-slate-100 p-2 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300" data-action="close-privacy" aria-label="Close">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <h3 class="text-2xl font-semibold text-slate-900 dark:text-white">Privacy Policy</h3>
+      <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">We collect your contact details to provide classes, reminders and progress updates. Data is stored securely and never sold. You can request deletion anytime by emailing privacy@bridgeway.academy. Analytics runs only with consent and is anonymized.</p>
+    </div>
+  </div>
+
+  <div id="consent-banner" class="fixed inset-x-0 bottom-0 z-50 hidden bg-white/95 p-4 text-sm text-slate-700 shadow-lg backdrop-blur dark:bg-slate-900/95 dark:text-slate-200">
+    <div class="mx-auto flex max-w-5xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div>
+        <p class="text-base font-semibold" data-i18n="consentTitle">We respect your privacy</p>
+        <p class="text-sm" data-i18n="consentDesc">We use cookies to personalize learning and measure results. Accept to enable analytics and improvements.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="consent-decline" class="rounded-full border border-slate-300 px-4 py-2 font-semibold text-slate-600 dark:border-slate-600 dark:text-slate-200" data-i18n="consentDecline">Only essential</button>
+        <button id="consent-accept" class="rounded-full bg-bw-way px-4 py-2 font-semibold text-white" data-i18n="consentAccept">Accept & continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="pwa-offline" class="hidden">
+    <main class="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-6 text-center">
+      <h1 class="text-3xl font-bold">BridgeWay</h1>
+      <p class="mt-4 text-base">You are offline. Your saved resources, bookings and test progress remain available.</p>
+    </main>
+  </div>
+  <script>
+    const state = {
+      locale: 'en',
+      variant: 'A',
+      utm: {},
+      referrer: document.referrer,
+      leads: JSON.parse(localStorage.getItem('bridgeway:leads') || '[]'),
+      results: JSON.parse(localStorage.getItem('bridgeway:results') || '[]'),
+      featureFlags: {
+        exitIntent: true,
+        stickyBar: true,
+        speech: true
+      },
+      consent: JSON.parse(localStorage.getItem('bridgeway:consent') || 'null'),
+      testProgress: JSON.parse(localStorage.getItem('bridgeway:testProgress') || 'null')
+    };
+
+    const qs = new URLSearchParams(window.location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','ref'].forEach(key => {
+      if (qs.get(key)) state.utm[key] = qs.get(key);
+    });
+    if (qs.get('variant')) state.variant = qs.get('variant').toUpperCase() === 'B' ? 'B' : 'A';
+    const dynamicVariant = localStorage.getItem('bridgeway:variant');
+    if (dynamicVariant) state.variant = dynamicVariant;
+
+    const savedLocale = localStorage.getItem('bridgeway:locale');
+    if (savedLocale && i18n[savedLocale]) state.locale = savedLocale;
+
+    const savedFlags = JSON.parse(localStorage.getItem('bridgeway:flags') || 'null');
+    if (savedFlags) state.featureFlags = { ...state.featureFlags, ...savedFlags };
+
+    document.documentElement.lang = state.locale;
+
+    const analytics = {
+      enabled: false,
+      queue: [],
+      init() {
+        if (this.enabled) return;
+        this.enabled = true;
+        window.dataLayer = window.dataLayer || [];
+        if (!document.getElementById('ga-script')) {
+          const s = document.createElement('script');
+          s.id = 'ga-script';
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX';
+          s.async = true;
+          document.head.appendChild(s);
+        }
+        window.gtag = function(){ dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-XXXXXXX', { anonymize_ip: true });
+        this.queue.forEach(evt => this.event(evt));
+        this.queue = [];
+      },
+      event({ name, params }) {
+        const payload = {
+          locale: state.locale,
+          variant: state.variant,
+          ...state.utm,
+          ...params
+        };
+        if (!this.enabled) {
+          this.queue.push({ name, params });
+          return;
+        }
+        window.gtag('event', name, payload);
+      },
+      pageview(name) {
+        this.event({ name: 'page_view', params: { page_location: window.location.href, page_title: name } });
+      }
+    };
+
+    if (state.consent === true) {
+      analytics.init();
+    }
+
+    const heroSecondaryButton = document.getElementById('hero-secondary');
+    if (state.referrer.includes('/business') || state.utm['utm_campaign']?.includes('business') || state.utm['ref'] === 'business') {
+      heroSecondaryButton.dataset.i18n = 'heroSecondaryBusiness';
+    }
+
+    function applyLocale() {
+      const dict = i18n[state.locale];
+      document.title = dict.metaTitle;
+      document.querySelector('meta[name="description"]').setAttribute('content', dict.metaDescription);
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (!key) return;
+        if (key.startsWith('metrics-')) {
+          const index = key.split('-')[1];
+          el.textContent = dict.metrics[index];
+          return;
+        }
+        const value = dict[key];
+        if (value) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = value;
+          } else {
+            el.textContent = value;
+          }
+        }
+      });
+      document.querySelectorAll('.menu-link').forEach((link, idx) => {
+        link.textContent = dict.menu[idx];
+      });
+      document.querySelectorAll('[data-action="open-free-class"]').forEach(btn => {
+        if (!btn.dataset.i18n) btn.textContent = dict.menu[6];
+      });
+      document.getElementById('sticky-offer')?.querySelector('span')?.setAttribute('data-i18n','stickyOffer');
+      document.getElementById('consent-manage').textContent = dict.consentAccept;
+      document.getElementById('back-to-top').textContent = dict.backToTop;
+      document.getElementById('language-button').firstElementChild.textContent = dict.language;
+      document.querySelector('meta[property="og:title"]')?.setAttribute('content', dict.metaTitle);
+      document.querySelector('meta[property="og:description"]')?.setAttribute('content', dict.metaDescription);
+      document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', dict.metaTitle);
+      document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', dict.metaDescription);
+    }
+
+    const themeToggle = document.getElementById('theme-toggle');
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('bridgeway:theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('bridgeway:theme', 'light');
+      }
+    }
+    const savedTheme = localStorage.getItem('bridgeway:theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    }
+    themeToggle?.addEventListener('click', () => {
+      const dark = document.documentElement.classList.toggle('dark');
+      setTheme(dark ? 'dark' : 'light');
+      analytics.event({ name: 'button_click', params: { label: 'theme_toggle' } });
+    });
+
+    const languageButton = document.getElementById('language-button');
+    const languageMenu = document.getElementById('language-menu');
+    languageButton?.addEventListener('click', () => {
+      const expanded = languageButton.getAttribute('aria-expanded') === 'true';
+      languageButton.setAttribute('aria-expanded', String(!expanded));
+      languageMenu.classList.toggle('hidden', expanded);
+    });
+    languageMenu?.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.locale = btn.dataset.lang;
+        localStorage.setItem('bridgeway:locale', state.locale);
+        languageMenu.classList.add('hidden');
+        languageButton.setAttribute('aria-expanded', 'false');
+        document.documentElement.lang = state.locale;
+        applyLocale();
+        updateDynamicContent();
+        analytics.event({ name: 'button_click', params: { label: 'language_' + state.locale } });
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!languageMenu.contains(event.target) && event.target !== languageButton) {
+        languageMenu.classList.add('hidden');
+        languageButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    const mobileMenuBtn = document.getElementById('mobile-menu');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('hidden');
+      analytics.event({ name: 'nav_click', params: { label: 'mobile_menu' } });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', () => analytics.event({ name: 'nav_click', params: { label: anchor.getAttribute('href') } }));
+    });
+
+    function toggleModal(id, show = true) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.toggle('hidden', !show);
+      if (show) {
+        analytics.pageview(id);
+      }
+    }
+
+    document.querySelectorAll('[data-action="open-free-class"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggleModal('free-class-modal', true);
+        document.getElementById('lead-goal').value = btn.dataset.program || '';
+        analytics.event({ name: 'cta_click', params: { label: 'clase_gratis' } });
+      });
+    });
+    document.querySelectorAll('[data-action="close-modal"]').forEach(btn => btn.addEventListener('click', () => toggleModal('free-class-modal', false)));
+    document.querySelectorAll('[data-action="close-success"]').forEach(btn => btn.addEventListener('click', () => toggleModal('success-modal', false)));
+    document.querySelector('[data-action="close-guarantee"]').addEventListener('click', () => toggleModal('guarantee-modal', false));
+    document.querySelector('[data-action="close-terms"]').addEventListener('click', () => toggleModal('terms-modal', false));
+    document.querySelector('[data-action="close-privacy"]').addEventListener('click', () => toggleModal('privacy-modal', false));
+    document.querySelector('[data-action="close-exit"]').addEventListener('click', () => toggleModal('exit-intent', false));
+
+    document.getElementById('guarantee-button').addEventListener('click', () => toggleModal('guarantee-modal', true));
+    document.querySelector('[data-action="open-terms"]').addEventListener('click', () => toggleModal('terms-modal', true));
+    document.querySelector('[data-action="open-privacy"]').addEventListener('click', () => toggleModal('privacy-modal', true));
+
+    function updateVariantUI() {
+      document.getElementById('variant-indicator').textContent = state.variant;
+      const heroHeadline = document.querySelector('[data-i18n="heroHeadline"]');
+      const heroSubtitle = document.querySelector('[data-i18n="heroSubtitle"]');
+      if (state.variant === 'B') {
+        heroHeadline.textContent = state.locale === 'ru' ? 'С BridgeWay английский становится привычкой.' : state.locale === 'ro' ? 'Cu BridgeWay, engleza devine obicei.' : 'BridgeWay builds unstoppable English habits.';
+        heroSubtitle.textContent = state.locale === 'ru' ? 'Геймификация, ментор и сообщества — чтобы говорить уверенно.' : state.locale === 'ro' ? 'Gamificare, mentor și comunitate pentru încredere rapidă.' : 'Gamified missions, mentor feedback and community keep you practising daily.';
+      } else {
+        heroHeadline.textContent = i18n[state.locale].heroHeadline;
+        heroSubtitle.textContent = i18n[state.locale].heroSubtitle;
+      }
+    }
+
+    document.getElementById('variant-select').value = state.variant;
+    document.getElementById('variant-select').addEventListener('change', (e) => {
+      state.variant = e.target.value;
+      localStorage.setItem('bridgeway:variant', state.variant);
+      updateVariantUI();
+      analytics.event({ name: 'ab_variant', params: { label: state.variant } });
+    });
+
+    function updateBookingCount() {
+      document.getElementById('booking-count').textContent = state.leads.filter(lead => lead.date === new Date().toISOString().slice(0,10)).length;
+    }
+
+    function setSticky(flag) {
+      state.featureFlags.stickyBar = flag;
+      localStorage.setItem('bridgeway:flags', JSON.stringify(state.featureFlags));
+      const bar = document.getElementById('sticky-offer');
+      if (flag) {
+        bar.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          bar.style.transform = 'translateY(0)';
+        });
+      } else {
+        bar.classList.add('hidden');
+      }
+    }
+
+    document.getElementById('flag-sticky').checked = state.featureFlags.stickyBar;
+    document.getElementById('flag-sticky').addEventListener('change', (e) => setSticky(e.target.checked));
+    document.getElementById('flag-exit-intent').checked = state.featureFlags.exitIntent;
+    document.getElementById('flag-exit-intent').addEventListener('change', (e) => {
+      state.featureFlags.exitIntent = e.target.checked;
+      localStorage.setItem('bridgeway:flags', JSON.stringify(state.featureFlags));
+    });
+    document.getElementById('flag-speech').checked = state.featureFlags.speech;
+    document.getElementById('flag-speech').addEventListener('change', (e) => {
+      state.featureFlags.speech = e.target.checked;
+      localStorage.setItem('bridgeway:flags', JSON.stringify(state.featureFlags));
+    });
+
+    if (state.featureFlags.stickyBar) setSticky(true);
+
+    const header = document.getElementById('main-header');
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      const current = window.scrollY;
+      header.style.boxShadow = current > 10 ? '0 15px 30px -20px rgba(10,15,76,0.45)' : '';
+      header.style.paddingBlock = current > 60 ? '0.75rem' : '1rem';
+      header.querySelector('[data-testid="header-free-class"]').classList.toggle('animate-pulseSoft', current > 60);
+      if (current > document.body.scrollHeight * 0.5) {
+        backToTop.classList.remove('hidden');
+      } else {
+        backToTop.classList.add('hidden');
+      }
+      const hero = document.getElementById('hero-parallax');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        hero.style.background = `radial-gradient(circle at 50% ${Math.max(0, 30 - current/20)}%, rgba(255,255,255,0.15), transparent 55%)`;
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      analytics.event({ name: 'button_click', params: { label: 'back_to_top' } });
+    });
+    document.querySelector('[data-action="scroll-next"]').addEventListener('click', () => {
+      document.getElementById('programs').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 3200);
+    }
+    document.getElementById('admin-toast').addEventListener('click', () => showToast('Toast test message'));
+
+    function launchConfetti() {
+      const container = document.getElementById('confetti-canvas');
+      if (!container) return;
+      container.innerHTML = '';
+      const colors = ['#4967E4', '#0A0F4C', '#60A5FA', '#22D3EE'];
+      for (let i = 0; i < 80; i++) {
+        const piece = document.createElement('div');
+        piece.style.position = 'absolute';
+        piece.style.width = '6px';
+        piece.style.height = `${Math.random()*12+6}px`;
+        piece.style.background = colors[i % colors.length];
+        piece.style.left = Math.random()*100 + '%';
+        piece.style.top = Math.random()*100 + '%';
+        piece.style.opacity = '0';
+        piece.style.transform = `rotate(${Math.random()*360}deg)`;
+        piece.style.transition = 'transform 0.8s ease-out, opacity 0.8s ease-out';
+        container.appendChild(piece);
+        requestAnimationFrame(() => {
+          piece.style.opacity = '1';
+          piece.style.transform += ' translateY(40px)';
+        });
+        setTimeout(() => piece.style.opacity = '0', 800);
+      }
+    }
+    document.getElementById('admin-confetti').addEventListener('click', launchConfetti);
+
+    function updateAdminData() {
+      document.getElementById('admin-leads').value = JSON.stringify(state.leads, null, 2);
+      document.getElementById('admin-results').value = JSON.stringify(state.results, null, 2);
+    }
+
+    function downloadJSON(filename, data) {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById('admin-export-leads').addEventListener('click', () => {
+      downloadJSON('bridgeway-leads.json', state.leads);
+      analytics.event({ name: 'lead_export', params: { label: 'admin' } });
+    });
+    document.getElementById('admin-export-results').addEventListener('click', () => {
+      downloadJSON('bridgeway-test-results.json', state.results);
+      analytics.event({ name: 'results_download', params: { label: 'admin' } });
+    });
+
+    const adminDrawer = document.getElementById('admin-drawer');
+    function toggleAdmin(show) {
+      adminDrawer.classList.toggle('hidden', !show);
+      adminDrawer.style.transform = show ? 'translateX(0)' : 'translateX(100%)';
+      if (show) updateAdminData();
+    }
+    document.querySelectorAll('[data-action="close-admin"]').forEach(btn => btn.addEventListener('click', () => toggleAdmin(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.shiftKey && e.code === 'KeyL') {
+        toggleAdmin(adminDrawer.classList.contains('hidden'));
+      }
+    });
+
+    const slotsSelect = document.getElementById('lead-slot');
+    function generateSlots() {
+      const now = new Date();
+      const slots = [];
+      let dayCount = 0;
+      let date = new Date(now);
+      while (slots.length < 40 && dayCount < 20) {
+        date.setDate(date.getDate() + 1);
+        if ([0,6].includes(date.getDay())) continue;
+        dayCount++;
+        for (let hour = 9; hour <= 19; hour++) {
+          [0,20,40].forEach(min => {
+            const slotDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour, min);
+            if (slotDate < now) return;
+            slots.push({
+              label: slotDate.toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
+              value: slotDate.toISOString()
+            });
+          });
+        }
+      }
+      slotsSelect.innerHTML = '';
+      if (!slots.length) {
+        const option = document.createElement('option');
+        option.textContent = i18n[state.locale].noSlots;
+        option.disabled = true;
+        slotsSelect.appendChild(option);
+        slotsSelect.disabled = true;
+        return null;
+      }
+      slots.forEach(slot => {
+        const option = document.createElement('option');
+        option.value = slot.value;
+        option.textContent = slot.label;
+        slotsSelect.appendChild(option);
+      });
+      slotsSelect.disabled = false;
+      return slots;
+    }
+    generateSlots();
+
+    function validateField(field) {
+      const errorEl = document.querySelector(`[data-field-error="${field.name}"]`);
+      let valid = true;
+      if (field.hasAttribute('required') && !field.value.trim()) {
+        valid = false;
+        errorEl.textContent = i18n[state.locale].validationRequired;
+      } else if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
+        valid = false;
+        errorEl.textContent = i18n[state.locale].validationEmail;
+      } else if (field.name === 'phone' && !/^[0-9+ ]{6,}$/.test(field.value)) {
+        valid = false;
+        errorEl.textContent = i18n[state.locale].validationPhone;
+      } else {
+        errorEl.textContent = '';
+      }
+      return valid;
+    }
+
+    const form = document.getElementById('free-class-form');
+    const submitButton = document.getElementById('lead-submit');
+    const consentCheckbox = document.getElementById('lead-consent');
+
+    form.addEventListener('input', () => {
+      const fields = Array.from(form.elements).filter(el => el.tagName === 'INPUT' || el.tagName === 'SELECT');
+      const allValid = fields.every(field => validateField(field)) && consentCheckbox.checked;
+      submitButton.disabled = !allValid;
+    });
+    form.addEventListener('blur', (event) => {
+      if (event.target instanceof HTMLElement && (event.target.tagName === 'INPUT' || event.target.tagName === 'SELECT')) {
+        validateField(event.target);
+      }
+    }, true);
+
+    function buildICS(lead) {
+      const start = new Date(lead.slot);
+      const end = new Date(start.getTime() + 40 * 60000);
+      const formatDate = (date) => date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      return `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTAMP:${formatDate(new Date())}\nDTSTART:${formatDate(start)}\nDTEND:${formatDate(end)}\nSUMMARY:BridgeWay Free Class\nDESCRIPTION:Goal: ${lead.goal}\nLOCATION:Online\nEND:VEVENT\nEND:VCALENDAR`;
+    }
+
+    async function submitLead(lead) {
+      analytics.event({ name: 'form_submit', params: { label: 'free_class' } });
+      if (CRM_WEBHOOK_URL) {
+        try {
+          const response = await fetch(CRM_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...lead, utm: state.utm })
+          });
+          if (!response.ok) throw new Error('Network response was not ok');
+        } catch (error) {
+          showToast('Network issue. Saved locally — will retry.');
+          state.leads.push({ ...lead, status: 'queued' });
+          localStorage.setItem('bridgeway:leads', JSON.stringify(state.leads));
+          return;
+        }
+      } else {
+        state.leads.push(lead);
+        localStorage.setItem('bridgeway:leads', JSON.stringify(state.leads));
+      }
+      updateBookingCount();
+      updateAdminData();
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const lead = Object.fromEntries(new FormData(form).entries());
+      if (!lead.slot) return;
+      submitButton.disabled = true;
+      submitButton.textContent = i18n[state.locale].submitting;
+      lead.locale = state.locale;
+      lead.variant = state.variant;
+      lead.utm = state.utm;
+      lead.date = new Date().toISOString().slice(0,10);
+      await submitLead(lead);
+      submitButton.textContent = i18n[state.locale].submit;
+      submitButton.disabled = false;
+      toggleModal('free-class-modal', false);
+      toggleModal('success-modal', true);
+      launchConfetti();
+      const ics = buildICS(lead);
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+      document.getElementById('download-ics').onclick = () => {
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'bridgeway-class.ics';
+        a.click();
+        analytics.event({ name: 'booking_confirmed', params: { label: 'ics_download' } });
+      };
+      const encodedDetails = encodeURIComponent(`BridgeWay free class with ${lead.name} on ${new Date(lead.slot).toLocaleString()} Goal: ${lead.goal}`);
+      document.getElementById('whatsapp-confirm').href = `${i18n[state.locale].contactWhatsApp}?text=${encodedDetails}`;
+      const start = new Date(lead.slot);
+      const end = new Date(start.getTime() + 40 * 60000);
+      const formatUTC = (date) => date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=BridgeWay+Free+Class&dates=${formatUTC(start)}/${formatUTC(end)}&details=${encodeURIComponent('Goal: ' + lead.goal)}`;
+      document.getElementById('google-calendar').onclick = () => window.open(gcalUrl, '_blank');
+      document.getElementById('apple-calendar').onclick = () => window.open(url, '_blank');
+      document.getElementById('outlook-calendar').onclick = () => window.open(url, '_blank');
+      analytics.event({ name: 'booking_confirmed', params: { label: 'success' } });
+      form.reset();
+      submitButton.disabled = true;
+    });
+
+    document.getElementById('download-ics').addEventListener('click', () => analytics.event({ name: 'booking_confirmed', params: { label: 'ics_click' } }));
+    document.getElementById('lead-slot').addEventListener('change', () => analytics.event({ name: 'booking_slot_select', params: { label: document.getElementById('lead-slot').value } }));
+
+    const programButtons = document.querySelectorAll('[data-action="open-program"]');
+    programButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const program = btn.dataset.program;
+        showToast(`Program selected: ${program}`);
+        document.getElementById('lead-goal').value = program.includes('Business') ? 'business' : program.includes('Exam') ? 'exam' : 'fluency';
+        toggleModal('free-class-modal', true);
+        analytics.event({ name: 'button_click', params: { label: 'view_program_' + program } });
+      });
+    });
+
+    document.getElementById('config-submit').addEventListener('click', () => {
+      const goal = document.getElementById('config-goal').value;
+      const availability = document.getElementById('config-availability').value;
+      const payment = document.getElementById('config-payment').value;
+      const resultBox = document.getElementById('config-result');
+      const suggestion = {
+        fluency: 'Essential plan, 2h/week with accountability check-ins.',
+        business: 'Pro plan + weekly coach call focused on negotiation.',
+        exams: 'Premium plan with mock exams every Friday.',
+        kids: 'Essential plan with gamified missions and parent updates.'
+      };
+      resultBox.textContent = `${suggestion[goal]} Availability: ${availability}. Billing: ${payment}.`;
+      resultBox.classList.remove('hidden');
+      analytics.event({ name: 'button_click', params: { label: 'program_configurator' } });
+    });
+
+    const timelineSteps = [
+      { title: 'Test', desc: 'Quick adaptive placement to map your strengths.', icon: '🧠' },
+      { title: 'Demo Class', desc: 'Meet your coach, experience methodology live.', icon: '🎥' },
+      { title: 'Plan', desc: 'Personalized roadmap with micro-goals.', icon: '🗺️' },
+      { title: 'Classes', desc: 'Live coaching + WhatsApp accountability.', icon: '🎯' },
+      { title: 'Follow-up', desc: 'Weekly nudges, resources and feedback.', icon: '📲' },
+      { title: 'Results', desc: 'Progress report + new goals every 4 weeks.', icon: '🏆' }
+    ];
+    const timeline = document.getElementById('methodology-timeline');
+    timelineSteps.forEach(step => {
+      const li = document.createElement('li');
+      li.innerHTML = `<div class="rounded-3xl border border-slate-200 bg-white/80 p-5 transition hover:-translate-y-1 hover:shadow-xl dark:border-slate-700 dark:bg-slate-900/80">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">${step.icon}</span>
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white">${step.title}</h3>
+        </div>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">${step.desc}</p>
+      </div>`;
+      timeline.appendChild(li);
+    });
+
+    const teachers = [
+      { name: 'Sophie Carter', area: 'general', cert: 'celta', languages: ['en','es'], experience: 8, bio: 'Former BBC journalist helping professionals master storytelling.', video: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+      { name: 'Luis Mendez', area: 'business', cert: 'delta', languages: ['en','es'], experience: 12, bio: 'MBA + DELTA, specialised in negotiation English.', video: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+      { name: 'Irina Petrova', area: 'exams', cert: 'ma', languages: ['en','ru'], experience: 10, bio: 'IELTS examiner with 15k+ speaking scripts reviewed.', video: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+      { name: 'Alex Popescu', area: 'business', cert: 'celta', languages: ['en','ro'], experience: 9, bio: 'Corporate trainer guiding teams through presentations.', video: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+      { name: 'Chloe Hughes', area: 'general', cert: 'delta', languages: ['en','fr'], experience: 11, bio: 'Pronunciation coach with theatre background.', video: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+      { name: 'Daniel Smith', area: 'exams', cert: 'ma', languages: ['en','de'], experience: 7, bio: 'Cambridge examiner focusing on B2 First & C1 Advanced.', video: 'https://www.youtube.com/embed/dQw4w9WgXcQ' }
+    ];
+
+    const teacherGrid = document.getElementById('teacher-grid');
+    function renderTeachers() {
+      const area = document.getElementById('teacher-area').value;
+      const lang = document.getElementById('teacher-language').value;
+      const cert = document.getElementById('teacher-cert').value;
+      teacherGrid.innerHTML = '';
+      teachers.filter(t => (area === 'all' || t.area === area) && (lang === 'all' || t.languages.includes(lang)) && (cert === 'all' || t.cert === cert)).forEach(teacher => {
+        const card = document.createElement('article');
+        card.className = 'rounded-3xl border border-slate-200 bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl dark:border-slate-700 dark:bg-slate-900';
+        card.innerHTML = `
+          <div class="flex items-center gap-3">
+            <div class="h-16 w-16 rounded-full bg-gradient-to-br from-bw-bridge to-bw-way text-center text-2xl font-semibold text-white flex items-center justify-center">${teacher.name.split(' ').map(p=>p[0]).join('')}</div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white">${teacher.name}</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300">${teacher.experience}+ yrs • ${teacher.cert.toUpperCase()}</p>
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">${teacher.bio}</p>
+          <div class="mt-3 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+            <span class="rounded-full bg-bw-way/10 px-3 py-1 text-bw-way">${teacher.area}</span>
+            <span class="rounded-full bg-slate-100 px-3 py-1 text-slate-600 dark:bg-slate-800 dark:text-slate-200">${teacher.languages.join(', ').toUpperCase()}</span>
+          </div>
+          <button class="mt-4 w-full rounded-full border border-bw-way px-4 py-2 text-sm font-semibold text-bw-way hover:bg-bw-way hover:text-white" data-video="${teacher.video}">Watch intro</button>
+        `;
+        card.querySelector('button').addEventListener('click', () => {
+          toggleModal('success-modal', true);
+          document.getElementById('confetti-canvas').innerHTML = `<iframe src="${teacher.video}" title="Intro" loading="lazy" class="h-48 w-full rounded-2xl"></iframe>`;
+        });
+        teacherGrid.appendChild(card);
+      });
+    }
+    renderTeachers();
+    ['teacher-area','teacher-language','teacher-cert'].forEach(id => document.getElementById(id).addEventListener('change', () => { renderTeachers(); analytics.event({ name: 'resource_filter', params: { label: id } }); }));
+
+    const pricingSummary = document.getElementById('pricing-summary');
+    const hoursSlider = document.getElementById('hours-slider');
+    const couponInput = document.getElementById('coupon-input');
+    const couponFeedback = document.getElementById('coupon-feedback');
+    const billingToggle = document.getElementById('billing-toggle');
+    let activeCoupon = null;
+
+    function updatePricing() {
+      const hours = Number(hoursSlider.value);
+      document.getElementById('hours-value').textContent = hours;
+      const billing = billingToggle.checked ? 'quarterly' : 'monthly';
+      const multiplier = billing === 'quarterly' ? 0.9 : 1;
+      const summary = [];
+      ['essential','pro','premium'].forEach(tier => {
+        const base = BASE_PRICES[tier] * hours * 4 * multiplier;
+        const discount = activeCoupon ? base * COUPONS[activeCoupon] : 0;
+        const total = base - discount;
+        document.getElementById(`price-${tier}`).textContent = `€${total.toFixed(0)}`;
+        summary.push({ tier, base, discount, total });
+      });
+      pricingSummary.innerHTML = '';
+      summary.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'rounded-2xl border border-slate-200 bg-white p-4 text-sm dark:border-slate-700 dark:bg-slate-900';
+        div.innerHTML = `
+          <p class="font-semibold capitalize">${item.tier}</p>
+          <p>Base: €${item.base.toFixed(2)}</p>
+          <p>Discount: -€${item.discount.toFixed(2)}</p>
+          <p class="text-lg font-bold text-bw-way">€${item.total.toFixed(2)}</p>`;
+        pricingSummary.appendChild(div);
+      });
+    }
+    updatePricing();
+
+    document.getElementById('apply-coupon').addEventListener('click', () => {
+      const code = couponInput.value.trim().toUpperCase();
+      if (COUPONS[code]) {
+        activeCoupon = code;
+        couponFeedback.textContent = `${i18n[state.locale].couponApplied} (-${COUPONS[code]*100}%)`;
+        analytics.event({ name: 'coupon_applied', params: { label: code } });
+      } else {
+        activeCoupon = null;
+        couponFeedback.textContent = i18n[state.locale].invalidCoupon;
+      }
+      updatePricing();
+    });
+    hoursSlider.addEventListener('input', updatePricing);
+    billingToggle.addEventListener('change', updatePricing);
+
+    const resources = [
+      { id: 1, title: 'Business Email Templates', level: 'B2', type: 'guide', goal: 'work', time: '6 min', content: 'Write high-impact emails with our frameworks.', related: [2,4] },
+      { id: 2, title: 'Listening Drill – Meetings', level: 'B1', type: 'exercise', goal: 'work', time: '8 min', content: 'Audio-based comprehension for meetings.', related: [1,3] },
+      { id: 3, title: 'IELTS Writing Task 2 Blueprint', level: 'C1', type: 'guide', goal: 'exam', time: '10 min', content: 'Plan essays with clarity and coherence.', related: [2,5] },
+      { id: 4, title: 'Pronunciation Workout', level: 'A2', type: 'video', goal: 'travel', time: '12 min', content: 'Shadow native pronunciation with minimal pairs.', related: [1,6] },
+      { id: 5, title: 'CEFR Grammar Cheatsheet', level: 'B2', type: 'guide', goal: 'exam', time: '5 min', content: 'Essential structures for quick review.', related: [3,2] },
+      { id: 6, title: 'Speaking Challenge – Pitch Yourself', level: 'C1', type: 'exercise', goal: 'work', time: '7 min', content: 'Record your pitch and compare to model answers.', related: [1,4] }
+    ];
+
+    const resourceList = document.getElementById('resource-list');
+    const resourceDetail = document.getElementById('resource-detail');
+    const resourceRelated = document.getElementById('resource-related');
+
+    function renderResources(items) {
+      resourceList.innerHTML = '';
+      items.forEach(res => {
+        const card = document.createElement('article');
+        card.className = 'rounded-3xl border border-slate-200 bg-white p-5 shadow transition hover:-translate-y-1 hover:shadow-xl dark:border-slate-700 dark:bg-slate-900';
+        card.tabIndex = 0;
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white">${res.title}</h3>
+            <span class="rounded-full bg-bw-way/10 px-3 py-1 text-xs font-semibold text-bw-way">${res.level}</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">${res.content}</p>
+          <div class="mt-3 flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+            <span>${res.type}</span>
+            <span>${res.goal}</span>
+            <span>${res.time}</span>
+          </div>`;
+        card.addEventListener('click', () => selectResource(res.id));
+        card.addEventListener('keypress', (e) => { if (e.key === 'Enter') selectResource(res.id); });
+        resourceList.appendChild(card);
+      });
+    }
+
+    function selectResource(id) {
+      const res = resources.find(r => r.id === id);
+      if (!res) return;
+      resourceDetail.innerHTML = `<h3 class="text-xl font-semibold text-slate-900 dark:text-white">${res.title}</h3><p class="text-sm text-slate-600 dark:text-slate-300">${res.content}</p><button class="mt-4 rounded-full bg-bw-way px-4 py-2 text-sm font-semibold text-white" data-action="hero-secondary">${i18n[state.locale].resourcesCTA}</button>`;
+      resourceRelated.innerHTML = '';
+      res.related.map(rid => resources.find(r => r.id === rid)).filter(Boolean).forEach(rel => {
+        const li = document.createElement('li');
+        li.innerHTML = `<button class="text-left text-slate-200 hover:text-white">${rel.title}</button>`;
+        li.querySelector('button').addEventListener('click', () => selectResource(rel.id));
+        resourceRelated.appendChild(li);
+      });
+      analytics.event({ name: 'article_read', params: { label: res.title } });
+    }
+
+    function filterResources() {
+      const level = document.getElementById('filter-level').value;
+      const type = document.getElementById('filter-type').value;
+      const goal = document.getElementById('filter-goal').value;
+      const search = document.getElementById('resource-search').value.toLowerCase();
+      const filtered = resources.filter(res => (level === 'all' || res.level === level) && (type === 'all' || res.type === type) && (goal === 'all' || res.goal === goal) && res.title.toLowerCase().includes(search));
+      renderResources(filtered);
+      analytics.event({ name: 'resource_search', params: { label: search } });
+    }
+
+    document.getElementById('resource-search').addEventListener('input', () => {
+      const searchValue = document.getElementById('resource-search').value.toLowerCase();
+      const matches = resources.filter(res => res.title.toLowerCase().includes(searchValue)).slice(0,4);
+      const autocomplete = document.getElementById('search-autocomplete');
+      autocomplete.innerHTML = '';
+      if (searchValue && matches.length) {
+        matches.forEach(res => {
+          const item = document.createElement('button');
+          item.className = 'block w-full px-4 py-2 text-left text-sm hover:bg-slate-100 dark:hover:bg-slate-800';
+          item.textContent = res.title;
+          item.addEventListener('click', () => {
+            document.getElementById('resource-search').value = res.title;
+            autocomplete.classList.add('hidden');
+            filterResources();
+            selectResource(res.id);
+          });
+          autocomplete.appendChild(item);
+        });
+        autocomplete.classList.remove('hidden');
+      } else {
+        autocomplete.classList.add('hidden');
+      }
+      filterResources();
+    });
+    ['filter-level','filter-type','filter-goal'].forEach(id => document.getElementById(id).addEventListener('change', filterResources));
+    renderResources(resources);
+
+    const testimonials = [
+      { quote: 'BridgeWay pushed our sales team to present confidently in English within 6 weeks.', name: 'Ana, HR Manager', rating: 5 },
+      { quote: 'My IELTS jumped from 6.0 to 7.5. The feedback and WhatsApp nudges were game-changing.', name: 'Sergey, Product Manager', rating: 5 },
+      { quote: 'We finally have a consistent plan for the whole company — amazing coaches!', name: 'Mihai, COO', rating: 5 }
+    ];
+    const testimonialTrack = document.getElementById('testimonial-track');
+    let testimonialIndex = 0;
+    function renderTestimonial() {
+      const item = testimonials[testimonialIndex % testimonials.length];
+      testimonialTrack.innerHTML = `<div class="rounded-3xl border border-slate-200 bg-white/80 p-5 text-slate-700 shadow dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
+        <div class="flex items-center gap-1 text-amber-400">${'★'.repeat(item.rating)}</div>
+        <p class="mt-3 text-sm">“${item.quote}”</p>
+        <p class="mt-4 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">${item.name}</p>
+      </div>`;
+      testimonialIndex++;
+    }
+    renderTestimonial();
+    setInterval(renderTestimonial, 6000);
+
+    const chatWidget = document.getElementById('chat-widget');
+    document.getElementById('chat-toggle').addEventListener('click', () => chatWidget.classList.toggle('open'));
+    chatWidget.querySelectorAll('[data-chat]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = btn.dataset.chat;
+        if (action === 'book') {
+          toggleModal('free-class-modal', true);
+          analytics.event({ name: 'cta_click', params: { label: 'chat_book' } });
+        } else if (action === 'test') {
+          document.getElementById('level-test').scrollIntoView({ behavior: 'smooth' });
+          analytics.event({ name: 'cta_click', params: { label: 'chat_test' } });
+        } else {
+          document.getElementById('chat-form').classList.remove('hidden');
+        }
+      });
+    });
+    document.getElementById('chat-send').addEventListener('click', () => {
+      const message = document.getElementById('chat-message').value.toLowerCase();
+      if (message.includes('price')) showToast('Check the pricing section below for live calculations.');
+      if (message.includes('company')) showToast('Our Business Impact plan is optimised for teams.');
+      if (message.includes('kids')) showToast('We offer gamified kids tracks with parent updates.');
+      analytics.event({ name: 'button_click', params: { label: 'chat_send' } });
+    });
+
+    const consentBanner = document.getElementById('consent-banner');
+    if (state.consent === null) consentBanner.classList.remove('hidden');
+    document.getElementById('consent-accept').addEventListener('click', () => {
+      state.consent = true;
+      localStorage.setItem('bridgeway:consent', 'true');
+      consentBanner.classList.add('hidden');
+      analytics.init();
+      analytics.event({ name: 'button_click', params: { label: 'consent_accept' } });
+    });
+    document.getElementById('consent-decline').addEventListener('click', () => {
+      state.consent = false;
+      localStorage.setItem('bridgeway:consent', 'false');
+      consentBanner.classList.add('hidden');
+      analytics.event({ name: 'button_click', params: { label: 'consent_decline' } });
+    });
+    document.getElementById('consent-manage').addEventListener('click', () => {
+      consentBanner.classList.remove('hidden');
+    });
+
+    function captureQueryParams() {
+      document.getElementById('utm-source').textContent = state.utm.utm_source || '—';
+      document.getElementById('referrer-indicator').textContent = state.referrer || '—';
+    }
+    captureQueryParams();
+
+    function handleHeroSecondary() {
+      if (heroSecondaryButton.dataset.i18n === 'heroSecondaryBusiness') {
+        showToast('Our corporate advisors will send you a tailored plan within 12h.');
+        analytics.event({ name: 'cta_click', params: { label: 'business_plan' } });
+      } else {
+        document.getElementById('level-test').scrollIntoView({ behavior: 'smooth' });
+        analytics.event({ name: 'cta_click', params: { label: 'test' } });
+      }
+    }
+    document.querySelectorAll('[data-action="hero-secondary"]').forEach(btn => btn.addEventListener('click', handleHeroSecondary));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const exitIntent = document.getElementById('exit-intent');
+    let exitShown = false;
+    document.addEventListener('mouseleave', (event) => {
+      if (event.clientY < 0 && !exitShown && state.featureFlags.exitIntent) {
+        toggleModal('exit-intent', true);
+        exitShown = true;
+        analytics.event({ name: 'exit_intent_shown', params: {} });
+      }
+    });
+    document.getElementById('exit-download').addEventListener('click', () => {
+      const blob = new Blob(['BridgeWay Business English Cheatsheet'], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'bridgeway-business-english.pdf';
+      a.click();
+      URL.revokeObjectURL(url);
+      analytics.event({ name: 'results_download', params: { label: 'exit_pdf' } });
+    });
+
+    function updateDynamicContent() {
+      applyLocale();
+      updateVariantUI();
+      updatePricing();
+      renderTeachers();
+      renderResources(resources);
+      updateBookingCount();
+      updateAdminData();
+    }
+    updateDynamicContent();
+
+    const levelTest = {
+      questions: [
+        { section: 'Grammar', difficulty: 1, prompt: 'Choose the correct option: She ___ to the gym every day.', options: ['go', 'goes', 'going', 'gone'], answer: 1, explanation: 'Third person singular takes -es.' },
+        { section: 'Grammar', difficulty: 1, prompt: 'Complete: If I ___ enough time, I will call you.', options: ['have', 'had', 'will have', 'am having'], answer: 0, explanation: 'First conditional uses present simple.' },
+        { section: 'Grammar', difficulty: 2, prompt: 'Which word fits? We need to focus ___ delivering measurable outcomes.', options: ['for', 'on', 'at', 'about'], answer: 1, explanation: 'Focus on + gerund.' },
+        { section: 'Grammar', difficulty: 2, prompt: 'Pick the formal synonym: “get in touch”.', options: ['contact', 'phone', 'ping', 'chat'], answer: 0, explanation: 'Formal register uses contact.' },
+        { section: 'Grammar', difficulty: 3, prompt: 'Identify the error: “Hardly had I finished the report when the manager called me.”', options: ['Hardly had I finished', 'the report', 'when', 'No error'], answer: 3, explanation: 'Sentence is correct inverted past perfect.' },
+        { section: 'Grammar', difficulty: 3, prompt: 'Choose the correct form: By 2026, we ___ the new platform.', options: ['will launch', 'will have launched', 'are launching', 'launch'], answer: 1, explanation: 'Future perfect indicates completion before a point.' },
+        { section: 'Grammar', difficulty: 2, prompt: 'Select the best option: They suggested ___ earlier.', options: ['to arrive', 'arrive', 'arriving', 'arrived'], answer: 2, explanation: 'Suggest + gerund.' },
+        { section: 'Grammar', difficulty: 1, prompt: 'Pick the correct tense: I have been ___ English for two years.', options: ['study', 'studied', 'studying', 'to study'], answer: 2, explanation: 'Present perfect continuous uses studying.' },
+        { section: 'Grammar', difficulty: 2, prompt: 'Choose the correct phrase: The meeting was cancelled ___ the storm.', options: ['because', 'due to', 'so', 'but'], answer: 1, explanation: 'Due to indicates cause with noun.' },
+        { section: 'Grammar', difficulty: 3, prompt: 'Find the C1 alternative: “important”.', options: ['crucial', 'big', 'useful', 'nice'], answer: 0, explanation: 'Crucial is a higher-level synonym.' },
+        { section: 'Grammar', difficulty: 2, prompt: 'Correct passive form: The documents ___ tomorrow.', options: ['are sent', 'are being sent', 'will be sent', 'have been sent'], answer: 2, explanation: 'Future passive uses will be + past participle.' },
+        { section: 'Grammar', difficulty: 1, prompt: 'Choose the preposition: I am responsible ___ onboarding.', options: ['to', 'for', 'about', 'with'], answer: 1, explanation: 'Responsible for + noun.' }
+      ],
+      reading: {
+        text: 'BridgeWay coaches design micro-learning sprints so learners practise in authentic contexts. Managers receive progress dashboards, while students unlock streak rewards that keep motivation high.',
+        question: 'What is the main benefit mentioned for managers?',
+        options: ['They design courses.', 'They receive progress dashboards.', 'They join streak rewards.', 'They coach students.'],
+        answer: 1,
+        explanation: 'Managers receive dashboards.'
+      },
+      responses: [],
+      currentIndex: 0,
+      section: 'Grammar'
+    };
+
+    const testContent = document.getElementById('test-content');
+    const testProgressBar = document.getElementById('test-progress');
+    const testProgressLabel = document.getElementById('test-progress-label');
+    const testSectionLabel = document.getElementById('test-section-label');
+    const testStart = document.getElementById('test-start');
+    const testResume = document.getElementById('test-resume');
+    const testComplete = document.getElementById('test-complete');
+    const testDownload = document.getElementById('test-download');
+    const testCopy = document.getElementById('test-copy');
+    const testResult = document.getElementById('test-result');
+
+    if (state.testProgress) {
+      testResume.classList.remove('hidden');
+    }
+
+    function saveTestProgress() {
+      localStorage.setItem('bridgeway:testProgress', JSON.stringify({ responses: levelTest.responses, currentIndex: levelTest.currentIndex, section: levelTest.section }));
+    }
+
+    function loadTestProgress() {
+      const saved = JSON.parse(localStorage.getItem('bridgeway:testProgress') || 'null');
+      if (!saved) return;
+      levelTest.responses = saved.responses || [];
+      levelTest.currentIndex = saved.currentIndex || 0;
+      levelTest.section = saved.section || 'Grammar';
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      saveTestProgress();
+      const totalSteps = levelTest.questions.length + 2;
+      const progress = Math.round((levelTest.currentIndex / totalSteps) * 100);
+      testProgressBar.style.width = `${progress}%`;
+      testProgressLabel.textContent = `${progress}%`;
+      if (levelTest.currentIndex < levelTest.questions.length) {
+        const q = levelTest.questions[levelTest.currentIndex];
+        levelTest.section = q.section;
+        testSectionLabel.textContent = q.section;
+        const answers = q.options.map((opt, idx) => `<button class="block w-full rounded-2xl border border-slate-200 px-4 py-3 text-left text-sm hover:border-bw-way hover:text-bw-way dark:border-slate-700 dark:hover:border-bw-way" data-index="${idx}">${opt}</button>`).join('');
+        testContent.innerHTML = `<p class="text-base font-semibold">${q.prompt}</p><div class="grid gap-2">${answers}</div><p class="text-xs text-slate-500">Adaptive question ${levelTest.currentIndex + 1}/${levelTest.questions.length}</p>`;
+        testContent.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => handleGrammarAnswer(Number(btn.dataset.index))));
+      } else if (levelTest.currentIndex === levelTest.questions.length) {
+        levelTest.section = 'Reading';
+        testSectionLabel.textContent = 'Reading';
+        testContent.innerHTML = `<article class="space-y-4"><p class="rounded-2xl bg-slate-100 p-4 text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-200">${levelTest.reading.text}</p><p class="text-sm font-semibold">${levelTest.reading.question}</p>${levelTest.reading.options.map((opt, idx) => `<button class="block w-full rounded-2xl border border-slate-200 px-4 py-3 text-left text-sm hover:border-bw-way hover:text-bw-way dark:border-slate-700" data-index="${idx}">${opt}</button>`).join('')}</article>`;
+        testContent.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => handleReading(Number(btn.dataset.index))));
+      } else {
+        levelTest.section = 'Speaking';
+        testSectionLabel.textContent = 'Speaking';
+        testContent.innerHTML = `<p class="text-base font-semibold">Record a 30 second response describing your English goals.</p><textarea id="speaking-text" class="mt-3 w-full rounded-2xl border border-slate-200 p-3 text-sm focus:border-bw-way focus:outline-none focus:ring-2 focus:ring-bw-way/30 dark:border-slate-700 dark:bg-slate-900" placeholder="${i18n[state.locale].levelTestSpeakingPlaceholder}"></textarea><div class="mt-3 flex gap-3"><button id="speaking-start" class="rounded-full bg-bw-way px-4 py-2 text-sm font-semibold text-white">Start recording</button><button id="speaking-stop" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 dark:border-slate-600 dark:text-slate-200" disabled>Stop</button></div>`;
+        setupSpeaking();
+      }
+    }
+
+    function handleGrammarAnswer(index) {
+      const q = levelTest.questions[levelTest.currentIndex];
+      const correct = index === q.answer;
+      levelTest.responses.push({ prompt: q.prompt, correct, explanation: q.explanation, difficulty: q.difficulty });
+      const feedback = document.createElement('p');
+      feedback.className = `text-sm font-semibold ${correct ? 'text-emerald-500' : 'text-rose-500'} mt-2`;
+      feedback.textContent = correct ? 'Correct!' : `Try again: ${q.explanation}`;
+      testContent.appendChild(feedback);
+      analytics.event({ name: 'test_progress', params: { label: q.prompt, correct } });
+      setTimeout(() => {
+        adjustDifficulty(correct);
+        levelTest.currentIndex++;
+        renderQuestion();
+      }, 600);
+    }
+
+    function adjustDifficulty(correct) {
+      if (levelTest.currentIndex < levelTest.questions.length - 1) {
+        const recent = levelTest.responses.slice(-5);
+        if (correct && recent.filter(r => r.correct).length >= 4) {
+          levelTest.currentIndex = Math.min(levelTest.currentIndex + 1, levelTest.questions.length - 1);
+        }
+        if (!correct && recent.filter(r => r.correct).length <= 2) {
+          levelTest.currentIndex = Math.max(levelTest.currentIndex - 1, 0);
+        }
+      }
+    }
+
+    function handleReading(index) {
+      const correct = index === levelTest.reading.answer;
+      levelTest.responses.push({ prompt: levelTest.reading.question, correct, explanation: levelTest.reading.explanation, section: 'Reading' });
+      analytics.event({ name: 'test_progress', params: { label: 'Reading', correct } });
+      levelTest.currentIndex++;
+      renderQuestion();
+    }
+
+    function setupSpeaking() {
+      const startBtn = document.getElementById('speaking-start');
+      const stopBtn = document.getElementById('speaking-stop');
+      const textarea = document.getElementById('speaking-text');
+      let recognition;
+      if ('webkitSpeechRecognition' in window && state.featureFlags.speech) {
+        recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.lang = state.locale === 'ru' ? 'ru-RU' : state.locale === 'ro' ? 'ro-RO' : 'en-US';
+        recognition.onresult = (event) => {
+          const transcript = Array.from(event.results).map(r => r[0].transcript).join(' ');
+          textarea.value = transcript;
+        };
+        recognition.onerror = () => {
+          showToast('Speech input unavailable, type your response.');
+        };
+      }
+      startBtn.addEventListener('click', () => {
+        textarea.value = '';
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+        analytics.event({ name: 'test_start', params: { label: 'speaking' } });
+        if (recognition) recognition.start();
+      });
+      stopBtn.addEventListener('click', () => {
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+        if (recognition) recognition.stop();
+        completeSpeaking(textarea.value);
+      });
+    }
+
+    function completeSpeaking(text) {
+      levelTest.responses.push({ section: 'Speaking', transcript: text, correct: text.length > 40 });
+      levelTest.currentIndex++;
+      renderQuestion();
+      testComplete.classList.remove('hidden');
+      analytics.event({ name: 'test_complete', params: {} });
+    }
+
+    function calculateResult() {
+      const correctCount = levelTest.responses.filter(r => r.correct).length;
+      const ratio = correctCount / levelTest.responses.length;
+      const levels = ['A1','A2','B1','B2','C1','C2'];
+      let index = Math.min(levels.length - 1, Math.max(0, Math.floor(ratio * levels.length)));
+      const level = levels[index];
+      const summary = {
+        level,
+        correct: correctCount,
+        total: levelTest.responses.length,
+        recommendation: level === 'C1' || level === 'C2' ? 'Premium coaching with executive simulations.' : level === 'B2' ? 'Pro track with business labs.' : 'Essential plan with weekly speaking labs.'
+      };
+      testResult.innerHTML = `<p class="text-lg font-semibold text-slate-900 dark:text-white">Your estimated level: ${summary.level}</p><p class="text-sm text-slate-600 dark:text-slate-300">${summary.recommendation}</p><button class="mt-4 w-full rounded-full bg-gradient-to-r from-bw-bridge via-[#1d2a8a] to-bw-way px-4 py-2 text-sm font-semibold text-white" data-action="open-free-class">${i18n[state.locale].heroPrimary}</button>`;
+      testDownload.classList.remove('hidden');
+      testCopy.classList.remove('hidden');
+      const resultRecord = { ...summary, responses: levelTest.responses, createdAt: new Date().toISOString(), locale: state.locale, variant: state.variant };
+      state.results.push(resultRecord);
+      localStorage.setItem('bridgeway:results', JSON.stringify(state.results));
+      localStorage.removeItem('bridgeway:testProgress');
+      updateAdminData();
+      analytics.event({ name: 'test_level', params: { label: summary.level } });
+      analytics.event({ name: 'test_complete', params: { label: summary.level } });
+      return resultRecord;
+    }
+
+    testStart.addEventListener('click', () => {
+      levelTest.currentIndex = 0;
+      levelTest.responses = [];
+      renderQuestion();
+      testStart.classList.add('hidden');
+      analytics.event({ name: 'test_start', params: {} });
+    });
+    testResume.addEventListener('click', () => {
+      loadTestProgress();
+      testStart.classList.add('hidden');
+      testResume.classList.add('hidden');
+      analytics.event({ name: 'test_start', params: { label: 'resume' } });
+    });
+
+    testComplete.addEventListener('click', () => {
+      const result = calculateResult();
+      const blob = new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      testDownload.onclick = () => {
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'bridgeway-test-result.json';
+        a.click();
+        analytics.event({ name: 'results_download', params: { label: 'test' } });
+      };
+      testCopy.onclick = async () => {
+        await navigator.clipboard.writeText(`Level: ${result.level}\nRecommendation: ${result.recommendation}`);
+        showToast('Summary copied');
+      };
+    });
+
+    document.body.classList.add('no-transition');
+    setTimeout(() => document.body.classList.remove('no-transition'), 800);
+
+    const manifestLink = document.getElementById('dynamic-manifest');
+    const manifest = {
+      name: 'BridgeWay',
+      short_name: 'BridgeWay',
+      start_url: '/version2.html',
+      display: 'standalone',
+      background_color: '#0A0F4C',
+      theme_color: '#0A0F4C',
+      icons: []
+    };
+    manifestLink.setAttribute('href', 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest)));
+
+    if ('serviceWorker' in navigator) {
+      const swCode = `self.addEventListener('install', event => {
+  event.waitUntil(caches.open('bridgeway-shell').then(cache => cache.addAll(['./version2.html'])));
+});
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(res => res || fetch(event.request).catch(() => new Response('<main style="font-family:Inter,sans-serif;padding:2rem;text-align:center;background:#0A0F4C;color:#fff;height:100vh;display:flex;flex-direction:column;justify-content:center;">Offline — your saved BridgeWay data is available when back online.</main>', { headers: { 'Content-Type': 'text/html' } })))
+  );
+});`;
+      const blob = new Blob([swCode], { type: 'text/javascript' });
+      const swUrl = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(swUrl);
+    }
+
+    window.addEventListener('beforeunload', () => {
+      if (levelTest.responses.length) saveTestProgress();
+      analytics.event({ name: 'form_abandon', params: { label: 'page_exit' } });
+    });
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "BridgeWay",
+    "url": "https://bridgeway.academy",
+    "description": "BridgeWay connects ambitious learners with expert English teachers.",
+    "logo": "https://bridgeway.academy/logo.png",
+    "sameAs": ["https://www.linkedin.com/company/bridgeway"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "221B Baker Street",
+      "addressLocality": "London",
+      "addressCountry": "UK"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://bridgeway.academy"},
+      {"@type": "ListItem", "position": 2, "name": "Programs", "item": "https://bridgeway.academy/#programs"},
+      {"@type": "ListItem", "position": 3, "name": "Methodology", "item": "https://bridgeway.academy/#methodology"},
+      {"@type": "ListItem", "position": 4, "name": "Teachers", "item": "https://bridgeway.academy/#teachers"},
+      {"@type": "ListItem", "position": 5, "name": "Pricing", "item": "https://bridgeway.academy/#pricing"},
+      {"@type": "ListItem", "position": 6, "name": "Resources", "item": "https://bridgeway.academy/#resources"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "How fast can I improve?", "acceptedAnswer": {"@type": "Answer", "text": "Most learners move up one CEFR level in 12 weeks with our blended methodology."}},
+      {"@type": "Question", "name": "Do you teach companies?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, BridgeWay designs corporate programs with dashboards, ROI metrics and accountability."}},
+      {"@type": "Question", "name": "Is there a guarantee?", "acceptedAnswer": {"@type": "Answer", "text": "Attend four classes and if you're not satisfied we refund you fully."}}
+    ]
+  }
+  </script>
+</body>
+</html>
