@@ -1,0 +1,79 @@
+:root {
+  color-scheme: only light;
+  --color-bg: #f8f8f8;
+  --color-text: #111;
+  --color-muted: #555;
+  --color-border: #ccc;
+  --color-overlay: rgba(10, 10, 10, 0.85);
+  --color-focus: #000;
+  --color-contrast: #fff;
+  --header-height: 72px;
+  --transition-duration: 180ms;
+  --transition-ease: ease-in-out;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root[data-high-contrast='on'] {
+  --color-bg: #fff;
+  --color-text: #000;
+  --color-muted: #222;
+  --color-border: #000;
+  --color-overlay: rgba(0, 0, 0, 0.9);
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+main {
+  min-height: calc(100vh - var(--header-height));
+  padding: 1rem;
+}
+
+.content-block {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.content-block h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.content-block p {
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  background: var(--color-contrast);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.75rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

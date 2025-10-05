@@ -1,0 +1,130 @@
+{
+  "lang": "ru",
+  "app": {
+    "title": "Демо взаимодействия Bridgeway",
+    "skip": "Перейти к контенту"
+  },
+  "navigation": {
+    "programs": "Программы",
+    "methodology": "Методика",
+    "teachers": "Преподаватели",
+    "pricing": "Цены",
+    "resources": "Ресурсы",
+    "freeClass": "Бесплатный урок",
+    "menu": "Меню",
+    "languages": {
+      "en": "EN",
+      "ro": "RO",
+      "ru": "RU"
+    },
+    "programItems": {
+      "generalEnglish": "Общий английский",
+      "businessEnglish": "Деловой английский",
+      "youngLearners": "Дети и подростки",
+      "examPrep": "Международные экзамены"
+    },
+    "resourceItems": {
+      "blog": "Блог",
+      "placement": "Тест уровня",
+      "guides": "Гайды",
+      "tips": "Советы"
+    }
+  },
+  "breadcrumbs": {
+    "home": "Главная"
+  },
+  "modal": {
+    "title": "Забронируйте бесплатный урок",
+    "step": "Шаг {{step}} из 3",
+    "steps": {
+      "details": "Данные",
+      "schedule": "Расписание",
+      "confirm": "Подтверждение"
+    },
+    "labels": {
+      "name": "Полное имя",
+      "email": "Email",
+      "phone": "Телефон",
+      "timezone": "Местное время: {{tz}}",
+      "date": "Предпочтительная дата",
+      "time": "Предпочтительное время",
+      "notes": "Заметки"
+    },
+    "actions": {
+      "next": "Далее",
+      "back": "Назад",
+      "submit": "Отправить",
+      "close": "Закрыть",
+      "addToCalendar": "Добавить в календарь",
+      "downloadIcs": "Скачать .ics",
+      "cancel": "Отменить",
+      "reschedule": "Перенести"
+    },
+    "feedback": {
+      "loading": "Отправка…",
+      "success": "Бронирование подтверждено!",
+      "error": "Произошла ошибка. Попробуйте снова."
+    },
+    "addons": {
+      "google": "Google Calendar",
+      "apple": "Apple Calendar",
+      "outlook": "Outlook"
+    },
+    "confirmLeave": "Есть несохраненные данные. Закрыть?"
+  },
+  "fab": {
+    "label": "Бесплатный урок",
+    "test": "Тест уровня",
+    "contact": "Контакт",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "form": "Форма"
+  },
+  "errors": {
+    "404": {
+      "title": "Страница не найдена",
+      "cta": "На главную"
+    },
+    "500": {
+      "title": "Что-то пошло не так",
+      "cta": "Попробовать снова"
+    },
+    "empty": {
+      "title": "Нет результатов",
+      "message": "Измените фильтры или посмотрите популярное.",
+      "cta": "Открыть ресурсы"
+    },
+    "global": {
+      "home": "На главную",
+      "class": "Записаться на бесплатный урок"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": "Каркас взаимодействия Bridgeway"
+    },
+    "programs": {
+      "title": "Программы",
+      "business": "Деловой английский"
+    },
+    "methodology": {
+      "title": "Методика"
+    },
+    "teachers": {
+      "title": "Преподаватели"
+    },
+    "pricing": {
+      "title": "Цены"
+    },
+    "resources": {
+      "blog": "Блог",
+      "test": "Тест уровня",
+      "guides": "Гайды",
+      "tips": "Советы"
+    },
+    "thanks": {
+      "title": "Спасибо за бронь",
+      "message": "Мы отправили детали на ваш email."
+    }
+  }
+}

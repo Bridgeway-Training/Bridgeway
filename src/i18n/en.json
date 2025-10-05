@@ -1,0 +1,130 @@
+{
+  "lang": "en",
+  "app": {
+    "title": "Bridgeway Interaction Demo",
+    "skip": "Skip to content"
+  },
+  "navigation": {
+    "programs": "Programs",
+    "methodology": "Methodology",
+    "teachers": "Teachers",
+    "pricing": "Pricing",
+    "resources": "Resources",
+    "freeClass": "Free Class",
+    "menu": "Menu",
+    "languages": {
+      "en": "EN",
+      "ro": "RO",
+      "ru": "RU"
+    },
+    "programItems": {
+      "generalEnglish": "General English",
+      "businessEnglish": "Business English",
+      "youngLearners": "Young Learners",
+      "examPrep": "International Exams"
+    },
+    "resourceItems": {
+      "blog": "Blog",
+      "placement": "Placement Test",
+      "guides": "Guides",
+      "tips": "Tips"
+    }
+  },
+  "breadcrumbs": {
+    "home": "Home"
+  },
+  "modal": {
+    "title": "Book your free class",
+    "step": "Step {{step}} of 3",
+    "steps": {
+      "details": "Details",
+      "schedule": "Schedule",
+      "confirm": "Confirmation"
+    },
+    "labels": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "timezone": "Local time: {{tz}}",
+      "date": "Preferred date",
+      "time": "Preferred time",
+      "notes": "Notes"
+    },
+    "actions": {
+      "next": "Next",
+      "back": "Back",
+      "submit": "Submit",
+      "close": "Close",
+      "addToCalendar": "Add to calendar",
+      "downloadIcs": "Download .ics",
+      "cancel": "Cancel",
+      "reschedule": "Reschedule"
+    },
+    "feedback": {
+      "loading": "Sending…",
+      "success": "Booking confirmed!",
+      "error": "There was an error. Please try again."
+    },
+    "addons": {
+      "google": "Google Calendar",
+      "apple": "Apple Calendar",
+      "outlook": "Outlook"
+    },
+    "confirmLeave": "You have unsaved progress. Are you sure you want to close?"
+  },
+  "fab": {
+    "label": "Free Class",
+    "test": "Placement Test",
+    "contact": "Contact",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "form": "Contact form"
+  },
+  "errors": {
+    "404": {
+      "title": "Page not found",
+      "cta": "Go home"
+    },
+    "500": {
+      "title": "Something went wrong",
+      "cta": "Try again"
+    },
+    "empty": {
+      "title": "No results",
+      "message": "Try adjusting your filters or explore popular items.",
+      "cta": "View resources"
+    },
+    "global": {
+      "home": "Go to Home",
+      "class": "Book a Free Class"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": "Interaction skeleton for Bridgeway"
+    },
+    "programs": {
+      "title": "Programs",
+      "business": "Business English"
+    },
+    "methodology": {
+      "title": "Methodology"
+    },
+    "teachers": {
+      "title": "Teachers"
+    },
+    "pricing": {
+      "title": "Pricing"
+    },
+    "resources": {
+      "blog": "Blog",
+      "test": "Placement Test",
+      "guides": "Guides",
+      "tips": "Tips"
+    },
+    "thanks": {
+      "title": "Thank you for booking",
+      "message": "We sent the details to your inbox."
+    }
+  }
+}
