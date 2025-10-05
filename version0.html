@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="color-scheme" content="light dark" />
+  <!-- Dynamic SEO will be updated by JS based on locale and variant -->
+  <title>BridgeWay — Learn English Online</title>
+  <meta name="description" content="BridgeWay: online English academy with personalized programs. Book a free class in 20 seconds." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="BridgeWay — Learn English Online" />
+  <meta property="og:description" content="Book your free class, take a fast level test, and start progressing today." />
+  <meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'><rect width='100%' height='100%' fill='%230A0F4C'/><text x='50%' y='55%' fill='white' font-size='72' text-anchor='middle' font-family='Inter, Arial'>BridgeWay</text></svg>" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD Organization & Breadcrumbs will be injected by JS -->
+
+  <!-- Brand colors as CSS variables for non-TW runtime uses -->
+  <style>
+    :root{
+      --bw-bridge:#0A0F4C; /* deep navy */
+      --bw-way:#4967E4; /* electric blue */
+    }
+    /* Focus ring visible + accessible */
+    :where(button, a, input, select, textarea, [role="button"]) :focus{ outline: none; }
+    :where(button, a, input, select, textarea, [role="button"]):focus-visible{ outline: 2px solid var(--bw-way); outline-offset: 2px; border-radius: .5rem; }
+    /* Parallax hero background (reduced motion respected via JS) */
+    .parallax{ background: radial-gradient(1200px 600px at 80% -10%, rgba(73,103,228,.25), transparent), linear-gradient(135deg, #0A0F4C, #1d2a8a 45%, #4967E4); }
+    /* Sticky header shrink animation */
+    .hdr{ transition: all .25s ease-out; }
+    .hdr.shrink{ backdrop-filter: saturate(120%) blur(6px); --tw-shadow: 0 8px 24px rgba(2,6,23,.12); box-shadow: var(--tw-ring-offset-shadow,0 0 #0000), var(--tw-ring-shadow,0 0 #0000), var(--tw-shadow); }
+    .cta-glow{ transition: box-shadow .2s ease-out; }
+    .hdr.shrink .cta-glow{ box-shadow: 0 0 0 0 rgba(73,103,228,0), 0 0 24px 4px rgba(73,103,228,.35); }
+    /* Confetti minimal */
+    .confetti{ position: fixed; inset:0; pointer-events:none; z-index:60; }
+    @media (prefers-reduced-motion: reduce){ .hdr,.cta-glow{ transition: none; } }
+  </style>
+
+  <!-- Google Font (single external) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN (single external) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['class','media'],
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Arial'] },
+          colors: { bridge: '#0A0F4C', way: '#4967E4' },
+          boxShadow: { glow: '0 0 0 0 rgba(0,0,0,0), 0 0 24px 4px rgba(73,103,228,.35)'}
+        }
+      }
+    }
+  </script>
+
+  <!-- App constants & light config (required) -->
+  <script>
+    // ====== CONFIG (Non-negotiables) ======
+    const CRM_WEBHOOK_URL = "";      // optional — if empty, we store locally and allow export
+    const EMAIL_WEBHOOK_URL = "";    // optional — if empty, allow local download
+    const BASE_PRICES = { essential: 12, pro: 16, premium: 22 }; // €/hour
+    const COUPONS = { BRIDGE10: 0.10, BUSINESS15: 0.15 };
+
+    // Feature flags (can be toggled in Admin)
+    const FEATURES = { exitIntent: true, stickyBar: true, speechInput: true };
+
+    // Detect locale from storage or navigator
+    const SUPPORTED_LOCALES = ['en','ru','ro'];
+    const i18n = {
+      en: {
+        brand:"BridgeWay",
+        menu:{home:"Home", programs:"Programs", methodology:"Methodology", teachers:"Teachers", pricing:"Pricing", resources:"Resources", free:"Free Class"},
+        ctas:{ book:"Book your free class", test:"Take the level test", companies:"Plan for companies", addCal:"Add to calendar", confirmWA:"Confirm via WhatsApp"},
+        test:{ grammar:"Grammar", reading:"Reading", speaking:"Speaking", progress:"Progress", result:"Result"},
+        heroTitleA:"Decide in 5 seconds.", heroSubtitleA:"Bridge your English to the next level with a personalized plan.",
+        heroTitleB:"English that moves careers.", heroSubtitleB:"Fast, human, measurable."
+      },
+      ru: {
+        brand:"BridgeWay",
+        menu:{home:"Главная", programs:"Программы", methodology:"Методика", teachers:"Преподаватели", pricing:"Цены", resources:"Ресурсы", free:"Бесплатный урок"},
+        ctas:{ book:"Запишись на бесплатный урок", test:"Пройди тест на уровень", companies:"План для компаний", addCal:"Добавить в календарь", confirmWA:"Подтвердить в WhatsApp"},
+        test:{ grammar:"Грамматика", reading:"Чтение", speaking:"Говорение", progress:"Прогресс", result:"Результат"},
+        heroTitleA:"Реши за 5 секунд.", heroSubtitleA:"Переведи свой английский на новый уровень с персональным планом.",
+        heroTitleB:"Английский для карьеры.", heroSubtitleB:"Быстро, по‑человечески, измеримо."
+      },
+      ro: {
+        brand:"BridgeWay",
+        menu:{home:"Acasă", programs:"Programe", methodology:"Metodologie", teachers:"Profesori", pricing:"Prețuri", resources:"Resurse", free:"Lecție gratuită"},
+        ctas:{ book:"Programează lecția gratuită", test:"Fă testul de nivel", companies:"Plan pentru companii", addCal:"Adaugă în calendar", confirmWA:"Confirmă pe WhatsApp"},
+        test:{ grammar:"Gramatică", reading:"Citire", speaking:"Vorbire", progress:"Progres", result:"Rezultat"},
+        heroTitleA:"Decide în 5 secunde.", heroSubtitleA:"Leagă-ți engleza de următorul nivel cu un plan personalizat.",
+        heroTitleB:"Engleză care mișcă cariere.", heroSubtitleB:"Rapid, uman, măsurabil."
+      }
+    };
+
+    // Store UTM/ref for analytics & lead attribution
+    const urlParams = new URLSearchParams(location.search);
+    const ATTR = Object.fromEntries(['utm_source','utm_medium','utm_campaign','utm_term','utm_content','ref','variant']
+      .map(k=>[k, urlParams.get(k)||null]));
+    if(!ATTR.variant){ ATTR.variant = urlParams.get('variant')||'A'; }
+
+    // Locale
+    let LOCALE = localStorage.getItem('bw_locale') || (navigator.language||'en').slice(0,2);
+    if(!SUPPORTED_LOCALES.includes(LOCALE)) LOCALE = 'en';
+
+    // Theme
+    let THEME = localStorage.getItem('bw_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light');
+    document.documentElement.classList.toggle('dark', THEME==='dark');
+    document.documentElement.lang = LOCALE;
+  </script>
+</head>
+<body class="font-sans text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-950">
+
+  <!-- Sticky Header -->
+  <header id="header" class="hdr fixed top-0 inset-x-0 z-40 bg-white/80 dark:bg-slate-900/70 border-b border-slate-200/70 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 h-16">
+      <a href="#home" class="flex items-center gap-2 font-bold text-xl" aria-label="BridgeWay home">
+        <span class="text-bridge">Bridge</span><span class="text-way">Way</span>
+      </a>
+      <!-- Desktop Nav -->
+      <nav class="ml-auto hidden md:block" aria-label="Primary">
+        <ul class="flex items-center gap-6 text-sm">
+          <li><a data-i18n="menu.home" href="#home" class="hover:text-way">Home</a></li>
+          <li><a data-i18n="menu.programs" href="#programs" class="hover:text-way">Programs</a></li>
+          <li><a data-i18n="menu.methodology" href="#methodology" class="hover:text-way">Methodology</a></li>
+          <li><a data-i18n="menu.teachers" href="#teachers" class="hover:text-way">Teachers</a></li>
+          <li><a data-i18n="menu.pricing" href="#pricing" class="hover:text-way">Pricing</a></li>
+          <li><a data-i18n="menu.resources" href="#resources" class="hover:text-way">Resources</a></li>
+        </ul>
+      </nav>
+      <div class="hidden md:flex items-center gap-3 ml-6">
+        <a href="https://wa.me/34600000000" aria-label="WhatsApp" class="text-white bg-way/90 hover:bg-way focus:ring-2 focus:ring-way rounded-full p-2" data-testid="whatsapp-icon" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M.057 24l1.687-6.163A11.867 11.867 0 0111.995 0C18.627 0 24 5.373 24 12.005 24 18.627 18.627 24 11.995 24a11.9 11.9 0 01-6.104-1.686L.057 24zM6.59 20.013c1.676.995 3.276 1.591 5.392 1.593 5.448 0 9.885-4.434 9.885-9.885 0-5.448-4.437-9.885-9.885-9.885-5.45 0-9.885 4.437-9.885 9.885 0 2.114.632 3.74 1.694 5.39l-.999 3.648 3.698-.731z"/></svg></a>
+        <a href="tel:+34600000000" class="text-white bg-bridge/90 hover:bg-bridge rounded-full p-2" aria-label="Call" data-testid="call-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V21a1 1 0 01-1 1C10.07 22 2 13.93 2 3a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg></a>
+        <button id="themeToggle" class="rounded-lg border px-2 py-1 text-xs" aria-pressed="false">🌙</button>
+        <select id="lang" class="rounded-lg border px-2 py-1 text-sm" aria-label="Language switcher" title="Language" data-testid="lang-switcher">
+          <option value="en">EN</option>
+          <option value="ru">RU</option>
+          <option value="ro">RO</option>
+        </select>
+        <a href="#free" id="freeTop" class="cta-glow bg-way text-white text-sm font-semibold px-4 py-2 rounded-full shadow-glow hover:brightness-110 focus-visible:outline-none" data-i18n="menu.free" data-testid="cta-free-top">Free Class</a>
+      </div>
+      <!-- Mobile burger -->
+      <button id="burger" class="ml-auto md:hidden rounded-lg border px-3 py-2" aria-expanded="false" aria-controls="mnav" aria-label="Open menu">☰</button>
+    </div>
+    <nav id="mnav" class="md:hidden hidden border-t border-slate-200 dark:border-slate-800" aria-label="Mobile">
+      <ul class="px-4 py-3 space-y-2">
+        <li><a data-i18n="menu.home" href="#home" class="block py-2">Home</a></li>
+        <li><a data-i18n="menu.programs" href="#programs" class="block py-2">Programs</a></li>
+        <li><a data-i18n="menu.methodology" href="#methodology" class="block py-2">Methodology</a></li>
+        <li><a data-i18n="menu.teachers" href="#teachers" class="block py-2">Teachers</a></li>
+        <li><a data-i18n="menu.pricing" href="#pricing" class="block py-2">Pricing</a></li>
+        <li><a data-i18n="menu.resources" href="#resources" class="block py-2">Resources</a></li>
+        <li><a data-i18n="menu.free" href="#free" class="block py-2 font-semibold text-way">Free Class</a></li>
+        <li class="flex items-center gap-3 pt-2">
+          <button id="themeToggleM" class="rounded-lg border px-2 py-1 text-xs">🌙</button>
+          <select id="langM" class="rounded-lg border px-2 py-1 text-sm" aria-label="Language switcher">
+            <option value="en">EN</option>
+            <option value="ru">RU</option>
+            <option value="ro">RO</option>
+          </select>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Back to top -->
+  <button id="backTop" class="fixed bottom-24 right-4 z-40 hidden rounded-full p-3 bg-bridge text-white shadow-lg" aria-label="Back to top">↑</button>
+
+  <!-- Sticky offer bar (feature) -->
+  <div id="stickyBar" class="hidden sticky top-16 z-30 bg-way/95 text-white text-sm py-2 text-center">Free placement test today 🎯</div>
+
+  <!-- HERO -->
+  <section id="home" class="parallax text-white pt-28 md:pt-32 pb-20 md:pb-28 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 id="heroTitle" class="text-4xl md:text-5xl font-bold leading-tight">Decide in 5 seconds.</h1>
+        <p id="heroSub" class="mt-4 text-lg opacity-90">Bridge your English to the next level with a personalized plan.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#free" class="inline-flex items-center gap-2 bg-white text-bridge font-semibold px-5 py-3 rounded-xl shadow hover:shadow-lg transition focus:outline-none" data-i18n="ctas.book" data-testid="hero-cta-free">Book your free class</a>
+          <a id="heroSecondary" href="#test" class="inline-flex items-center gap-2 border border-white/60 text-white font-semibold px-5 py-3 rounded-xl hover:bg-white/10" data-i18n="ctas.test" data-testid="hero-cta-secondary">Take the level test</a>
+        </div>
+        <div class="mt-6 text-sm opacity-80">↓ Scroll</div>
+      </div>
+      <div class="md:justify-self-end">
+        <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-md shadow-xl">
+          <p class="text-sm opacity-90">“<span class="font-semibold">92%</span> move up one CEFR level in 12 weeks.*”</p>
+          <div class="mt-4 flex gap-3">
+            <div class="flex-1 h-2 bg-white/20 rounded-full overflow-hidden"><div class="h-full w-10/12 bg-white"></div></div>
+            <span class="text-sm">92%</span>
+          </div>
+          <p class="mt-2 text-xs opacity-75">* Self-reported + placement retests.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE CLASS Modal trigger anchor -->
+  <div id="free" class="sr-only" aria-hidden="true"></div>
+
+  <!-- Programs -->
+  <section id="programs" class="py-16 bg-slate-50 dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-6">Programs</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Program Card -->
+        <article class="rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700 p-5 hover:shadow-lg transition" tabindex="0">
+          <h3 class="text-xl font-semibold">General English</h3>
+          <p class="mt-2 text-sm opacity-80">For everyday communication across A1–C1.</p>
+          <button class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-way text-white" data-program="general" data-action="view-program" data-testid="view-program-general">View program</button>
+        </article>
+        <article class="rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700 p-5 hover:shadow-lg transition" tabindex="0">
+          <h3 class="text-xl font-semibold">Business English</h3>
+          <p class="mt-2 text-sm opacity-80">Meetings, emails, presentations. A2–C2.</p>
+          <button class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-way text-white" data-program="business" data-action="view-program" data-testid="view-program-business">View program</button>
+        </article>
+        <article class="rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700 p-5 hover:shadow-lg transition" tabindex="0">
+          <h3 class="text-xl font-semibold">Exam Prep (IELTS/Cambridge)</h3>
+          <p class="mt-2 text-sm opacity-80">Target a score with mock tests + feedback.</p>
+          <button class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-way text-white" data-program="exams" data-action="view-program" data-testid="view-program-exams">View program</button>
+        </article>
+      </div>
+
+      <!-- Program Configurator Panel -->
+      <div id="programPanel" class="mt-10 hidden rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700 p-6">
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <h4 id="programTitle" class="text-xl font-semibold">Program</h4>
+          <button class="px-3 py-1 border rounded-md" data-action="close-program">Close</button>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6 mt-4">
+          <label class="block">Goal
+            <select id="cfgGoal" class="mt-1 w-full border rounded-md px-3 py-2">
+              <option value="fluency">Fluency</option>
+              <option value="work">Work communication</option>
+              <option value="exam">Exam</option>
+            </select>
+          </label>
+          <label class="block">Availability
+            <select id="cfgAvail" class="mt-1 w-full border rounded-md px-3 py-2">
+              <option value="1-2">1–2h/week</option>
+              <option value="3-4">3–4h/week</option>
+              <option value="5+">5h+/week</option>
+            </select>
+          </label>
+          <label class="block">Payment
+            <select id="cfgPay" class="mt-1 w-full border rounded-md px-3 py-2">
+              <option value="monthly">Monthly</option>
+              <option value="quarterly">Quarterly</option>
+            </select>
+          </label>
+        </div>
+        <div class="mt-5 flex flex-wrap items-center gap-4">
+          <div>
+            <div class="text-sm opacity-80">Suggested plan</div>
+            <div id="cfgPlan" class="font-semibold">Pro • 2h/week • €128/mo</div>
+          </div>
+          <button class="px-4 py-2 rounded-lg bg-way text-white" data-action="prefill-free">Start now</button>
+        </div>
+        <details class="mt-6">
+          <summary class="cursor-pointer">FAQ</summary>
+          <div class="mt-3 space-y-2">
+            <button class="w-full text-left border rounded-md px-3 py-2" aria-expanded="false">How fast do I progress?</button>
+            <div class="hidden px-3 text-sm">Most learners move up one CEFR level in ~12 weeks with 2–3h/week.</div>
+            <button class="w-full text-left border rounded-md px-3 py-2" aria-expanded="false">Do you teach kids?</button>
+            <div class="hidden px-3 text-sm">Yes, from age 7 with adapted materials.</div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section id="methodology" class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8">Methodology</h2>
+      <ol class="grid md:grid-cols-6 gap-4" aria-label="Learning journey timeline">
+        <li class="p-4 rounded-xl border bg-white dark:bg-slate-800">Test</li>
+        <li class="p-4 rounded-xl border bg-white dark:bg-slate-800">Demo Class</li>
+        <li class="p-4 rounded-xl border bg-white dark:bg-slate-800">Plan</li>
+        <li class="p-4 rounded-xl border bg-white dark:bg-slate-800">Classes</li>
+        <li class="p-4 rounded-xl border bg-white dark:bg-slate-800">Follow-up</li>
+        <li class="p-4 rounded-xl border bg-white dark:bg-slate-800">Results</li>
+      </ol>
+      <p class="mt-4 text-sm opacity-80">+92% move up one level in 12 weeks*</p>
+    </div>
+  </section>
+
+  <!-- Teachers -->
+  <section id="teachers" class="py-16 bg-slate-50 dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-6">Teachers</h2>
+      <div class="flex flex-wrap gap-3 mb-6">
+        <select id="tArea" class="border rounded-md px-3 py-2 text-sm">
+          <option value="all">All areas</option>
+          <option value="general">General</option>
+          <option value="business">Business</option>
+          <option value="exams">Exams</option>
+        </select>
+        <select id="tLang" class="border rounded-md px-3 py-2 text-sm">
+          <option value="any">Any language</option>
+          <option value="en">English</option>
+          <option value="ru">Russian</option>
+          <option value="ro">Romanian</option>
+        </select>
+      </div>
+      <div id="teacherGrid" class="grid md:grid-cols-3 gap-6" aria-live="polite"></div>
+      <div class="mt-6">
+        <button class="px-4 py-2 rounded-lg bg-way text-white" data-action="team-class">I want a class with the BridgeWay team</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-6">Pricing</h2>
+      <div class="flex items-center gap-4 mb-6">
+        <label class="flex items-center gap-2"><input type="checkbox" id="isQuarterly" class="sr-only" aria-checked="false"><span class="inline-flex items-center gap-2 border rounded-full px-3 py-1"><span>Monthly</span><span class="bg-slate-200 dark:bg-slate-700 rounded-full px-2 py-0.5 text-xs">↔</span><span>Quarterly</span></span></label>
+        <label class="flex items-center gap-2">Hours/week
+          <input id="hours" type="range" min="1" max="8" value="2" class="w-48" aria-valuemin="1" aria-valuemax="8" aria-valuenow="2">
+          <span id="hoursVal" class="font-semibold">2</span>
+        </label>
+        <label class="flex items-center gap-2">Coupon
+          <input id="coupon" type="text" inputmode="text" placeholder="BRIDGE10" class="border rounded-md px-3 py-1">
+          <button id="applyCoupon" class="px-3 py-1 border rounded-md">Apply</button>
+        </label>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Tiers -->
+        <div class="rounded-2xl border p-5 bg-white dark:bg-slate-800" data-tier="essential" aria-label="Essential plan">
+          <h3 class="text-xl font-semibold">Essential</h3>
+          <p class="text-sm opacity-80">1:1 classes • flexible</p>
+          <div class="mt-4 text-3xl font-bold"><span class="price" data-tier="essential">€—</span><span class="text-base font-medium">/mo</span></div>
+          <button class="mt-4 w-full bg-way text-white px-4 py-2 rounded-lg" data-action="start-now" data-tier="essential">Start now</button>
+        </div>
+        <div class="rounded-2xl border p-5 bg-white dark:bg-slate-800" data-tier="pro" aria-label="Pro plan">
+          <h3 class="text-xl font-semibold">Pro</h3>
+          <p class="text-sm opacity-80">Progress tracking + tasks</p>
+          <div class="mt-4 text-3xl font-bold"><span class="price" data-tier="pro">€—</span><span class="text-base font-medium">/mo</span></div>
+          <button class="mt-4 w-full bg-way text-white px-4 py-2 rounded-lg" data-action="start-now" data-tier="pro">Start now</button>
+        </div>
+        <div class="rounded-2xl border p-5 bg-white dark:bg-slate-800" data-tier="premium" aria-label="Premium plan">
+          <h3 class="text-xl font-semibold">Premium</h3>
+          <p class="text-sm opacity-80">Exam/Business specialists</p>
+          <div class="mt-4 text-3xl font-bold"><span class="price" data-tier="premium">€—</span><span class="text-base font-medium">/mo</span></div>
+          <button class="mt-4 w-full bg-way text-white px-4 py-2 rounded-lg" data-action="start-now" data-tier="premium">Start now</button>
+        </div>
+      </div>
+      <div class="mt-4 text-xs opacity-80"><button id="guarantee" class="underline">100% money-back guarantee</button></div>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section id="resources" class="py-16 bg-slate-50 dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-6">Resources</h2>
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <div class="relative">
+          <input id="resSearch" type="search" placeholder="Search resources" class="border rounded-md px-3 py-2 w-72" aria-autocomplete="list" aria-controls="resAuto">
+          <ul id="resAuto" class="absolute z-10 mt-1 w-full bg-white dark:bg-slate-800 border rounded-md hidden"></ul>
+        </div>
+        <select id="resLevel" class="border rounded-md px-3 py-2 text-sm">
+          <option value="all">All levels</option>
+          <option>A2</option><option>B1</option><option>B2</option><option>C1</option>
+        </select>
+        <select id="resType" class="border rounded-md px-3 py-2 text-sm">
+          <option value="all">All types</option>
+          <option>Guide</option><option>Exercise</option><option>Video</option>
+        </select>
+        <select id="resGoal" class="border rounded-md px-3 py-2 text-sm">
+          <option value="all">Any goal</option>
+          <option>Work</option><option>Exam</option>
+        </select>
+      </div>
+      <div id="resGrid" class="grid md:grid-cols-3 gap-6" aria-live="polite"></div>
+      <div class="mt-6"><a href="#test" class="px-4 py-2 rounded-lg bg-way text-white">Take the test</a></div>
+    </div>
+  </section>
+
+  <!-- Level Test -->
+  <section id="test" class="py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-2">Level Test</h2>
+      <div id="resumeBanner" class="hidden mb-4 p-3 rounded-md bg-yellow-100 text-yellow-900 flex items-center justify-between">
+        <span>Resume your saved test?</span>
+        <div class="flex gap-2"><button id="resumeYes" class="px-3 py-1 border rounded-md">Resume</button><button id="resumeNo" class="px-3 py-1 border rounded-md">Start over</button></div>
+      </div>
+      <div class="h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden" aria-label="Progress"><div id="progress" class="h-full w-0 bg-way"></div></div>
+      <div id="testBox" class="mt-6 rounded-2xl border p-5 bg-white dark:bg-slate-800" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- Footer + Mobile Dock -->
+  <footer class="pt-12 pb-28 md:pb-10 border-t">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+      <nav aria-label="Breadcrumb" class="text-sm">
+        <ol class="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+          <li><a href="#home" class="underline">Home</a></li>
+          <li>›</li>
+          <li><a href="#resources" class="underline">Resources</a></li>
+        </ol>
+      </nav>
+      <div class="text-xs opacity-80">
+        <button id="termsBtn" class="underline">Terms</button> • <button id="privacyBtn" class="underline">Privacy</button>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-slate-900/95 border-t p-2 grid grid-cols-3 gap-2 text-sm">
+    <a href="#free" class="text-center border rounded-lg py-2" data-testid="dock-free">Free Class</a>
+    <a href="#test" class="text-center border rounded-lg py-2" data-testid="dock-test">Test</a>
+    <a href="https://wa.me/34600000000" class="text-center border rounded-lg py-2" rel="noopener" data-testid="dock-wa">WhatsApp</a>
+  </nav>
+
+  <!-- Free Class Modal -->
+  <dialog id="freeModal" class="backdrop:bg-black/50 rounded-xl w-full max-w-xl p-0">
+    <form id="freeForm" method="dialog" class="p-6 space-y-3" novalidate>
+      <div class="flex items-start justify-between">
+        <h3 class="text-xl font-semibold">Book your free class</h3>
+        <button formmethod="dialog" class="border rounded-md px-2 py-1" aria-label="Close">✕</button>
+      </div>
+      <div class="grid md:grid-cols-2 gap-3">
+        <label class="block">Name<input name="name" required class="mt-1 border rounded-md px-3 py-2" autocomplete="name"></label>
+        <label class="block">Email<input name="email" type="email" required class="mt-1 border rounded-md px-3 py-2" autocomplete="email"></label>
+        <label class="block">Phone<input name="phone" type="tel" required inputmode="tel" class="mt-1 border rounded-md px-3 py-2" placeholder="+34 600 000 000"></label>
+        <label class="block">Goal<select name="goal" class="mt-1 border rounded-md px-3 py-2"><option>Fluency</option><option>Work</option><option>Exam</option><option>Kids</option></select></label>
+        <label class="block">Age (if kids)<input name="age" type="number" inputmode="numeric" min="5" max="17" class="mt-1 border rounded-md px-3 py-2"></label>
+      </div>
+      <div class="pt-2">
+        <div class="text-sm font-medium mb-2">Pick a time</div>
+        <div id="slotGrid" class="grid grid-cols-2 md:grid-cols-4 gap-2" role="listbox" aria-label="Available time slots"></div>
+        <input type="hidden" name="slot" id="slotVal" required>
+        <p id="slotErr" class="text-sm text-red-600 hidden">Please select a slot.</p>
+      </div>
+      <div class="flex items-center gap-2 pt-2">
+        <button id="submitFree" class="bg-way text-white px-4 py-2 rounded-lg disabled:opacity-50" disabled data-testid="free-submit">Confirm</button>
+        <button type="button" id="exportLeads" class="border rounded-lg px-3 py-2 hidden">Export Leads (.json)</button>
+      </div>
+      <p id="freeStatus" class="text-sm"></p>
+    </form>
+  </dialog>
+
+  <!-- Guarantee Modal -->
+  <dialog id="guaranteeModal" class="backdrop:bg-black/50 rounded-xl w-full max-w-lg p-0">
+    <div class="p-6 space-y-3">
+      <div class="flex items-start justify-between"><h3 class="text-xl font-semibold">Money-back guarantee</h3><button class="border rounded-md px-2 py-1" formmethod="dialog">✕</button></div>
+      <p class="text-sm">If after 2 classes you’re not happy, get a full refund. No questions. Applies to first purchase only.</p>
+    </div>
+  </dialog>
+
+  <!-- Terms / Privacy Modal -->
+  <dialog id="legalModal" class="backdrop:bg-black/50 rounded-xl w-full max-w-2xl p-0"><div class="p-6 space-y-3"><div class="flex items-start justify-between"><h3 id="legalTitle" class="text-xl font-semibold">Terms</h3><button class="border rounded-md px-2 py-1" formmethod="dialog">✕</button></div><div id="legalBody" class="prose dark:prose-invert max-w-none text-sm"><p>Placeholder policy content for demo purposes.</p></div></div></dialog>
+
+  <!-- Consent Banner -->
+  <div id="consent" class="fixed bottom-3 inset-x-3 z-50 hidden rounded-xl border bg-white dark:bg-slate-900 p-4 shadow-lg">
+    <p class="text-sm">We use cookies for analytics to improve BridgeWay. Do you accept?</p>
+    <div class="mt-3 flex gap-2"><button id="consentYes" class="bg-way text-white px-3 py-1 rounded-md">Accept</button><button id="consentNo" class="border px-3 py-1 rounded-md">Decline</button></div>
+  </div>
+
+  <!-- Chat Widget -->
+  <div id="chat" class="fixed right-4 bottom-28 z-40">
+    <button id="chatBtn" class="rounded-full p-3 bg-way text-white shadow-lg" aria-expanded="false" aria-controls="chatBox">💬</button>
+    <div id="chatBox" class="hidden mt-2 w-72 rounded-xl border bg-white dark:bg-slate-800 p-3">
+      <p class="text-sm font-semibold">How can we help?</p>
+      <div class="mt-2 grid grid-cols-1 gap-2">
+        <button class="border rounded-md px-3 py-2 text-left" data-chat="book">Book class</button>
+        <button class="border rounded-md px-3 py-2 text-left" data-chat="test">Level test</button>
+        <button class="border rounded-md px-3 py-2 text-left" data-chat="question">Quick question</button>
+      </div>
+      <form id="chatForm" class="mt-2 hidden">
+        <label class="block text-sm">Your question<textarea class="mt-1 w-full border rounded-md px-3 py-2" required></textarea></label>
+        <div class="mt-2 flex justify-end gap-2"><button type="submit" class="bg-way text-white px-3 py-1 rounded-md">Send</button></div>
+      </form>
+      <p id="chatReply" class="mt-2 text-sm"></p>
+    </div>
+  </div>
+
+  <!-- Admin Drawer (Shift+L) -->
+  <aside id="admin" class="fixed top-0 right-0 h-full w-[22rem] translate-x-full transition-transform z-50 bg-white dark:bg-slate-900 border-l p-4 overflow-auto">
+    <h3 class="text-lg font-semibold">Admin</h3>
+    <div class="mt-3 space-y-3 text-sm">
+      <div>
+        <label class="font-medium">A/B Variant</label>
+        <div class="mt-1 flex gap-2"><button data-variant="A" class="border px-2 py-1 rounded">A</button><button data-variant="B" class="border px-2 py-1 rounded">B</button></div>
+      </div>
+      <div>
+        <label class="font-medium">Feature flags</label>
+        <div class="mt-2 space-y-1">
+          <label class="flex items-center gap-2"><input type="checkbox" data-flag="exitIntent" checked> Exit-intent</label>
+          <label class="flex items-center gap-2"><input type="checkbox" data-flag="stickyBar" checked> Sticky bar</label>
+          <label class="flex items-center gap-2"><input type="checkbox" data-flag="speechInput" checked> Speech input</label>
+        </div>
+      </div>
+      <div>
+        <label class="font-medium">Data</label>
+        <div class="mt-2 flex gap-2"><button id="viewLeads" class="border rounded px-2 py-1">Export leads</button><button id="viewResults" class="border rounded px-2 py-1">Export results</button></div>
+      </div>
+      <div>
+        <label class="font-medium">QA</label>
+        <div class="mt-2 flex gap-2"><button id="qaConfetti" class="border rounded px-2 py-1">Confetti</button><button id="qaToast" class="border rounded px-2 py-1">Toast</button></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 hidden bg-bridge text-white px-4 py-2 rounded-full">Saved</div>
+
+  <!-- Offline fallback (hidden template) -->
+  <template id="offlinePage">
+    <main class="min-h-screen grid place-items-center p-6">
+      <article class="max-w-md text-center">
+        <h1 class="text-2xl font-bold">Offline</h1>
+        <p class="mt-2">You're offline. BridgeWay still works; try again when you're connected.</p>
+      </article>
+    </main>
+  </template>
+
+  <!-- Confetti canvas -->
+  <canvas id="confetti" class="confetti hidden"></canvas>
+
+  <!-- ====== APP SCRIPT (all functionality) ====== -->
+  <script>
+  (function(){
+    const $$ = (sel,root=document)=>Array.from(root.querySelectorAll(sel));
+    const $ = (sel,root=document)=>root.querySelector(sel);
+
+    // ===== i18n & SEO =====
+    function applyLocale(){
+      // Replace [data-i18n]
+      $$('[data-i18n]').forEach(el=>{
+        const path = el.dataset.i18n.split('.');
+        const val = path.reduce((a,k)=>a?.[k], i18n[LOCALE]);
+        if(val) el.textContent = val;
+      });
+      // Hero variant
+      const t = i18n[LOCALE];
+      $('#heroTitle').textContent = (ATTR.variant==='A')? t.heroTitleA : t.heroTitleB;
+      $('#heroSub').textContent = (ATTR.variant==='A')? t.heroSubtitleA : t.heroSubtitleB;
+      // Secondary CTA personalization
+      const ref = document.referrer||'';
+      const sec = $('#heroSecondary');
+      if(/\/business/.test(ref)) { sec.textContent = t.ctas.companies; }
+      else { sec.textContent = t.ctas.test; }
+      // Meta updates
+      const titles = { en:'BridgeWay — Learn English Online', ru:'BridgeWay — Онлайн-академия английского', ro:'BridgeWay — Academie online de engleză' };
+      const descs = { en:'Book a free class, take a fast level test, and start progressing today.', ru:'Запишись на бесплатный урок, пройди быстрый тест и начни прогресс уже сегодня.', ro:'Programează o lecție gratuită, fă testul rapid și începe progresul astăzi.' };
+      document.title = titles[LOCALE];
+      $('meta[name="description"]').setAttribute('content', descs[LOCALE]);
+      $('meta[property="og:title"]').setAttribute('content', titles[LOCALE]);
+      $('meta[property="og:description"]').setAttribute('content', descs[LOCALE]);
+    }
+
+    // ===== Theme toggle =====
+    function setTheme(mode){ THEME = mode; document.documentElement.classList.toggle('dark', mode==='dark'); localStorage.setItem('bw_theme', mode); }
+
+    // ===== Header behavior =====
+    const header = $('#header');
+    const backTop = $('#backTop');
+    let lastY=0; window.addEventListener('scroll',()=>{
+      const y = scrollY; header.classList.toggle('shrink', y>12);
+      backTop.classList.toggle('hidden', y < (document.body.scrollHeight*0.5/window.devicePixelRatio));
+      lastY=y;
+    });
+    backTop.addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+    // ===== Mobile nav =====
+    $('#burger').addEventListener('click', e=>{ const m=$('#mnav'); const ex=m.classList.toggle('hidden'); e.currentTarget.setAttribute('aria-expanded', (!ex).toString()); });
+
+    // ===== Lang & Theme UI =====
+    $('#lang').value = LOCALE; $('#langM').value = LOCALE;
+    const setLocale = (v)=>{ LOCALE=v; localStorage.setItem('bw_locale', v); document.documentElement.lang=v; applyLocale(); };
+    $('#lang').addEventListener('change', e=>setLocale(e.target.value));
+    $('#langM').addEventListener('change', e=>setLocale(e.target.value));
+    $('#themeToggle').addEventListener('click', ()=>setTheme(THEME==='dark'?'light':'dark'));
+    $('#themeToggleM').addEventListener('click', ()=>setTheme(THEME==='dark'?'light':'dark'));
+
+    // ===== Sticky offer bar =====
+    const stickyBar = $('#stickyBar');
+    function updateSticky(){ stickyBar.classList.toggle('hidden', !FEATURES.stickyBar); }
+
+    // ===== Programs configurator =====
+    const programPanel = $('#programPanel');
+    let currentProgram = null;
+    $$('[data-action="view-program"]').forEach(btn=>btn.addEventListener('click',()=>{
+      currentProgram = btn.dataset.program;
+      $('#programTitle').textContent = btn.closest('article').querySelector('h3').textContent;
+      programPanel.classList.remove('hidden');
+      computePlan();
+      programPanel.scrollIntoView({behavior:'smooth', block:'start'});
+    }));
+    $('[data-action="close-program"]').addEventListener('click', ()=>programPanel.classList.add('hidden'));
+    $('#cfgGoal').addEventListener('change', computePlan);
+    $('#cfgAvail').addEventListener('change', computePlan);
+    $('#cfgPay').addEventListener('change', computePlan);
+    function computePlan(){
+      const avail = $('#cfgAvail').value; const pay = $('#cfgPay').value;
+      const hours = avail==='1-2'?2: (avail==='3-4'?4:6);
+      const tier = (currentProgram==='premium'||$('#cfgGoal').value==='exam')? 'premium' : (hours>=4? 'pro':'essential');
+      const priceHour = BASE_PRICES[tier];
+      const monthly = hours*4*priceHour; // approx 4 weeks
+      const cost = pay==='quarterly' ? Math.round(monthly*3*0.9) : Math.round(monthly);
+      $('#cfgPlan').textContent = `${tier[0].toUpperCase()+tier.slice(1)} • ${hours}h/week • €${cost}${pay==='quarterly'?'/qtr':'/mo'}`;
+    }
+    $('[data-action="prefill-free"]').addEventListener('click', ()=>{
+      openFreeModal({goal: $('#cfgGoal').value});
+    });
+
+    // FAQ minimal accordion
+    $('#programPanel').addEventListener('click', (e)=>{
+      if(e.target.tagName==='BUTTON' && e.target.getAttribute('aria-expanded')!==null){
+        const open = e.target.getAttribute('aria-expanded')==='true';
+        e.target.setAttribute('aria-expanded', (!open).toString());
+        const nxt = e.target.nextElementSibling; nxt.classList.toggle('hidden');
+      }
+    });
+
+    // ===== Teachers grid =====
+    const TEACHERS = [
+      {name:'Emma C.', area:'general', certs:'CELTA', langs:['en','ro'], years:6, line:'Coffee lover, grammar nerd', video:'', img:'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22240%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%234967E4%22/><text x=%2250%25%22 y=%2255%25%22 fill=%22white%22 font-family=%22Inter%22 font-size=%2220%22 text-anchor=%22middle%22>Emma</text></svg>'},
+      {name:'Mark D.', area:'business', certs:'DELTA', langs:['en','ru'], years:9, line:'Meetings & presentations', video:'', img:'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22240%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230A0F4C%22/><text x=%2250%25%22 y=%2255%25%22 fill=%22white%22 font-family=%22Inter%22 font-size=%2220%22 text-anchor=%22middle%22>Mark</text></svg>'},
+      {name:'Sara P.', area:'exams', certs:'MA Applied Ling.', langs:['en'], years:7, line:'IELTS coach', video:'', img:'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22240%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23e11d48%22/><text x=%2250%25%22 y=%2255%25%22 fill=%22white%22 font-family=%22Inter%22 font-size=%2220%22 text-anchor=%22middle%22>Sara</text></svg>'}
+    ];
+    function renderTeachers(){
+      const area=$('#tArea').value, lang=$('#tLang').value;
+      const list = TEACHERS.filter(t=> (area==='all'||t.area===area) && (lang==='any'||t.langs.includes(lang)) );
+      const grid = $('#teacherGrid'); grid.innerHTML='';
+      list.forEach(t=>{
+        const card = document.createElement('article');
+        card.className='rounded-2xl border p-4 bg-white dark:bg-slate-800';
+        card.innerHTML=`<img src="${t.img}" alt="${t.name}" loading="lazy" class="w-full h-40 object-cover rounded-xl">`+
+          `<div class='mt-3'><div class='font-semibold'>${t.name}</div><div class='text-xs opacity-75'>${t.certs} • ${t.years}y exp • ${t.langs.join(', ').toUpperCase()}</div><p class='text-sm mt-1'>${t.line}</p></div>`+
+          `<button class='mt-3 px-3 py-1 border rounded-md' data-action='teacher-profile' data-name='${t.name}'>Profile</button>`;
+        grid.appendChild(card);
+      });
+    }
+    $('#tArea').addEventListener('change', renderTeachers);
+    $('#tLang').addEventListener('change', renderTeachers);
+    renderTeachers();
+
+    // ===== Pricing calculator =====
+    const hours = $('#hours'); const hoursVal=$('#hoursVal'); const isQuarterly=$('#isQuarterly');
+    const pricesEls = $$('.price'); let coupon=null;
+    function updatePrices(){
+      hoursVal.textContent = hours.value;
+      const h = +hours.value; const weeks=4; const mult = isQuarterly.checked? (3*0.9) : 1; // 10% qtr saving
+      pricesEls.forEach(el=>{
+        const tier = el.dataset.tier; const perH = BASE_PRICES[tier];
+        let total = perH*h*weeks; if(isQuarterly.checked) total*=3*0.9; // quarterly pack
+        let disc=0; if(coupon && COUPONS[coupon]){ disc = total*COUPONS[coupon]; total-=disc; }
+        el.textContent = `€${Math.round(total)}`;
+        el.closest('[data-tier]')?.setAttribute('aria-label', `${tier} plan total ${Math.round(total)} euros`);
+      });
+    }
+    hours.addEventListener('input', updatePrices);
+    $('#applyCoupon').addEventListener('click', ()=>{
+      const c = $('#coupon').value.trim().toUpperCase();
+      if(COUPONS[c]){ coupon=c; showToast(`Coupon ${c} applied`); gaEvent('coupon_applied', {coupon:c}); }
+      else { coupon=null; showToast('Invalid coupon'); }
+      updatePrices();
+    });
+    isQuarterly.addEventListener('change', updatePrices);
+    $$('[data-action="start-now"]').forEach(b=>b.addEventListener('click',()=>openFreeModal({plan:b.dataset.tier, hours:+hours.value})));
+    updatePrices();
+    $('#guarantee').addEventListener('click', ()=>$('#guaranteeModal').showModal());
+
+    // ===== Resources library =====
+    const RES = [
+      {id:1,title:'Email phrases for busy teams', level:'B1', type:'Guide', goal:'Work', mins:6, content:'Useful phrases for requests, follow-ups, and clarity.'},
+      {id:2,title:'IELTS speaking part 2 flow', level:'B2', type:'Guide', goal:'Exam', mins:7, content:'Structure + sample answers.'},
+      {id:3,title:'Present perfect mini-drill', level:'A2', type:'Exercise', goal:'Work', mins:4, content:'10 quick items with feedback.'},
+      {id:4,title:'Presentation openings', level:'C1', type:'Video', goal:'Work', mins:5, content:'Hooks that work.'}
+    ];
+    function resRender(list){
+      const grid=$('#resGrid'); grid.innerHTML='';
+      list.forEach(r=>{
+        const card=document.createElement('article');
+        card.className='rounded-2xl border p-4 bg-white dark:bg-slate-800';
+        card.innerHTML=`<div class='text-xs opacity-70'>${r.type} • ${r.level} • ${r.mins} min</div><h3 class='mt-1 font-semibold'>${r.title}</h3><p class='text-sm mt-1 opacity-85'>${r.content}</p><div class='mt-3 flex gap-2'><button class='px-3 py-1 border rounded-md' data-open='${r.id}'>Open</button></div>`;
+        grid.appendChild(card);
+      });
+    }
+    function resFilter(){
+      const q = $('#resSearch').value.toLowerCase();
+      const lvl=$('#resLevel').value, typ=$('#resType').value, goal=$('#resGoal').value;
+      const list = RES.filter(r=> (q? (r.title.toLowerCase().includes(q)||r.content.toLowerCase().includes(q)) : true)
+        && (lvl==='all'||r.level===lvl)
+        && (typ==='all'||r.type===typ)
+        && (goal==='all'||r.goal===goal));
+      resRender(list);
+      gaEvent('resource_search',{q, level:lvl, type:typ, goal});
+    }
+    resRender(RES);
+    $('#resSearch').addEventListener('input', ()=>{
+      const q=$('#resSearch').value.toLowerCase();
+      const suggestions = RES.filter(r=> r.title.toLowerCase().includes(q)).slice(0,5);
+      const ul=$('#resAuto'); ul.innerHTML='';
+      if(q && suggestions.length){
+        ul.classList.remove('hidden');
+        suggestions.forEach(s=>{ const li=document.createElement('li'); li.className='px-3 py-1 hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer'; li.textContent=s.title; li.addEventListener('click',()=>{ $('#resSearch').value=s.title; ul.classList.add('hidden'); resFilter(); }); ul.appendChild(li); });
+      } else ul.classList.add('hidden');
+    });
+    $('#resLevel').addEventListener('change', resFilter);
+    $('#resType').addEventListener('change', resFilter);
+    $('#resGoal').addEventListener('change', resFilter);
+    $('#resources').addEventListener('click', (e)=>{ if(e.target.dataset.open){ showToast('Article opened'); gaEvent('article_read',{id:e.target.dataset.open}); }});
+
+    // ===== Free Class modal & flow =====
+    const freeModal = $('#freeModal');
+    const slotGrid = $('#slotGrid'); const slotVal=$('#slotVal'); const slotErr=$('#slotErr');
+    function openFreeModal(preset={}){
+      // Prefill
+      const goal = preset.goal||preset.plan||'Fluency';
+      freeModal.showModal();
+      const sel = freeModal.querySelector('select[name="goal"]'); sel.value = /exam|premium/i.test(goal)? 'Exam' : (/work|business|pro/i.test(goal)? 'Work' : (/kids/i.test(goal)?'Kids':'Fluency'));
+      // Generate slots next 10 business days 09:00–20:00 every 20 mins
+      slotGrid.innerHTML=''; slotVal.value=''; $('#submitFree').disabled=true; slotErr.classList.add('hidden');
+      const now = new Date(); let added=0; outer: for(let d=1; d<=20; d++){
+        const dt=new Date(now.getFullYear(), now.getMonth(), now.getDate()+d);
+        const day=dt.getDay(); if(day===0||day===6) continue; // skip weekend
+        for(let h=9; h<20; h++){
+          for(let m=0; m<60; m+=20){
+            const t=new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), h, m);
+            const btn=document.createElement('button'); btn.type='button'; btn.className='px-2 py-1 border rounded-md text-sm'; btn.textContent=t.toLocaleString([], {weekday:'short', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
+            btn.addEventListener('click',()=>{ $$('#slotGrid button').forEach(b=>b.classList.remove('bg-way','text-white')); btn.classList.add('bg-way','text-white'); slotVal.value=t.toISOString(); $('#submitFree').disabled=false; gaEvent('booking_slot_select',{iso:t.toISOString()}); });
+            slotGrid.appendChild(btn);
+            if(++added>=36) break outer; // ~15–20 slots
+          }
+        }
+      }
+      gaEvent('form_start', {form:'free_class'});
+    }
+    $$('[href="#free"]').forEach(a=>a.addEventListener('click', (e)=>{ e.preventDefault(); openFreeModal(); }));
+    // Enable submit when valid
+    $('#freeForm').addEventListener('input', ()=>{
+      $('#submitFree').disabled = !$('#freeForm').checkValidity() || !slotVal.value;
+    });
+    // Submit
+    $('#submitFree').addEventListener('click', async (e)=>{
+      e.preventDefault(); const f=$('#freeForm'); if(!f.checkValidity()||!slotVal.value){ slotErr.classList.remove('hidden'); return; }
+      const data = Object.fromEntries(new FormData(f)); data.slotISO = data.slot; delete data.slot; data.utm=ATTR; data.locale=LOCALE; data.ts=Date.now();
+      $('#freeStatus').textContent='Booking…'; $('#submitFree').disabled=true;
+      let ok=false; try{
+        if(CRM_WEBHOOK_URL){
+          const r= await fetch(CRM_WEBHOOK_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)});
+          ok = r.ok; if(!ok) throw new Error('CRM error');
+        } else {
+          const leads = JSON.parse(localStorage.getItem('bw_leads')||'[]'); leads.push(data); localStorage.setItem('bw_leads', JSON.stringify(leads)); $('#exportLeads').classList.remove('hidden'); ok=true;
+        }
+      } catch(err){ $('#freeStatus').textContent='Network error. Saved locally — we will retry.'; retryQueue('lead', data); }
+      if(ok){ confetti(); $('#freeStatus').textContent='Thank you! Check your calendar and WhatsApp.'; gaEvent('form_submit',{form:'free_class'}); gaEvent('booking_confirmed',{}); showAddToCalendar(data); }
+    });
+    // Export leads
+    $('#exportLeads').addEventListener('click', ()=>{
+      const leads = localStorage.getItem('bw_leads')||'[]'; downloadJSON('bridgeway-leads.json', leads); gaEvent('lead_export',{});
+    });
+
+    function showAddToCalendar(data){
+      // Build ICS
+      const start = new Date(data.slotISO); const end = new Date(start.getTime()+40*60000);
+      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//BridgeWay//EN\nBEGIN:VEVENT\nUID:${start.getTime()}@bridgeway\nDTSTAMP:${toICS(new Date())}\nDTSTART:${toICS(start)}\nDTEND:${toICS(end)}\nSUMMARY:BridgeWay — Free class\nDESCRIPTION:${data.name} — ${data.goal}\nEND:VEVENT\nEND:VCALENDAR`;
+      const blob = new Blob([ics], {type:'text/calendar'}); const url=URL.createObjectURL(blob);
+      const wrap=document.createElement('div'); wrap.className='mt-3 text-sm';
+      wrap.innerHTML=`<a download='bridgeway.ics' href='${url}' class='underline'>${i18n[LOCALE].ctas.addCal}</a> · `+
+        `<a href='https://wa.me/34600000000?text=${encodeURIComponent(`Hi, I'm ${data.name}. Confirming my free class on ${new Date(data.slotISO).toLocaleString()}. Goal: ${data.goal}.`)}' class='underline' rel='noopener'>${i18n[LOCALE].ctas.confirmWA}</a>`;
+      $('#freeForm').appendChild(wrap);
+    }
+    function toICS(d){
+      const pad=n=>String(n).padStart(2,'0');
+      return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+pad(d.getUTCSeconds())+'Z';
+    }
+
+    // ===== Level Test (gamified) =====
+    const TEST_KEY='bw_test_state';
+    const testBox=$('#testBox'); const progress=$('#progress');
+    const GQ=[
+      {q:'Choose the correct form: "She ___ to the gym on Mondays."', a:['go','goes','is go'], ok:1, exp:'He/She/It takes -s: goes.'},
+      {q:'Pick the past simple: "They ___ the movie."', a:['see','saw','seen'], ok:1, exp:'Past simple of see is saw.'},
+      {q:'Choose: "If I ___ time, I will call you."', a:['will have','have','had'], ok:1, exp:'First conditional: if + present, will + base.'},
+      {q:'Find the error: "He don\'t like tea."', a:['He not like','He doesn\'t like','He didn\'t like'], ok:1, exp:"Use doesn't + base verb."},
+      {q:'Pick the best: "I\'m looking forward ___ you."', a:['to see','seeing','see'], ok:1, exp:'Look forward to + -ing → seeing.'},
+      {q:'Choose the article: "___ Eiffel Tower is in Paris."', a:['A','An','The'], ok:2, exp:'Unique object → the.'},
+      {q:'Modal: "You ___ wear a helmet." (advice)', a:['should','must','can'], ok:0, exp:'Advice → should.'},
+      {q:'Tense: "I have ___ my homework."', a:['finish','finished','finishing'], ok:1, exp:'Have + past participle.'},
+      {q:'Preposition: "arrive ___ the airport"', a:['to','at','in'], ok:1, exp:'Arrive at + specific place.'},
+      {q:'Word order: "Rarely ___ we see such skill."', a:['do','are','have'], ok:0, exp:'Inversion after negative adverbials → do we see.'},
+      {q:'Reported speech: "\"I am tired\", she said." → She said she ___ tired.', a:['was','is','were'], ok:0, exp:'Backshift to past → was.'},
+      {q:'Comparative: "This is ___ than that."', a:['gooder','better','more good'], ok:1, exp:'Irregular: better.'}
+    ];
+    const READ = { text:'Alice opened the door and looked inside. The room was quiet, but the window was open. What can we infer?', a:['It was raining','Someone had been there','She forgot her keys'], ok:1, exp:'Open window suggests recent presence.' };
+
+    let state = { step:0, score:0, dif:1, answers:[], started:false };
+    const saved = localStorage.getItem(TEST_KEY); if(saved){ $('#resumeBanner').classList.remove('hidden'); }
+
+    function save(){ localStorage.setItem(TEST_KEY, JSON.stringify(state)); }
+    function reset(){ state={ step:0, score:0, dif:1, answers:[], started:false }; save(); renderStep(); }
+
+    $('#resumeYes').addEventListener('click', ()=>{ Object.assign(state, JSON.parse(saved)); $('#resumeBanner').classList.add('hidden'); renderStep(); });
+    $('#resumeNo').addEventListener('click', ()=>{ localStorage.removeItem(TEST_KEY); $('#resumeBanner').classList.add('hidden'); reset(); });
+
+    function renderStep(){
+      progress.style.width = Math.min(100, Math.round((state.step/ (GQ.length+2))*100))+'%';
+      testBox.innerHTML='';
+      if(!state.started){
+        state.started=true; gaEvent('test_start',{}); save();
+      }
+      if(state.step < GQ.length){
+        const g=GQ[state.step];
+        const wrap=document.createElement('div'); wrap.innerHTML=`<div class='text-sm opacity-70 mb-2'>${i18n[LOCALE].test.grammar}</div><h3 class='text-lg font-semibold'>${g.q}</h3>`;
+        const list=document.createElement('div'); list.className='mt-3 grid gap-2';
+        g.a.forEach((opt,i)=>{ const b=document.createElement('button'); b.className='border rounded-md px-3 py-2 text-left'; b.textContent=opt; b.addEventListener('click',()=>{ const correct=(i===g.ok); state.score += correct?1:0; state.answers.push({type:'g',i,ok:correct}); showFeedback(correct, g.exp, ()=>{ state.step++; save(); renderStep(); adapt(); }); }); list.appendChild(b); });
+        testBox.appendChild(wrap); testBox.appendChild(list);
+      } else if(state.step === GQ.length){
+        const r=READ; const wrap=document.createElement('div'); wrap.innerHTML=`<div class='text-sm opacity-70 mb-2'>${i18n[LOCALE].test.reading}</div><p class='mb-3'>${r.text}</p>`;
+        const list=document.createElement('div'); list.className='grid gap-2';
+        r.a.forEach((opt,i)=>{ const b=document.createElement('button'); b.className='border rounded-md px-3 py-2 text-left'; b.textContent=opt; b.addEventListener('click',()=>{ const correct=(i===r.ok); state.score += correct?1:0; state.answers.push({type:'r',i,ok:correct}); showFeedback(correct, r.exp, ()=>{ state.step++; save(); renderStep(); }); }); list.appendChild(b); });
+        testBox.appendChild(wrap); testBox.appendChild(list);
+      } else {
+        // Speaking (record 30s or fallback text)
+        const wrap=document.createElement('div'); wrap.innerHTML=`<div class='text-sm opacity-70 mb-2'>${i18n[LOCALE].test.speaking}</div><p class='text-sm'>Speak for 30 seconds about your typical day. If mic is blocked, type instead.</p>`;
+        const controls=document.createElement('div'); controls.className='mt-3 flex gap-2 items-center';
+        const recBtn=document.createElement('button'); recBtn.className='border rounded-md px-3 py-2'; recBtn.textContent='Start';
+        const timer=document.createElement('span'); timer.textContent='30';
+        const input=document.createElement('textarea'); input.className='w-full border rounded-md px-3 py-2 mt-3 hidden'; input.placeholder='Or type here…';
+        controls.append(recBtn, document.createTextNode(' '), timer);
+        const finish=document.createElement('button'); finish.className='ml-auto border rounded-md px-3 py-2'; finish.textContent='Finish'; finish.disabled=true;
+        controls.appendChild(finish);
+        testBox.append(wrap, controls, input);
+        let media, chunks=[], countdown=30, iv;
+        function fallback(){ input.classList.remove('hidden'); recBtn.disabled=true; finish.disabled=false; }
+        async function start(){
+          if(!FEATURES.speechInput || !navigator.mediaDevices){ fallback(); return; }
+          try{
+            media = await navigator.mediaDevices.getUserMedia({audio:true}); const mr=new MediaRecorder(media);
+            mr.ondataavailable=e=>chunks.push(e.data); mr.onstop=()=>{ media.getTracks().forEach(t=>t.stop()); };
+            mr.start(); finish.disabled=false; recBtn.disabled=true; iv=setInterval(()=>{ countdown--; timer.textContent=String(countdown); if(countdown<=0){ clearInterval(iv); mr.stop(); finish.click(); } },1000);
+            finish.onclick=()=>{ try{ mr.stop(); }catch{} clearInterval(iv); done(); };
+          } catch(err){ fallback(); }
+        }
+        function done(){ state.answers.push({type:'s', ok:true}); complete(); }
+        recBtn.addEventListener('click', start); finish.addEventListener('click', ()=>{ if(!finish.disabled) done(); });
+      }
+    }
+    function adapt(){
+      const last5 = state.answers.slice(-5); if(last5.length===5){ const rate = last5.filter(a=>a.ok).length/5; if(rate>0.8&&state.dif<2){ state.dif++; GQ.push({q:'Advanced: Choose correct: "Had I known, I ___ helped."', a:['would have','will have','have'], ok:0, exp:'3rd conditional inversion → would have.'}); }
+        if(rate<0.5 && state.dif>0){ state.dif--; GQ.push({q:'Beginner: "She ___ Spanish."', a:['speak','speaks','speaking'], ok:1, exp:'He/She/It → speaks.'}); }
+      }
+    }
+    function showFeedback(ok, exp, cb){
+      const box=document.createElement('div'); box.className='mt-3 p-3 rounded-md '+(ok?'bg-green-100 text-green-900':'bg-red-100 text-red-900');
+      box.textContent= ok? 'Correct!' : `Not quite — ${exp}`; testBox.appendChild(box); setTimeout(cb, 700);
+    }
+    function complete(){
+      const totalQ = GQ.length+2; const pct = Math.round((state.score/totalQ)*100); let level='A2'; if(pct>85) level='C1'; else if(pct>70) level='B2'; else if(pct>55) level='B1';
+      testBox.innerHTML = `<h3 class='text-xl font-semibold mb-2'>${i18n[LOCALE].test.result}: ${level}</h3><p class='mb-3'>We estimate your level based on quick items. Book a free class for a personalized plan.</p>`+
+      `<div class='flex gap-2'><a href='#free' class='bg-way text-white px-4 py-2 rounded-lg'>${i18n[LOCALE].ctas.book}</a><button id='dlResults' class='border px-3 py-2 rounded-md'>Download Results (.json)</button></div>`;
+      const results={ level, pct, answers:state.answers, ts:Date.now(), locale:LOCALE, utm:ATTR };
+      if(EMAIL_WEBHOOK_URL){ fetch(EMAIL_WEBHOOK_URL,{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(results)}).catch(()=>retryQueue('result',results)); }
+      else { localStorage.setItem('bw_results', JSON.stringify([...(JSON.parse(localStorage.getItem('bw_results')||'[]')), results])); }
+      $('#dlResults').addEventListener('click', ()=>{ downloadJSON('bridgeway-results.json', JSON.stringify(results)); gaEvent('results_download',{}); });
+      gaEvent('test_complete',{}); gaEvent('test_level',{level});
+      localStorage.removeItem(TEST_KEY);
+    }
+
+    renderStep();
+
+    // ===== Chat widget =====
+    $('#chatBtn').addEventListener('click', ()=>{ const b=$('#chatBox'); const open=b.classList.toggle('hidden'); $('#chatBtn').setAttribute('aria-expanded', (!open).toString()); });
+    $('#chatBox').addEventListener('click', (e)=>{
+      const act=e.target.dataset.chat; if(!act) return; if(act==='book'){ openFreeModal(); gaEvent('cta_click',{label:'clase_gratis'}); }
+      if(act==='test'){ document.querySelector('#test').scrollIntoView({behavior:'smooth'}); gaEvent('cta_click',{label:'test'}); }
+      if(act==='question'){ $('#chatForm').classList.remove('hidden'); }
+    });
+    $('#chatForm').addEventListener('submit', (e)=>{ e.preventDefault(); const txt=$('#chatForm textarea').value.toLowerCase(); let reply='Thanks! We will reply via WhatsApp soon.'; if(/price|cost/.test(txt)) reply='Prices update live in the Pricing section.'; if(/company|business/.test(txt)) reply='See our Business plan — book a team class from Programs.'; if(/kid|child/.test(txt)) reply='Yes, we teach kids from age 7.'; $('#chatReply').textContent=reply; gaEvent('button_click',{}); });
+
+    // ===== Consent & Analytics =====
+    const CONSENT_KEY='bw_consent_'+LOCALE; const consent = localStorage.getItem(CONSENT_KEY);
+    if(consent!=='yes' && consent!=='no'){ $('#consent').classList.remove('hidden'); }
+    $('#consentYes').addEventListener('click', ()=>{ localStorage.setItem(CONSENT_KEY,'yes'); $('#consent').classList.add('hidden'); initGA(); });
+    $('#consentNo').addEventListener('click', ()=>{ localStorage.setItem(CONSENT_KEY,'no'); $('#consent').classList.add('hidden'); });
+
+    function initGA(){
+      window.dataLayer = window.dataLayer || []; function g(){ dataLayer.push(arguments); }
+      g('js', new Date());
+      // GA4 config would go here if ID present and consent granted. For demo we log only.
+      showToast('Analytics enabled');
+    }
+    function gaEvent(name, params={}){ const allowed = localStorage.getItem(CONSENT_KEY)==='yes'; if(!allowed) return; const payload={event:name, locale:LOCALE, variant:ATTR.variant, ...ATTR, ...params}; (window.dataLayer||[]).push(payload); console.debug('GA4', payload); }
+
+    // ===== Exit-intent lead magnet (client-side PDF) =====
+    document.addEventListener('mouseleave', (e)=>{ if(e.clientY<=0 && FEATURES.exitIntent){ showGuideModal(); gaEvent('exit_intent_shown',{}); } });
+    function showGuideModal(){
+      const dlg=document.createElement('dialog'); dlg.className='backdrop:bg-black/50 rounded-xl max-w-lg w-full p-0';
+      dlg.innerHTML=`<div class='p-6'><div class='flex items-start justify-between'><h3 class='text-lg font-semibold'>Free PDF: English for Busy Professionals</h3><button formmethod='dialog' class='border rounded-md px-2 py-1'>✕</button></div><p class='mt-2 text-sm'>A 5‑page guide with templates and phrases.</p><div class='mt-3 flex gap-2'><button id='dlGuide' class='bg-way text-white px-3 py-1 rounded-md'>Download</button></div></div>`;
+      document.body.appendChild(dlg); dlg.showModal();
+      $('#dlGuide', dlg)?.addEventListener('click',()=>{ const pdf = new Blob([`BridgeWay quick guide\n— Email templates\n— Meeting phrases`],{type:'application/pdf'}); const url=URL.createObjectURL(pdf); const a=document.createElement('a'); a.href=url; a.download='bridgeway-guide.pdf'; a.click(); dlg.close(); });
+    }
+
+    // ===== Admin Drawer =====
+    const admin=$('#admin');
+    document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='l' && e.shiftKey){ admin.style.transform = admin.style.transform? '' : 'translateX(0)'; } });
+    $('#qaConfetti').addEventListener('click', confetti);
+    $('#qaToast').addEventListener('click', ()=>showToast('Hello!'));
+    $$('#admin [data-flag]').forEach(chk=>chk.addEventListener('change',()=>{ FEATURES[chk.dataset.flag]=chk.checked; updateSticky(); }));
+    $$('#admin [data-variant]').forEach(b=>b.addEventListener('click',()=>{ ATTR.variant=b.dataset.variant; applyLocale(); gaEvent('ab_variant',{variant:ATTR.variant}); }));
+    $('#viewLeads').addEventListener('click', ()=>{ const leads=localStorage.getItem('bw_leads')||'[]'; downloadJSON('bridgeway-leads.json', leads); });
+    $('#viewResults').addEventListener('click', ()=>{ const r=localStorage.getItem('bw_results')||'[]'; downloadJSON('bridgeway-results.json', r); });
+
+    // ===== Legal modals =====
+    $('#termsBtn').addEventListener('click', ()=>{ $('#legalTitle').textContent='Terms'; $('#legalBody').innerHTML='<p>Terms placeholder.</p>'; $('#legalModal').showModal(); });
+    $('#privacyBtn').addEventListener('click', ()=>{ $('#legalTitle').textContent='Privacy'; $('#legalBody').innerHTML='<p>Privacy placeholder. We only use analytics after consent.</p>'; $('#legalModal').showModal(); });
+
+    // ===== Utilities =====
+    function downloadJSON(name, str){ const blob=new Blob([str],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=name; a.click(); }
+    function showToast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.remove('hidden'); setTimeout(()=>t.classList.add('hidden'), 1500); }
+    function retryQueue(kind, payload){ const key='bw_retry_'+kind; const arr=JSON.parse(localStorage.getItem(key)||'[]'); arr.push(payload); localStorage.setItem(key, JSON.stringify(arr)); }
+
+    // Minimal confetti
+    function confetti(){ const c=$('#confetti'); const ctx=c.getContext('2d'); c.width=innerWidth; c.height=innerHeight; c.classList.remove('hidden'); const parts=[...Array(120)].map(()=>({x:Math.random()*c.width,y:-20,r:2+Math.random()*3,vx:(Math.random()-0.5)*2,vy:2+Math.random()*3})); let t=0; const id=requestAnimationFrame(function anim(){ ctx.clearRect(0,0,c.width,c.height); parts.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; ctx.fillStyle = `hsl(${(p.x+p.y)%360},70%,60%)`; ctx.fillRect(p.x,p.y,p.r,p.r); }); if((t+=1)<90) requestAnimationFrame(anim); else c.classList.add('hidden'); }); }
+
+    // ===== GA buttons labels =====
+    $$('a,button').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        const id=el.dataset.testid||el.id||el.textContent?.trim()?.slice(0,20);
+        if(el.closest('#freeModal')) return; // avoid double log
+        if(el.matches('[href^="#"]')) gaEvent('nav_click',{id});
+        else if(el.matches('a')) gaEvent('button_click',{id});
+      });
+    });
+
+    // ===== PWA: dynamic manifest + SW from Blob =====
+    const manifest = { name:'BridgeWay', short_name:'BridgeWay', start_url:'./', display:'standalone', theme_color:'#0A0F4C', background_color:'#ffffff', icons:[] };
+    const murl = URL.createObjectURL(new Blob([JSON.stringify(manifest)], {type:'application/json'}));
+    const link = document.createElement('link'); link.rel='manifest'; link.href=murl; document.head.appendChild(link);
+
+    const offlineHTML = $('#offlinePage').innerHTML;
+    const swCode = `self.addEventListener('install',e=>{ e.waitUntil(caches.open('bw-v1').then(c=>c.addAll(['./']))); });\nself.addEventListener('fetch',e=>{ e.respondWith(fetch(e.request).catch(()=> new Response(${JSON.stringify(offlineHTML)}, {headers:{'Content-Type':'text/html'}}))); });`;
+    if('serviceWorker' in navigator){ const swURL = URL.createObjectURL(new Blob([swCode],{type:'text/javascript'})); navigator.serviceWorker.register(swURL).catch(()=>{}); }
+
+    // ===== Initial load =====
+    applyLocale(); updateSticky();
+    // A/B via URL ?variant=A|B already parsed → ATTR.variant
+
+    // Personalization: hero secondary CTA for /business referrer
+
+    // ===== Secondary CTA tracking =====
+    $('#heroSecondary').addEventListener('click', ()=>{ const lbl = /companies/.test($('#heroSecondary').textContent)? 'company' : 'test'; gaEvent('cta_click',{label: lbl}); });
+
+  })();
+  </script>
+</body>
+</html>
