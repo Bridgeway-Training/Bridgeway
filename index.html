@@ -1,522 +1,3075 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sol · Restaurante en Córdoba</title>
-  <meta name="description" content="Sol, restaurante de alta cocina en Córdoba, España. Reservas online, carta de temporada y una experiencia cálida y elegante inspirada en el sol." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>BridgeWay · Online English Academy</title>
+  <meta name="description" content="BridgeWay delivers personalized English programs, certified coaches, and resources for learners and teams worldwide." />
+  <meta property="og:title" content="BridgeWay · Online English Academy" />
+  <meta property="og:description" content="BridgeWay delivers personalized English programs, certified coaches, and resources for learners and teams worldwide." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bridgeway.ac" />
+  <meta property="og:image" content="https://bridgeway.ac/og-image.png" />
+  <meta property="og:locale" content="en" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BridgeWay · Online English Academy" />
+  <meta name="twitter:description" content="BridgeWay delivers personalized English programs, certified coaches, and resources for learners and teams worldwide." />
+  <meta name="theme-color" content="#0A0F4C" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'Apple Color Emoji', 'Segoe UI Emoji'] },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          },
           colors: {
-            gold: {
-              DEFAULT: '#d4af37', // warm gold
-              soft: '#e6c766',
-              dark: '#b8962d'
-            },
-            night: {
-              900: '#0a0a0a',
-              800: '#0f0f12',
-              700: '#17171b'
-            }
+            'bw-bridge': '#0A0F4C',
+            'bw-way': '#4967E4'
           },
           boxShadow: {
-            lux: '0 10px 30px -10px rgba(212,175,55,0.25)'
+            glow: '0 25px 60px -25px rgba(73,103,228,0.65)',
+            card: '0 25px 60px -35px rgba(15,23,42,0.55)'
           },
           keyframes: {
-            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
-            spinSlow: { to: { transform: 'rotate(360deg)' } },
-            fadeUp: { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+            fadein: {
+              '0%': { opacity: 0, transform: 'translateY(4px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' }
+            },
+            confetti: {
+              '0%': { transform: 'translateY(-50vh) rotate(0deg)' },
+              '100%': { transform: 'translateY(60vh) rotate(360deg)', opacity: 0 }
+            },
+            pulseglow: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(73,103,228,0.5)' },
+              '50%': { boxShadow: '0 0 0 10px rgba(73,103,228,0)' }
+            }
           },
           animation: {
-            float: 'float 6s ease-in-out infinite',
-            spinSlow: 'spinSlow 20s linear infinite',
-            fadeUp: 'fadeUp 700ms ease both'
+            'fade-in': 'fadein 0.3s ease-out',
+            confetti: 'confetti 1.8s ease-out forwards',
+            pulseglow: 'pulseglow 2.8s ease-in-out infinite'
           }
         }
       }
-    }
+    };
   </script>
   <style>
-    /* Accessible focus ring tuned to gold */
-    :root { --ring: #d4af37; }
-    *:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+    :root {
+      color-scheme: light dark;
+      --bridge: #0A0F4C;
+      --way: #4967E4;
+    }
+    body {
+      font-feature-settings: 'liga' 1, 'kern' 1;
+      background-color: rgb(248 250 252);
+    }
+    .no-scroll {
+      overflow: hidden;
+    }
+    *:focus-visible {
+      outline: 2px solid var(--way);
+      outline-offset: 2px;
+    }
     @media (prefers-reduced-motion: reduce) {
-      .motion-safe\:animate-float, .motion-safe\:animate-spinSlow, .motion-safe\:transition-all, .motion-safe\:duration-500, .motion-safe\:duration-700, .motion-safe\:duration-300 { animation: none !important; transition: none !important; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    @keyframes skeleton {
+      0% { opacity: 0.4; }
+      50% { opacity: 0.9; }
+      100% { opacity: 0.4; }
+    }
+    .skeleton {
+      animation: skeleton 1.6s ease-in-out infinite;
     }
   </style>
 </head>
-<body class="bg-night-900 text-white font-sans antialiased selection:bg-gold/20 selection:text-white">
-  <!-- Navigation -->
-  <header class="fixed inset-x-0 top-0 z-50 backdrop-blur bg-night-900/70 border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-      <a href="#top" class="flex items-center gap-3 group" aria-label="Inicio · Sol">
-        <!-- Animated Sun Logo -->
-        <div class="relative">
-          <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <radialGradient id="g" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#fff3c4"/>
-                <stop offset="60%" stop-color="#f3d27a"/>
-                <stop offset="100%" stop-color="#d4af37"/>
-              </radialGradient>
-            </defs>
-            <circle cx="32" cy="32" r="12" fill="url(#g)"></circle>
-            <g class="motion-safe:animate-spinSlow" style="transform-origin: 32px 32px">
-              <g stroke="#d4af37" stroke-width="2" stroke-linecap="round">
-                <line x1="32" y1="2" x2="32" y2="12"/>
-                <line x1="32" y1="52" x2="32" y2="62"/>
-                <line x1="2" y1="32" x2="12" y2="32"/>
-                <line x1="52" y1="32" x2="62" y2="32"/>
-                <line x1="11" y1="11" x2="18" y2="18"/>
-                <line x1="46" y1="46" x2="53" y2="53"/>
-                <line x1="46" y1="18" x2="53" y2="11"/>
-                <line x1="11" y1="53" x2="18" y2="46"/>
-              </g>
-            </g>
-          </svg>
-        </div>
-        <span class="text-lg font-semibold tracking-wide">Sol</span>
-      </a>
+<body class="bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased" data-theme="light">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
+  <script type="application/ld+json" id="orgSchema">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"BridgeWay","url":"https://bridgeway.ac","logo":"https://bridgeway.ac/logo.png","sameAs":["https://www.linkedin.com/company/bridgeway"]}</script>
+  <script type="application/ld+json" id="breadcrumbSchema">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bridgeway.ac"},{"@type":"ListItem","position":2,"name":"Programs","item":"https://bridgeway.ac/#programs"}]}</script>
+  <script type="application/ld+json" id="faqSchema"></script>
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-white dark:bg-slate-800 text-bw-bridge px-3 py-2 rounded-md shadow">Skip to content</a>
 
-      <nav class="hidden md:flex items-center gap-8 text-sm">
-        <a href="#reserva" class="hover:text-gold transition-colors">Reservas</a>
-        <a href="#carta" class="hover:text-gold transition-colors">Carta</a>
-        <a href="#faq" class="hover:text-gold transition-colors">FAQ</a>
-        <a href="#contacto" class="hover:text-gold transition-colors">Contacto</a>
-      </nav>
 
-      <a href="#reserva" class="hidden sm:inline-flex items-center gap-2 bg-gold text-night-900 font-medium px-4 py-2 rounded-xl shadow-lux hover:bg-gold-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 transition" aria-label="Reservar mesa">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg>
-        Reservar
-      </a>
-
-      <!-- Mobile menu -->
-      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/5" aria-label="Abrir menú"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
-    </div>
-    <div id="mobileNav" class="md:hidden hidden border-t border-white/5">
-      <div class="px-4 py-3 space-y-2">
-        <a href="#reserva" class="block py-2 hover:text-gold">Reservas</a>
-        <a href="#carta" class="block py-2 hover:text-gold">Carta</a>
-        <a href="#faq" class="block py-2 hover:text-gold">FAQ</a>
-        <a href="#contacto" class="block py-2 hover:text-gold">Contacto</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section id="top" class="relative h-[100svh] w-full overflow-hidden">
-    <picture>
-      <!-- High-quality, royalty-free Unsplash image -->
-      <source srcset="https://images.unsplash.com/photo-1541542684-4a9c58a2c9b8?q=80&w=1920&auto=format&fit=crop" media="(min-width: 1024px)">
-      <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1200&auto=format&fit=crop" alt="Ambiente cálido y elegante del restaurante Sol en Córdoba" class="absolute inset-0 w-full h-full object-cover" />
-    </picture>
-    <div class="absolute inset-0 bg-gradient-to-b from-night-900/30 via-night-900/60 to-night-900"></div>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-      <div class="max-w-2xl">
-        <div class="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs tracking-wide uppercase">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold animate-pulse" aria-hidden="true"></span>
-          Nueva temporada · Córdoba
-        </div>
-        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-          Calidez y elegancia inspiradas en el <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-soft">Sol</span>
-        </h1>
-        <p class="mt-4 text-lg text-white/80">Alta cocina mediterránea con un guiño andaluz. Ingredientes de temporada, técnica impecable y hospitalidad luminosa en el corazón de Córdoba.</p>
-        <div class="mt-8 flex flex-wrap items-center gap-4">
-          <a href="#reserva" class="group inline-flex items-center gap-2 bg-gold text-night-900 font-semibold px-6 py-3 rounded-2xl shadow-lux hover:bg-gold-soft transition motion-safe:duration-300">
-            Reservar mesa
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-          <a href="#carta" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl border border-white/10 hover:border-gold/60 hover:text-gold transition motion-safe:duration-300" aria-label="Ver carta">Ver carta</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Floating decor sun -->
-    <div class="absolute right-6 bottom-10 opacity-80 pointer-events-none">
-      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" class="motion-safe:animate-float" aria-hidden="true">
-        <circle cx="60" cy="60" r="26" fill="#d4af37" fill-opacity="0.15" />
-        <circle cx="60" cy="60" r="44" stroke="#d4af37" stroke-opacity="0.25" stroke-width="1.5" />
-      </svg>
-    </div>
-  </section>
-
-  <!-- Reservations -->
-  <section id="reserva" class="relative py-20 bg-night-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-10 items-start">
-
-        <!-- Booking Card -->
-        <div class="bg-night-900/80 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl">
-          <h2 class="text-3xl font-bold">Reservas</h2>
-          <p class="mt-2 text-white/70">Una experiencia exquisita comienza con una reserva sencilla. Completa el formulario y confirma al instante.</p>
-
-          <form id="bookingForm" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4" autocomplete="on" aria-describedby="bookingStatus">
-            <div>
-              <label for="date" class="block text-sm text-white/70 mb-1">Fecha</label>
-              <input id="date" name="date" type="date" required class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
-            </div>
-            <div>
-              <label for="time" class="block text-sm text-white/70 mb-1">Hora</label>
-              <input id="time" name="time" type="time" required class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
-            </div>
-            <div>
-              <label for="guests" class="block text-sm text-white/70 mb-1">Comensales</label>
-              <select id="guests" name="guests" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60" aria-label="Número de comensales">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-              </select>
-            </div>
-            <div>
-              <label for="name" class="block text-sm text-white/70 mb-1">Nombre</label>
-              <input id="name" name="name" type="text" required placeholder="Nombre y apellidos" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
-            </div>
-            <div>
-              <label for="phone" class="block text-sm text-white/70 mb-1">Teléfono</label>
-              <input id="phone" name="phone" type="tel" required placeholder="+34 600 000 000" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
-            </div>
-            <div>
-              <label for="email" class="block text-sm text-white/70 mb-1">Email</label>
-              <input id="email" name="email" type="email" required placeholder="tu@email.com" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
-            </div>
-            <div class="sm:col-span-2">
-              <label for="notes" class="block text-sm text-white/70 mb-1">Notas</label>
-              <textarea id="notes" name="notes" rows="3" placeholder="Alergias, preferencias..." class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"></textarea>
-            </div>
-            <div class="sm:col-span-2 flex items-center justify-between gap-4 mt-2">
-              <p class="text-xs text-white/60">Al enviar aceptas nuestra <a href="#" class="text-gold hover:underline">política de privacidad</a>.</p>
-              <button type="submit" class="group inline-flex items-center gap-2 bg-gold text-night-900 font-semibold px-5 py-2.5 rounded-xl shadow-lux hover:bg-gold-soft transition motion-safe:duration-300">
-                Confirmar reserva
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </button>
-            </div>
-          </form>
-
-          <!-- Status -->
-          <div id="bookingStatus" class="mt-4 hidden rounded-xl border border-gold/40 bg-gold/10 p-4 text-sm" role="status" aria-live="polite"></div>
-        </div>
-
-        <!-- Info Card -->
-        <aside class="bg-gradient-to-br from-night-900 via-night-900/90 to-night-800 border border-white/10 rounded-3xl p-6 sm:p-8">
-          <h3 class="text-2xl font-semibold">Horarios & Ubicación</h3>
-          <div class="mt-6 space-y-6">
-            <div class="flex items-start gap-4">
-              <svg class="h-6 w-6 text-gold flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M21 8H7"/><path d="M7 12h14"/><path d="M7 16h14"/></svg>
-              <div>
-                <p class="font-medium">Horario</p>
-                <p class="text-white/70">L–J: 13:30–16:00 / 20:30–23:30<br>V–S: 13:30–16:30 / 20:30–00:00<br>D: 13:30–16:00</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <svg class="h-6 w-6 text-gold flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-              <div>
-                <p class="font-medium">Dirección</p>
-                <p class="text-white/70">Calle del Sol, 12 · 14003 Córdoba, España</p>
-                <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Córdoba%20Calle%20del%20Sol%2012" class="inline-flex items-center gap-2 text-gold hover:underline mt-1">Ver en Maps <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <svg class="h-6 w-6 text-gold flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L9 10a16 16 0 0 0 5 5l.81-1.09a2 2 0 0 1 2.11-.45c.76.24 1.55.42 2.36.54A2 2 0 0 1 22 16.92Z"/></svg>
-              <div>
-                <p class="font-medium">Contacto</p>
-                <p class="text-white/70">+34 957 000 000 · <a class="text-gold hover:underline" href="mailto:hola@solcordoba.es">hola@solcordoba.es</a></p>
-              </div>
-            </div>
-          </div>
-        </aside>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Menu Section -->
-  <section id="carta" class="relative py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between gap-6">
-        <div>
-          <h2 class="text-3xl font-bold">Carta de temporada</h2>
-          <p class="mt-2 text-white/70">Sabores mediterráneos con esencia andaluza. Productos locales y de temporada.</p>
-        </div>
-        <div class="hidden sm:flex items-center gap-3" aria-label="Controles del carrusel de platos">
-          <button id="prevSlide" class="p-2 rounded-lg border border-white/10 hover:border-gold/60" aria-label="Plato anterior">◀</button>
-          <button id="nextSlide" class="p-2 rounded-lg border border-white/10 hover:border-gold/60" aria-label="Siguiente plato">▶</button>
-        </div>
-      </div>
-
-      <!-- Slider -->
-      <div class="mt-8 relative">
-        <div id="slider" class="overflow-hidden rounded-3xl border border-white/10">
-          <div id="sliderTrack" class="flex transition-transform duration-500 will-change-transform">
-            <!-- Slide 1 -->
-            <figure class="min-w-full h-72 sm:h-96 relative">
-              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920&auto=format&fit=crop" alt="Plato de alta cocina con mariscos frescos" class="w-full h-full object-cover" />
-              <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm">Mariscos del día con cítricos</figcaption>
-            </figure>
-            <!-- Slide 2 -->
-            <figure class="min-w-full h-72 sm:h-96 relative">
-              <img src="https://images.unsplash.com/photo-1543332164-6e82f355badc?q=80&w=1920&auto=format&fit=crop" alt="Carne a la brasa perfectamente sellada" class="w-full h-full object-cover" />
-              <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm">Lomo de ternera a la brasa</figcaption>
-            </figure>
-            <!-- Slide 3 -->
-            <figure class="min-w-full h-72 sm:h-96 relative">
-              <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1920&auto=format&fit=crop" alt="Postre elegante con frutas frescas" class="w-full h-full object-cover" />
-              <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm">Texturas de cítricos y frutos rojos</figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
-
-      <!-- Menu Grid -->
-      <div class="mt-12 grid md:grid-cols-2 gap-8">
-        <!-- Food -->
-        <div class="bg-night-900/70 border border-white/10 rounded-3xl p-6">
-          <h3 class="text-2xl font-semibold">Cocina</h3>
-          <ul class="mt-6 space-y-5">
-            <li class="flex items-start justify-between gap-6">
-              <div>
-                <p class="font-medium">Salmorejo de la casa</p>
-                <p class="text-sm text-white/60">Tomate de temporada, AOVE, jamón ibérico crujiente</p>
-              </div>
-              <span class="text-gold font-medium">12€</span>
-            </li>
-            <li class="flex items-start justify-between gap-6">
-              <div>
-                <p class="font-medium">Pulpo braseado</p>
-                <p class="text-sm text-white/60">Patata cremosa, pimentón de la Vera</p>
-              </div>
-              <span class="text-gold font-medium">22€</span>
-            </li>
-            <li class="flex items-start justify-between gap-6">
-              <div>
-                <p class="font-medium">Merluza al pil-pil</p>
-                <p class="text-sm text-white/60">Emulsión de ajo, lima y perejil</p>
-              </div>
-              <span class="text-gold font-medium">24€</span>
-            </li>
-            <li class="flex items-start justify-between gap-6">
-              <div>
-                <p class="font-medium">Presa ibérica</p>
-                <p class="text-sm text-white/60">Glaseado de miel y tomillo, zanahoria asada</p>
-              </div>
-              <span class="text-gold font-medium">26€</span>
-            </li>
-          </ul>
-        </div>
-        <!-- Drinks -->
-        <div class="bg-night-900/70 border border-white/10 rounded-3xl p-6">
-          <h3 class="text-2xl font-semibold">Bodega</h3>
-          <ul class="mt-6 space-y-5">
-            <li class="flex items-start justify-between gap-6">
-              <div>
-                <p class="font-medium">Vino blanco de la casa</p>
-                <p class="text-sm text-white/60">D.O. Montilla-Moriles, afrutado y fresco</p>
-              </div>
-              <span class="text-gold font-medium">4€ / copa</span>
-            </li>
-            <li class="flex items-start justify-between gap-6">
-              <div>
-                <p class="font-medium">Sangría clásica</p>
-                <p class="text-sm text-white/60">Fruta de temporada, toque cítrico</p>
-              </div>
-              <span class="text-gold font-medium">8€</span>
-            </li>
-            <li class="flex items-start justify-between gap-6">
-              <div>
-                <p class="font-medium">Vermut artesano</p>
-                <p class="text-sm text-white/60">Notas herbales y amargas</p>
-              </div>
-              <span class="text-gold font-medium">6€</span>
-            </li>
-            <li class="flex items-start justify-between gap-6">
-              <div>
-                <p class="font-medium">Espumoso brut nature</p>
-                <p class="text-sm text-white/60">Final seco, burbuja fina</p>
-              </div>
-              <span class="text-gold font-medium">30€</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQs -->
-  <section id="faq" class="relative py-20 bg-night-800">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold">Preguntas frecuentes</h2>
-      <div class="mt-8 divide-y divide-white/10 border border-white/10 rounded-3xl overflow-hidden">
-        <!-- Item -->
-        <details class="group p-6 open:bg-white/5">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
-            <h3 class="font-medium">¿Ofrecen opciones para alergias o dietas especiales?</h3>
-            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <p class="mt-3 text-white/70">Sí. Indícalo al realizar la reserva o a tu llegada. Nuestro equipo ajustará los platos para garantizar tu seguridad y disfrute.</p>
-        </details>
-        <details class="group p-6 open:bg-white/5">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
-            <h3 class="font-medium">¿Hay menú degustación?</h3>
-            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <p class="mt-3 text-white/70">Sí, ofrecemos un menú degustación estacional con maridaje opcional. Pregunta a nuestro equipo en sala para más detalles.</p>
-        </details>
-        <details class="group p-6 open:bg-white/5">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
-            <h3 class="font-medium">¿Disponen de terraza?</h3>
-            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <p class="mt-3 text-white/70">Sí, contamos con una terraza íntima ideal para las noches templadas cordobesas. Se asigna por orden de llegada.</p>
-        </details>
-        <details class="group p-6 open:bg-white/5">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
-            <h3 class="font-medium">¿Puedo hacer un evento privado?</h3>
-            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <p class="mt-3 text-white/70">Por supuesto. Escríbenos a <a class="text-gold hover:underline" href="mailto:eventos@solcordoba.es">eventos@solcordoba.es</a> indicando fecha, número de asistentes y tipo de evento.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer id="contacto" class="border-t border-white/10 bg-night-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-3 gap-10">
-      <div>
-        <div class="flex items-center gap-3">
-          <!-- Reuse logo -->
-          <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="32" cy="32" r="12" fill="#d4af37" fill-opacity="0.8"></circle></svg>
-          <span class="text-lg font-semibold">Sol</span>
-        </div>
-        <p class="mt-4 text-white/70 max-w-sm">Restaurante de alta cocina en Córdoba. Lujo contemporáneo, hospitalidad cálida.</p>
-      </div>
-
-      <div>
-        <h4 class="font-semibold mb-3">Contacto</h4>
-        <ul class="space-y-2 text-white/80">
-          <li>Calle del Sol, 12 · 14003 Córdoba</li>
-          <li>+34 957 000 000</li>
-          <li><a class="text-gold hover:underline" href="mailto:hola@solcordoba.es">hola@solcordoba.es</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="font-semibold mb-3">Síguenos</h4>
-        <div class="flex items-center gap-3">
-          <a href="#" aria-label="Instagram" class="p-2 rounded-lg border border-white/10 hover:border-gold/60 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="#" aria-label="Facebook" class="p-2 rounded-lg border border-white/10 hover:border-gold/60 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a href="#" aria-label="X" class="p-2 rounded-lg border border-white/10 hover:border-gold/60 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4l16 16M20 4 4 20"/></svg>
-          </a>
-        </div>
-        <div class="mt-4">
-          <a href="#reserva" class="inline-flex items-center gap-2 text-sm text-night-900 bg-gold px-4 py-2 rounded-xl hover:bg-gold-soft transition">Reservar ahora <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="border-t border-white/10 py-6 text-center text-xs text-white/50">© <span id="year"></span> Sol · Córdoba · Todos los derechos reservados</div>
-  </footer>
-
-  <!-- Toast / Modal -->
-  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] hidden">
-    <div class="bg-night-800 border border-gold/40 text-white rounded-2xl px-5 py-3 shadow-lux flex items-center gap-3">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
-      <p id="toastMsg" class="text-sm"></p>
+  <div id="stickyOffer" class="hidden fixed top-0 inset-x-0 z-40 bg-gradient-to-r from-bw-bridge via-indigo-700 to-bw-way text-white text-sm py-2 px-4 md:px-0">
+    <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
+      <p data-i18n="sticky_offer">Spring promo: use BRIDGE10 for -10%.</p>
+      <button id="dismissOffer" class="px-3 py-1 rounded-full bg-white/20 text-white" data-testid="offer-dismiss">×</button>
     </div>
   </div>
 
-  <!-- Scripts -->
+  <div id="consentBanner" class="fixed bottom-4 right-4 z-50 max-w-sm w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-card p-4 space-y-3 hidden" role="dialog" aria-modal="true" aria-live="polite">
+    <p class="text-sm" data-i18n="consent_message">BridgeWay uses cookies for analytics. Accept to enable GA4 tracking events.</p>
+    <div class="flex gap-2 justify-end">
+      <button class="px-3 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-sm" data-consent="decline" data-testid="consent-decline" data-i18n="consent_decline">Decline</button>
+      <button class="px-3 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white text-sm" data-consent="accept" data-testid="consent-accept" data-i18n="consent_accept">Accept</button>
+    </div>
+  </div>
+
+  <div id="exitIntent" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur p-4 items-center justify-center" role="dialog" aria-modal="true">
+    <div class="relative max-w-lg w-full bg-white dark:bg-slate-950 rounded-3xl p-6 shadow-card">
+      <button class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800" data-exit-close aria-label="Close" data-testid="exit-close">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m6 18 12-12M6 6l12 12"/></svg>
+      </button>
+      <h3 class="text-xl font-semibold text-bw-bridge dark:text-white" data-i18n="exit_message">Still deciding? Grab your free class slot while it's available.</h3>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <button class="px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-modal-open="freeClass" data-testid="exit-book" data-i18n="cta_free_class">Book your free class</button>
+        <button class="px-5 py-3 rounded-full border border-slate-200 dark:border-slate-700" data-exit-close data-i18n="exit_close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-t border-slate-200/80 dark:border-slate-800/80 md:hidden" aria-label="Quick actions">
+    <div class="max-w-5xl mx-auto grid grid-cols-3 text-sm font-semibold text-center">
+      <button data-cta="class" class="py-3 flex flex-col items-center gap-1 text-bw-way" id="dockFreeClass" data-testid="dock-class">
+        <span aria-hidden="true">🎓</span>
+        <span data-i18n="cta_free_class">Book your free class</span>
+      </button>
+      <button data-cta="test" class="py-3 flex flex-col items-center gap-1" id="dockTest" data-testid="dock-test">
+        <span aria-hidden="true">🧠</span>
+        <span data-i18n="cta_level_test">Take the level test</span>
+      </button>
+      <a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" class="py-3 flex flex-col items-center gap-1 text-green-600" data-testid="dock-whatsapp">
+        <span aria-hidden="true">💬</span>
+        <span data-i18n="cta_whatsapp">Confirm via WhatsApp</span>
+      </a>
+    </div>
+  </nav>
+
+
+  <header id="siteHeader" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="hidden lg:block bg-gradient-to-r from-bw-bridge via-bw-bridge/90 to-bw-way px-4 sm:px-8">
+      <div class="max-w-7xl mx-auto flex justify-between text-sm text-white py-2">
+        <div class="flex items-center gap-6">
+          <a href="tel:+1234567890" class="inline-flex items-center gap-2 hover:opacity-80" data-testid="topbar-call" data-analytics="call_click">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 0 0 2.25-2.25v-1.146a1.5 1.5 0 0 0-1.11-1.457l-3.402-.97a1.5 1.5 0 0 0-1.51.553l-.982 1.31a12.04 12.04 0 0 1-5.248-5.248l1.31-.982a1.5 1.5 0 0 0 .553-1.511l-.97-3.403A1.5 1.5 0 0 0 9.646 3h-1.146A2.25 2.25 0 0 0 6.25 5.25v1.5Z"/></svg>
+            <span>+1 234 567 890</span>
+          </a>
+          <a href="https://wa.me/1234567890" class="inline-flex items-center gap-2 hover:opacity-80" target="_blank" rel="noreferrer" data-testid="topbar-whatsapp" data-analytics="whatsapp_open">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-9.917 17.43L.5 23.5l5.76-1.54A11.5 11.5 0 1 0 12 .5Zm0 2a9.5 9.5 0 1 1-4.661 17.83l-.333-.18-3.42.92.92-3.42-.18-.333A9.5 9.5 0 0 1 12 2.5Zm-3.226 4.54c-.146 0-.374.05-.582.24-.208.19-.76.74-.76 1.79s.776 2.08.886 2.22c.11.15 1.508 2.44 3.72 3.44 1.844.81 2.21.65 2.61.61.4-.04 1.28-.52 1.46-1.03.19-.51.19-.94.13-1.03-.05-.09-.2-.15-.43-.28-.24-.13-1.4-.69-1.62-.77-.22-.08-.38-.12-.54.12-.16.23-.62.77-.76.93-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.97-1.2-.73-.65-1.22-1.46-1.36-1.7-.14-.23-.01-.36.1-.48.09-.09.24-.27.35-.4.11-.13.15-.23.23-.38.08-.16.04-.29-.02-.4-.06-.11-.53-1.3-.74-1.8-.19-.47-.39-.48-.54-.48Z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+        <div class="flex items-center gap-4" aria-label="Language">
+          <span class="text-xs uppercase tracking-wide" data-i18n="label_language">Language</span>
+          <div class="flex items-center gap-1" role="group" aria-label="Language switcher">
+            <button class="px-2 py-1 rounded-md bg-white/20 font-semibold focus-visible:outline focus-visible:outline-white" data-lang="en" data-testid="lang-en">EN</button>
+            <button class="px-2 py-1 rounded-md hover:bg-white/20" data-lang="ru" data-testid="lang-ru">RU</button>
+            <button class="px-2 py-1 rounded-md hover:bg-white/20" data-lang="ro" data-testid="lang-ro">RO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-300" id="headerInner">
+      <a href="#home" class="flex items-center gap-3 py-3" aria-label="BridgeWay home" data-testid="logo">
+        <span class="text-2xl font-bold tracking-tight"><span class="text-bw-bridge">Bridge</span><span class="text-bw-way">Way</span></span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium" aria-label="Primary">
+        <a href="#home" class="hover:text-bw-way transition" data-i18n="nav_home" data-testid="nav-home">Home</a>
+        <a href="#programs" class="hover:text-bw-way transition" data-i18n="nav_programs" data-testid="nav-programs">Programs</a>
+        <a href="#methodology" class="hover:text-bw-way transition" data-i18n="nav_methodology" data-testid="nav-methodology">Methodology</a>
+        <a href="#teachers" class="hover:text-bw-way transition" data-i18n="nav_teachers" data-testid="nav-teachers">Teachers</a>
+        <a href="#pricing" class="hover:text-bw-way transition" data-i18n="nav_pricing" data-testid="nav-pricing">Pricing</a>
+        <a href="#resources" class="hover:text-bw-way transition" data-i18n="nav_resources" data-testid="nav-resources">Resources</a>
+        <button class="ml-4 px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge via-bw-bridge/90 to-bw-way text-white shadow transition focus-visible:outline-none" data-modal-open="freeClass" data-i18n="nav_free_class" data-testid="nav-free-class">Free Class</button>
+      </nav>
+      <div class="flex items-center gap-4">
+        <button id="darkToggle" class="p-2 rounded-full bg-slate-200/60 dark:bg-slate-800/80" aria-label="Toggle dark mode" data-testid="dark-toggle">
+          <span class="block dark:hidden" aria-hidden="true">🌙</span>
+          <span class="hidden dark:block" aria-hidden="true">☀️</span>
+        </button>
+        <button class="lg:hidden p-3 rounded-full bg-slate-200/70 dark:bg-slate-800/80" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" data-testid="menu-toggle">
+          <span class="sr-only">Open menu</span>
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileMenu" class="lg:hidden hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900" aria-label="Mobile menu">
+      <div class="px-4 py-4 space-y-2 text-sm font-medium">
+        <a href="#home" class="block py-2" data-i18n="nav_home">Home</a>
+        <a href="#programs" class="block py-2" data-i18n="nav_programs">Programs</a>
+        <a href="#methodology" class="block py-2" data-i18n="nav_methodology">Methodology</a>
+        <a href="#teachers" class="block py-2" data-i18n="nav_teachers">Teachers</a>
+        <a href="#pricing" class="block py-2" data-i18n="nav_pricing">Pricing</a>
+        <a href="#resources" class="block py-2" data-i18n="nav_resources">Resources</a>
+        <button class="w-full px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white" data-modal-open="freeClass" data-i18n="nav_free_class">Free Class</button>
+        <div class="flex gap-2" role="group">
+          <button class="flex-1 border border-slate-200 dark:border-slate-700 rounded-md py-2" data-lang="en">EN</button>
+          <button class="flex-1 border border-slate-200 dark:border-slate-700 rounded-md py-2" data-lang="ru">RU</button>
+          <button class="flex-1 border border-slate-200 dark:border-slate-700 rounded-md py-2" data-lang="ro">RO</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <main id="main" class="pt-32" data-section>
+    <section id="home" class="relative overflow-hidden">
+      <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(10,15,76,0.96),rgba(73,103,228,0.88))]"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col lg:flex-row gap-12 items-center text-white">
+        <div class="flex-1">
+          <p class="text-sm uppercase tracking-[0.3em] mb-4">DECIDE IN 5 SECONDS.</p>
+          <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6" data-i18n="hero_title">Bridge your English to the world.</h1>
+          <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl" data-i18n="hero_subtitle">Personalized online English programs that adapt to your goals, pace, and schedule with a proven methodology.</p>
+          <div class="flex flex-wrap gap-4 items-center">
+            <button class="px-6 py-3 rounded-full bg-white text-bw-bridge font-semibold shadow-glow transition hover:-translate-y-0.5 hover:shadow-lg" data-modal-open="freeClass" data-i18n="cta_free_class" data-testid="hero-free-class">Book your free class</button>
+            <button id="heroSecondaryCTA" class="px-6 py-3 rounded-full border border-white/40 text-white font-semibold hover:bg-white/10 transition" data-scroll="#levelTest" data-i18n="cta_level_test" data-testid="hero-level-test">Take the level test</button>
+          </div>
+          <div class="mt-10 flex flex-wrap gap-6 text-sm text-white/80">
+            <div class="flex items-center gap-3"><span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/15">92%</span><p data-i18n="hero_stat1">of learners move up one CEFR level in 12 weeks*</p></div>
+            <div class="flex items-center gap-3"><span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/15">24/7</span><p data-i18n="hero_stat2">access to resources & chat support</p></div>
+          </div>
+        </div>
+        <div class="flex-1 w-full">
+          <div class="bg-white/10 border border-white/20 rounded-3xl p-6 backdrop-blur shadow-glow">
+            <h2 class="text-xl font-semibold mb-4" data-i18n="hero_personal">Your personalized launch checklist</h2>
+            <ul class="space-y-4 text-white/90">
+              <li class="flex items-start gap-3">
+                <span aria-hidden="true">1.</span>
+                <span data-i18n="hero_item1">Pick a program designed for your objectives.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span aria-hidden="true">2.</span>
+                <span data-i18n="hero_item2">Book a 20-minute diagnostic class.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span aria-hidden="true">3.</span>
+                <span data-i18n="hero_item3">Receive a roadmap and resources in your inbox.</span>
+              </li>
+            </ul>
+            <p class="mt-6 text-xs text-white/70">*<span data-i18n="hero_footnote">Based on 2023 BridgeWay learners completing at least 32 guided sessions.</span></p>
+          </div>
+        </div>
+      </div>
+      <button class="absolute left-1/2 -translate-x-1/2 bottom-6 text-white/80 animate-bounce" aria-label="Scroll to next section" data-scroll="#programs" data-testid="scroll-indicator">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7" /></svg>
+      </button>
+    </section>
+
+    <nav class="bg-slate-50 dark:bg-slate-900" aria-label="Breadcrumb">
+      <ol class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-2 text-xs text-slate-500" id="breadcrumbTrail">
+        <li><a href="#home" class="hover:text-bw-way">Home</a></li>
+        <li aria-hidden="true">/</li>
+        <li id="breadcrumbCurrent" class="text-slate-700 dark:text-slate-300">Programs</li>
+      </ol>
+    </nav>
+
+    <section id="resumeBanner" class="hidden bg-gradient-to-r from-bw-way/10 via-white to-bw-bridge/10 dark:from-bw-way/10 dark:via-slate-900 dark:to-bw-bridge/10 border-y border-slate-200 dark:border-slate-800" role="status">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+        <p class="font-semibold" data-i18n="resume_text">Resume your saved level test where you left off.</p>
+        <button id="resumeTest" class="px-4 py-2 rounded-full bg-bw-way text-white font-semibold" data-i18n="resume_cta" data-testid="resume-test">Resume test</button>
+      </div>
+    </section>
+
+    <section id="programs" class="relative py-24 bg-white dark:bg-slate-950">
+      <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-bw-bridge via-indigo-500 to-bw-way"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-bw-bridge dark:text-white" data-i18n="programs_title">Programs built around your objectives</h2>
+            <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl" data-i18n="programs_subtitle">Choose a track and explore the mini-configurator to adapt availability, intensity, and payment. Each card shows live spots.</p>
+          </div>
+          <div class="flex gap-2" role="group" aria-label="Program filters">
+            <button class="program-filter active px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white text-sm" data-filter="all" data-i18n="filter_all" data-testid="filter-all">All</button>
+            <button class="program-filter px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-sm" data-filter="teens" data-i18n="filter_teens" data-testid="filter-teens">Teens</button>
+            <button class="program-filter px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-sm" data-filter="business" data-i18n="filter_business" data-testid="filter-business">Business</button>
+            <button class="program-filter px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-sm" data-filter="exam" data-i18n="filter_exam" data-testid="filter-exam">Exam prep</button>
+          </div>
+        </div>
+        <div class="grid gap-8 lg:grid-cols-3" id="programCards" aria-live="polite"></div>
+        <div class="mt-12 grid lg:grid-cols-2 gap-10">
+          <div class="bg-gradient-to-r from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-card">
+            <h3 class="text-2xl font-semibold" data-i18n="configurator_title">Configure your perfect schedule</h3>
+            <form id="programConfigurator" class="mt-6 space-y-5" data-testid="program-config">
+              <label class="block">
+                <span class="text-sm font-medium" data-i18n="config_goal">Goal</span>
+                <select name="goal" class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-900" required>
+                  <option value="career" data-i18n="config_goal_career">Advance my career</option>
+                  <option value="travel" data-i18n="config_goal_travel">Travel fluently</option>
+                  <option value="exam" data-i18n="config_goal_exam">Pass an international exam</option>
+                </select>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium" data-i18n="config_availability">Availability</span>
+                <input type="range" name="availability" min="2" max="10" step="1" value="4" class="w-full" aria-describedby="availabilityValue" data-testid="config-hours" />
+                <p id="availabilityValue" class="text-xs text-slate-500" data-i18n="config_hours">4 hours/week</p>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium" data-i18n="config_payment">Payment preference</span>
+                <div class="mt-2 flex gap-4">
+                  <label class="flex items-center gap-2">
+                    <input type="radio" name="payment" value="monthly" checked class="text-bw-way" />
+                    <span data-i18n="config_pay_monthly">Monthly</span>
+                  </label>
+                  <label class="flex items-center gap-2">
+                    <input type="radio" name="payment" value="quarterly" class="text-bw-way" />
+                    <span data-i18n="config_pay_quarterly">Quarterly (-12%)</span>
+                  </label>
+                </div>
+              </label>
+              <button type="submit" class="w-full px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-i18n="config_submit" data-testid="config-submit">View suggested plan</button>
+            </form>
+            <div id="configResult" class="mt-6 hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-900/60 p-4" role="status"></div>
+          </div>
+          <div class="bg-gradient-to-br from-bw-bridge/95 via-bw-bridge/80 to-bw-way/90 text-white rounded-3xl p-8 shadow-card">
+            <h3 class="text-2xl font-semibold" data-i18n="faq_title">BridgeWay FAQ</h3>
+            <p class="mt-3 text-white/80" data-i18n="faq_subtitle">Transparent answers to the most common questions.</p>
+            <div class="mt-6 divide-y divide-white/20" id="faqAccordion"></div>
+          </div>
+        </div>
+        <script type="application/ld+json" id="faqSchema"></script>
+      </div>
+    </section>
+
+
+    <section id="methodology" class="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
+      <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-bw-bridge/10 to-transparent"></div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-bw-bridge dark:text-white" data-i18n="method_title">Methodology that guides you step by step</h2>
+          <p class="mt-4 text-slate-600 dark:text-slate-300" data-i18n="method_subtitle">We combine diagnostics, human coaching, and smart technology to make progress inevitable.</p>
+        </div>
+        <div class="relative">
+          <div class="overflow-x-auto" role="list">
+            <ol class="flex gap-6 min-w-full" id="methodTimeline"></ol>
+          </div>
+          <div class="mt-12 grid md:grid-cols-2 gap-8">
+            <div class="bg-white dark:bg-slate-800/80 rounded-3xl p-6 shadow-card">
+              <h3 class="text-xl font-semibold" data-i18n="method_socialproof">+92% move up one level in 12 weeks</h3>
+              <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm" data-i18n="method_footnote">Measured for learners who complete the diagnostic, a minimum of 16 live classes, and continuous feedback loop.</p>
+            </div>
+            <div class="bg-white dark:bg-slate-800/80 rounded-3xl p-6 shadow-card">
+              <h3 class="text-xl font-semibold" data-i18n="method_followup">Follow-up you can feel</h3>
+              <p class="mt-3 text-slate-600 dark:text-slate-300" data-i18n="method_followup_text">Weekly nudges, micro goals, and transparent dashboards keep momentum high and reduce drop-off.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="teachers" class="py-24 bg-white dark:bg-slate-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-bw-bridge dark:text-white" data-i18n="teachers_title">Meet the BridgeWay faculty</h2>
+            <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl" data-i18n="teachers_subtitle">Filter by specialization and languages spoken. Every teacher is certified and records a 20-second intro.</p>
+          </div>
+          <div class="flex flex-wrap gap-3" aria-label="Teacher filters">
+            <select id="filterArea" class="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm" data-testid="filter-area">
+              <option value="all" data-i18n="teacher_area_all">All areas</option>
+              <option value="general" data-i18n="teacher_area_general">General</option>
+              <option value="business" data-i18n="teacher_area_business">Business</option>
+              <option value="exam" data-i18n="teacher_area_exam">Exams</option>
+            </select>
+            <select id="filterCertification" class="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm" data-testid="filter-cert">
+              <option value="all" data-i18n="teacher_cert_all">All certifications</option>
+              <option value="CELTA">CELTA</option>
+              <option value="DELTA">DELTA</option>
+              <option value="MA">MA Applied Linguistics</option>
+            </select>
+            <select id="filterLanguage" class="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm" data-testid="filter-lang">
+              <option value="all" data-i18n="teacher_lang_all">All languages</option>
+              <option value="es">ES</option>
+              <option value="ru">RU</option>
+              <option value="ro">RO</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3" id="teacherGrid" aria-live="polite"></div>
+        <div class="mt-10 text-center">
+          <button class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-modal-open="freeClass" data-i18n="teacher_cta" data-testid="teachers-cta">I want a class with the BridgeWay team</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="levelTest" class="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top,rgba(73,103,228,0.6),transparent_60%)]"></div>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="bg-white dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-card p-8">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+            <div>
+              <h2 class="text-3xl font-bold text-bw-bridge dark:text-white" data-i18n="test_title">Fast, gamified level test</h2>
+              <p class="mt-2 text-slate-600 dark:text-slate-300" data-i18n="test_subtitle">Complete grammar, reading, and speaking in under 10 minutes. We save progress automatically.</p>
+            </div>
+            <button id="startTest" class="px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-i18n="test_start" data-testid="test-start">Start</button>
+          </div>
+          <div class="h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden" aria-hidden="true">
+            <div id="testProgress" class="h-full bg-gradient-to-r from-bw-way to-bw-bridge transition-all" style="width:0%"></div>
+          </div>
+          <div id="testContent" class="mt-8 space-y-6" aria-live="polite">
+            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="test_hint">Press start to begin. Your answers are saved instantly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="py-24 bg-white dark:bg-slate-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-bw-bridge dark:text-white" data-i18n="pricing_title">Transparent pricing & guarantee</h2>
+            <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl" data-i18n="pricing_subtitle">Compare plans, toggle between billing cycles, and calculate the investment per week.</p>
+          </div>
+          <div class="flex items-center gap-3 bg-slate-100/70 dark:bg-slate-800/70 rounded-full px-2 py-1" role="group" data-testid="billing-toggle">
+            <button class="billing-toggle px-4 py-2 rounded-full text-sm font-medium" data-billing="monthly" data-i18n="pricing_monthly">Monthly</button>
+            <button class="billing-toggle px-4 py-2 rounded-full text-sm font-medium" data-billing="quarterly" data-i18n="pricing_quarterly">Quarterly</button>
+          </div>
+        </div>
+        <div class="grid gap-8 lg:grid-cols-3" id="pricingGrid" aria-live="polite"></div>
+        <div class="mt-16 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-start">
+          <div class="bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-card" id="calculator">
+            <h3 class="text-2xl font-semibold" data-i18n="calculator_title">Price calculator</h3>
+            <div class="mt-6 space-y-5">
+              <label class="block">
+                <span class="text-sm font-medium" data-i18n="calculator_tier">Select tier</span>
+                <select id="calcTier" class="mt-1 w-full rounded-xl border-slate-200 dark:border-slate-700" data-testid="calc-tier">
+                  <option value="essential">Essential</option>
+                  <option value="pro">Pro</option>
+                  <option value="premium">Premium</option>
+                </select>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium" data-i18n="calculator_hours">Hours per week</span>
+                <input type="range" id="calcHours" min="1" max="8" value="3" class="w-full" data-testid="calc-hours" />
+                <p id="calcHoursValue" class="text-xs text-slate-500">3 h/week</p>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium" data-i18n="calculator_coupon">Coupon</span>
+                <div class="mt-1 flex gap-2">
+                  <input type="text" id="calcCoupon" class="flex-1 rounded-xl border-slate-200 dark:border-slate-700 uppercase" placeholder="BRIDGE10" data-testid="calc-coupon" />
+                  <button id="applyCoupon" class="px-4 py-2 rounded-xl bg-gradient-to-r from-bw-bridge to-bw-way text-white" data-testid="coupon-apply">Apply</button>
+                </div>
+              </label>
+              <div class="text-sm text-slate-500" data-i18n="calculator_summary">Total includes live classes, missions, and platform license.</div>
+              <dl class="space-y-2 text-sm" id="calcSummary"></dl>
+              <button class="w-full px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" id="calcCTA" data-testid="calc-cta" data-i18n="nav_free_class">Free Class</button>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-bw-bridge to-bw-way text-white rounded-3xl p-8 shadow-card space-y-4">
+            <h3 class="text-xl font-semibold" data-i18n="pricing_guarantee">100% money-back guarantee</h3>
+            <p class="text-white/85" data-i18n="guarantee_text">If you attend all scheduled sessions and complete assigned missions but feel no progress, we refund 100%—or coach you for free for another cycle. Applies within 30 days of purchase.</p>
+            <button class="px-5 py-3 rounded-full bg-white/20 text-white font-semibold" data-modal-open="guarantee" data-testid="guarantee-open">Learn more</button>
+            <p class="text-xs text-white/60 flex items-center gap-2"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg> <span>Visa · MasterCard · PayPal · Stripe</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="resources" class="py-24 bg-slate-50 dark:bg-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-[0.9fr,1fr,1fr] gap-10">
+          <div>
+            <h2 class="text-3xl font-bold text-bw-bridge dark:text-white" data-i18n="resources_title">Resource library</h2>
+            <p class="mt-4 text-slate-600 dark:text-slate-300" data-i18n="resources_subtitle">Search and filter by level, format, and goal. Add favourites to your calendar.</p>
+            <div class="mt-6 space-y-3">
+              <label class="block">
+                <span class="text-sm font-medium" data-i18n="resources_search">Search</span>
+                <input type="search" id="resourceSearch" class="mt-1 w-full rounded-xl border-slate-200 dark:border-slate-700" placeholder="IELTS, phrasal verbs..." autocomplete="off" data-testid="resource-search" />
+              </label>
+              <div class="flex flex-wrap gap-3">
+                <select id="resourceLevel" class="rounded-full border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm" data-testid="resource-level">
+                  <option value="all">All levels</option>
+                  <option value="A2">A2</option>
+                  <option value="B1">B1</option>
+                  <option value="B2">B2</option>
+                  <option value="C1">C1</option>
+                  <option value="C2">C2</option>
+                </select>
+                <select id="resourceType" class="rounded-full border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm" data-testid="resource-type">
+                  <option value="all">All types</option>
+                  <option value="Guide">Guide</option>
+                  <option value="Exercise">Exercise</option>
+                  <option value="Video">Video</option>
+                </select>
+                <select id="resourceGoal" class="rounded-full border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm" data-testid="resource-goal">
+                  <option value="all">All goals</option>
+                  <option value="Work">Work</option>
+                  <option value="Exam">Exam</option>
+                  <option value="Travel">Travel</option>
+                </select>
+              </div>
+              <ul id="resourceAutocomplete" class="hidden mt-2 space-y-2 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-3 text-sm" role="listbox"></ul>
+            </div>
+          </div>
+          <div class="space-y-6" id="resourceList" aria-live="polite"></div>
+          <aside class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-card space-y-4" id="resourceDetail">
+            <h3 class="text-xl font-semibold text-bw-bridge dark:text-white">Resource details</h3>
+            <p class="text-sm text-slate-500">Select a resource to preview the content and related articles.</p>
+            <div id="resourceContent" class="space-y-3 text-sm text-slate-600 dark:text-slate-300"></div>
+            <div>
+              <h4 class="text-sm font-semibold text-bw-way" data-i18n="resources_related">Related resources</h4>
+              <ul id="relatedResources" class="mt-2 space-y-2 text-sm"></ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="thankYou" class="py-24 bg-white dark:bg-slate-950">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 space-y-8">
+          <div>
+            <h2 class="text-3xl font-bold text-bw-bridge dark:text-white" data-i18n="thanks_title">Thank you! You're scheduled.</h2>
+            <p class="mt-2 text-slate-600 dark:text-slate-300" data-i18n="thanks_subtitle">Add the class to your calendar and confirm via WhatsApp so we can assign the right specialist.</p>
+          </div>
+          <div id="appointmentSummary" class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-card text-sm text-slate-600 dark:text-slate-300">
+            <p data-i18n="thanks_placeholder">Once you book a class, the summary appears here.</p>
+          </div>
+          <div class="flex flex-wrap gap-4">
+            <a class="px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" id="addCalendar" href="#" target="_blank" rel="noreferrer" data-i18n="cta_add_calendar" data-testid="calendar-link">Add to calendar</a>
+            <a class="px-5 py-3 rounded-full border border-bw-way text-bw-way font-semibold" id="confirmWhatsapp" href="https://wa.me/1234567890?text=I%20just%20booked%20my%20BridgeWay%20class!" target="_blank" rel="noreferrer" data-i18n="cta_whatsapp" data-testid="thankyou-whatsapp">Confirm via WhatsApp</a>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold" data-i18n="thanks_checklist_title">What to bring to your demo class</h3>
+            <ul class="mt-3 space-y-2 list-disc list-inside text-slate-600 dark:text-slate-300">
+              <li data-i18n="thanks_checklist1">Latest level test result or certificate</li>
+              <li data-i18n="thanks_checklist2">Headset with microphone</li>
+              <li data-i18n="thanks_checklist3">Goals or challenges you want to tackle</li>
+            </ul>
+          </div>
+          <div id="testResultSummary" class="hidden">
+            <h3 class="text-xl font-semibold" data-i18n="thanks_test_title">Your test result</h3>
+            <p id="testLevel" class="mt-2 text-lg font-semibold text-bw-bridge dark:text-white"></p>
+            <ul id="recommendedResources" class="mt-3 space-y-3"></ul>
+            <div class="flex flex-wrap gap-3 mt-4">
+              <button id="downloadResults" class="px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-testid="results-download" data-i18n="result_download">Download results</button>
+              <button id="copyResults" class="px-5 py-3 rounded-full border border-bw-way text-bw-way font-semibold" data-testid="results-copy" data-i18n="result_copy">Copy summary</button>
+            </div>
+            <button class="mt-4 px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-modal-open="freeClass" data-i18n="thanks_cta" data-testid="result-cta">Book your free class for a personalized plan</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gradient-to-r from-bw-bridge via-bw-bridge/80 to-bw-way text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
+        <h2 class="text-3xl font-bold" data-i18n="cta_resources_title">Ready for more?</h2>
+        <p class="text-lg text-white/85" data-i18n="cta_resources_text">Take the test and unlock a tailored study plan with recommended resources.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <button class="px-6 py-3 rounded-full bg-white text-bw-bridge font-semibold" data-scroll="#levelTest" data-i18n="cta_level_test" data-testid="cta-test">Take the level test</button>
+          <button class="px-6 py-3 rounded-full border border-white/60 text-white font-semibold" data-modal-open="freeClass" data-i18n="cta_free_class" data-testid="cta-class">Book your free class</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="bg-slate-900 text-slate-200 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
+      <div>
+        <p class="text-xl font-semibold"><span class="text-white">Bridge</span><span class="text-bw-way">Way</span></p>
+        <p class="mt-3 text-sm text-slate-400" data-i18n="footer_text">BridgeWay connects motivated learners with certified teachers. Remote-first, impact-driven.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-3" data-i18n="footer_links">Quick links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#programs" class="hover:text-white" data-i18n="nav_programs">Programs</a></li>
+          <li><a href="#pricing" class="hover:text-white" data-i18n="nav_pricing">Pricing</a></li>
+          <li><a href="#resources" class="hover:text-white" data-i18n="nav_resources">Resources</a></li>
+          <li><a href="#levelTest" class="hover:text-white" data-i18n="cta_level_test">Take the level test</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-3" data-i18n="footer_contact">Contact</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="mailto:hello@bridgeway.ac" class="hover:text-white">hello@bridgeway.ac</a></li>
+          <li><a href="tel:+1234567890" class="hover:text-white">+1 234 567 890</a></li>
+          <li><a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" class="hover:text-white">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 text-center text-xs text-slate-500">© <span id="year"></span> BridgeWay Academy. All rights reserved.</div>
+  </footer>
+
+  <div class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur p-4" id="freeClassModal" role="dialog" aria-modal="true" aria-labelledby="freeClassTitle">
+    <div class="relative max-w-2xl w-full bg-white dark:bg-slate-950 rounded-3xl p-6 md:p-8 shadow-card overflow-y-auto max-h-[90vh]">
+      <button class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800" data-modal-close aria-label="Close form">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 18 12-12M6 6l12 12"/></svg>
+      </button>
+      <div class="flex flex-col gap-6">
+        <div>
+          <h2 id="freeClassTitle" class="text-2xl font-bold text-bw-bridge dark:text-white" data-i18n="modal_title">Book your free class</h2>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="modal_subtitle">Complete the form in under 20 seconds. We hold the slot for 10 minutes.</p>
+        </div>
+        <form id="freeClassForm" class="space-y-4" novalidate data-testid="freeclass-form">
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="block">
+              <span class="text-sm font-medium" data-i18n="form_name">Name</span>
+              <input type="text" name="name" required autocomplete="name" class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700" />
+              <p class="mt-1 text-xs text-red-500 hidden" data-error="name"></p>
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium" data-i18n="form_email">Email</span>
+              <input type="email" name="email" required autocomplete="email" class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700" />
+              <p class="mt-1 text-xs text-red-500 hidden" data-error="email"></p>
+            </label>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="block">
+              <span class="text-sm font-medium" data-i18n="form_phone">Phone</span>
+              <input type="tel" name="phone" inputmode="tel" pattern="^[0-9+()\s-]{6,}$" required class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700" />
+              <p class="mt-1 text-xs text-red-500 hidden" data-error="phone"></p>
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium" data-i18n="form_goal">Goal</span>
+              <select name="goal" class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700">
+                <option value="career" data-i18n="form_goal_career">Career</option>
+                <option value="exam" data-i18n="form_goal_exam">Exam prep</option>
+                <option value="travel" data-i18n="form_goal_travel">Travel</option>
+              </select>
+            </label>
+          </div>
+          <label class="block">
+            <span class="text-sm font-medium" data-i18n="form_age">Age (if for kids)</span>
+            <input type="number" name="age" min="6" max="70" class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700" />
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium" data-i18n="form_date">Choose a date</span>
+            <input type="date" name="date" required class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700" />
+            <p class="mt-1 text-xs text-red-500 hidden" data-error="date"></p>
+          </label>
+          <fieldset class="border border-slate-200 dark:border-slate-700 rounded-2xl p-4">
+            <legend class="px-2 text-sm font-medium" data-i18n="form_slot">Pick a 20-min slot</legend>
+            <div class="grid sm:grid-cols-3 gap-3" id="slotGrid"></div>
+            <p class="mt-2 text-xs text-red-500 hidden" data-error="slot"></p>
+          </fieldset>
+          <button type="submit" class="w-full px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-i18n="modal_submit" data-testid="freeclass-submit">Confirm booking</button>
+        </form>
+        <div class="hidden" id="formSuccess">
+          <h3 class="text-xl font-semibold text-bw-way" data-i18n="modal_success_title">You are all set!</h3>
+          <p class="mt-2 text-sm" data-i18n="modal_success_text">We are redirecting you to the summary below. Check your inbox for confirmation and WhatsApp for reminders.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur p-4" id="guaranteeModal" role="dialog" aria-modal="true" aria-labelledby="guaranteeTitle">
+    <div class="relative max-w-xl w-full bg-white dark:bg-slate-950 rounded-3xl p-6 md:p-8 shadow-card">
+      <button class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800" data-modal-close aria-label="Close">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m6 18 12-12M6 6l12 12"/></svg>
+      </button>
+      <h2 id="guaranteeTitle" class="text-2xl font-bold text-bw-bridge dark:text-white" data-i18n="guarantee_title">Our guarantee</h2>
+      <p class="mt-4 text-slate-600 dark:text-slate-300" data-i18n="guarantee_text">If you attend all scheduled sessions and complete assigned missions but feel no progress, we refund 100%—or coach you for free for another cycle. Applies within 30 days of purchase.</p>
+    </div>
+  </div>
+
+  <div class="fixed bottom-24 right-6 z-40">
+    <button id="chatToggle" class="px-4 py-3 rounded-full shadow-card bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-testid="chat-toggle">BridgeWay bot</button>
+    <div id="chatWidget" class="hidden mt-3 w-72 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-card overflow-hidden">
+      <div class="px-4 py-3 bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-i18n="chat_title">Need assistance?</div>
+      <div class="p-4 space-y-4 text-sm text-slate-600 dark:text-slate-300">
+        <p data-i18n="chat_intro">Select a quick option or type a keyword.</p>
+        <div class="flex flex-wrap gap-2">
+          <button class="chat-quick px-3 py-2 rounded-full bg-slate-100 dark:bg-slate-800" data-key="class" data-i18n="chat_class" data-testid="chat-class">Book class</button>
+          <button class="chat-quick px-3 py-2 rounded-full bg-slate-100 dark:bg-slate-800" data-key="test" data-i18n="chat_test" data-testid="chat-test">Level test</button>
+          <button class="chat-quick px-3 py-2 rounded-full bg-slate-100 dark:bg-slate-800" data-key="question" data-i18n="chat_question" data-testid="chat-question">Quick question</button>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-3" id="chatResponses" role="status"></div>
+        <label class="block">
+          <span class="sr-only">Chat input</span>
+          <input type="text" id="chatInput" class="w-full rounded-full border border-slate-200 dark:border-slate-700 px-3 py-2" placeholder="Type price, company, kids..." />
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <button id="backToTop" class="fixed bottom-28 left-4 hidden p-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white shadow-card" aria-label="Back to top" data-testid="back-to-top">
+    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 15 7-7 7 7" /></svg>
+  </button>
+  <div id="toast" class="fixed top-28 right-6 hidden px-4 py-3 rounded-full bg-bw-way text-white shadow-card" role="status" aria-live="polite"></div>
+
+
+  <aside id="adminDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white dark:bg-slate-950 border-l border-slate-200 dark:border-slate-800 shadow-card z-50 translate-x-full transition-transform duration-300 overflow-y-auto">
+    <div class="p-6 space-y-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-semibold text-bw-bridge dark:text-white">Admin</h2>
+          <p class="text-xs text-slate-500" data-i18n="admin_hint">Press Shift+L to toggle.</p>
+        </div>
+        <button id="closeAdmin" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800" aria-label="Close admin" data-testid="admin-close">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m6 18 12-12M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <section>
+        <h3 class="text-sm font-semibold text-slate-500 uppercase" data-i18n="admin_variant">Hero variant</h3>
+        <div class="mt-3 flex gap-2">
+          <button class="variant-toggle px-3 py-2 rounded-full border border-slate-200 dark:border-slate-700" data-variant="A">A</button>
+          <button class="variant-toggle px-3 py-2 rounded-full border border-slate-200 dark:border-slate-700" data-variant="B">B</button>
+        </div>
+      </section>
+      <section>
+        <h3 class="text-sm font-semibold text-slate-500 uppercase" data-i18n="admin_leads">Leads</h3>
+        <div class="space-y-3">
+          <button id="exportLeads" class="px-3 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white text-sm" data-testid="admin-export-leads">Export (.json)</button>
+          <ul id="leadList" class="space-y-2 text-xs text-slate-500 max-h-40 overflow-y-auto"></ul>
+        </div>
+      </section>
+      <section>
+        <h3 class="text-sm font-semibold text-slate-500 uppercase" data-i18n="admin_results">Test results</h3>
+        <div class="space-y-3">
+          <button id="exportResults" class="px-3 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white text-sm" data-testid="admin-export-results">Export (.json)</button>
+          <ul id="resultList" class="space-y-2 text-xs text-slate-500 max-h-40 overflow-y-auto"></ul>
+        </div>
+      </section>
+      <section>
+        <h3 class="text-sm font-semibold text-slate-500 uppercase" data-i18n="admin_flags">Feature flags</h3>
+        <div class="space-y-2 text-sm">
+          <label class="flex items-center gap-2"><input type="checkbox" data-flag="exitIntent" /> <span data-i18n="flag_exit">Exit intent banner</span></label>
+          <label class="flex items-center gap-2"><input type="checkbox" data-flag="stickyOffer" /> <span data-i18n="flag_sticky">Sticky offer bar</span></label>
+          <label class="flex items-center gap-2"><input type="checkbox" data-flag="speechInput" /> <span data-i18n="flag_speech">Speech input</span></label>
+        </div>
+      </section>
+      <section>
+        <h3 class="text-sm font-semibold text-slate-500 uppercase" data-i18n="admin_testers">QA tools</h3>
+        <div class="flex flex-wrap gap-2">
+          <button id="triggerConfetti" class="px-3 py-2 rounded-full border border-slate-200 dark:border-slate-700" data-testid="admin-confetti">🎉 Confetti</button>
+          <button id="triggerToast" class="px-3 py-2 rounded-full border border-slate-200 dark:border-slate-700" data-testid="admin-toast">Toast</button>
+          <button id="retryQueued" class="px-3 py-2 rounded-full border border-slate-200 dark:border-slate-700" data-testid="admin-retry">Retry queued</button>
+        </div>
+      </section>
+    </div>
+  </aside>
+
+  <div id="adminOverlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur z-40 hidden"></div>
+
+  <script type="application/json" id="pwaManifest">{"name":"BridgeWay","short_name":"BridgeWay","start_url":"./","display":"standalone","background_color":"#0A0F4C","theme_color":"#0A0F4C"}</script>
+
   <script>
-    // Mobile nav toggle
-    document.getElementById('menuBtn').addEventListener('click', () => {
-      const nav = document.getElementById('mobileNav');
-      nav.classList.toggle('hidden');
-    });
+const CRM_WEBHOOK_URL = window.CRM_WEBHOOK_URL || '';
+const EMAIL_WEBHOOK_URL = window.EMAIL_WEBHOOK_URL || '';
+const ANALYTICS_ID = window.ANALYTICS_ID || 'G-XXXXXXX';
+window.dataLayer = window.dataLayer || [];
+const i18n = {
+  "en": {
+    "nav_home": "Home",
+    "nav_programs": "Programs",
+    "nav_methodology": "Methodology",
+    "nav_teachers": "Teachers",
+    "nav_pricing": "Pricing",
+    "nav_resources": "Resources",
+    "nav_free_class": "Free Class",
+    "cta_free_class": "Book your free class",
+    "cta_level_test": "Take the level test",
+    "cta_plan_companies": "Plan for companies",
+    "cta_add_calendar": "Add to calendar",
+    "cta_whatsapp": "Confirm via WhatsApp",
+    "hero_title": "Bridge your English to the world.",
+    "hero_subtitle": "Personalized online English programs that adapt to your goals, pace, and schedule with a proven methodology.",
+    "hero_stat1": "of learners move up one CEFR level in 12 weeks*",
+    "hero_stat2": "access to resources & chat support",
+    "hero_personal": "Your personalized launch checklist",
+    "hero_item1": "Pick a program designed for your objectives.",
+    "hero_item2": "Book a 20-minute diagnostic class.",
+    "hero_item3": "Receive a roadmap and resources in your inbox.",
+    "hero_footnote": "Based on 2023 BridgeWay learners completing at least 32 guided sessions.",
+    "resume_text": "Resume your saved level test where you left off.",
+    "resume_cta": "Resume test",
+    "programs_title": "Programs built around your objectives",
+    "programs_subtitle": "Choose a track and explore the mini-configurator to adapt availability, intensity, and payment. Each card shows live spots.",
+    "filter_all": "All",
+    "filter_teens": "Teens",
+    "filter_business": "Business",
+    "filter_exam": "Exam prep",
+    "configurator_title": "Configure your perfect schedule",
+    "config_goal": "Goal",
+    "config_goal_career": "Advance my career",
+    "config_goal_travel": "Travel fluently",
+    "config_goal_exam": "Pass an international exam",
+    "config_availability": "Availability",
+    "config_hours": "4 hours/week",
+    "config_payment": "Payment preference",
+    "config_pay_monthly": "Monthly",
+    "config_pay_quarterly": "Quarterly (-12%)",
+    "config_submit": "View suggested plan",
+    "faq_title": "BridgeWay FAQ",
+    "faq_subtitle": "Transparent answers to the most common questions.",
+    "method_title": "Methodology that guides you step by step",
+    "method_subtitle": "We combine diagnostics, human coaching, and smart technology to make progress inevitable.",
+    "method_socialproof": "+92% move up one level in 12 weeks",
+    "method_footnote": "Measured for learners who complete the diagnostic, a minimum of 16 live classes, and continuous feedback loop.",
+    "method_followup": "Follow-up you can feel",
+    "method_followup_text": "Weekly nudges, micro goals, and transparent dashboards keep momentum high and reduce drop-off.",
+    "teachers_title": "Meet the BridgeWay faculty",
+    "teachers_subtitle": "Filter by specialization and languages spoken. Every teacher is certified and records a 20-second intro.",
+    "teacher_area_all": "All areas",
+    "teacher_area_general": "General",
+    "teacher_area_business": "Business",
+    "teacher_area_exam": "Exams",
+    "teacher_cert_all": "All certifications",
+    "teacher_lang_all": "All languages",
+    "teacher_cta": "I want a class with the BridgeWay team",
+    "test_title": "Fast, gamified level test",
+    "test_subtitle": "Complete grammar, reading, and speaking in under 10 minutes. We save progress automatically.",
+    "test_start": "Start",
+    "test_hint": "Press start to begin. Your answers are saved instantly.",
+    "test_progress": "Progress",
+    "test_result": "Result",
+    "pricing_title": "Transparent pricing & guarantee",
+    "pricing_subtitle": "Compare plans, toggle between billing cycles, and calculate the investment per week.",
+    "pricing_monthly": "Monthly",
+    "pricing_quarterly": "Quarterly",
+    "pricing_addon": "Add live pronunciation labs anytime.",
+    "pricing_guarantee": "100% money-back guarantee",
+    "calculator_title": "Price calculator",
+    "calculator_hours": "Hours per week",
+    "calculator_rate": "Hourly rate (€)",
+    "calculator_weeks": "Weeks",
+    "resources_title": "Resource library",
+    "resources_subtitle": "Search and filter by level, format, and goal. Add favourites to your calendar.",
+    "resources_search": "Search",
+    "thanks_title": "Thank you! You",
+    "thanks_subtitle": "Add the class to your calendar and confirm via WhatsApp so we can assign the right specialist.",
+    "thanks_placeholder": "Once you book a class, the summary appears here.",
+    "thanks_checklist_title": "What to bring to your demo class",
+    "thanks_checklist1": "Latest level test result or certificate",
+    "thanks_checklist2": "Headset with microphone",
+    "thanks_checklist3": "Goals or challenges you want to tackle",
+    "thanks_test_title": "Your test result",
+    "thanks_cta": "Book your free class for a personalized plan",
+    "cta_resources_title": "Ready for more?",
+    "cta_resources_text": "Take the test and unlock a tailored study plan with recommended resources.",
+    "footer_text": "BridgeWay connects motivated learners with certified teachers. Remote-first, impact-driven.",
+    "footer_links": "Quick links",
+    "footer_contact": "Contact",
+    "label_language": "Language",
+    "modal_title": "Book your free class",
+    "modal_subtitle": "Complete the form in under 20 seconds. We hold the slot for 10 minutes.",
+    "form_name": "Name",
+    "form_email": "Email",
+    "form_phone": "Phone",
+    "form_goal": "Goal",
+    "form_goal_career": "Career",
+    "form_goal_exam": "Exam prep",
+    "form_goal_travel": "Travel",
+    "form_age": "Age (if for kids)",
+    "form_date": "Choose a date",
+    "form_slot": "Pick a 20-min slot",
+    "modal_submit": "Confirm booking",
+    "modal_success_title": "You are all set!",
+    "modal_success_text": "We are redirecting you to the summary below. Check your inbox for confirmation and WhatsApp for reminders.",
+    "chat_title": "Need assistance?",
+    "chat_intro": "Select a quick option or type a keyword.",
+    "chat_class": "Book class",
+    "chat_test": "Level test",
+    "chat_question": "Quick question",
+    "guarantee_title": "Our guarantee",
+    "guarantee_text": "If you attend all scheduled sessions and complete assigned missions but feel no progress, we refund 100%—or coach you for free for another cycle. Applies within 30 days of purchase.",
+    "consent_message": "BridgeWay uses cookies for analytics. Accept to enable GA4 tracking events.",
+    "consent_accept": "Accept",
+    "consent_decline": "Decline",
+    "admin_hint": "Press Shift+L to toggle.",
+    "admin_variant": "Hero variant",
+    "admin_leads": "Leads",
+    "admin_results": "Test results",
+    "admin_flags": "Feature flags",
+    "admin_testers": "QA tools",
+    "flag_exit": "Exit intent banner",
+    "flag_sticky": "Sticky offer bar",
+    "flag_speech": "Speech input",
+    "sticky_offer": "Spring promo: use BRIDGE10 for -10%.",
+    "exit_message": "Still deciding? Grab your free class slot while it's available.",
+    "exit_close": "Close",
+    "resources_related": "Related resources",
+    "calculator_tier": "Select tier",
+    "calculator_coupon": "Coupon",
+    "calculator_summary": "Total includes live classes, missions, and platform license.",
+    "toast_saved": "Saved!",
+    "toast_error": "Something went wrong. Saved for retry.",
+    "result_download": "Download results",
+    "result_copy": "Copy summary",
+    "result_copied": "Copied!",
+    "admin_export_success": "Export ready",
+    "admin_retry_done": "Retry sent",
+    "resources_no_results": "No resources found. Try another filter.",
+    "admin_variant_applied": "Variant applied",
+    "form_error_required": "Required field",
+    "form_error_email": "Enter a valid email",
+    "form_error_phone": "Enter a valid phone number",
+    "form_error_slot": "Select a time slot",
+    "form_error_date": "Choose a valid date"
+  },
+  "ru": {
+    "nav_home": "Главная",
+    "nav_programs": "Программы",
+    "nav_methodology": "Методика",
+    "nav_teachers": "Преподаватели",
+    "nav_pricing": "Цены",
+    "nav_resources": "Ресурсы",
+    "nav_free_class": "Бесплатный урок",
+    "cta_free_class": "Запишись на бесплатный урок",
+    "cta_level_test": "Пройди тест на уровень",
+    "cta_plan_companies": "План для компаний",
+    "cta_add_calendar": "Добавить в календарь",
+    "cta_whatsapp": "Подтвердить в WhatsApp",
+    "hero_title": "Выведи свой английский на новый уровень.",
+    "hero_subtitle": "Персональные онлайн-программы английского под твои цели, темп и график — с доказанной методикой.",
+    "hero_stat1": "учеников переходят на новый уровень CEFR за 12 недель*",
+    "hero_stat2": "доступ к ресурсам и чату 24/7",
+    "hero_personal": "Твой стартовый чек-лист",
+    "hero_item1": "Выбери программу под твои задачи.",
+    "hero_item2": "Забронируй 20-минутный диагностический урок.",
+    "hero_item3": "Получай дорожную карту и ресурсы на почту.",
+    "hero_footnote": "По данным BridgeWay 2023 при прохождении минимум 32 занятий.",
+    "resume_text": "Продолжи сохраненный тест с того места, где остановился.",
+    "resume_cta": "Продолжить тест",
+    "programs_title": "Программы под твои цели",
+    "programs_subtitle": "Выбери направление и настрой интенсивность, расписание и оплату. Каждая карточка показывает свободные места.",
+    "filter_all": "Все",
+    "filter_teens": "Подростки",
+    "filter_business": "Бизнес",
+    "filter_exam": "Экзамен",
+    "configurator_title": "Настрой идеальное расписание",
+    "config_goal": "Цель",
+    "config_goal_career": "Карьерный рост",
+    "config_goal_travel": "Путешествия без стресса",
+    "config_goal_exam": "Сдать международный экзамен",
+    "config_availability": "Занятость",
+    "config_hours": "4 часа/неделя",
+    "config_payment": "Способ оплаты",
+    "config_pay_monthly": "Ежемесячно",
+    "config_pay_quarterly": "Ежеквартально (-12%)",
+    "config_submit": "Подобрать план",
+    "faq_title": "FAQ BridgeWay",
+    "faq_subtitle": "Прозрачные ответы на популярные вопросы.",
+    "method_title": "Методика по шагам",
+    "method_subtitle": "Диагностика, человеческий коучинг и технологии — прогресс неизбежен.",
+    "method_socialproof": "+92% переходят на новый уровень за 12 недель",
+    "method_footnote": "Среди учеников, прошедших диагностику, 16+ занятий и обратную связь.",
+    "method_followup": "Ощутимая поддержка",
+    "method_followup_text": "Еженедельные напоминания, микрозадачи и прозрачные панели снижают отток.",
+    "teachers_title": "Команда BridgeWay",
+    "teachers_subtitle": "Фильтруй по специализации и языкам. Каждый преподаватель сертифицирован и записал 20-секундное интро.",
+    "teacher_area_all": "Все направления",
+    "teacher_area_general": "Общий",
+    "teacher_area_business": "Бизнес",
+    "teacher_area_exam": "Экзамены",
+    "teacher_cert_all": "Все сертификаты",
+    "teacher_lang_all": "Все языки",
+    "teacher_cta": "Хочу урок с командой BridgeWay",
+    "test_title": "Быстрый геймифицированный тест",
+    "test_subtitle": "Грамматика, чтение и говорение менее чем за 10 минут. Прогресс сохраняется автоматически.",
+    "test_start": "Начать",
+    "test_hint": "Нажми «Начать», чтобы стартовать. Ответы сохраняются сразу.",
+    "test_progress": "Прогресс",
+    "test_result": "Результат",
+    "pricing_title": "Прозрачные цены и гарантия",
+    "pricing_subtitle": "Сравни планы, выбери биллинг и рассчитай инвестиции в неделю.",
+    "pricing_monthly": "Ежемесячно",
+    "pricing_quarterly": "Ежеквартально",
+    "pricing_addon": "Добавляй произносительные лаборатории в любое время.",
+    "pricing_guarantee": "100% гарантия возврата",
+    "calculator_title": "Калькулятор стоимости",
+    "calculator_hours": "Часов в неделю",
+    "calculator_rate": "Стоимость часа (€)",
+    "calculator_weeks": "Недель",
+    "resources_title": "Библиотека ресурсов",
+    "resources_subtitle": "Ищи и фильтруй по уровню, формату и цели. Добавляй избранное в календарь.",
+    "resources_search": "Поиск",
+    "thanks_title": "Спасибо! Встреча назначена.",
+    "thanks_subtitle": "Добавь урок в календарь и подтверди через WhatsApp, чтобы мы подобрали эксперта.",
+    "thanks_placeholder": "После бронирования здесь появится сводка.",
+    "thanks_checklist_title": "Что взять на демо-урок",
+    "thanks_checklist1": "Свежий результат теста или сертификат",
+    "thanks_checklist2": "Гарнитура с микрофоном",
+    "thanks_checklist3": "Цели или сложности, которые хочешь решить",
+    "thanks_test_title": "Результат теста",
+    "thanks_cta": "Запишись на бесплатный урок для персонального плана",
+    "cta_resources_title": "Готов к следующему шагу?",
+    "cta_resources_text": "Пройди тест и получи персональный план со связанными материалами.",
+    "footer_text": "BridgeWay соединяет мотивированных учеников с сертифицированными преподавателями. Работаем удаленно и на результат.",
+    "footer_links": "Быстрые ссылки",
+    "footer_contact": "Контакты",
+    "label_language": "Язык",
+    "modal_title": "Запишись на бесплатный урок",
+    "modal_subtitle": "Заполни форму меньше чем за 20 секунд. Мы удержим слот 10 минут.",
+    "form_name": "Имя",
+    "form_email": "Email",
+    "form_phone": "Телефон",
+    "form_goal": "Цель",
+    "form_goal_career": "Карьера",
+    "form_goal_exam": "Экзамен",
+    "form_goal_travel": "Путешествия",
+    "form_age": "Возраст (для детей)",
+    "form_date": "Выбери дату",
+    "form_slot": "Выбери 20-минутное окно",
+    "modal_submit": "Подтвердить запись",
+    "modal_success_title": "Готово!",
+    "modal_success_text": "Мы перенаправим вас к сводке ниже. Проверьте почту и WhatsApp для подтверждения.",
+    "chat_title": "Нужна помощь?",
+    "chat_intro": "Выберите быстрый вариант или введите ключевое слово.",
+    "chat_class": "Запись на урок",
+    "chat_test": "Тест уровня",
+    "chat_question": "Быстрый вопрос",
+    "guarantee_title": "Наша гарантия",
+    "guarantee_text": "Если ты посещаешь все занятия и выполняешь задания, но не чувствуешь прогресса, мы вернем 100% или обучим бесплатно еще один цикл. Действует 30 дней.",
+    "consent_message": "BridgeWay использует cookie только для аналитики. Примите, чтобы включить события GA4.",
+    "consent_accept": "Принять",
+    "consent_decline": "Отклонить",
+    "admin_hint": "Нажмите Shift+L, чтобы открыть.",
+    "admin_variant": "Вариант хиро",
+    "admin_leads": "Лиды",
+    "admin_results": "Результаты теста",
+    "admin_flags": "Флаги функций",
+    "admin_testers": "Инструменты QA",
+    "flag_exit": "Баннер при уходе",
+    "flag_sticky": "Фиксированная плашка",
+    "flag_speech": "Распознавание речи",
+    "sticky_offer": "Весенняя акция: используйте BRIDGE10 и получите -10%.",
+    "exit_message": "Все еще сомневаетесь? Забронируйте бесплатный урок, пока слот свободен.",
+    "exit_close": "Закрыть",
+    "resources_related": "Похожие материалы",
+    "calculator_tier": "Выберите тариф",
+    "calculator_coupon": "Промокод",
+    "calculator_summary": "Сумма включает живые уроки, миссии и доступ к платформе.",
+    "toast_saved": "Сохранено!",
+    "toast_error": "Что-то пошло не так. Сохранили для повтора.",
+    "result_download": "Скачать результаты",
+    "result_copy": "Скопировать резюме",
+    "result_copied": "Скопировано!",
+    "admin_export_success": "Экспорт готов",
+    "admin_retry_done": "Повтор отправлен",
+    "resources_no_results": "Материалы не найдены. Попробуйте другой фильтр.",
+    "admin_variant_applied": "Вариант применен",
+    "form_error_required": "Обязательное поле",
+    "form_error_email": "Введите корректный email",
+    "form_error_phone": "Введите корректный телефон",
+    "form_error_slot": "Выберите время",
+    "form_error_date": "Выберите дату"
+  },
+  "ro": {
+    "nav_home": "Acasă",
+    "nav_programs": "Programe",
+    "nav_methodology": "Metodologie",
+    "nav_teachers": "Profesori",
+    "nav_pricing": "Prețuri",
+    "nav_resources": "Resurse",
+    "nav_free_class": "Lecție gratuită",
+    "cta_free_class": "Programează lecția gratuită",
+    "cta_level_test": "Fă testul de nivel",
+    "cta_plan_companies": "Plan pentru companii",
+    "cta_add_calendar": "Adaugă în calendar",
+    "cta_whatsapp": "Confirmă pe WhatsApp",
+    "hero_title": "Leagă-ți engleza de restul lumii.",
+    "hero_subtitle": "Programe online personalizate de engleză care se adaptează obiectivelor, ritmului și programului tău, cu o metodologie dovedită.",
+    "hero_stat1": "dintre cursanți urcă un nivel CEFR în 12 săptămâni*",
+    "hero_stat2": "acces la resurse și suport chat non-stop",
+    "hero_personal": "Lista ta de pornire personalizată",
+    "hero_item1": "Alege un program creat pentru obiectivele tale.",
+    "hero_item2": "Rezervă o lecție diagnostic de 20 de minute.",
+    "hero_item3": "Primește un plan și resurse pe email.",
+    "hero_footnote": "Bazat pe cursanții BridgeWay din 2023 care au finalizat cel puțin 32 de sesiuni.",
+    "resume_text": "Reia testul salvat de unde l-ai lăsat.",
+    "resume_cta": "Reia testul",
+    "programs_title": "Programe adaptate obiectivelor tale",
+    "programs_subtitle": "Alege traseul și folosește configuratorul pentru a regla disponibilitatea, intensitatea și plata. Fiecare card arată locurile libere.",
+    "filter_all": "Toate",
+    "filter_teens": "Adolescenți",
+    "filter_business": "Business",
+    "filter_exam": "Examene",
+    "configurator_title": "Configurează-ți programul perfect",
+    "config_goal": "Obiectiv",
+    "config_goal_career": "Avans profesional",
+    "config_goal_travel": "Călătorii fluente",
+    "config_goal_exam": "Trecerea unui examen internațional",
+    "config_availability": "Disponibilitate",
+    "config_hours": "4 ore/săptămână",
+    "config_payment": "Preferință de plată",
+    "config_pay_monthly": "Lunar",
+    "config_pay_quarterly": "Trimestrial (-12%)",
+    "config_submit": "Vezi planul propus",
+    "faq_title": "Întrebări frecvente BridgeWay",
+    "faq_subtitle": "Răspunsuri transparente la cele mai comune întrebări.",
+    "method_title": "Metodologie ghidată pas cu pas",
+    "method_subtitle": "Combinăm diagnosticarea, coaching-ul uman și tehnologia inteligentă pentru un progres inevitabil.",
+    "method_socialproof": "+92% urcă un nivel în 12 săptămâni",
+    "method_footnote": "Măsurat pentru cursanții care finalizează diagnosticul, minimum 16 lecții live și feedback continuu.",
+    "method_followup": "Urmărire pe care o simți",
+    "method_followup_text": "Împingeri săptămânale, micro-obiective și panouri transparente mențin ritmul și reduc abandonul.",
+    "teachers_title": "Cunoaște echipa BridgeWay",
+    "teachers_subtitle": "Filtrează după specializare și limbile vorbite. Fiecare profesor este certificat și are un intro de 20 de secunde.",
+    "teacher_area_all": "Toate ariile",
+    "teacher_area_general": "General",
+    "teacher_area_business": "Business",
+    "teacher_area_exam": "Examene",
+    "teacher_cert_all": "Toate certificările",
+    "teacher_lang_all": "Toate limbile",
+    "teacher_cta": "Vreau o lecție cu echipa BridgeWay",
+    "test_title": "Test rapid și gamificat",
+    "test_subtitle": "Gramatica, citirea și vorbirea în mai puțin de 10 minute. Progresul se salvează automat.",
+    "test_start": "Start",
+    "test_hint": "Apasă „Start” pentru a începe. Răspunsurile se salvează instant.",
+    "test_progress": "Progres",
+    "test_result": "Rezultat",
+    "pricing_title": "Prețuri transparente & garanție",
+    "pricing_subtitle": "Compară planurile, schimbă ciclul de facturare și calculează investiția săptămânală.",
+    "pricing_monthly": "Lunar",
+    "pricing_quarterly": "Trimestrial",
+    "pricing_addon": "Adaugă laboratoare de pronunție oricând.",
+    "pricing_guarantee": "Garanție 100% rambursare",
+    "calculator_title": "Calculator de preț",
+    "calculator_hours": "Ore pe săptămână",
+    "calculator_rate": "Tarif orar (€)",
+    "calculator_weeks": "Săptămâni",
+    "resources_title": "Bibliotecă de resurse",
+    "resources_subtitle": "Caută și filtrează după nivel, format și obiectiv. Adaugă favoritele în calendar.",
+    "resources_search": "Căutare",
+    "thanks_title": "Mulțumim! Programarea este confirmată.",
+    "thanks_subtitle": "Adaugă lecția în calendar și confirmă pe WhatsApp pentru a primi profesorul potrivit.",
+    "thanks_placeholder": "După rezervare, sumarul apare aici.",
+    "thanks_checklist_title": "Ce să aduci la lecția demo",
+    "thanks_checklist1": "Ultimul rezultat de test sau certificat",
+    "thanks_checklist2": "Căști cu microfon",
+    "thanks_checklist3": "Obiective sau provocări pe care vrei să le abordezi",
+    "thanks_test_title": "Rezultatul testului",
+    "thanks_cta": "Programează lecția gratuită pentru un plan personalizat",
+    "cta_resources_title": "Pregătit pentru mai mult?",
+    "cta_resources_text": "Fă testul și descoperă un plan de studiu cu resurse recomandate.",
+    "footer_text": "BridgeWay conectează cursanți motivați cu profesori certificați. Remote-first, orientați spre impact.",
+    "footer_links": "Linkuri rapide",
+    "footer_contact": "Contact",
+    "label_language": "Limbă",
+    "modal_title": "Programează lecția gratuită",
+    "modal_subtitle": "Completează formularul în mai puțin de 20 de secunde. Păstrăm slotul 10 minute.",
+    "form_name": "Nume",
+    "form_email": "Email",
+    "form_phone": "Telefon",
+    "form_goal": "Obiectiv",
+    "form_goal_career": "Carieră",
+    "form_goal_exam": "Examen",
+    "form_goal_travel": "Călătorii",
+    "form_age": "Vârstă (pentru copii)",
+    "form_date": "Alege data",
+    "form_slot": "Alege intervalul de 20 de minute",
+    "modal_submit": "Confirmă rezervarea",
+    "modal_success_title": "Totul este gata!",
+    "modal_success_text": "Te redirecționăm către sumarul de mai jos. Verifică emailul și WhatsApp pentru confirmare.",
+    "chat_title": "Ai nevoie de ajutor?",
+    "chat_intro": "Alege o opțiune rapidă sau scrie un cuvânt cheie.",
+    "chat_class": "Rezervă lecție",
+    "chat_test": "Test de nivel",
+    "chat_question": "Întrebare rapidă",
+    "guarantee_title": "Garanția noastră",
+    "guarantee_text": "Dacă participi la toate sesiunile și finalizezi misiunile dar nu simți progres, rambursăm 100% sau te coach-uim gratuit încă un ciclu. Valabil 30 de zile.",
+    "consent_message": "BridgeWay folosește cookie-uri pentru analiză. Acceptă pentru a activa evenimentele GA4.",
+    "consent_accept": "Accept",
+    "consent_decline": "Refuz",
+    "admin_hint": "Apasă Shift+L pentru a comuta.",
+    "admin_variant": "Variantă hero",
+    "admin_leads": "Lead-uri",
+    "admin_results": "Rezultate test",
+    "admin_flags": "Flag-uri funcționalități",
+    "admin_testers": "Instrumente QA",
+    "flag_exit": "Banner intenție ieșire",
+    "flag_sticky": "Bară ofertă fixă",
+    "flag_speech": "Input vocal",
+    "sticky_offer": "Promoție de primăvară: folosește BRIDGE10 pentru -10%.",
+    "exit_message": "Încă te gândești? Rezervă lecția gratuită cât timp slotul e liber.",
+    "exit_close": "Închide",
+    "resources_related": "Resurse asociate",
+    "calculator_tier": "Alege pachetul",
+    "calculator_coupon": "Cupon",
+    "calculator_summary": "Totalul include lecții live, misiuni și licența platformei.",
+    "toast_saved": "Salvat!",
+    "toast_error": "Ceva nu a mers. Am salvat pentru retry.",
+    "result_download": "Descarcă rezultatele",
+    "result_copy": "Copiază rezumatul",
+    "result_copied": "Copiat!",
+    "admin_export_success": "Export gata",
+    "admin_retry_done": "Retry trimis",
+    "resources_no_results": "Nu s-au găsit resurse. Încearcă alt filtru.",
+    "admin_variant_applied": "Variantă aplicată",
+    "form_error_required": "Câmp obligatoriu",
+    "form_error_email": "Introdu un email valid",
+    "form_error_phone": "Introdu un număr valid",
+    "form_error_slot": "Selectează un interval",
+    "form_error_date": "Alege o dată validă"
+  }
+};
 
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+const qs = (sel, scope = document) => scope.querySelector(sel);
+const qsa = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
+const formatCurrency = value => `€${value.toLocaleString('en-US', { minimumFractionDigits: 0 })}`;
 
-    // Booking form (demo-only validation + confirmation)
-    const bookingForm = document.getElementById('bookingForm');
-    const bookingStatus = document.getElementById('bookingStatus');
-    const toast = document.getElementById('toast');
-    const toastMsg = document.getElementById('toastMsg');
+const storageKeys = {
+  leads: 'bw-leads',
+  results: 'bw-results',
+  queuedLeads: 'bw-leads-queue',
+  queuedResults: 'bw-results-queue',
+  booking: 'bw-booking',
+  locale: 'bw-lang',
+  theme: 'bw-theme',
+  variant: 'bw-variant',
+  flags: 'bw-flags',
+  billing: 'bw-billing',
+  testProgress: 'bw-test-progress'
+};
 
-    bookingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(bookingForm);
-      const date = data.get('date');
-      const time = data.get('time');
-      const name = data.get('name');
-      const guests = data.get('guests');
+const urlParams = new URLSearchParams(window.location.search);
+const utm = {
+  source: urlParams.get('utm_source') || '',
+  medium: urlParams.get('utm_medium') || '',
+  campaign: urlParams.get('utm_campaign') || '',
+  term: urlParams.get('utm_term') || '',
+  ref: document.referrer || ''
+};
 
-      if(!date || !time || !name) {
-        showStatus('Por favor completa los campos obligatorios.', true);
-        return;
+const analyticsState = {
+  consent: false,
+  queue: [],
+  variant: localStorage.getItem(storageKeys.variant) || 'A'
+};
+
+const featureFlags = Object.assign({
+  exitIntent: false,
+  stickyOffer: false,
+  speechInput: true
+}, JSON.parse(localStorage.getItem(storageKeys.flags) || '{}'));
+
+const state = {
+  locale: localStorage.getItem(storageKeys.locale) || 'en',
+  theme: localStorage.getItem(storageKeys.theme) || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+  selectedProgram: null,
+  programFilter: 'all',
+  bookingContext: null
+};
+
+const trackEvent = (event, params = {}) => {
+  const payload = Object.assign({
+    event,
+    locale: state.locale,
+    variant: analyticsState.variant,
+    utm_source: utm.source,
+    utm_medium: utm.medium,
+    utm_campaign: utm.campaign,
+    referrer: utm.ref
+  }, params);
+  if (!analyticsState.consent) {
+    analyticsState.queue.push(payload);
+    return;
+  }
+  window.dataLayer.push(payload);
+  if (window.gtag) window.gtag('event', event, payload);
+  console.info('[GA4 event]', event, payload);
+};
+
+const flushAnalyticsQueue = () => {
+  analyticsState.queue.forEach(evt => {
+    window.dataLayer.push(evt);
+    if (window.gtag) window.gtag('event', evt.event, evt);
+  });
+  analyticsState.queue = [];
+};
+
+const showToast = (message) => {
+  const toast = qs('#toast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.remove('hidden');
+  toast.classList.add('animate-fade-in');
+  setTimeout(() => {
+    toast.classList.add('hidden');
+    toast.classList.remove('animate-fade-in');
+  }, 3200);
+};
+
+const triggerConfetti = () => {
+  const container = document.createElement('div');
+  container.className = 'fixed inset-0 pointer-events-none z-[80] overflow-hidden';
+  for (let i = 0; i < 120; i += 1) {
+    const piece = document.createElement('span');
+    piece.className = 'absolute block w-2 h-4 rounded-sm opacity-80';
+    piece.style.background = `hsl(${Math.random() * 360}, 80%, 60%)`;
+    piece.style.left = `${Math.random() * 100}%`;
+    piece.style.top = `${Math.random() * 40}%`;
+    piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+    piece.style.animation = `fall ${1.5 + Math.random()}s ease-out forwards`;
+    container.appendChild(piece);
+  }
+  document.body.appendChild(container);
+  setTimeout(() => container.remove(), 2200);
+};
+// DATA DEFINITIONS
+
+const programs = [
+  {
+    id: 'career-accelerator',
+    type: 'business',
+    levels: 'B1–C2',
+    spots: 6,
+    duration: '12-week sprint',
+    price: 189,
+    translations: {
+      en: {
+        title: 'Career Accelerator',
+        description: 'Coaching for managers and professionals who need confident meetings and negotiations.',
+        features: ['Live business simulations every week', 'Industry-specific vocabulary packs', 'Feedback recordings after each session']
+      },
+      ru: {
+        title: 'Career Accelerator',
+        description: 'Коучинг для менеджеров и специалистов, которым нужны уверенные встречи и переговоры.',
+        features: ['Еженедельные бизнес-симуляции', 'Отраслевые словари', 'Записи с обратной связью после каждого занятия']
+      },
+      ro: {
+        title: 'Career Accelerator',
+        description: 'Coaching pentru manageri și profesioniști care au nevoie de întâlniri și negocieri sigure.',
+        features: ['Simulări de business săptămânale', 'Pachete de vocabular pe industrie', 'Înregistrări cu feedback după fiecare sesiune']
       }
+    }
+  },
+  {
+    id: 'teen-connect',
+    type: 'teens',
+    levels: 'A2–B2',
+    spots: 8,
+    duration: 'Mission-based journey',
+    price: 149,
+    translations: {
+      en: {
+        title: 'Teen Connect',
+        description: 'Gamified missions keep younger learners motivated with weekly check-ins.',
+        features: ['Duolingo-style quests between classes', 'Parent progress dashboard', 'Speaking clubs on weekends']
+      },
+      ru: {
+        title: 'Teen Connect',
+        description: 'Геймифицированные миссии удерживают подростков в тонусе с еженедельными созвонами.',
+        features: ['Квесты в стиле Duolingo', 'Дашборд прогресса для родителей', 'Разговорные клубы по выходным']
+      },
+      ro: {
+        title: 'Teen Connect',
+        description: 'Misiuni gamificate mențin tinerii motivați cu check-in-uri săptămânale.',
+        features: ['Quests tip Duolingo între lecții', 'Tablou de bord pentru părinți', 'Cluburi de vorbire în weekend']
+      }
+    }
+  },
+  {
+    id: 'exam-lift',
+    type: 'exam',
+    levels: 'B2–C1',
+    spots: 5,
+    duration: '10-week intensive',
+    price: 209,
+    translations: {
+      en: {
+        title: 'Exam Lift',
+        description: 'IELTS, Cambridge, and TOEFL prep with adaptive mock exams and analytics.',
+        features: ['Weekly mock tests with instant scoring', 'Strategy clinics for writing and speaking', '1:1 feedback on every essay']
+      },
+      ru: {
+        title: 'Exam Lift',
+        description: 'Подготовка к IELTS, Cambridge и TOEFL с адаптивными пробными экзаменами.',
+        features: ['Еженедельные пробные тесты с мгновенным баллом', 'Стратегические занятия по письму и говорению', '1:1 обратная связь по каждому эссе']
+      },
+      ro: {
+        title: 'Exam Lift',
+        description: 'Pregătire IELTS, Cambridge și TOEFL cu mock-uri adaptive și analitice.',
+        features: ['Mock-uri săptămânale cu scor instant', 'Clinici de strategie pentru scris și vorbire', 'Feedback 1:1 pe fiecare eseu']
+      }
+    }
+  },
+  {
+    id: 'fluency-plus',
+    type: 'all',
+    levels: 'A1–C1',
+    spots: 7,
+    duration: 'Continuous membership',
+    price: 129,
+    translations: {
+      en: {
+        title: 'Fluency Plus',
+        description: 'Personalised track with coach, missions, and accountability partner.',
+        features: ['Flexible scheduling 7 days', 'Coach feedback every 3 lessons', 'Resource playlists matched to your goal']
+      },
+      ru: {
+        title: 'Fluency Plus',
+        description: 'Персональная траектория с преподавателем, миссиями и куратором ответственности.',
+        features: ['Гибкое расписание 7 дней', 'Обратная связь каждые 3 урока', 'Подборка ресурсов под вашу цель']
+      },
+      ro: {
+        title: 'Fluency Plus',
+        description: 'Traseu personalizat cu coach, misiuni și accountability partner.',
+        features: ['Program flexibil 7 zile', 'Feedback la fiecare 3 lecții', 'Playlisturi de resurse pe obiectiv']
+      }
+    }
+  }
+];
 
-      const message = `¡Gracias, ${name}! Tu reserva para ${guests} el ${new Date(date).toLocaleDateString()} a las ${time} ha sido registrada.`;
-      showStatus(message);
-      showToast('Reserva enviada. Te hemos enviado un email de confirmación (demo).');
-      bookingForm.reset();
+const timelineSteps = [
+  {
+    id: 'diagnostic',
+    icon: '🧪',
+    translations: {
+      en: { title: 'Test', text: 'We benchmark grammar, speaking, and goals to personalise the journey.' },
+      ru: { title: 'Тест', text: 'Проводим диагностику грамматики, говорения и целей для персонализации.' },
+      ro: { title: 'Test', text: 'Evaluăm gramatica, vorbirea și obiectivele pentru personalizare.' }
+    }
+  },
+  {
+    id: 'demo',
+    icon: '🎥',
+    translations: {
+      en: { title: 'Demo Class', text: 'Meet your coach, experience the method, and choose the right pace.' },
+      ru: { title: 'Демо-урок', text: 'Познакомьтесь с преподавателем, прочувствуйте метод и выберите темп.' },
+      ro: { title: 'Lecție demo', text: 'Îl cunoști pe coach, vezi metoda și alegi ritmul potrivit.' }
+    }
+  },
+  {
+    id: 'plan',
+    icon: '🗺️',
+    translations: {
+      en: { title: 'Plan', text: 'We map milestones, resources, and accountability moments.' },
+      ru: { title: 'План', text: 'Выстраиваем вехи, ресурсы и точки контроля.' },
+      ro: { title: 'Plan', text: 'Stabilim repere, resurse și momente de responsabilizare.' }
+    }
+  },
+  {
+    id: 'classes',
+    icon: '📚',
+    translations: {
+      en: { title: 'Classes', text: 'Live sessions, async missions, and conversation labs each week.' },
+      ru: { title: 'Занятия', text: 'Живые сессии, асинхронные миссии и разговорные лаборатории еженедельно.' },
+      ro: { title: 'Lecții', text: 'Sesiuni live, misiuni asincrone și laboratoare de conversație săptămânale.' }
+    }
+  },
+  {
+    id: 'followup',
+    icon: '📈',
+    translations: {
+      en: { title: 'Follow-up', text: 'Weekly nudges, dashboards, and voice notes keep momentum high.' },
+      ru: { title: 'Сопровождение', text: 'Еженедельные напоминания, дашборды и голосовые заметки держат темп.' },
+      ro: { title: 'Follow-up', text: 'Reminder-e săptămânale, dashboard-uri și voice notes mențin ritmul.' }
+    }
+  },
+  {
+    id: 'results',
+    icon: '🏁',
+    translations: {
+      en: { title: 'Results', text: 'Celebrate the level-up and refresh the roadmap for the next milestone.' },
+      ru: { title: 'Результаты', text: 'Отмечаем новый уровень и обновляем маршрут к следующей цели.' },
+      ro: { title: 'Rezultate', text: 'Sărbătorim progresul și actualizăm traseul către următorul obiectiv.' }
+    }
+  }
+];
+
+const faqItems = [
+  {
+    id: 'faq1',
+    translations: {
+      en: { q: 'How fast will I see progress?', a: 'Most learners move up one CEFR level in 12 weeks with two classes plus missions per week.' },
+      ru: { q: 'Как быстро будет прогресс?', a: 'Большинство студентов повышают уровень CEFR за 12 недель при двух уроках и миссиях в неделю.' },
+      ro: { q: 'Cât de repede văd progres?', a: 'Majoritatea cursanților urcă un nivel CEFR în 12 săptămâni cu două lecții și misiuni pe săptămână.' }
+    }
+  },
+  {
+    id: 'faq2',
+    translations: {
+      en: { q: 'Can I pause or change my plan?', a: 'Yes. Pause free for up to 30 days or change intensity anytime from your dashboard.' },
+      ru: { q: 'Можно ли приостановить обучение?', a: 'Да. Бесплатная пауза до 30 дней или смена интенсивности в дашборде.' },
+      ro: { q: 'Pot să pun pe pauză?', a: 'Da. Poți pune pauză gratuit până la 30 de zile sau schimba intensitatea din dashboard.' }
+    }
+  },
+  {
+    id: 'faq3',
+    translations: {
+      en: { q: 'Do you work with companies?', a: 'We onboard teams globally with reporting, manager dashboards, and outcome tracking.' },
+      ru: { q: 'Работаете ли с компаниями?', a: 'Мы подключаем команды по всему миру с отчетностью, дашбордами и метриками прогресса.' },
+      ro: { q: 'Lucrați cu companii?', a: 'Da, integrăm echipe global cu rapoarte, dashboard-uri și monitorizarea rezultatelor.' }
+    }
+  }
+];
+
+const teachers = [
+  {
+    name: 'Amelia Shaw',
+    area: 'business',
+    certifications: ['DELTA'],
+    languages: ['en', 'es'],
+    experience: 9,
+    badges: ['DELTA', 'MBA'],
+    video: 'https://storage.googleapis.com/bridgeway/amelia-intro.mp4',
+    quote: 'Former consultant coaching teams on persuasive communication.'
+  },
+  {
+    name: 'Victor Ionescu',
+    area: 'exam',
+    certifications: ['CELTA'],
+    languages: ['en', 'ro'],
+    experience: 7,
+    badges: ['CELTA', 'IELTS examiner'],
+    video: 'https://storage.googleapis.com/bridgeway/victor-intro.mp4',
+    quote: 'Certified examiner with 95% pass rate for IELTS and Cambridge.'
+  },
+  {
+    name: 'Sofia Martinez',
+    area: 'general',
+    certifications: ['MA'],
+    languages: ['en', 'es'],
+    experience: 10,
+    badges: ['MA Applied Linguistics'],
+    video: 'https://storage.googleapis.com/bridgeway/sofia-intro.mp4',
+    quote: 'Designs mission-based lessons for global teams and startups.'
+  },
+  {
+    name: 'Igor Petrov',
+    area: 'business',
+    certifications: ['CELTA'],
+    languages: ['en', 'ru'],
+    experience: 11,
+    badges: ['CELTA', 'ICF coach'],
+    video: 'https://storage.googleapis.com/bridgeway/igor-intro.mp4',
+    quote: 'Executive coach focused on negotiation and leadership English.'
+  },
+  {
+    name: 'Laura Marinescu',
+    area: 'general',
+    certifications: ['CELTA'],
+    languages: ['en', 'ro'],
+    experience: 6,
+    badges: ['CELTA', 'Pronunciation specialist'],
+    video: 'https://storage.googleapis.com/bridgeway/laura-intro.mp4',
+    quote: 'Helps learners nail clarity and confidence with micro-feedback.'
+  },
+  {
+    name: 'Hannah Cooper',
+    area: 'exam',
+    certifications: ['DELTA'],
+    languages: ['en'],
+    experience: 8,
+    badges: ['DELTA', 'OET specialist'],
+    video: 'https://storage.googleapis.com/bridgeway/hannah-intro.mp4',
+    quote: 'Specialist in healthcare English and fast-track exam prep.'
+  }
+];
+
+const pricingPlans = [
+  {
+    id: 'essential',
+    translations: {
+      en: { title: 'Essential', description: 'Perfect for consistent momentum with one live class per week.' },
+      ru: { title: 'Essential', description: 'Подходит для устойчивого прогресса с одним живым уроком в неделю.' },
+      ro: { title: 'Essential', description: 'Ideal pentru ritm constant cu o lecție live pe săptămână.' }
+    },
+    monthly: 129,
+    quarterly: 129 * 3 * 0.9,
+    features: ['1 live class / week', 'Weekly missions + chat support', 'Progress dashboard access']
+  },
+  {
+    id: 'pro',
+    translations: {
+      en: { title: 'Pro', description: 'Two live classes weekly plus pronunciation labs and feedback.' },
+      ru: { title: 'Pro', description: 'Два живых урока в неделю, лаборатории произношения и обратная связь.' },
+      ro: { title: 'Pro', description: 'Două lecții live pe săptămână, laboratoare de pronunție și feedback.' }
+    },
+    monthly: 189,
+    quarterly: 189 * 3 * 0.88,
+    features: ['2 live classes / week', 'Monthly pronunciation labs', 'Coach feedback every sprint']
+  },
+  {
+    id: 'premium',
+    translations: {
+      en: { title: 'Premium', description: 'For ambitious teams: three sessions weekly, analytics, and manager reports.' },
+      ru: { title: 'Premium', description: 'Для амбициозных команд: три сессии в неделю, аналитика и отчеты для менеджеров.' },
+      ro: { title: 'Premium', description: 'Pentru echipe ambițioase: trei sesiuni pe săptămână, analitice și rapoarte manageriale.' }
+    },
+    monthly: 249,
+    quarterly: 249 * 3 * 0.85,
+    features: ['3 live classes / week', 'Dedicated success manager', 'Impact reports for stakeholders']
+  }
+];
+
+const resources = [
+  { id: 'ielts-writing', title: 'IELTS Writing Task 2 Toolkit', level: 'B2', type: 'Guide', goal: 'Exam', minutes: 15, content: 'Structure templates, band descriptors, and examples to maximise Task 2 scores.', url: '#', related: ['Grammar drills for connectors', 'Speaking: describing trends'] },
+  { id: 'phrases-meetings', title: '20 Impact Phrases for Meetings', level: 'B2', type: 'Guide', goal: 'Work', minutes: 8, content: 'Upgrade your meetings with ready-to-use phrases covering alignment, disagreement, and wrap-up.', url: '#', related: ['Listening warm-up: meetings', 'Asynchronous follow-up template'] },
+  { id: 'grammar-missions', title: 'Grammar Missions A2', level: 'A2', type: 'Exercise', goal: 'Work', minutes: 12, content: 'Micro missions that reinforce past simple vs present perfect with context from hybrid teams.', url: '#', related: ['Pronunciation: -ed endings', 'Vocabulary: remote work essentials'] },
+  { id: 'speaking-confidence', title: 'Speaking Confidence Routine', level: 'B1', type: 'Video', goal: 'Travel', minutes: 6, content: 'A 6-minute warm-up to build fluency before trips with role-plays and prompts.', url: '#', related: ['Travel checklist PDF', 'Mini listening: hotel check-in'] },
+  { id: 'business-email', title: 'Business Email Canvas', level: 'C1', type: 'Guide', goal: 'Work', minutes: 10, content: 'A canvas to plan concise, clear, and impactful emails with tone adjusters.', url: '#', related: ['Vocabulary: email power verbs', 'Checklist: proof your email in 2 minutes'] },
+  { id: 'cambridge-reading', title: 'Cambridge Reading Strategies', level: 'C1', type: 'Video', goal: 'Exam', minutes: 9, content: 'Strategies and scanning techniques for Cambridge Reading parts 5–7.', url: '#', related: ['Cambridge mock reading PDF', 'Vocabulary: academic connectors'] }
+];
+
+const recommendedByLevel = {
+  A2: ['Grammar Missions A2', 'Pronunciation: -ed endings', 'Vocabulary: remote work essentials'],
+  B1: ['Speaking Confidence Routine', 'Travel checklist PDF', 'Mini listening: hotel check-in'],
+  B2: ['IELTS Writing Task 2 Toolkit', '20 Impact Phrases for Meetings', 'Speaking: describing trends'],
+  C1: ['Cambridge Reading Strategies', 'Business Email Canvas', 'Vocabulary: academic connectors'],
+  C2: ['Executive nuance briefing', 'Advanced debate lab', 'Academic writing sprint']
+};
+
+const grammarBank = {
+  easy: [
+    { q: 'Choose the correct option: She ____ to the gym every Monday.', options: ['go', 'goes', 'is go'], answer: 1 },
+    { q: 'Complete: I have lived in London ____ 2018.', options: ['for', 'since', 'at'], answer: 1 },
+    { q: 'Pick the correct word: Can you ____ the window?', options: ['open', 'opens', 'to open'], answer: 0 },
+    { q: 'Which is correct?', options: ['He don't like tea.', 'He doesn't like tea.', 'He doesn't likes tea.'], answer: 1 }
+  ],
+  medium: [
+    { q: 'If we ____ earlier, we would catch the train.', options: ['leave', 'left', 'had left'], answer: 2 },
+    { q: 'Identify the error: We discussed about the project.', options: ['correct', 'remove about', 'add the'], answer: 1 },
+    { q: 'Choose the reported speech: “I am working,” she said.', options: ['She said she was working.', 'She said she is working.', 'She said she working.'], answer: 0 },
+    { q: 'Select the correct inversion: Rarely ____ such engagement.', options: ['we see', 'do we see', 'see we'], answer: 1 }
+  ],
+  hard: [
+    { q: 'Complete: Had he known the risks, he ____ the contract.', options: ['would not sign', 'would not have signed', 'did not sign'], answer: 1 },
+    { q: 'Choose the correct option: It's time we ____ the next sprint.', options: ['plan', 'planned', 'will plan'], answer: 1 },
+    { q: 'Which sentence is correct?', options: ['No sooner we arrived than the meeting started.', 'No sooner had we arrived than the meeting started.', 'No sooner had we arrived then the meeting started.'], answer: 1 },
+    { q: 'Select the best formal synonym of “important”.', options: ['pivotal', 'funny', 'temporary'], answer: 0 }
+  ]
+};
+
+const readingTask = {
+  passage: 'BridgeWay learners combine live coaching with personalised missions. Completing at least two missions between classes doubles the retention of new vocabulary and boosts speaking confidence.',
+  question: 'According to the passage, what increases vocabulary retention?',
+  options: ['Attending more than three live classes', 'Completing two missions between classes', 'Watching extra videos only'],
+  answer: 1
+};
+
+const speakingTask = {
+  prompt: 'Record a 30-second answer: “Describe a moment when English helped you close a deal.”',
+  fallback: 'Write a short answer about a moment when English helped you close a deal.'
+};
+
+const applyTranslations = () => {
+  qsa('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    const translation = i18n[state.locale] && i18n[state.locale][key];
+    if (translation) {
+      if (['INPUT', 'TEXTAREA'].includes(el.tagName)) {
+        el.placeholder = translation;
+      } else {
+        el.textContent = translation;
+      }
+    }
+  });
+  document.documentElement.lang = state.locale;
+};
+
+const updateBreadcrumb = (label) => {
+  const current = qs('#breadcrumbCurrent');
+  if (current) current.textContent = label;
+};
+
+const updateMetaCopy = () => {
+  const title = i18n[state.locale].hero_title || 'BridgeWay';
+  const description = i18n[state.locale].hero_subtitle || 'BridgeWay academy';
+  document.title = `BridgeWay · ${title}`;
+  qsa('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach(meta => meta.setAttribute('content', description));
+  qsa('meta[property="og:locale"]').forEach(meta => meta.setAttribute('content', state.locale));
+};
+
+const setLocale = (lang) => {
+  if (!i18n[lang]) return;
+  state.locale = lang;
+  localStorage.setItem(storageKeys.locale, lang);
+  applyTranslations();
+  renderPrograms();
+  renderProgramDetail(state.selectedProgram || programs[0].id);
+  renderFAQ();
+  renderTimeline();
+  renderTeachers();
+  renderPricing(localStorage.getItem(storageKeys.billing) || 'monthly');
+  renderResources();
+  updateMetaCopy();
+};
+
+const initLanguageSwitcher = () => {
+  qsa('[data-lang]').forEach(button => {
+    button.classList.toggle('font-semibold', button.dataset.lang === state.locale);
+    button.addEventListener('click', () => {
+      qsa('[data-lang]').forEach(btn => btn.classList.remove('font-semibold', 'bg-white/20'));
+      button.classList.add('font-semibold', 'bg-white/20');
+      setLocale(button.dataset.lang);
+      trackEvent('locale_change', { value: button.dataset.lang });
     });
+  });
+};
 
-    function showStatus(msg, isError = false){
-      bookingStatus.classList.remove('hidden');
-      bookingStatus.classList.toggle('border-red-500/40', isError);
-      bookingStatus.classList.toggle('bg-red-500/10', isError);
-      bookingStatus.textContent = msg;
-      bookingStatus.focus?.();
+const applyTheme = (theme) => {
+  const html = document.documentElement;
+  if (theme === 'dark') {
+    html.classList.add('dark');
+    html.dataset.theme = 'dark';
+  } else {
+    html.classList.remove('dark');
+    html.dataset.theme = 'light';
+  }
+  state.theme = theme;
+  localStorage.setItem(storageKeys.theme, theme);
+};
+
+const toggleTheme = () => {
+  applyTheme(state.theme === 'dark' ? 'light' : 'dark');
+};
+
+const initTheme = () => {
+  applyTheme(state.theme);
+  qs('#darkToggle')?.addEventListener('click', toggleTheme);
+};
+
+const renderPrograms = () => {
+  const grid = qs('#programCards');
+  if (!grid) return;
+  grid.innerHTML = '';
+  programs
+    .filter(program => state.programFilter === 'all' || program.type === state.programFilter)
+    .forEach(program => {
+      const card = document.createElement('article');
+      card.className = 'rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-card flex flex-col gap-4 transition hover:-translate-y-1 focus-within:ring-2 focus-within:ring-bw-way';
+      const copy = program.translations[state.locale] || program.translations.en;
+      card.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-xl font-semibold text-bw-bridge dark:text-white">${copy.title}</h3>
+            <p class="text-sm text-slate-500">${program.levels}</p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-bw-way/10 text-bw-way text-xs">${program.spots} spots</span>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">${copy.description}</p>
+        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+          ${copy.features.map(item => `<li class='flex items-center gap-2'><span aria-hidden='true'>✔</span><span>${item}</span></li>`).join('')}
+        </ul>
+        <div class="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400"><span>${program.duration}</span><span>${formatCurrency(program.price)} / mo</span></div>
+        <button class="mt-auto px-4 py-2 rounded-full border border-bw-way text-bw-way font-semibold hover:bg-bw-way hover:text-white transition" data-program="${program.id}" data-testid="program-view">View program</button>
+      `;
+      card.querySelector('[data-program]').addEventListener('click', () => {
+        renderProgramDetail(program.id);
+        qs('#programDetail')?.scrollIntoView({ behavior: 'smooth' });
+        trackEvent('button_click', { label: 'program_view', program: program.id });
+      });
+      grid.appendChild(card);
+    });
+  qsa('.program-filter').forEach(btn => {
+    btn.classList.toggle('bg-gradient-to-r', btn.dataset.filter === state.programFilter);
+    btn.classList.toggle('from-bw-bridge', btn.dataset.filter === state.programFilter);
+    btn.classList.toggle('to-bw-way', btn.dataset.filter === state.programFilter);
+    btn.classList.toggle('text-white', btn.dataset.filter === state.programFilter);
+  });
+};
+
+const renderProgramDetail = (programId) => {
+  const container = qs('#programDetail');
+  if (!container) return;
+  const program = programs.find(item => item && item.id === programId) || programs[0];
+  state.selectedProgram = program ? program.id : null;
+  if (!program) {
+    container.classList.add('hidden');
+    return;
+  }
+  const copy = program.translations[state.locale] || program.translations.en;
+  container.classList.remove('hidden');
+  container.innerHTML = `
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <h3 class="text-2xl font-semibold text-bw-bridge dark:text-white">${copy.title}</h3>
+        <span class="text-sm text-slate-500">${program.levels}</span>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300">${copy.description}</p>
+      <div class="flex flex-wrap gap-3 text-sm text-slate-600 dark:text-slate-300">
+        ${copy.features.map(item => `<span class='px-3 py-1 rounded-full bg-bw-way/10 text-bw-way'>${item}</span>`).join('')}
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <span class="text-lg font-semibold text-bw-way">${formatCurrency(program.price)} / month</span>
+        <button class="px-5 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-program-book data-testid="program-book">${i18n[state.locale].cta_free_class}</button>
+      </div>
+    </div>
+  `;
+  container.querySelector('[data-program-book]').addEventListener('click', () => {
+    state.bookingContext = `${copy.title} (${program.levels})`;
+    openModal('freeClass');
+    fillBookingContext();
+    trackEvent('button_click', { label: 'program_book', program: program.id });
+  });
+  updateBreadcrumb(copy.title);
+};
+
+const initProgramFilters = () => {
+  qsa('.program-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.programFilter = btn.dataset.filter;
+      renderPrograms();
+      trackEvent('chip_select', { label: 'program_filter', value: state.programFilter });
+    });
+  });
+};
+
+const renderTimeline = () => {
+  const list = qs('#methodTimeline');
+  if (!list) return;
+  list.innerHTML = '';
+  timelineSteps.forEach(step => {
+    const copy = step.translations[state.locale] || step.translations.en;
+    const item = document.createElement('li');
+    item.className = 'min-w-[220px] flex-1 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-card flex flex-col gap-3';
+    item.innerHTML = `<span class='text-2xl' aria-hidden='true'>${step.icon}</span><h3 class='text-lg font-semibold text-bw-bridge dark:text-white'>${copy.title}</h3><p class='text-sm text-slate-600 dark:text-slate-300'>${copy.text}</p>`;
+    list.appendChild(item);
+  });
+};
+
+const renderFAQ = () => {
+  const container = qs('#faqAccordion');
+  const schema = qs('#faqSchema');
+  if (!container) return;
+  container.innerHTML = '';
+  const schemaList = [];
+  faqItems.forEach(item => {
+    const copy = item.translations[state.locale] || item.translations.en;
+    const buttonId = `${item.id}-button`;
+    const panelId = `${item.id}-panel`;
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = `
+      <h4>
+        <button class='w-full flex items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white' aria-expanded='false' aria-controls='${panelId}' id='${buttonId}' data-testid='faq-item'>
+          <span>${copy.q}</span>
+          <svg class='h-4 w-4 transition-transform' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'><path stroke-linecap='round' stroke-linejoin='round' d='m6 9 6 6 6-6'/></svg>
+        </button>
+      </h4>
+      <div id='${panelId}' class='hidden pb-4 text-sm text-white/80' role='region' aria-labelledby='${buttonId}'>${copy.a}</div>
+    `;
+    const btn = wrapper.querySelector('button');
+    const panel = wrapper.querySelector(`#${panelId}`);
+    const toggle = () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      panel.classList.toggle('hidden', expanded);
+      const icon = btn.querySelector('svg');
+      if (icon) icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+      if (!expanded) trackEvent('accordion_open', { label: item.id });
+    };
+    btn.addEventListener('click', toggle);
+    btn.addEventListener('keydown', (e) => {
+      if (['Enter', ' '].includes(e.key)) {
+        e.preventDefault();
+        toggle();
+      }
+    });
+    container.appendChild(wrapper);
+    schemaList.push({ '@type': 'Question', name: copy.q, acceptedAnswer: { '@type': 'Answer', text: copy.a } });
+  });
+  if (schema) {
+    schema.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: schemaList });
+  }
+};
+
+const renderTeachers = () => {
+  const grid = qs('#teacherGrid');
+  if (!grid) return;
+  const area = (qs('#filterArea') && qs('#filterArea').value) || 'all';
+  const cert = (qs('#filterCertification') && qs('#filterCertification').value) || 'all';
+  const lang = (qs('#filterLanguage') && qs('#filterLanguage').value) || 'all';
+  grid.innerHTML = '';
+  teachers
+    .filter(teacher => (area === 'all' || teacher.area === area)
+      && (cert === 'all' || teacher.certifications.includes(cert))
+      && (lang === 'all' || teacher.languages.includes(lang)))
+    .forEach(teacher => {
+      const card = document.createElement('article');
+      card.className = 'rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-card flex flex-col gap-4';
+      card.innerHTML = `
+        <div class='flex items-center justify-between'>
+          <h3 class='text-xl font-semibold text-bw-bridge dark:text-white'>${teacher.name}</h3>
+          <span class='text-sm text-slate-500'>${teacher.experience} yrs</span>
+        </div>
+        <p class='text-sm text-slate-600 dark:text-slate-300'>${teacher.quote}</p>
+        <div class='flex flex-wrap gap-2 text-xs text-bw-way'>${teacher.badges.map(b => `<span class="px-2 py-1 bg-bw-way/10 rounded-full">${b}</span>`).join('')}</div>
+        <button class='px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white text-sm font-semibold' data-testid='teacher-intro'>Play intro (20s)</button>
+      `;
+      card.querySelector('button').addEventListener('click', () => {
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 z-[75] bg-slate-900/70 backdrop-blur flex items-center justify-center p-4';
+        modal.innerHTML = `
+          <div class='relative max-w-xl w-full bg-white dark:bg-slate-900 rounded-3xl p-6'>
+            <button class='absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800' aria-label='Close'>
+              <svg class='h-5 w-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'><path stroke-linecap='round' stroke-linejoin='round' d='m6 18 12-12M6 6l12 12'/></svg>
+            </button>
+            <h3 class='text-lg font-semibold text-bw-bridge dark:text-white mb-3'>${teacher.name}</h3>
+            <video class='w-full rounded-2xl' controls preload='metadata' src='${teacher.video}' loading='lazy'></video>
+          </div>
+        `;
+        const close = () => modal.remove();
+        modal.addEventListener('click', (event) => { if (event.target === modal) close(); });
+        modal.querySelector('button').addEventListener('click', close);
+        document.body.appendChild(modal);
+      });
+      grid.appendChild(card);
+    });
+  if (!grid.children.length) {
+    const empty = document.createElement('p');
+    empty.className = 'text-sm text-slate-500';
+    empty.textContent = 'No teachers match these filters yet.';
+    grid.appendChild(empty);
+  }
+};
+
+const pricingRates = {
+  essential: { hourly: 24 },
+  pro: { hourly: 29 },
+  premium: { hourly: 36 }
+};
+
+const couponCodes = {
+  BRIDGE10: 0.1,
+  BUSINESS15: 0.15
+};
+
+const renderPricing = (billing = 'monthly') => {
+  const grid = qs('#pricingGrid');
+  if (!grid) return;
+  localStorage.setItem(storageKeys.billing, billing);
+  grid.innerHTML = '';
+  pricingPlans.forEach(plan => {
+    const copy = plan.translations[state.locale] || plan.translations.en;
+    const amount = billing === 'monthly' ? plan.monthly : plan.quarterly;
+    const monthlyEquivalent = billing === 'monthly' ? amount : plan.quarterly / 3;
+    const badge = billing === 'quarterly' ? `${Math.round((1 - monthlyEquivalent / plan.monthly) * 100)}% off` : 'Most chosen';
+    const article = document.createElement('article');
+    article.className = 'rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-card flex flex-col gap-4';
+    article.innerHTML = `
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-semibold text-bw-bridge dark:text-white">${copy.title}</h3>
+        <span class="px-3 py-1 text-xs rounded-full bg-bw-way/10 text-bw-way">${badge}</span>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300">${copy.description}</p>
+      <div class="text-3xl font-semibold text-bw-way">${formatCurrency(Math.round(amount))}<span class="text-base text-slate-500">${billing === 'monthly' ? '/mo' : '/3 mo'}</span></div>
+      <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">${plan.features.map(f => `<li class="flex items-center gap-2"><span aria-hidden="true">•</span><span>${f}</span></li>`).join('')}</ul>
+      <button class="mt-auto px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-plan="${plan.id}" data-testid="pricing-start">${i18n[state.locale].cta_free_class}</button>
+    `;
+    article.querySelector('[data-plan]').addEventListener('click', () => {
+      state.bookingContext = `${copy.title} · ${billing}`;
+      qs('#calcTier') && (qs('#calcTier').value = plan.id);
+      updateCalculatorSummary();
+      openModal('freeClass');
+      fillBookingContext();
+      trackEvent('button_click', { label: 'pricing_start', plan: plan.id, billing });
+    });
+    grid.appendChild(article);
+  });
+  qsa('.billing-toggle').forEach(btn => {
+    const active = btn.dataset.billing === billing;
+    btn.classList.toggle('bg-white', active);
+    btn.classList.toggle('dark:bg-slate-900', active);
+    btn.classList.toggle('text-bw-bridge', active);
+  });
+  updateCalculatorSummary();
+};
+
+const calcState = {
+  tier: 'essential',
+  hours: 3,
+  coupon: null
+};
+
+const getBillingCycle = () => localStorage.getItem(storageKeys.billing) || 'monthly';
+
+const calculateTotals = () => {
+  const billing = getBillingCycle();
+  const weeks = billing === 'monthly' ? 4 : 12;
+  const hourly = pricingRates[calcState.tier].hourly;
+  const base = calcState.hours * weeks * hourly;
+  const discountRate = calcState.coupon ? couponCodes[calcState.coupon] || 0 : 0;
+  const discount = Math.round(base * discountRate);
+  const total = Math.max(base - discount, 0);
+  return { base, discount, total, weeks, hourly, billing };
+};
+
+const updateCalculatorSummary = () => {
+  const summary = qs('#calcSummary');
+  if (!summary) return;
+  const { base, discount, total, weeks, hourly, billing } = calculateTotals();
+  summary.innerHTML = `
+    <div class="flex justify-between"><span>${calcState.hours}h × ${weeks} weeks × ${formatCurrency(hourly)}</span><span>${formatCurrency(base)}</span></div>
+    ${discount ? `<div class="flex justify-between text-emerald-600"><span>Coupon</span><span>- ${formatCurrency(discount)}</span></div>` : ''}
+    <div class="flex justify-between text-lg font-semibold text-bw-way"><span>Total (${billing})</span><span>${formatCurrency(total)}</span></div>
+  `;
+  const cta = qs('#calcCTA');
+  if (cta) {
+    cta.textContent = i18n[state.locale].cta_free_class;
+    cta.onclick = () => {
+      state.bookingContext = `${calcState.tier.toUpperCase()} · ${calcState.hours}h/week`;
+      openModal('freeClass');
+      fillBookingContext();
+      trackEvent('cta_click', { label: 'pricing_calc', tier: calcState.tier, hours: calcState.hours, billing });
+    };
+  }
+};
+
+const applyCoupon = (code) => {
+  const upper = code.toUpperCase();
+  if (!couponCodes[upper]) {
+    calcState.coupon = null;
+    showToast(i18n[state.locale].toast_error);
+    return false;
+  }
+  calcState.coupon = upper;
+  showToast(i18n[state.locale].toast_saved);
+  trackEvent('coupon_applied', { coupon: upper });
+  return true;
+};
+
+const initCalculator = () => {
+  const tier = qs('#calcTier');
+  const hours = qs('#calcHours');
+  const coupon = qs('#calcCoupon');
+  if (!tier || !hours) return;
+  tier.addEventListener('change', () => {
+    calcState.tier = tier.value;
+    updateCalculatorSummary();
+  });
+  hours.addEventListener('input', () => {
+    calcState.hours = Number(hours.value);
+    qs('#calcHoursValue').textContent = `${hours.value} h/week`;
+    updateCalculatorSummary();
+  });
+  qs('#applyCoupon')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (applyCoupon(coupon.value.trim())) coupon.value = calcState.coupon;
+    updateCalculatorSummary();
+  });
+  updateCalculatorSummary();
+};
+
+const renderResources = () => {
+  const list = qs('#resourceList');
+  if (!list) return;
+  const term = qs('#resourceSearch')?.value.toLowerCase() || '';
+  const level = qs('#resourceLevel')?.value || 'all';
+  const type = qs('#resourceType')?.value || 'all';
+  const goal = qs('#resourceGoal')?.value || 'all';
+  const filtered = resources.filter(item => {
+    const matchTerm = term ? item.title.toLowerCase().includes(term) : true;
+    return matchTerm && (level === 'all' || item.level === level) && (type === 'all' || item.type === type) && (goal === 'all' || item.goal === goal);
+  });
+  list.innerHTML = '';
+  if (!filtered.length) {
+    const msg = document.createElement('p');
+    msg.className = 'text-sm text-slate-500';
+    msg.textContent = i18n[state.locale].resources_no_results;
+    list.appendChild(msg);
+    return;
+  }
+  filtered.forEach(item => {
+    const article = document.createElement('article');
+    article.className = 'rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card flex flex-col gap-3';
+    article.innerHTML = `
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-semibold text-bw-bridge dark:text-white">${item.title}</h3>
+        <span class="text-sm px-3 py-1 rounded-full bg-bw-way/10 text-bw-way">${item.level}</span>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300">${item.type} · ${item.goal}</p>
+      <p class="text-xs text-slate-500">${item.minutes} min read</p>
+      <div class="mt-2 flex flex-wrap gap-3">
+        <button class="px-3 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white text-sm" data-open-resource="${item.id}" data-testid="resource-open">Open</button>
+        <button class="px-3 py-2 rounded-full border border-bw-way text-bw-way text-sm" data-save-resource="${item.id}">Save</button>
+      </div>
+    `;
+    article.querySelector('[data-open-resource]')?.addEventListener('click', () => {
+      renderResourceDetail(item.id);
+      trackEvent('resource_open', { id: item.id });
+    });
+    article.querySelector('[data-save-resource]')?.addEventListener('click', () => {
+      showToast(i18n[state.locale].toast_saved);
+      trackEvent('resource_save', { id: item.id });
+    });
+    list.appendChild(article);
+  });
+  renderResourceDetail(filtered[0]?.id);
+};
+
+const renderResourceDetail = (id) => {
+  const resource = resources.find(item => item.id === id) || resources[0];
+  const container = qs('#resourceContent');
+  const related = qs('#relatedResources');
+  if (!container || !resource) return;
+  container.innerHTML = `
+    <p class="text-sm">${resource.content}</p>
+    <a href="${resource.url}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 text-sm text-bw-way underline">Open resource</a>
+  `;
+  related.innerHTML = '';
+  resource.related.forEach(name => {
+    const li = document.createElement('li');
+    li.innerHTML = `<button class='text-bw-way underline'>${name}</button>`;
+    li.querySelector('button').addEventListener('click', () => {
+      const match = resources.find(item => item.title === name || item.id === name);
+      if (match) {
+        renderResourceDetail(match.id);
+      } else {
+        qs('#resourceSearch').value = name;
+        renderResources();
+      }
+    });
+    related.appendChild(li);
+  });
+};
+
+const updateAutocomplete = () => {
+  const list = qs('#resourceAutocomplete');
+  const term = qs('#resourceSearch')?.value.toLowerCase() || '';
+  if (!list) return;
+  if (!term) {
+    list.classList.add('hidden');
+    list.innerHTML = '';
+    return;
+  }
+  const matches = resources.filter(item => item.title.toLowerCase().includes(term)).slice(0, 5);
+  list.innerHTML = matches.map(item => `<li><button class='w-full text-left px-2 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800' data-autocomplete='${item.id}'>${item.title}</button></li>`).join('');
+  list.classList.toggle('hidden', !matches.length);
+  matches.forEach(item => {
+    const btn = list.querySelector(`[data-autocomplete='${item.id}']`);
+    btn?.addEventListener('click', () => {
+      qs('#resourceSearch').value = item.title;
+      list.classList.add('hidden');
+      renderResources();
+    });
+  });
+};
+
+const programsConfig = {
+  career: { plan: 'pro', blurb: 'Two weekly coaching sessions focused on high-stakes communication.' },
+  travel: { plan: 'essential', blurb: 'Weekly speaking labs with travel scenarios and vocabulary missions.' },
+  exam: { plan: 'premium', blurb: 'Intensive exam simulations with score analytics and targeted feedback.' }
+};
+
+const initConfigurator = () => {
+  const form = qs('#programConfigurator');
+  if (!form) return;
+  const result = qs('#configResult');
+  const hoursValue = qs('#availabilityValue');
+  form.availability?.addEventListener('input', () => {
+    hoursValue.textContent = `${form.availability.value} hours/week`;
+  });
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const goal = form.goal.value;
+    const availability = Number(form.availability.value);
+    const payment = form.payment.value;
+    const config = programsConfig[goal] || programsConfig.career;
+    const plan = pricingPlans.find(p => p.id === config.plan);
+    const copy = plan.translations[state.locale] || plan.translations.en;
+    const total = availability * (payment === 'monthly' ? 4 : 12) * pricingRates[plan.id].hourly;
+    result.classList.remove('hidden');
+    result.innerHTML = `
+      <p class="text-sm">${config.blurb}</p>
+      <p class="text-sm text-slate-500">${copy.title} · ${availability}h/week · ${payment}</p>
+      <p class="text-lg font-semibold text-bw-way">${formatCurrency(total)}</p>
+      <button class="mt-3 px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white" data-config-cta>${i18n[state.locale].cta_free_class}</button>
+    `;
+    result.querySelector('[data-config-cta]')?.addEventListener('click', () => {
+      state.bookingContext = `${copy.title} · ${availability}h/week`;
+      openModal('freeClass');
+      fillBookingContext();
+      trackEvent('button_click', { label: 'configurator', goal, availability, payment });
+    });
+    trackEvent('button_click', { label: 'config_submit', goal, availability, payment });
+  });
+};
+
+const breadcrumbSchema = () => {
+  const schema = qs('#breadcrumbSchema');
+  if (!schema) return;
+  const items = [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://bridgeway.ac' },
+    { '@type': 'ListItem', position: 2, name: qs('#breadcrumbCurrent')?.textContent || 'Programs', item: 'https://bridgeway.ac/#programs' }
+  ];
+  schema.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items });
+};
+
+const generateSlots = (dateString) => {
+  if (!dateString) return [];
+  const selected = new Date(dateString);
+  const now = new Date();
+  const slots = [];
+  for (let dayOffset = 0; slots.length < 36 && dayOffset < 14; dayOffset += 1) {
+    const candidate = new Date();
+    candidate.setDate(selected.getDate() + dayOffset);
+    if ([0, 6].includes(candidate.getDay())) continue;
+    for (let hour = 9; hour <= 19; hour += 1) {
+      [0, 20, 40].forEach(minute => {
+        const slotDate = new Date(candidate);
+        slotDate.setHours(hour, minute, 0, 0);
+        if (slotDate < now) return;
+        slots.push(slotDate);
+      });
     }
+  }
+  return slots.slice(0, 40);
+};
 
-    function showToast(msg){
-      toastMsg.textContent = msg;
-      toast.classList.remove('hidden');
-      setTimeout(()=> toast.classList.add('hidden'), 3500);
+let currentSlots = [];
+
+const renderSlots = () => {
+  const grid = qs('#slotGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  if (!currentSlots.length) {
+    grid.innerHTML = `<p class='col-span-full text-sm text-slate-500'>No slots available. Message us on WhatsApp.</p>`;
+    return;
+  }
+  currentSlots.forEach(slot => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-sm';
+    btn.textContent = slot.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    btn.dataset.value = slot.toISOString();
+    btn.addEventListener('click', () => {
+      qsa('#slotGrid button').forEach(b => b.classList.remove('bg-bw-way', 'text-white'));
+      btn.classList.add('bg-bw-way', 'text-white');
+      btn.dataset.selected = 'true';
+    });
+    grid.appendChild(btn);
+  });
+};
+
+const openModal = (id) => {
+  const modal = id === 'guarantee' ? qs('#guaranteeModal') : qs('#freeClassModal');
+  modal?.classList.remove('hidden');
+  modal?.classList.add('flex');
+  document.body.classList.add('no-scroll');
+  if (id === 'freeClass') trackEvent('modal_open', { label: 'free_class' });
+};
+
+const closeModals = () => {
+  qsa('#freeClassModal, #guaranteeModal').forEach(modal => {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  });
+  document.body.classList.remove('no-scroll');
+};
+
+const fillBookingContext = () => {
+  const form = qs('#freeClassForm');
+  if (!form) return;
+  if (state.bookingContext) {
+    form.goal.value = 'career';
+    qs('[data-error="slot"]').classList.add('hidden');
+  }
+};
+
+const validateField = (input) => {
+  const error = qs(`[data-error='${input.name}']`);
+  if (!error) return true;
+  let message = '';
+  if (input.validity.valueMissing) message = i18n[state.locale].form_error_required;
+  else if (input.type === 'email' && input.validity.typeMismatch) message = i18n[state.locale].form_error_email;
+  else if (input.name === 'phone' && !new RegExp(input.pattern).test(input.value)) message = i18n[state.locale].form_error_phone;
+  error.textContent = message;
+  error.classList.toggle('hidden', !message);
+  return !message;
+};
+
+const buildLeadPayload = (data) => Object.assign({
+  locale: state.locale,
+  context: state.bookingContext,
+  utm,
+  submittedAt: new Date().toISOString()
+}, data);
+
+const downloadFile = (filename, content) => {
+  const blob = new Blob([content], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+};
+
+const saveLeadLocally = (lead, queue = false) => {
+  const key = queue ? storageKeys.queuedLeads : storageKeys.leads;
+  const existing = JSON.parse(localStorage.getItem(key) || '[]');
+  existing.push(lead);
+  localStorage.setItem(key, JSON.stringify(existing));
+  renderAdminData();
+};
+
+const pushLead = async (lead) => {
+  if (!CRM_WEBHOOK_URL) {
+    saveLeadLocally(lead);
+    showToast(i18n[state.locale].toast_saved);
+    trackEvent('form_submit', { label: 'free_class_local' });
+    return { ok: true };
+  }
+  try {
+    const response = await fetch(CRM_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(lead)
+    });
+    if (!response.ok) throw new Error('Network');
+    saveLeadLocally(lead);
+    trackEvent('form_submit', { label: 'free_class_remote' });
+    return { ok: true };
+  } catch (error) {
+    saveLeadLocally(lead, true);
+    showToast(i18n[state.locale].toast_error);
+    trackEvent('form_abandon', { label: 'free_class_error' });
+    return { ok: false };
+  }
+};
+
+const createICS = (lead) => {
+  const start = new Date(lead.slot);
+  const end = new Date(start.getTime() + 20 * 60000);
+  const format = (date) => date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//BridgeWay//EN\nBEGIN:VEVENT\nUID:${lead.email}-${lead.slot}\nDTSTAMP:${format(new Date())}\nDTSTART:${format(start)}\nDTEND:${format(end)}\nSUMMARY:BridgeWay free class\nDESCRIPTION:Goal: ${lead.goal}.\nLOCATION:Online\nEND:VEVENT\nEND:VCALENDAR`;
+  const blob = new Blob([ics], { type: 'text/calendar' });
+  return URL.createObjectURL(blob);
+};
+
+const updateThankYou = (lead) => {
+  const summary = qs('#appointmentSummary');
+  if (!summary) return;
+  summary.innerHTML = `
+    <div class="flex items-center justify-between"><span>${lead.name}</span><span>${new Date(lead.slot).toLocaleString()}</span></div>
+    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">${lead.goal} · ${lead.context || 'BridgeWay program'}</p>
+  `;
+  const whatsapp = `https://wa.me/1234567890?text=${encodeURIComponent(`Hi BridgeWay, it's ${lead.name}. I booked a class on ${new Date(lead.slot).toLocaleString()}. Goal: ${lead.goal}.`)} `;
+  qs('#confirmWhatsapp').href = whatsapp;
+  const calendar = createICS(lead);
+  qs('#addCalendar').href = calendar;
+  localStorage.setItem(storageKeys.booking, JSON.stringify(lead));
+};
+
+const handleFreeClass = () => {
+  const form = qs('#freeClassForm');
+  if (!form) return;
+  form.addEventListener('input', (event) => {
+    if (event.target instanceof HTMLInputElement || event.target instanceof HTMLSelectElement) {
+      validateField(event.target);
     }
-
-    // Simple slider
-    const track = document.getElementById('sliderTrack');
-    const slides = track.children;
-    let index = 0;
-
-    function updateSlider(){
-      const w = track.querySelector('figure').clientWidth;
-      track.style.transform = `translateX(-${index * w}px)`;
+  });
+  form.date.addEventListener('change', () => {
+    currentSlots = generateSlots(form.date.value);
+    renderSlots();
+  });
+  qsa('[data-modal-open="freeClass"]').forEach(btn => btn.addEventListener('click', () => openModal('freeClass')));
+  qsa('[data-modal-open="guarantee"]').forEach(btn => btn.addEventListener('click', () => openModal('guarantee')));
+  qsa('[data-modal-close]').forEach(btn => btn.addEventListener('click', closeModals));
+  qs('#freeClassModal')?.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) closeModals();
+  });
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    let valid = true;
+    ['name', 'email', 'phone', 'date'].forEach(name => {
+      valid = validateField(form[name]) && valid;
+    });
+    const slotButton = qs('#slotGrid button.bg-bw-way');
+    const slotError = qs('[data-error="slot"]');
+    if (!slotButton) {
+      slotError.textContent = i18n[state.locale].form_error_slot;
+      slotError.classList.remove('hidden');
+      valid = false;
+    } else {
+      slotError.classList.add('hidden');
     }
+    if (!valid) return;
+    const lead = buildLeadPayload({
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      goal: form.goal.value,
+      age: form.age.value,
+      date: form.date.value,
+      slot: slotButton?.dataset.value
+    });
+    qs('#formSuccess').classList.add('hidden');
+    const submitBtn = form.querySelector('[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    const result = await pushLead(lead);
+    submitBtn.disabled = false;
+    submitBtn.textContent = i18n[state.locale].modal_submit;
+    if (result.ok) {
+      triggerConfetti();
+      qs('#formSuccess').classList.remove('hidden');
+      updateThankYou(lead);
+      closeModals();
+      document.querySelector('#thankYou')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+};
 
-    document.getElementById('nextSlide').addEventListener('click', ()=>{ index = (index + 1) % slides.length; updateSlider(); });
-    document.getElementById('prevSlide').addEventListener('click', ()=>{ index = (index - 1 + slides.length) % slides.length; updateSlider(); });
-    window.addEventListener('resize', updateSlider);
-    // Auto-play
-    setInterval(()=>{ index = (index + 1) % slides.length; updateSlider(); }, 5000);
+const restoreBooking = () => {
+  const data = localStorage.getItem(storageKeys.booking);
+  if (!data) return;
+  const lead = JSON.parse(data);
+  updateThankYou(lead);
+};
 
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('animate-fadeUp'); observer.unobserve(e.target); }
-      })
-    }, { threshold: 0.15 });
+const testState = {
+  stage: 'idle',
+  grammarIndex: 0,
+  grammarDifficulty: 'easy',
+  grammarScore: 0,
+  grammarAnswers: [],
+  readingAnswer: null,
+  speakingAnswer: null,
+  startTime: null
+};
 
-    document.querySelectorAll('#reserva .bg-night-900\\/80, #carta .bg-night-900\\/70, #faq details').forEach(el=>observer.observe(el));
+const totalGrammarQuestions = 12;
+
+const getGrammarQuestion = () => {
+  const bank = grammarBank[testState.grammarDifficulty];
+  return bank[testState.grammarIndex % bank.length];
+};
+
+const saveTestProgress = () => {
+  localStorage.setItem(storageKeys.testProgress, JSON.stringify(testState));
+};
+
+const loadTestProgress = () => {
+  const stored = localStorage.getItem(storageKeys.testProgress);
+  if (!stored) return false;
+  Object.assign(testState, JSON.parse(stored));
+  return true;
+};
+
+const clearTestProgress = () => {
+  localStorage.removeItem(storageKeys.testProgress);
+};
+
+const updateProgressBar = () => {
+  const progress = qs('#testProgress');
+  if (!progress) return;
+  let percentage = 0;
+  if (testState.stage === 'grammar') percentage = (testState.grammarIndex / totalGrammarQuestions) * 100;
+  if (testState.stage === 'reading') percentage = 70;
+  if (testState.stage === 'speaking') percentage = 90;
+  if (testState.stage === 'result') percentage = 100;
+  progress.style.width = `${Math.min(100, Math.max(percentage, 5))}%`;
+};
+
+const renderGrammarQuestion = () => {
+  const container = qs('#testContent');
+  if (!container) return;
+  if (testState.grammarIndex >= totalGrammarQuestions) {
+    testState.stage = 'reading';
+    saveTestProgress();
+    renderReadingQuestion();
+    return;
+  }
+  const question = getGrammarQuestion();
+  container.innerHTML = `
+    <div>
+      <p class="text-sm text-slate-500">${i18n[state.locale].test_progress}: ${testState.grammarIndex + 1} / ${totalGrammarQuestions}</p>
+      <h3 class="text-lg font-semibold text-bw-bridge dark:text-white">${question.q}</h3>
+    </div>
+    <div class="space-y-3">
+      ${question.options.map((opt, idx) => `<button class='w-full text-left px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-bw-way transition' data-option='${idx}'>${opt}</button>`).join('')}
+    </div>
+  `;
+  qsa('[data-option]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = Number(btn.dataset.option);
+      const correct = answer === question.answer;
+      if (correct) {
+        btn.classList.add('border-emerald-500', 'bg-emerald-500/10');
+        testState.grammarScore += 1;
+      } else {
+        btn.classList.add('border-red-500', 'bg-red-500/10');
+      }
+      testState.grammarAnswers.push({ q: question.q, answer: question.options[answer], correct });
+      testState.grammarIndex += 1;
+      if (correct && testState.grammarDifficulty !== 'hard') testState.grammarDifficulty = testState.grammarDifficulty === 'easy' ? 'medium' : 'hard';
+      if (!correct && testState.grammarDifficulty !== 'easy') testState.grammarDifficulty = testState.grammarDifficulty === 'hard' ? 'medium' : 'easy';
+      saveTestProgress();
+      setTimeout(renderGrammarQuestion, 400);
+    });
+  });
+  testState.stage = 'grammar';
+  updateProgressBar();
+};
+
+const renderReadingQuestion = () => {
+  const container = qs('#testContent');
+  container.innerHTML = `
+    <article class='space-y-4'>
+      <p class='text-sm text-slate-500'>Reading</p>
+      <p class='text-slate-700 dark:text-slate-300 leading-relaxed'>${readingTask.passage}</p>
+      <div class='space-y-2'>
+        <p class='font-semibold text-bw-bridge dark:text-white'>${readingTask.question}</p>
+        ${readingTask.options.map((opt, idx) => `<label class='flex gap-2 items-center'><input type='radio' name='reading' value='${idx}' class='text-bw-way'/> <span>${opt}</span></label>`).join('')}
+      </div>
+      <button id='submitReading' class='px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white'>Next</button>
+    </article>
+  `;
+  qs('#submitReading').addEventListener('click', () => {
+    const choice = Number((formData => formData.get('reading'))(new FormData(container.querySelector('article'))));
+    if (Number.isNaN(choice)) return;
+    testState.readingAnswer = choice;
+    testState.stage = 'speaking';
+    saveTestProgress();
+    renderSpeakingTask();
+  });
+  updateProgressBar();
+};
+
+let recognition;
+
+const stopRecognition = () => {
+  if (recognition) {
+    recognition.stop();
+    recognition = null;
+  }
+};
+
+const renderSpeakingTask = () => {
+  const container = qs('#testContent');
+  const supportSpeech = featureFlags.speechInput && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window);
+  container.innerHTML = `
+    <div class='space-y-4'>
+      <p class='text-sm text-slate-500'>Speaking</p>
+      <p class='text-lg font-semibold text-bw-bridge dark:text-white'>${speakingTask.prompt}</p>
+      <div id='speechControls' class='space-y-3'></div>
+      <textarea id='speakingFallback' class='w-full rounded-2xl border border-slate-200 dark:border-slate-700 p-3' rows='4' placeholder='${speakingTask.fallback}'></textarea>
+      <button id='submitSpeaking' class='px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white'>Finish</button>
+    </div>
+  `;
+  const controls = qs('#speechControls');
+  if (supportSpeech) {
+    controls.innerHTML = `<button id='startRecording' class='px-4 py-2 rounded-full border border-bw-way text-bw-way'>🎙️ Start recording</button>`;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.lang = state.locale === 'ru' ? 'ru-RU' : state.locale === 'ro' ? 'ro-RO' : 'en-US';
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.onresult = (event) => {
+      const transcript = Array.from(event.results).map(result => result[0].transcript).join(' ');
+      qs('#speakingFallback').value = transcript;
+      showToast(i18n[state.locale].toast_saved);
+    };
+    recognition.onerror = () => {
+      showToast(i18n[state.locale].toast_error);
+    };
+    qs('#startRecording').addEventListener('click', () => {
+      try {
+        recognition.start();
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  }
+  qs('#submitSpeaking').addEventListener('click', () => {
+    stopRecognition();
+    const answer = qs('#speakingFallback').value.trim();
+    if (!answer) return;
+    testState.speakingAnswer = answer;
+    testState.stage = 'result';
+    saveTestProgress();
+    renderTestResult();
+  });
+  updateProgressBar();
+};
+
+const estimateLevel = () => {
+  const grammarAccuracy = testState.grammarScore / totalGrammarQuestions;
+  const readingCorrect = testState.readingAnswer === readingTask.answer ? 1 : 0;
+  const speakingLength = testState.speakingAnswer ? testState.speakingAnswer.split(' ').length : 0;
+  const score = grammarAccuracy * 0.6 + readingCorrect * 0.2 + Math.min(speakingLength / 120, 1) * 0.2;
+  if (score > 0.85) return 'C1';
+  if (score > 0.72) return 'B2';
+  if (score > 0.55) return 'B1';
+  if (score > 0.4) return 'A2';
+  return 'A1';
+};
+
+const renderTestResult = () => {
+  const container = qs('#testContent');
+  const level = estimateLevel();
+  const result = {
+    level,
+    grammarScore: testState.grammarScore,
+    answers: testState.grammarAnswers,
+    reading: readingTask.options[testState.readingAnswer] || null,
+    speaking: testState.speakingAnswer,
+    completedAt: new Date().toISOString(),
+    locale: state.locale
+  };
+  container.innerHTML = `
+    <div class='space-y-4'>
+      <h3 class='text-2xl font-semibold text-bw-bridge dark:text-white'>${i18n[state.locale].test_result}</h3>
+      <p class='text-lg text-bw-way'>${level}</p>
+      <p class='text-sm text-slate-600 dark:text-slate-300'>${i18n[state.locale].thanks_cta}</p>
+      <div class='flex flex-wrap gap-3'>
+        <button id='downloadResultBtn' class='px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white'>${i18n[state.locale].result_download}</button>
+        <button id='copyResultBtn' class='px-4 py-2 rounded-full border border-bw-way text-bw-way'>${i18n[state.locale].result_copy}</button>
+      </div>
+    </div>
+  `;
+  const results = JSON.parse(localStorage.getItem(storageKeys.results) || '[]');
+  results.push(result);
+  localStorage.setItem(storageKeys.results, JSON.stringify(results));
+  renderAdminData();
+  qs('#testResultSummary').classList.remove('hidden');
+  qs('#testLevel').textContent = level;
+  const rec = recommendedByLevel[level] || recommendedByLevel.B1;
+  const list = qs('#recommendedResources');
+  list.innerHTML = rec.map(item => `<li class='p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 text-sm'>${item}</li>`).join('');
+  qs('#downloadResults').onclick = () => downloadFile('bridgeway-test-result.json', JSON.stringify(result, null, 2));
+  qs('#copyResults').onclick = async () => {
+    await navigator.clipboard.writeText(JSON.stringify(result, null, 2));
+    showToast(i18n[state.locale].result_copied);
+  };
+  qs('#downloadResultBtn').onclick = () => {
+    downloadFile('bridgeway-test-result.json', JSON.stringify(result, null, 2));
+    trackEvent('results_download', { level });
+  };
+  qs('#copyResultBtn').onclick = async () => {
+    await navigator.clipboard.writeText(JSON.stringify(result, null, 2));
+    showToast(i18n[state.locale].result_copied);
+    trackEvent('button_click', { label: 'result_copy' });
+  };
+  trackEvent('test_complete', { level });
+  clearTestProgress();
+};
+
+const startTest = () => {
+  testState.stage = 'grammar';
+  testState.grammarIndex = 0;
+  testState.grammarScore = 0;
+  testState.grammarDifficulty = 'easy';
+  testState.grammarAnswers = [];
+  testState.startTime = Date.now();
+  renderGrammarQuestion();
+  trackEvent('test_start');
+  saveTestProgress();
+};
+
+const resumeTest = () => {
+  if (testState.stage === 'grammar') renderGrammarQuestion();
+  if (testState.stage === 'reading') renderReadingQuestion();
+  if (testState.stage === 'speaking') renderSpeakingTask();
+  if (testState.stage === 'result') renderTestResult();
+};
+
+const initLevelTest = () => {
+  const start = qs('#startTest');
+  if (!start) return;
+  const resumeBanner = qs('#resumeBanner');
+  if (loadTestProgress() && testState.stage !== 'idle') {
+    resumeBanner.classList.remove('hidden');
+    qs('#resumeTest').addEventListener('click', () => {
+      resumeBanner.classList.add('hidden');
+      resumeTest();
+    });
+  }
+  start.addEventListener('click', () => {
+    resumeBanner.classList.add('hidden');
+    startTest();
+  });
+};
+
+const handleChat = () => {
+  const toggle = qs('#chatToggle');
+  const widget = qs('#chatWidget');
+  const responses = qs('#chatResponses');
+  const input = qs('#chatInput');
+  if (!toggle || !widget) return;
+  toggle.addEventListener('click', () => {
+    widget.classList.toggle('hidden');
+    trackEvent('button_click', { label: 'chat_toggle' });
+  });
+  const respond = (message, actions = []) => {
+    responses.innerHTML = `<p>${message}</p>${actions.map(action => `<button class='mt-2 px-3 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white text-xs' data-chat-action='${action.action}'>${action.label}</button>`).join('')}`;
+    actions.forEach(action => {
+      responses.querySelector(`[data-chat-action='${action.action}']`)?.addEventListener('click', action.handler);
+    });
+  };
+  const quickActions = {
+    class: () => respond('Opening the booking flow for you…', [{ action: 'open-class', label: i18n[state.locale].cta_free_class, handler: () => { openModal('freeClass'); fillBookingContext(); } }]),
+    test: () => respond('Let’s go! Scroll to the test section.', [{ action: 'open-test', label: i18n[state.locale].cta_level_test, handler: () => qs('#levelTest').scrollIntoView({ behavior: 'smooth' }) }]),
+    question: () => respond('Send us your question and we will reply by email within one business day.', [{ action: 'open-contact', label: 'Email us', handler: () => { window.location.href = 'mailto:hello@bridgeway.ac'; } }])
+  };
+  qsa('.chat-quick').forEach(btn => btn.addEventListener('click', () => {
+    const key = btn.dataset.key;
+    quickActions[key]?.();
+    trackEvent('button_click', { label: `chat_${key}` });
+  }));
+  const keywordResponses = {
+    price: () => respond('Pricing lives in the section below. Use coupons BRIDGE10 or BUSINESS15 to save more.', [{ action: 'open-pricing', label: 'Go to pricing', handler: () => qs('#pricing').scrollIntoView({ behavior: 'smooth' }) }]),
+    company: () => respond('We onboard teams globally with reporting dashboards. Explore the Premium tier or contact sales.', [{ action: 'open-programs', label: 'Programs', handler: () => qs('#programs').scrollIntoView({ behavior: 'smooth' }) }]),
+    kids: () => respond('Our Teen Connect program is built for younger learners with parental dashboards.', [{ action: 'open-teen', label: 'View Teen Connect', handler: () => renderProgramDetail('teen-connect') }])
+  };
+  input?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      const text = input.value.toLowerCase();
+      const keyword = Object.keys(keywordResponses).find(key => text.includes(key));
+      if (keyword) keywordResponses[keyword]();
+      else respond('Thanks! A coach will reply shortly.');
+      input.value = '';
+      trackEvent('button_click', { label: 'chat_keyword', keyword: keyword || 'other' });
+    }
+  });
+};
+
+const renderAdminData = () => {
+  const leads = JSON.parse(localStorage.getItem(storageKeys.leads) || '[]');
+  const queuedLeads = JSON.parse(localStorage.getItem(storageKeys.queuedLeads) || '[]');
+  const results = JSON.parse(localStorage.getItem(storageKeys.results) || '[]');
+  const leadList = qs('#leadList');
+  const resultList = qs('#resultList');
+  if (leadList) leadList.innerHTML = leads.concat(queuedLeads.map(l => Object.assign({ queued: true }, l))).slice(-20).map(lead => `<li>${lead.name} · ${new Date(lead.slot).toLocaleString()} ${lead.queued ? '(queued)' : ''}</li>`).join('');
+  if (resultList) resultList.innerHTML = results.slice(-20).map(item => `<li>${item.level} · ${new Date(item.completedAt).toLocaleString()}</li>`).join('');
+};
+
+const initAdminDrawer = () => {
+  const drawer = qs('#adminDrawer');
+  const overlay = qs('#adminOverlay');
+  if (!drawer) return;
+  const toggleDrawer = (show) => {
+    drawer.style.transform = show ? 'translateX(0)' : 'translateX(100%)';
+    overlay.classList.toggle('hidden', !show);
+  };
+  document.addEventListener('keydown', (event) => {
+    if (event.shiftKey && event.key.toLowerCase() === 'l') {
+      toggleDrawer(drawer.style.transform !== 'translateX(0px)');
+    }
+  });
+  qs('#closeAdmin')?.addEventListener('click', () => toggleDrawer(false));
+  overlay?.addEventListener('click', () => toggleDrawer(false));
+  qsa('.variant-toggle').forEach(btn => {
+    if (btn.dataset.variant === analyticsState.variant) btn.classList.add('bg-bw-way', 'text-white');
+    btn.addEventListener('click', () => {
+      analyticsState.variant = btn.dataset.variant;
+      localStorage.setItem(storageKeys.variant, analyticsState.variant);
+      qsa('.variant-toggle').forEach(b => b.classList.remove('bg-bw-way', 'text-white'));
+      btn.classList.add('bg-bw-way', 'text-white');
+      applyHeroVariant();
+      showToast(i18n[state.locale].admin_variant_applied);
+    });
+  });
+  qsa('[data-flag]').forEach(flag => {
+    const key = flag.dataset.flag;
+    flag.checked = !!featureFlags[key];
+    flag.addEventListener('change', () => {
+      featureFlags[key] = flag.checked;
+      localStorage.setItem(storageKeys.flags, JSON.stringify(featureFlags));
+      if (key === 'stickyOffer') toggleOfferBar(flag.checked);
+    });
+  });
+  qs('#exportLeads')?.addEventListener('click', () => {
+    const leads = localStorage.getItem(storageKeys.leads) || '[]';
+    downloadFile('bridgeway-leads.json', leads);
+    showToast(i18n[state.locale].admin_export_success);
+    trackEvent('lead_export');
+  });
+  qs('#exportResults')?.addEventListener('click', () => {
+    const results = localStorage.getItem(storageKeys.results) || '[]';
+    downloadFile('bridgeway-results.json', results);
+    showToast(i18n[state.locale].admin_export_success);
+    trackEvent('results_download');
+  });
+  qs('#triggerConfetti')?.addEventListener('click', triggerConfetti);
+  qs('#triggerToast')?.addEventListener('click', () => showToast(i18n[state.locale].toast_saved));
+  qs('#retryQueued')?.addEventListener('click', retryQueued);
+  renderAdminData();
+};
+
+const retryQueued = async () => {
+  const queued = JSON.parse(localStorage.getItem(storageKeys.queuedLeads) || '[]');
+  if (!queued.length) return;
+  const remaining = [];
+  for (const lead of queued) {
+    const result = await pushLead(lead);
+    if (!result.ok) remaining.push(lead);
+  }
+  localStorage.setItem(storageKeys.queuedLeads, JSON.stringify(remaining));
+  renderAdminData();
+  showToast(i18n[state.locale].admin_retry_done);
+};
+
+const toggleOfferBar = (show) => {
+  const bar = qs('#stickyOffer');
+  if (!bar) return;
+  bar.classList.toggle('hidden', !show);
+};
+
+const applyHeroVariant = () => {
+  const hero = qs('#home');
+  if (!hero) return;
+  hero.classList.toggle('variant-b', analyticsState.variant === 'B');
+  const ctas = qsa('#home .flex.flex-wrap button');
+  if (analyticsState.variant === 'B' && ctas.length >= 2) {
+    hero.querySelector('.flex.flex-wrap').insertBefore(ctas[1], ctas[0]);
+  }
+  trackEvent('ab_variant', { variant: analyticsState.variant });
+};
+
+const initConsent = () => {
+  const banner = qs('#consentBanner');
+  const stored = localStorage.getItem('bw-consent');
+  if (stored === 'accepted') {
+    analyticsState.consent = true;
+    initAnalytics();
+    return;
+  }
+  if (stored === 'declined') return;
+  banner.classList.remove('hidden');
+  qsa('[data-consent]').forEach(btn => btn.addEventListener('click', () => {
+    const choice = btn.dataset.consent;
+    banner.classList.add('hidden');
+    if (choice === 'accept') {
+      analyticsState.consent = true;
+      initAnalytics();
+      flushAnalyticsQueue();
+      localStorage.setItem('bw-consent', 'accepted');
+    } else {
+      localStorage.setItem('bw-consent', 'declined');
+    }
+  }));
+};
+
+const initAnalytics = () => {
+  if (document.getElementById('ga4-script')) return;
+  const script = document.createElement('script');
+  script.id = 'ga4-script';
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_ID}`;
+  document.head.appendChild(script);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(){dataLayer.push(arguments);};
+  window.gtag('js', new Date());
+  window.gtag('config', ANALYTICS_ID);
+};
+
+const initScrollFeatures = () => {
+  const header = qs('#siteHeader');
+  const cta = qs('[data-modal-open="freeClass"]');
+  const backToTop = qs('#backToTop');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        header.classList.add('shadow-lg', 'py-1');
+        cta?.classList.add('animate-pulseglow');
+      } else {
+        header.classList.remove('shadow-lg', 'py-1');
+        cta?.classList.remove('animate-pulseglow');
+      }
+    });
+  });
+  if (qs('#home')) observer.observe(qs('#home'));
+  window.addEventListener('scroll', () => {
+    const show = window.scrollY > window.innerHeight / 2;
+    backToTop.classList.toggle('hidden', !show);
+  });
+  backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  qsa('[data-scroll]').forEach(btn => btn.addEventListener('click', () => {
+    const target = document.querySelector(btn.dataset.scroll);
+    target?.scrollIntoView({ behavior: 'smooth' });
+  }));
+};
+
+const initExitIntent = () => {
+  if (!featureFlags.exitIntent) return;
+  const banner = qs('#exitIntent');
+  if (!banner) return;
+  let shown = false;
+  document.addEventListener('mouseleave', (event) => {
+    if (event.clientY <= 0 && !shown) {
+      banner.classList.remove('hidden');
+      banner.classList.add('flex');
+      shown = true;
+      trackEvent('banner_show', { label: 'exit_intent' });
+    }
+  });
+  qsa('[data-exit-close]').forEach(btn => btn.addEventListener('click', () => {
+    banner.classList.add('hidden');
+    banner.classList.remove('flex');
+  }));
+};
+
+const initMobileDock = () => {
+  qs('#dockFreeClass')?.addEventListener('click', () => openModal('freeClass'));
+  qs('#dockTest')?.addEventListener('click', () => qs('#levelTest')?.scrollIntoView({ behavior: 'smooth' }));
+};
+
+const initMenu = () => {
+  const toggle = qs('#menuToggle');
+  const menu = qs('#mobileMenu');
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu.classList.toggle('hidden');
+  });
+};
+
+const registerPWA = () => {
+  if (!('serviceWorker' in navigator)) return;
+  const swScript = `self.addEventListener('install', (event) => {
+  event.waitUntil(caches.open('bridgeway').then(cache => cache.addAll(['./'])));
+});
+self.addEventListener('fetch', (event) => {
+  event.respondWith(caches.match(event.request).then(resp => resp || fetch(event.request)).catch(() => new Response('<h1>Offline</h1>', { headers: { 'Content-Type': 'text/html' } })));
+});`;
+  const blob = new Blob([swScript], { type: 'text/javascript' });
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).catch(console.error);
+};
+
+const initDateDefault = () => {
+  const dateInput = qs('#freeClassForm input[name="date"]');
+  if (!dateInput) return;
+  const today = new Date();
+  today.setDate(today.getDate() + 1);
+  dateInput.value = today.toISOString().split('T')[0];
+  currentSlots = generateSlots(dateInput.value);
+  renderSlots();
+};
+
+const initYear = () => {
+  const el = qs('#year');
+  if (el) el.textContent = String(new Date().getFullYear());
+};
+
+const initWhatsAppLinks = () => {
+  qsa('[data-analytics="whatsapp_open"]').forEach(link => link.addEventListener('click', () => trackEvent('whatsapp_open')));
+  qsa('[data-analytics="call_click"]').forEach(link => link.addEventListener('click', () => trackEvent('call_click')));
+};
+
+const initHeroCTA = () => {
+  const secondary = qs('#heroSecondaryCTA');
+  if (!secondary) return;
+  if (document.referrer.includes('/business') || window.location.search.includes('ref=business')) {
+    secondary.textContent = i18n[state.locale].cta_plan_companies;
+  }
+};
+
+const initBreadcrumb = () => {
+  breadcrumbSchema();
+};
+
+const initResourceEvents = () => {
+  ['resourceSearch', 'resourceLevel', 'resourceType', 'resourceGoal'].forEach(id => {
+    const element = qs(`#${id}`);
+    if (!element) return;
+    const event = id === 'resourceSearch' ? 'input' : 'change';
+    element.addEventListener(event, () => {
+      if (id === 'resourceSearch') updateAutocomplete();
+      renderResources();
+      trackEvent('resource_filter', { id, value: element.value });
+    });
+  });
+};
+
+const initBillingToggle = () => {
+  qsa('.billing-toggle').forEach(btn => btn.addEventListener('click', () => {
+    renderPricing(btn.dataset.billing);
+  }));
+};
+
+const initAnchorTracking = () => {
+  qsa('a[href^="#"]').forEach(link => link.addEventListener('click', () => trackEvent('nav_click', { target: link.getAttribute('href') })));
+};
+
+const initResumeBanner = () => {
+  // already handled in initLevelTest
+};
+
+const initDarkMode = () => {
+  initTheme();
+};
+
+const initLanguage = () => {
+  initLanguageSwitcher();
+  setLocale(state.locale);
+};
+
+const initHero = () => {
+  applyHeroVariant();
+  initHeroCTA();
+};
+
+const initOfferBar = () => {
+  toggleOfferBar(featureFlags.stickyOffer);
+  qs('#dismissOffer')?.addEventListener('click', () => toggleOfferBar(false));
+};
+
+const initThankYouActions = () => {
+  qs('#downloadResults')?.addEventListener('click', () => {
+    const results = localStorage.getItem(storageKeys.results) || '[]';
+    downloadFile('bridgeway-results.json', results);
+  });
+};
+
+const initNavTracking = () => {
+  qsa('button[data-modal-open], button[data-scroll], button[data-cta], button[data-lang], button[data-program], button[data-program-book]').forEach(btn => {
+    btn.addEventListener('click', () => trackEvent('button_click', { id: btn.dataset.testid || btn.dataset.program || btn.textContent?.trim() }));
+  });
+};
+
+const initAnalyticsEvents = () => {
+  trackEvent('page_view');
+};
+
+const initResumeThankYou = () => {
+  restoreBooking();
+};
+
+const initCopyButtons = () => {
+  qs('#copyResults')?.addEventListener('click', async () => {
+    const results = localStorage.getItem(storageKeys.results) || '[]';
+    await navigator.clipboard.writeText(results);
+    showToast(i18n[state.locale].result_copied);
+  });
+};
+
+const initCalendarLinks = () => {
+  // placeholder to ensure CTA works after booking
+};
+
+const boot = () => {
+  initYear();
+  initMenu();
+  initLanguage();
+  initDarkMode();
+  renderPrograms();
+  initProgramFilters();
+  renderProgramDetail(programs[0].id);
+  renderTimeline();
+  renderFAQ();
+  renderTeachers();
+  renderPricing(localStorage.getItem(storageKeys.billing) || 'monthly');
+  initBillingToggle();
+  initCalculator();
+  initConfigurator();
+  renderResources();
+  initResourceEvents();
+  initLevelTest();
+  handleFreeClass();
+  initDateDefault();
+  initMobileDock();
+  initScrollFeatures();
+  initExitIntent();
+  handleChat();
+  initAdminDrawer();
+  initConsent();
+  initOfferBar();
+  initHero();
+  initBreadcrumb();
+  initWhatsAppLinks();
+  initAnchorTracking();
+  initResumeThankYou();
+  initThankYouActions();
+  initCopyButtons();
+  initCalendarLinks();
+  initAnalyticsEvents();
+  registerPWA();
+};
+
+document.addEventListener('DOMContentLoaded', boot);
+
   </script>
 </body>
 </html>
