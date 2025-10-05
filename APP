@@ -1,0 +1,1729 @@
+diff --git a/index.html b/index.html
+index 3dc8f0360c4322f664128a4786504652d53e5472..600167fe93bc2c162d763087f738c8eeab09c87a 100644
+--- a/index.html
++++ b/index.html
+@@ -1,522 +1,1279 @@
+ <!DOCTYPE html>
+-<html lang="es" class="dark">
++<html lang="en" class="scroll-smooth">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+-  <title>Sol · Restaurante en Córdoba</title>
+-  <meta name="description" content="Sol, restaurante de alta cocina en Córdoba, España. Reservas online, carta de temporada y una experiencia cálida y elegante inspirada en el sol." />
+-  <link rel="preconnect" href="https://fonts.googleapis.com">
+-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+-  <script src="https://cdn.tailwindcss.com"></script>
++  <title>BridgeWay · Online English Academy</title>
++  <meta name="description" content="BridgeWay is the online English academy that guides professionals and students from level A1 to C2 with personalized programs, expert teachers, and engaging resources." />
++  <link rel="preconnect" href="https://fonts.googleapis.com" />
++  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
++  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
++  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+   <script>
+     tailwind.config = {
+       darkMode: 'class',
+       theme: {
+         extend: {
+-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'Apple Color Emoji', 'Segoe UI Emoji'] },
++          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+           colors: {
+-            gold: {
+-              DEFAULT: '#d4af37', // warm gold
+-              soft: '#e6c766',
+-              dark: '#b8962d'
+-            },
+-            night: {
+-              900: '#0a0a0a',
+-              800: '#0f0f12',
+-              700: '#17171b'
+-            }
++            'bw-bridge': '#0A0F4C',
++            'bw-way': '#4967E4'
+           },
+-          boxShadow: {
+-            lux: '0 10px 30px -10px rgba(212,175,55,0.25)'
++          backgroundImage: {
++            'bw-hero': 'linear-gradient(135deg, rgba(10,15,76,0.96), rgba(73,103,228,0.88))',
++            'bw-section': 'linear-gradient(120deg, rgba(10,15,76,0.95), rgba(73,103,228,0.7))'
+           },
+-          keyframes: {
+-            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
+-            spinSlow: { to: { transform: 'rotate(360deg)' } },
+-            fadeUp: { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
++          boxShadow: {
++            glow: '0 10px 40px -12px rgba(73,103,228,0.45)',
++            card: '0 16px 35px -18px rgba(15,23,42,0.45)'
+           },
+-          animation: {
+-            float: 'float 6s ease-in-out infinite',
+-            spinSlow: 'spinSlow 20s linear infinite',
+-            fadeUp: 'fadeUp 700ms ease both'
++          transitionProperty: {
++            spacing: 'margin, padding'
+           }
+         }
+       }
+-    }
++    };
+   </script>
+   <style>
+-    /* Accessible focus ring tuned to gold */
+-    :root { --ring: #d4af37; }
+-    *:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
++    :root {
++      color-scheme: light dark;
++      --bridge: #0A0F4C;
++      --way: #4967E4;
++    }
++    body {
++      font-feature-settings: 'liga' 1, 'kern' 1;
++    }
++    *:focus-visible {
++      outline: 2px solid var(--way);
++      outline-offset: 2px;
++    }
+     @media (prefers-reduced-motion: reduce) {
+-      .motion-safe\:animate-float, .motion-safe\:animate-spinSlow, .motion-safe\:transition-all, .motion-safe\:duration-500, .motion-safe\:duration-700, .motion-safe\:duration-300 { animation: none !important; transition: none !important; }
++      *, *::before, *::after {
++        animation-duration: 0.001ms !important;
++        animation-iteration-count: 1 !important;
++        transition-duration: 0.001ms !important;
++        scroll-behavior: auto !important;
++      }
+     }
+   </style>
+ </head>
+-<body class="bg-night-900 text-white font-sans antialiased selection:bg-gold/20 selection:text-white">
+-  <!-- Navigation -->
+-  <header class="fixed inset-x-0 top-0 z-50 backdrop-blur bg-night-900/70 border-b border-white/5">
+-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+-      <a href="#top" class="flex items-center gap-3 group" aria-label="Inicio · Sol">
+-        <!-- Animated Sun Logo -->
+-        <div class="relative">
+-          <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+-            <defs>
+-              <radialGradient id="g" cx="50%" cy="50%" r="50%">
+-                <stop offset="0%" stop-color="#fff3c4"/>
+-                <stop offset="60%" stop-color="#f3d27a"/>
+-                <stop offset="100%" stop-color="#d4af37"/>
+-              </radialGradient>
+-            </defs>
+-            <circle cx="32" cy="32" r="12" fill="url(#g)"></circle>
+-            <g class="motion-safe:animate-spinSlow" style="transform-origin: 32px 32px">
+-              <g stroke="#d4af37" stroke-width="2" stroke-linecap="round">
+-                <line x1="32" y1="2" x2="32" y2="12"/>
+-                <line x1="32" y1="52" x2="32" y2="62"/>
+-                <line x1="2" y1="32" x2="12" y2="32"/>
+-                <line x1="52" y1="32" x2="62" y2="32"/>
+-                <line x1="11" y1="11" x2="18" y2="18"/>
+-                <line x1="46" y1="46" x2="53" y2="53"/>
+-                <line x1="46" y1="18" x2="53" y2="11"/>
+-                <line x1="11" y1="53" x2="18" y2="46"/>
+-              </g>
+-            </g>
+-          </svg>
++<body class="bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased" data-theme="light">
++  <script>
++    window.dataLayer = window.dataLayer || [];
++    const trackEvent = (event, params = {}) => {
++      window.dataLayer.push({ event, ...params });
++      console.info('[GA4 event]', event, params);
++    };
++  </script>
++  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-white dark:bg-slate-800 text-bw-bridge px-3 py-2 rounded-md shadow">Skip to content</a>
++  <nav class="fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-t border-slate-200/80 dark:border-slate-800/80 md:hidden" aria-label="Quick actions">
++    <div class="max-w-5xl mx-auto grid grid-cols-3 text-sm font-semibold text-center">
++      <button data-cta="class" class="py-3 flex flex-col items-center gap-1 text-bw-way" id="dockFreeClass">
++        <span aria-hidden="true">🎓</span>
++        <span data-i18n="cta_free_class">Book your free class</span>
++      </button>
++      <button data-cta="test" class="py-3 flex flex-col items-center gap-1" id="dockTest">
++        <span aria-hidden="true">🧠</span>
++        <span data-i18n="cta_level_test">Take the level test</span>
++      </button>
++      <a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" class="py-3 flex flex-col items-center gap-1 text-green-600">
++        <span aria-hidden="true">💬</span>
++        <span data-i18n="cta_whatsapp">Confirm via WhatsApp</span>
++      </a>
++    </div>
++  </nav>
++  <header id="siteHeader" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-800">
++    <div class="hidden lg:block bg-gradient-to-r from-bw-bridge via-bw-bridge/90 to-bw-way px-4 sm:px-8">
++      <div class="max-w-7xl mx-auto flex justify-between text-sm text-white py-2">
++        <div class="flex items-center gap-6">
++          <a href="tel:+1234567890" class="inline-flex items-center gap-2 hover:opacity-80" data-analytics="call_click">
++            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 0 0 2.25-2.25v-1.146a1.5 1.5 0 0 0-1.11-1.457l-3.402-.97a1.5 1.5 0 0 0-1.51.553l-.982 1.31a12.04 12.04 0 0 1-5.248-5.248l1.31-.982a1.5 1.5 0 0 0 .553-1.51l-.97-3.403A1.5 1.5 0 0 0 9.646 3h-1.146A2.25 2.25 0 0 0 6.25 5.25v1.5Z"/></svg>
++            <span>+1 234 567 890</span>
++          </a>
++          <a href="https://wa.me/1234567890" class="inline-flex items-center gap-2 hover:opacity-80" target="_blank" rel="noreferrer" data-analytics="whatsapp_open">
++            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-9.9 17.43L.5 23.5l5.76-1.54A11.5 11.5 0 1 0 12 .5Zm0 2a9.5 9.5 0 1 1-4.66 17.83l-.33-.18-3.42.92.92-3.42-.18-.33A9.5 9.5 0 0 1 12 2.5Zm-3.23 4.54c-.15 0-.38.05-.58.24-.2.19-.76.74-.76 1.79s.78 2.08.89 2.22c.11.15 1.51 2.44 3.72 3.44 1.84.81 2.21.65 2.61.61.4-.04 1.28-.52 1.46-1.03.19-.51.19-.94.13-1.03-.05-.09-.2-.15-.43-.28-.24-.13-1.4-.69-1.62-.77-.22-.08-.38-.12-.54.12-.16.23-.62.77-.76.93-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.97-1.2-.73-.65-1.22-1.46-1.36-1.7-.14-.23-.01-.36.1-.48.09-.09.24-.27.35-.4.11-.13.15-.23.23-.38.08-.16.04-.29-.02-.4-.06-.11-.53-1.3-.74-1.8-.19-.47-.39-.48-.54-.48Z"/></svg>
++            <span>WhatsApp</span>
++          </a>
++        </div>
++        <div class="flex items-center gap-4" aria-label="Language">
++          <span class="text-xs uppercase tracking-wide" data-i18n="label_language">Language</span>
++          <div class="flex items-center gap-1" role="group" aria-label="Language switcher">
++            <button class="px-2 py-1 rounded-md bg-white/20 font-semibold focus-visible:outline focus-visible:outline-white" data-lang="en">EN</button>
++            <button class="px-2 py-1 rounded-md hover:bg-white/20" data-lang="ru">RU</button>
++            <button class="px-2 py-1 rounded-md hover:bg-white/20" data-lang="ro">RO</button>
++          </div>
+         </div>
+-        <span class="text-lg font-semibold tracking-wide">Sol</span>
++      </div>
++    </div>
++    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-300" id="headerInner">
++      <a href="#home" class="flex items-center gap-3 py-3" aria-label="BridgeWay home">
++        <span class="text-2xl font-bold tracking-tight"><span class="text-bw-bridge">Bridge</span><span class="text-bw-way">Way</span></span>
+       </a>
+-
+-      <nav class="hidden md:flex items-center gap-8 text-sm">
+-        <a href="#reserva" class="hover:text-gold transition-colors">Reservas</a>
+-        <a href="#carta" class="hover:text-gold transition-colors">Carta</a>
+-        <a href="#faq" class="hover:text-gold transition-colors">FAQ</a>
+-        <a href="#contacto" class="hover:text-gold transition-colors">Contacto</a>
++      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium" aria-label="Primary">
++        <a href="#home" class="hover:text-bw-way transition" data-i18n="nav_home">Home</a>
++        <a href="#programs" class="hover:text-bw-way transition" data-i18n="nav_programs">Programs</a>
++        <a href="#methodology" class="hover:text-bw-way transition" data-i18n="nav_methodology">Methodology</a>
++        <a href="#teachers" class="hover:text-bw-way transition" data-i18n="nav_teachers">Teachers</a>
++        <a href="#pricing" class="hover:text-bw-way transition" data-i18n="nav_pricing">Pricing</a>
++        <a href="#resources" class="hover:text-bw-way transition" data-i18n="nav_resources">Resources</a>
++        <button class="ml-4 px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge via-bw-bridge/90 to-bw-way text-white shadow transition focus-visible:outline-none" data-modal-open="freeClass" data-i18n="nav_free_class">Free Class</button>
+       </nav>
+-
+-      <a href="#reserva" class="hidden sm:inline-flex items-center gap-2 bg-gold text-night-900 font-medium px-4 py-2 rounded-xl shadow-lux hover:bg-gold-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 transition" aria-label="Reservar mesa">
+-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg>
+-        Reservar
+-      </a>
+-
+-      <!-- Mobile menu -->
+-      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/5" aria-label="Abrir menú"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+-    </div>
+-    <div id="mobileNav" class="md:hidden hidden border-t border-white/5">
+-      <div class="px-4 py-3 space-y-2">
+-        <a href="#reserva" class="block py-2 hover:text-gold">Reservas</a>
+-        <a href="#carta" class="block py-2 hover:text-gold">Carta</a>
+-        <a href="#faq" class="block py-2 hover:text-gold">FAQ</a>
+-        <a href="#contacto" class="block py-2 hover:text-gold">Contacto</a>
++      <div class="flex items-center gap-4">
++        <button id="darkToggle" class="p-2 rounded-full bg-slate-200/60 dark:bg-slate-800/80" aria-label="Toggle dark mode">
++          <span class="block dark:hidden" aria-hidden="true">🌙</span>
++          <span class="hidden dark:block" aria-hidden="true">☀️</span>
++        </button>
++        <button class="lg:hidden p-3 rounded-full bg-slate-200/70 dark:bg-slate-800/80" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu">
++          <span class="sr-only">Open menu</span>
++          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
++        </button>
+       </div>
+     </div>
++    <nav id="mobileMenu" class="lg:hidden hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900" aria-label="Mobile menu">
++      <div class="px-4 py-4 space-y-2 text-sm font-medium">
++        <a href="#home" class="block py-2" data-i18n="nav_home">Home</a>
++        <a href="#programs" class="block py-2" data-i18n="nav_programs">Programs</a>
++        <a href="#methodology" class="block py-2" data-i18n="nav_methodology">Methodology</a>
++        <a href="#teachers" class="block py-2" data-i18n="nav_teachers">Teachers</a>
++        <a href="#pricing" class="block py-2" data-i18n="nav_pricing">Pricing</a>
++        <a href="#resources" class="block py-2" data-i18n="nav_resources">Resources</a>
++        <button class="w-full px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white" data-modal-open="freeClass" data-i18n="nav_free_class">Free Class</button>
++        <div class="flex gap-2" role="group">
++          <button class="flex-1 border border-slate-200 dark:border-slate-700 rounded-md py-2" data-lang="en">EN</button>
++          <button class="flex-1 border border-slate-200 dark:border-slate-700 rounded-md py-2" data-lang="ru">RU</button>
++          <button class="flex-1 border border-slate-200 dark:border-slate-700 rounded-md py-2" data-lang="ro">RO</button>
++        </div>
++      </div>
++    </nav>
+   </header>
+-
+-  <!-- Hero -->
+-  <section id="top" class="relative h-[100svh] w-full overflow-hidden">
+-    <picture>
+-      <!-- High-quality, royalty-free Unsplash image -->
+-      <source srcset="https://images.unsplash.com/photo-1541542684-4a9c58a2c9b8?q=80&w=1920&auto=format&fit=crop" media="(min-width: 1024px)">
+-      <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1200&auto=format&fit=crop" alt="Ambiente cálido y elegante del restaurante Sol en Córdoba" class="absolute inset-0 w-full h-full object-cover" />
+-    </picture>
+-    <div class="absolute inset-0 bg-gradient-to-b from-night-900/30 via-night-900/60 to-night-900"></div>
+-
+-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+-      <div class="max-w-2xl">
+-        <div class="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs tracking-wide uppercase">
+-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold animate-pulse" aria-hidden="true"></span>
+-          Nueva temporada · Córdoba
++  <main id="main" class="pt-32" data-section>
++    <section id="home" class="relative overflow-hidden">
++      <div class="absolute inset-0 bg-bw-hero"></div>
++      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col lg:flex-row gap-12 items-center text-white">
++        <div class="flex-1">
++          <p class="text-sm uppercase tracking-[0.3em] mb-4">DECIDE IN 5 SECONDS.</p>
++          <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6" data-i18n="hero_title">Bridge your English to the world.</h1>
++          <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl" data-i18n="hero_subtitle">Personalized online English programs that adapt to your goals, pace, and schedule with a proven methodology.</p>
++          <div class="flex flex-wrap gap-4 items-center">
++            <button class="px-6 py-3 rounded-full bg-white text-bw-bridge font-semibold shadow-glow transition hover:-translate-y-0.5 hover:shadow-lg" data-modal-open="freeClass" data-i18n="cta_free_class">Book your free class</button>
++            <button id="heroSecondaryCTA" class="px-6 py-3 rounded-full border border-white/40 text-white font-semibold hover:bg-white/10 transition" data-scroll="#levelTest" data-i18n="cta_level_test">Take the level test</button>
++          </div>
++          <div class="mt-10 flex flex-wrap gap-6 text-sm text-white/80">
++            <div class="flex items-center gap-3"><span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/15">92%</span><p data-i18n="hero_stat1">of learners move up one CEFR level in 12 weeks*</p></div>
++            <div class="flex items-center gap-3"><span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/15">24/7</span><p data-i18n="hero_stat2">access to resources & chat support</p></div>
++          </div>
+         </div>
+-        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+-          Calidez y elegancia inspiradas en el <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-soft">Sol</span>
+-        </h1>
+-        <p class="mt-4 text-lg text-white/80">Alta cocina mediterránea con un guiño andaluz. Ingredientes de temporada, técnica impecable y hospitalidad luminosa en el corazón de Córdoba.</p>
+-        <div class="mt-8 flex flex-wrap items-center gap-4">
+-          <a href="#reserva" class="group inline-flex items-center gap-2 bg-gold text-night-900 font-semibold px-6 py-3 rounded-2xl shadow-lux hover:bg-gold-soft transition motion-safe:duration-300">
+-            Reservar mesa
+-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+-          </a>
+-          <a href="#carta" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl border border-white/10 hover:border-gold/60 hover:text-gold transition motion-safe:duration-300" aria-label="Ver carta">Ver carta</a>
++        <div class="flex-1 w-full">
++          <div class="bg-white/10 border border-white/20 rounded-3xl p-6 backdrop-blur shadow-glow">
++            <h2 class="text-xl font-semibold mb-4" data-i18n="hero_personal">Your personalized launch checklist</h2>
++            <ul class="space-y-4 text-white/90">
++              <li class="flex items-start gap-3">
++                <span aria-hidden="true">1.</span>
++                <span data-i18n="hero_item1">Pick a program designed for your objectives.</span>
++              </li>
++              <li class="flex items-start gap-3">
++                <span aria-hidden="true">2.</span>
++                <span data-i18n="hero_item2">Book a 20-minute diagnostic class.</span>
++              </li>
++              <li class="flex items-start gap-3">
++                <span aria-hidden="true">3.</span>
++                <span data-i18n="hero_item3">Receive a roadmap and resources in your inbox.</span>
++              </li>
++            </ul>
++            <p class="mt-6 text-xs text-white/70">*<span data-i18n="hero_footnote">Based on 2023 BridgeWay learners completing at least 32 guided sessions.</span></p>
++          </div>
+         </div>
+       </div>
+-    </div>
+-
+-    <!-- Floating decor sun -->
+-    <div class="absolute right-6 bottom-10 opacity-80 pointer-events-none">
+-      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" class="motion-safe:animate-float" aria-hidden="true">
+-        <circle cx="60" cy="60" r="26" fill="#d4af37" fill-opacity="0.15" />
+-        <circle cx="60" cy="60" r="44" stroke="#d4af37" stroke-opacity="0.25" stroke-width="1.5" />
+-      </svg>
+-    </div>
+-  </section>
+-
+-  <!-- Reservations -->
+-  <section id="reserva" class="relative py-20 bg-night-800">
+-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+-      <div class="grid lg:grid-cols-2 gap-10 items-start">
+-
+-        <!-- Booking Card -->
+-        <div class="bg-night-900/80 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl">
+-          <h2 class="text-3xl font-bold">Reservas</h2>
+-          <p class="mt-2 text-white/70">Una experiencia exquisita comienza con una reserva sencilla. Completa el formulario y confirma al instante.</p>
+-
+-          <form id="bookingForm" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4" autocomplete="on" aria-describedby="bookingStatus">
+-            <div>
+-              <label for="date" class="block text-sm text-white/70 mb-1">Fecha</label>
+-              <input id="date" name="date" type="date" required class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
+-            </div>
+-            <div>
+-              <label for="time" class="block text-sm text-white/70 mb-1">Hora</label>
+-              <input id="time" name="time" type="time" required class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
+-            </div>
+-            <div>
+-              <label for="guests" class="block text-sm text-white/70 mb-1">Comensales</label>
+-              <select id="guests" name="guests" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60" aria-label="Número de comensales">
+-                <option>1</option>
+-                <option>2</option>
+-                <option>3</option>
+-                <option>4</option>
+-                <option>5</option>
+-                <option>6</option>
+-                <option>7</option>
+-                <option>8</option>
+-              </select>
+-            </div>
+-            <div>
+-              <label for="name" class="block text-sm text-white/70 mb-1">Nombre</label>
+-              <input id="name" name="name" type="text" required placeholder="Nombre y apellidos" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
+-            </div>
+-            <div>
+-              <label for="phone" class="block text-sm text-white/70 mb-1">Teléfono</label>
+-              <input id="phone" name="phone" type="tel" required placeholder="+34 600 000 000" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
+-            </div>
+-            <div>
+-              <label for="email" class="block text-sm text-white/70 mb-1">Email</label>
+-              <input id="email" name="email" type="email" required placeholder="tu@email.com" class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"/>
+-            </div>
+-            <div class="sm:col-span-2">
+-              <label for="notes" class="block text-sm text-white/70 mb-1">Notas</label>
+-              <textarea id="notes" name="notes" rows="3" placeholder="Alergias, preferencias..." class="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 focus:border-gold/60"></textarea>
++      <button class="absolute left-1/2 -translate-x-1/2 bottom-6 text-white/80 animate-bounce" aria-label="Scroll to next section" data-scroll="#programs">
++        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7" /></svg>
++      </button>
++    </section>
++    <section id="resumeBanner" class="hidden bg-gradient-to-r from-bw-way/10 via-white to-bw-bridge/10 dark:from-bw-way/10 dark:via-slate-900 dark:to-bw-bridge/10 border-y border-slate-200 dark:border-slate-800" role="status">
++      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
++        <p class="font-semibold" data-i18n="resume_text">Resume your saved level test where you left off.</p>
++        <button id="resumeTest" class="px-4 py-2 rounded-full bg-bw-way text-white font-semibold" data-i18n="resume_cta">Resume test</button>
++      </div>
++    </section>
++    <section id="programs" class="relative py-24 bg-white dark:bg-slate-950">
++      <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-bw-bridge via-indigo-500 to-bw-way"></div>
++      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
++        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
++          <div>
++            <h2 class="text-3xl md:text-4xl font-bold text-bw-bridge dark:text-white" data-i18n="programs_title">Programs built around your objectives</h2>
++            <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl" data-i18n="programs_subtitle">Choose a track and explore the mini-configurator to adapt availability, intensity, and payment. Each card shows live spots.</p>
++          </div>
++          <div class="flex gap-2" role="group" aria-label="Program filters">
++            <button class="program-filter active px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white text-sm" data-filter="all" data-i18n="filter_all">All</button>
++            <button class="program-filter px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-sm" data-filter="teens" data-i18n="filter_teens">Teens</button>
++            <button class="program-filter px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-sm" data-filter="business" data-i18n="filter_business">Business</button>
++            <button class="program-filter px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-sm" data-filter="exam" data-i18n="filter_exam">Exam prep</button>
++          </div>
++        </div>
++        <div class="grid gap-8 lg:grid-cols-3" id="programCards" aria-live="polite"></div>
++        <div class="mt-12 grid lg:grid-cols-2 gap-10">
++          <div class="bg-gradient-to-r from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-card">
++            <h3 class="text-2xl font-semibold" data-i18n="configurator_title">Configure your perfect schedule</h3>
++            <form id="programConfigurator" class="mt-6 space-y-5">
++              <label class="block">
++                <span class="text-sm font-medium" data-i18n="config_goal">Goal</span>
++                <select name="goal" class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-900" required>
++                  <option value="career" data-i18n="config_goal_career">Advance my career</option>
++                  <option value="travel" data-i18n="config_goal_travel">Travel fluently</option>
++                  <option value="exam" data-i18n="config_goal_exam">Pass an international exam</option>
++                </select>
++              </label>
++              <label class="block">
++                <span class="text-sm font-medium" data-i18n="config_availability">Availability</span>
++                <input type="range" name="availability" min="2" max="10" step="1" value="4" class="w-full" aria-describedby="availabilityValue" />
++                <p id="availabilityValue" class="text-xs text-slate-500" data-i18n="config_hours">4 hours/week</p>
++              </label>
++              <label class="block">
++                <span class="text-sm font-medium" data-i18n="config_payment">Payment preference</span>
++                <div class="mt-2 flex gap-4">
++                  <label class="flex items-center gap-2">
++                    <input type="radio" name="payment" value="monthly" checked class="text-bw-way" />
++                    <span data-i18n="config_pay_monthly">Monthly</span>
++                  </label>
++                  <label class="flex items-center gap-2">
++                    <input type="radio" name="payment" value="quarterly" class="text-bw-way" />
++                    <span data-i18n="config_pay_quarterly">Quarterly (-12%)</span>
++                  </label>
++                </div>
++              </label>
++              <button type="submit" class="w-full px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-i18n="config_submit">View suggested plan</button>
++            </form>
++            <div id="configResult" class="mt-6 hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-900/60 p-4" role="status"></div>
++          </div>
++          <div class="bg-gradient-to-br from-bw-bridge/95 via-bw-bridge/80 to-bw-way/90 text-white rounded-3xl p-8 shadow-card">
++            <h3 class="text-2xl font-semibold" data-i18n="faq_title">BridgeWay FAQ</h3>
++            <p class="mt-3 text-white/80" data-i18n="faq_subtitle">Transparent answers to the most common questions.</p>
++            <div class="mt-6 divide-y divide-white/20" id="faqAccordion"></div>
++          </div>
++        </div>
++        <script type="application/ld+json" id="faqSchema"></script>
++      </div>
++    </section>
++    <section id="methodology" class="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
++      <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-bw-bridge/10 to-transparent"></div>
++      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
++        <div class="text-center mb-16">
++          <h2 class="text-3xl md:text-4xl font-bold text-bw-bridge dark:text-white" data-i18n="method_title">Methodology that guides you step by step</h2>
++          <p class="mt-4 text-slate-600 dark:text-slate-300" data-i18n="method_subtitle">We combine diagnostics, human coaching, and smart technology to make progress inevitable.</p>
++        </div>
++        <div class="relative">
++          <div class="overflow-x-auto" role="list">
++            <ol class="flex gap-6 min-w-full" id="methodTimeline"></ol>
++          </div>
++          <div class="mt-12 grid md:grid-cols-2 gap-8">
++            <div class="bg-white dark:bg-slate-800/80 rounded-3xl p-6 shadow-card">
++              <h3 class="text-xl font-semibold" data-i18n="method_socialproof">+92% move up one level in 12 weeks</h3>
++              <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm" data-i18n="method_footnote">Measured for learners who complete the diagnostic, a minimum of 16 live classes, and continuous feedback loop.</p>
+             </div>
+-            <div class="sm:col-span-2 flex items-center justify-between gap-4 mt-2">
+-              <p class="text-xs text-white/60">Al enviar aceptas nuestra <a href="#" class="text-gold hover:underline">política de privacidad</a>.</p>
+-              <button type="submit" class="group inline-flex items-center gap-2 bg-gold text-night-900 font-semibold px-5 py-2.5 rounded-xl shadow-lux hover:bg-gold-soft transition motion-safe:duration-300">
+-                Confirmar reserva
+-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+-              </button>
++            <div class="bg-white dark:bg-slate-800/80 rounded-3xl p-6 shadow-card">
++              <h3 class="text-xl font-semibold" data-i18n="method_followup">Follow-up you can feel</h3>
++              <p class="mt-3 text-slate-600 dark:text-slate-300" data-i18n="method_followup_text">Weekly nudges, micro goals, and transparent dashboards keep momentum high and reduce drop-off.</p>
+             </div>
+-          </form>
+-
+-          <!-- Status -->
+-          <div id="bookingStatus" class="mt-4 hidden rounded-xl border border-gold/40 bg-gold/10 p-4 text-sm" role="status" aria-live="polite"></div>
++          </div>
+         </div>
++      </div>
++    </section>
+ 
+-        <!-- Info Card -->
+-        <aside class="bg-gradient-to-br from-night-900 via-night-900/90 to-night-800 border border-white/10 rounded-3xl p-6 sm:p-8">
+-          <h3 class="text-2xl font-semibold">Horarios & Ubicación</h3>
+-          <div class="mt-6 space-y-6">
+-            <div class="flex items-start gap-4">
+-              <svg class="h-6 w-6 text-gold flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M21 8H7"/><path d="M7 12h14"/><path d="M7 16h14"/></svg>
+-              <div>
+-                <p class="font-medium">Horario</p>
+-                <p class="text-white/70">L–J: 13:30–16:00 / 20:30–23:30<br>V–S: 13:30–16:30 / 20:30–00:00<br>D: 13:30–16:00</p>
+-              </div>
+-            </div>
+-            <div class="flex items-start gap-4">
+-              <svg class="h-6 w-6 text-gold flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+-              <div>
+-                <p class="font-medium">Dirección</p>
+-                <p class="text-white/70">Calle del Sol, 12 · 14003 Córdoba, España</p>
+-                <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Córdoba%20Calle%20del%20Sol%2012" class="inline-flex items-center gap-2 text-gold hover:underline mt-1">Ver en Maps <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+-              </div>
+-            </div>
+-            <div class="flex items-start gap-4">
+-              <svg class="h-6 w-6 text-gold flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L9 10a16 16 0 0 0 5 5l.81-1.09a2 2 0 0 1 2.11-.45c.76.24 1.55.42 2.36.54A2 2 0 0 1 22 16.92Z"/></svg>
+-              <div>
+-                <p class="font-medium">Contacto</p>
+-                <p class="text-white/70">+34 957 000 000 · <a class="text-gold hover:underline" href="mailto:hola@solcordoba.es">hola@solcordoba.es</a></p>
+-              </div>
++    <section id="teachers" class="py-24 bg-white dark:bg-slate-950">
++      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
++        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
++          <div>
++            <h2 class="text-3xl md:text-4xl font-bold text-bw-bridge dark:text-white" data-i18n="teachers_title">Meet the BridgeWay faculty</h2>
++            <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl" data-i18n="teachers_subtitle">Filter by specialization and languages spoken. Every teacher is certified and records a 20-second intro.</p>
++          </div>
++          <div class="flex flex-wrap gap-3" aria-label="Teacher filters">
++            <select id="filterArea" class="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm">
++              <option value="all" data-i18n="teacher_area_all">All areas</option>
++              <option value="general" data-i18n="teacher_area_general">General</option>
++              <option value="business" data-i18n="teacher_area_business">Business</option>
++              <option value="exam" data-i18n="teacher_area_exam">Exams</option>
++            </select>
++            <select id="filterCertification" class="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm">
++              <option value="all" data-i18n="teacher_cert_all">All certifications</option>
++              <option value="CELTA">CELTA</option>
++              <option value="DELTA">DELTA</option>
++              <option value="MA">MA Applied Linguistics</option>
++            </select>
++            <select id="filterLanguage" class="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm">
++              <option value="all" data-i18n="teacher_lang_all">All languages</option>
++              <option value="es">ES</option>
++              <option value="ru">RU</option>
++              <option value="ro">RO</option>
++            </select>
++          </div>
++        </div>
++        <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3" id="teacherGrid" aria-live="polite"></div>
++        <div class="mt-10 text-center">
++          <button class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-modal-open="freeClass" data-i18n="teacher_cta">I want a class with the BridgeWay team</button>
++        </div>
++      </div>
++    </section>
++    <section id="levelTest" class="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
++      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top,rgba(73,103,228,0.6),transparent_60%)]"></div>
++      <div class="max-w-5xl mx-auto px-4 sm:px-6">
++        <div class="bg-white dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-card p-8">
++          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
++            <div>
++              <h2 class="text-3xl font-bold text-bw-bridge dark:text-white" data-i18n="test_title">Fast, gamified level test</h2>
++              <p class="mt-2 text-slate-600 dark:text-slate-300" data-i18n="test_subtitle">Complete grammar, reading, and speaking in under 10 minutes. We save progress automatically.</p>
+             </div>
++            <button id="startTest" class="px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-i18n="test_start">Start</button>
+           </div>
+-        </aside>
+-
++          <div class="h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden" aria-hidden="true">
++            <div id="testProgress" class="h-full bg-gradient-to-r from-bw-way to-bw-bridge transition-all" style="width:0%"></div>
++          </div>
++          <div id="testContent" class="mt-8 space-y-6" aria-live="polite">
++            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="test_hint">Press start to begin. Your answers are saved instantly.</p>
++          </div>
++        </div>
+       </div>
+-    </div>
+-  </section>
+-
+-  <!-- Menu Section -->
+-  <section id="carta" class="relative py-20">
+-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+-      <div class="flex items-end justify-between gap-6">
+-        <div>
+-          <h2 class="text-3xl font-bold">Carta de temporada</h2>
+-          <p class="mt-2 text-white/70">Sabores mediterráneos con esencia andaluza. Productos locales y de temporada.</p>
++    </section>
++    <section id="pricing" class="py-24 bg-white dark:bg-slate-950">
++      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
++        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
++          <div>
++            <h2 class="text-3xl md:text-4xl font-bold text-bw-bridge dark:text-white" data-i18n="pricing_title">Transparent pricing & guarantee</h2>
++            <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl" data-i18n="pricing_subtitle">Compare plans, toggle between billing cycles, and calculate the investment per week.</p>
++          </div>
++          <div class="flex items-center gap-3 bg-slate-100/70 dark:bg-slate-800/70 rounded-full px-2 py-1">
++            <span class="text-sm" data-i18n="pricing_monthly">Monthly</span>
++            <label class="inline-flex items-center cursor-pointer">
++              <input type="checkbox" id="billingToggle" class="sr-only" />
++              <span class="w-14 h-7 bg-white dark:bg-slate-900 rounded-full relative transition after:content-[''] after:absolute after:top-1 after:left-1 after:w-5 after:h-5 after:bg-bw-way after:rounded-full after:transition"></span>
++            </label>
++            <span class="text-sm" data-i18n="pricing_quarterly">Quarterly</span>
++          </div>
+         </div>
+-        <div class="hidden sm:flex items-center gap-3" aria-label="Controles del carrusel de platos">
+-          <button id="prevSlide" class="p-2 rounded-lg border border-white/10 hover:border-gold/60" aria-label="Plato anterior">◀</button>
+-          <button id="nextSlide" class="p-2 rounded-lg border border-white/10 hover:border-gold/60" aria-label="Siguiente plato">▶</button>
++        <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3" id="pricingGrid"></div>
++        <div class="mt-10 max-w-3xl mx-auto bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-3xl p-6">
++          <h3 class="text-xl font-semibold" data-i18n="calculator_title">Price calculator</h3>
++          <form id="priceCalculator" class="mt-4 grid gap-4 md:grid-cols-3" aria-label="Price calculator">
++            <label class="block">
++              <span class="text-sm font-medium" data-i18n="calculator_hours">Hours per week</span>
++              <input type="number" min="1" max="10" value="3" class="mt-1 w-full rounded-xl border-slate-200 dark:border-slate-700" name="hours" />
++            </label>
++            <label class="block">
++              <span class="text-sm font-medium" data-i18n="calculator_rate">Hourly rate (€)</span>
++              <input type="number" min="10" max="45" value="22" class="mt-1 w-full rounded-xl border-slate-200 dark:border-slate-700" name="rate" />
++            </label>
++            <label class="block">
++              <span class="text-sm font-medium" data-i18n="calculator_weeks">Weeks</span>
++              <input type="number" min="4" max="12" value="4" class="mt-1 w-full rounded-xl border-slate-200 dark:border-slate-700" name="weeks" />
++            </label>
++          </form>
++          <p class="mt-4 text-lg font-semibold" id="calculatorResult">€264</p>
++          <div class="mt-6 flex flex-wrap gap-4 items-center text-xs text-slate-500 dark:text-slate-400">
++            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5"/></svg><span data-i18n="pricing_addon">Add live pronunciation labs anytime.</span></span>
++            <button class="text-bw-way underline decoration-dotted" id="guaranteeTooltip" data-modal-open="guarantee" data-i18n="pricing_guarantee">100% money-back guarantee</button>
++            <span class="inline-flex items-center gap-2" aria-hidden="true"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm2 4v2h8V8H8Zm0 4v2h8v-2H8Zm0 4v2h5v-2H8Z"/></svg>Visa · MasterCard · PayPal · Stripe</span>
++          </div>
+         </div>
+       </div>
+-
+-      <!-- Slider -->
+-      <div class="mt-8 relative">
+-        <div id="slider" class="overflow-hidden rounded-3xl border border-white/10">
+-          <div id="sliderTrack" class="flex transition-transform duration-500 will-change-transform">
+-            <!-- Slide 1 -->
+-            <figure class="min-w-full h-72 sm:h-96 relative">
+-              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920&auto=format&fit=crop" alt="Plato de alta cocina con mariscos frescos" class="w-full h-full object-cover" />
+-              <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm">Mariscos del día con cítricos</figcaption>
+-            </figure>
+-            <!-- Slide 2 -->
+-            <figure class="min-w-full h-72 sm:h-96 relative">
+-              <img src="https://images.unsplash.com/photo-1543332164-6e82f355badc?q=80&w=1920&auto=format&fit=crop" alt="Carne a la brasa perfectamente sellada" class="w-full h-full object-cover" />
+-              <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm">Lomo de ternera a la brasa</figcaption>
+-            </figure>
+-            <!-- Slide 3 -->
+-            <figure class="min-w-full h-72 sm:h-96 relative">
+-              <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1920&auto=format&fit=crop" alt="Postre elegante con frutas frescas" class="w-full h-full object-cover" />
+-              <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm">Texturas de cítricos y frutos rojos</figcaption>
+-            </figure>
++    </section>
++    <section id="resources" class="py-24 bg-slate-50 dark:bg-slate-900">
++      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
++        <div class="grid lg:grid-cols-3 gap-10">
++          <div class="lg:col-span-1">
++            <h2 class="text-3xl font-bold text-bw-bridge dark:text-white" data-i18n="resources_title">Resource library</h2>
++            <p class="mt-4 text-slate-600 dark:text-slate-300" data-i18n="resources_subtitle">Search and filter by level, format, and goal. Add favourites to your calendar.</p>
++            <div class="mt-6 space-y-3">
++              <label class="block">
++                <span class="text-sm font-medium" data-i18n="resources_search">Search</span>
++                <input type="search" id="resourceSearch" class="mt-1 w-full rounded-xl border-slate-200 dark:border-slate-700" placeholder="IELTS, phrasal verbs..." />
++              </label>
++              <div class="flex flex-wrap gap-3">
++                <select id="resourceLevel" class="rounded-full border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm">
++                  <option value="all">All levels</option>
++                  <option value="A2">A2</option>
++                  <option value="B1">B1</option>
++                  <option value="B2">B2</option>
++                  <option value="C1">C1</option>
++                </select>
++                <select id="resourceType" class="rounded-full border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm">
++                  <option value="all">All types</option>
++                  <option value="Guide">Guide</option>
++                  <option value="Exercise">Exercise</option>
++                  <option value="Video">Video</option>
++                </select>
++                <select id="resourceGoal" class="rounded-full border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm">
++                  <option value="all">All goals</option>
++                  <option value="Work">Work</option>
++                  <option value="Exam">Exam</option>
++                  <option value="Travel">Travel</option>
++                </select>
++              </div>
++              <ul id="resourceAutocomplete" class="hidden mt-2 space-y-2 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-3 text-sm" role="listbox"></ul>
++            </div>
+           </div>
++          <div class="lg:col-span-2 space-y-6" id="resourceList" aria-live="polite"></div>
+         </div>
+       </div>
++    </section>
+ 
+-      <!-- Menu Grid -->
+-      <div class="mt-12 grid md:grid-cols-2 gap-8">
+-        <!-- Food -->
+-        <div class="bg-night-900/70 border border-white/10 rounded-3xl p-6">
+-          <h3 class="text-2xl font-semibold">Cocina</h3>
+-          <ul class="mt-6 space-y-5">
+-            <li class="flex items-start justify-between gap-6">
+-              <div>
+-                <p class="font-medium">Salmorejo de la casa</p>
+-                <p class="text-sm text-white/60">Tomate de temporada, AOVE, jamón ibérico crujiente</p>
+-              </div>
+-              <span class="text-gold font-medium">12€</span>
+-            </li>
+-            <li class="flex items-start justify-between gap-6">
+-              <div>
+-                <p class="font-medium">Pulpo braseado</p>
+-                <p class="text-sm text-white/60">Patata cremosa, pimentón de la Vera</p>
+-              </div>
+-              <span class="text-gold font-medium">22€</span>
+-            </li>
+-            <li class="flex items-start justify-between gap-6">
+-              <div>
+-                <p class="font-medium">Merluza al pil-pil</p>
+-                <p class="text-sm text-white/60">Emulsión de ajo, lima y perejil</p>
+-              </div>
+-              <span class="text-gold font-medium">24€</span>
+-            </li>
+-            <li class="flex items-start justify-between gap-6">
+-              <div>
+-                <p class="font-medium">Presa ibérica</p>
+-                <p class="text-sm text-white/60">Glaseado de miel y tomillo, zanahoria asada</p>
+-              </div>
+-              <span class="text-gold font-medium">26€</span>
+-            </li>
+-          </ul>
++    <section id="thankYou" class="py-24 bg-white dark:bg-slate-950">
++      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
++        <div class="bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 space-y-8">
++          <div>
++            <h2 class="text-3xl font-bold text-bw-bridge dark:text-white" data-i18n="thanks_title">Thank you! You're scheduled.</h2>
++            <p class="mt-2 text-slate-600 dark:text-slate-300" data-i18n="thanks_subtitle">Add the class to your calendar and confirm via WhatsApp so we can assign the right specialist.</p>
++          </div>
++          <div id="appointmentSummary" class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-card text-sm text-slate-600 dark:text-slate-300">
++            <p data-i18n="thanks_placeholder">Once you book a class, the summary appears here.</p>
++          </div>
++          <div class="flex flex-wrap gap-4">
++            <a class="px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" id="addCalendar" href="#" target="_blank" rel="noreferrer" data-i18n="cta_add_calendar">Add to calendar</a>
++            <a class="px-5 py-3 rounded-full border border-bw-way text-bw-way font-semibold" id="confirmWhatsapp" href="https://wa.me/1234567890?text=I%20just%20booked%20my%20BridgeWay%20class!" target="_blank" rel="noreferrer" data-i18n="cta_whatsapp">Confirm via WhatsApp</a>
++          </div>
++          <div>
++            <h3 class="text-xl font-semibold" data-i18n="thanks_checklist_title">What to bring to your demo class</h3>
++            <ul class="mt-3 space-y-2 list-disc list-inside text-slate-600 dark:text-slate-300">
++              <li data-i18n="thanks_checklist1">Latest level test result or certificate</li>
++              <li data-i18n="thanks_checklist2">Headset with microphone</li>
++              <li data-i18n="thanks_checklist3">Goals or challenges you want to tackle</li>
++            </ul>
++          </div>
++          <div id="testResultSummary" class="hidden">
++            <h3 class="text-xl font-semibold" data-i18n="thanks_test_title">Your test result</h3>
++            <p id="testLevel" class="mt-2 text-lg font-semibold text-bw-bridge dark:text-white"></p>
++            <ul id="recommendedResources" class="mt-3 space-y-3"></ul>
++            <button class="mt-4 px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-modal-open="freeClass" data-i18n="thanks_cta">Book your free class for a personalized plan</button>
++          </div>
+         </div>
+-        <!-- Drinks -->
+-        <div class="bg-night-900/70 border border-white/10 rounded-3xl p-6">
+-          <h3 class="text-2xl font-semibold">Bodega</h3>
+-          <ul class="mt-6 space-y-5">
+-            <li class="flex items-start justify-between gap-6">
+-              <div>
+-                <p class="font-medium">Vino blanco de la casa</p>
+-                <p class="text-sm text-white/60">D.O. Montilla-Moriles, afrutado y fresco</p>
+-              </div>
+-              <span class="text-gold font-medium">4€ / copa</span>
+-            </li>
+-            <li class="flex items-start justify-between gap-6">
+-              <div>
+-                <p class="font-medium">Sangría clásica</p>
+-                <p class="text-sm text-white/60">Fruta de temporada, toque cítrico</p>
+-              </div>
+-              <span class="text-gold font-medium">8€</span>
+-            </li>
+-            <li class="flex items-start justify-between gap-6">
+-              <div>
+-                <p class="font-medium">Vermut artesano</p>
+-                <p class="text-sm text-white/60">Notas herbales y amargas</p>
+-              </div>
+-              <span class="text-gold font-medium">6€</span>
+-            </li>
+-            <li class="flex items-start justify-between gap-6">
+-              <div>
+-                <p class="font-medium">Espumoso brut nature</p>
+-                <p class="text-sm text-white/60">Final seco, burbuja fina</p>
+-              </div>
+-              <span class="text-gold font-medium">30€</span>
+-            </li>
+-          </ul>
++      </div>
++    </section>
++    <section class="py-16 bg-gradient-to-r from-bw-bridge via-bw-bridge/80 to-bw-way text-white">
++      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
++        <h2 class="text-3xl font-bold" data-i18n="cta_resources_title">Ready for more?</h2>
++        <p class="text-lg text-white/85" data-i18n="cta_resources_text">Take the test and unlock a tailored study plan with recommended resources.</p>
++        <div class="flex flex-wrap justify-center gap-4">
++          <button class="px-6 py-3 rounded-full bg-white text-bw-bridge font-semibold" data-scroll="#levelTest" data-i18n="cta_level_test">Take the level test</button>
++          <button class="px-6 py-3 rounded-full border border-white/60 text-white font-semibold" data-modal-open="freeClass" data-i18n="cta_free_class">Book your free class</button>
+         </div>
+       </div>
+-    </div>
+-  </section>
+-
+-  <!-- FAQs -->
+-  <section id="faq" class="relative py-20 bg-night-800">
+-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+-      <h2 class="text-3xl font-bold">Preguntas frecuentes</h2>
+-      <div class="mt-8 divide-y divide-white/10 border border-white/10 rounded-3xl overflow-hidden">
+-        <!-- Item -->
+-        <details class="group p-6 open:bg-white/5">
+-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+-            <h3 class="font-medium">¿Ofrecen opciones para alergias o dietas especiales?</h3>
+-            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+-          </summary>
+-          <p class="mt-3 text-white/70">Sí. Indícalo al realizar la reserva o a tu llegada. Nuestro equipo ajustará los platos para garantizar tu seguridad y disfrute.</p>
+-        </details>
+-        <details class="group p-6 open:bg-white/5">
+-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+-            <h3 class="font-medium">¿Hay menú degustación?</h3>
+-            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+-          </summary>
+-          <p class="mt-3 text-white/70">Sí, ofrecemos un menú degustación estacional con maridaje opcional. Pregunta a nuestro equipo en sala para más detalles.</p>
+-        </details>
+-        <details class="group p-6 open:bg-white/5">
+-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+-            <h3 class="font-medium">¿Disponen de terraza?</h3>
+-            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+-          </summary>
+-          <p class="mt-3 text-white/70">Sí, contamos con una terraza íntima ideal para las noches templadas cordobesas. Se asigna por orden de llegada.</p>
+-        </details>
+-        <details class="group p-6 open:bg-white/5">
+-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+-            <h3 class="font-medium">¿Puedo hacer un evento privado?</h3>
+-            <svg class="h-5 w-5 text-gold transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+-          </summary>
+-          <p class="mt-3 text-white/70">Por supuesto. Escríbenos a <a class="text-gold hover:underline" href="mailto:eventos@solcordoba.es">eventos@solcordoba.es</a> indicando fecha, número de asistentes y tipo de evento.</p>
+-        </details>
++    </section>
++  </main>
++  <footer class="bg-slate-900 text-slate-200 py-12">
++    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
++      <div>
++        <p class="text-xl font-semibold"><span class="text-white">Bridge</span><span class="text-bw-way">Way</span></p>
++        <p class="mt-3 text-sm text-slate-400" data-i18n="footer_text">BridgeWay connects motivated learners with certified teachers. Remote-first, impact-driven.</p>
+       </div>
+-    </div>
+-  </section>
+-
+-  <!-- Footer -->
+-  <footer id="contacto" class="border-t border-white/10 bg-night-900">
+-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-3 gap-10">
+       <div>
+-        <div class="flex items-center gap-3">
+-          <!-- Reuse logo -->
+-          <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="32" cy="32" r="12" fill="#d4af37" fill-opacity="0.8"></circle></svg>
+-          <span class="text-lg font-semibold">Sol</span>
+-        </div>
+-        <p class="mt-4 text-white/70 max-w-sm">Restaurante de alta cocina en Córdoba. Lujo contemporáneo, hospitalidad cálida.</p>
++        <h3 class="font-semibold mb-3" data-i18n="footer_links">Quick links</h3>
++        <ul class="space-y-2 text-sm">
++          <li><a href="#programs" class="hover:text-white" data-i18n="nav_programs">Programs</a></li>
++          <li><a href="#pricing" class="hover:text-white" data-i18n="nav_pricing">Pricing</a></li>
++          <li><a href="#resources" class="hover:text-white" data-i18n="nav_resources">Resources</a></li>
++          <li><a href="#levelTest" class="hover:text-white" data-i18n="cta_level_test">Take the level test</a></li>
++        </ul>
+       </div>
+-
+       <div>
+-        <h4 class="font-semibold mb-3">Contacto</h4>
+-        <ul class="space-y-2 text-white/80">
+-          <li>Calle del Sol, 12 · 14003 Córdoba</li>
+-          <li>+34 957 000 000</li>
+-          <li><a class="text-gold hover:underline" href="mailto:hola@solcordoba.es">hola@solcordoba.es</a></li>
++        <h3 class="font-semibold mb-3" data-i18n="footer_contact">Contact</h3>
++        <ul class="space-y-2 text-sm">
++          <li><a href="mailto:hello@bridgeway.ac" class="hover:text-white">hello@bridgeway.ac</a></li>
++          <li><a href="tel:+1234567890" class="hover:text-white">+1 234 567 890</a></li>
++          <li><a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" class="hover:text-white">WhatsApp</a></li>
+         </ul>
+       </div>
++    </div>
++    <div class="mt-10 text-center text-xs text-slate-500">© <span id="year"></span> BridgeWay Academy. All rights reserved.</div>
++  </footer>
+ 
+-      <div>
+-        <h4 class="font-semibold mb-3">Síguenos</h4>
+-        <div class="flex items-center gap-3">
+-          <a href="#" aria-label="Instagram" class="p-2 rounded-lg border border-white/10 hover:border-gold/60 transition">
+-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+-          </a>
+-          <a href="#" aria-label="Facebook" class="p-2 rounded-lg border border-white/10 hover:border-gold/60 transition">
+-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+-          </a>
+-          <a href="#" aria-label="X" class="p-2 rounded-lg border border-white/10 hover:border-gold/60 transition">
+-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4l16 16M20 4 4 20"/></svg>
+-          </a>
++  <div class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur p-4" id="freeClassModal" role="dialog" aria-modal="true" aria-labelledby="freeClassTitle">
++    <div class="relative max-w-2xl w-full bg-white dark:bg-slate-950 rounded-3xl p-6 md:p-8 shadow-card overflow-y-auto max-h-[90vh]">
++      <button class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800" data-modal-close aria-label="Close form">
++        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 18 12-12M6 6l12 12"/></svg>
++      </button>
++      <div class="flex flex-col gap-6">
++        <div>
++          <h2 id="freeClassTitle" class="text-2xl font-bold text-bw-bridge dark:text-white" data-i18n="modal_title">Book your free class</h2>
++          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="modal_subtitle">Complete the form in under 20 seconds. We hold the slot for 10 minutes.</p>
+         </div>
+-        <div class="mt-4">
+-          <a href="#reserva" class="inline-flex items-center gap-2 text-sm text-night-900 bg-gold px-4 py-2 rounded-xl hover:bg-gold-soft transition">Reservar ahora <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
++        <form id="freeClassForm" class="space-y-4" novalidate>
++          <div class="grid md:grid-cols-2 gap-4">
++            <label class="block">
++              <span class="text-sm font-medium" data-i18n="form_name">Name</span>
++              <input type="text" name="name" required autocomplete="name" class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700" />
++              <p class="mt-1 text-xs text-red-500 hidden" data-error="name"></p>
++            </label>
++            <label class="block">
++              <span class="text-sm font-medium" data-i18n="form_email">Email</span>
++              <input type="email" name="email" required autocomplete="email" class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700" />
++              <p class="mt-1 text-xs text-red-500 hidden" data-error="email"></p>
++            </label>
++          </div>
++          <div class="grid md:grid-cols-2 gap-4">
++            <label class="block">
++              <span class="text-sm font-medium" data-i18n="form_phone">Phone</span>
++              <input type="tel" name="phone" inputmode="tel" pattern="^[0-9+()\s-]{6,}$" required class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700" />
++              <p class="mt-1 text-xs text-red-500 hidden" data-error="phone"></p>
++            </label>
++            <label class="block">
++              <span class="text-sm font-medium" data-i18n="form_goal">Goal</span>
++              <select name="goal" class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700">
++                <option value="career" data-i18n="form_goal_career">Career</option>
++                <option value="exam" data-i18n="form_goal_exam">Exam prep</option>
++                <option value="travel" data-i18n="form_goal_travel">Travel</option>
++              </select>
++            </label>
++          </div>
++          <label class="block">
++            <span class="text-sm font-medium" data-i18n="form_age">Age (if for kids)</span>
++            <input type="number" name="age" min="6" max="70" class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700" />
++          </label>
++          <label class="block">
++            <span class="text-sm font-medium" data-i18n="form_date">Choose a date</span>
++            <input type="date" name="date" required class="mt-1 block w-full rounded-xl border-slate-200 dark:border-slate-700" />
++            <p class="mt-1 text-xs text-red-500 hidden" data-error="date"></p>
++          </label>
++          <fieldset class="border border-slate-200 dark:border-slate-700 rounded-2xl p-4">
++            <legend class="px-2 text-sm font-medium" data-i18n="form_slot">Pick a 20-min slot</legend>
++            <div class="grid sm:grid-cols-3 gap-3" id="slotGrid"></div>
++            <p class="mt-2 text-xs text-red-500 hidden" data-error="slot"></p>
++          </fieldset>
++          <button type="submit" class="w-full px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-i18n="modal_submit">Confirm booking</button>
++        </form>
++        <div class="hidden" id="formSuccess">
++          <h3 class="text-xl font-semibold text-bw-way" data-i18n="modal_success_title">You are all set!</h3>
++          <p class="mt-2 text-sm" data-i18n="modal_success_text">We are redirecting you to the summary below. Check your inbox for confirmation and WhatsApp for reminders.</p>
+         </div>
+       </div>
+     </div>
+-
+-    <div class="border-t border-white/10 py-6 text-center text-xs text-white/50">© <span id="year"></span> Sol · Córdoba · Todos los derechos reservados</div>
+-  </footer>
+-
+-  <!-- Toast / Modal -->
+-  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] hidden">
+-    <div class="bg-night-800 border border-gold/40 text-white rounded-2xl px-5 py-3 shadow-lux flex items-center gap-3">
+-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+-      <p id="toastMsg" class="text-sm"></p>
++  </div>
++  <div class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur p-4" id="guaranteeModal" role="dialog" aria-modal="true" aria-labelledby="guaranteeTitle">
++    <div class="relative max-w-xl w-full bg-white dark:bg-slate-950 rounded-3xl p-6 md:p-8 shadow-card">
++      <button class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800" data-modal-close aria-label="Close">
++        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m6 18 12-12M6 6l12 12"/></svg>
++      </button>
++      <h2 id="guaranteeTitle" class="text-2xl font-bold text-bw-bridge dark:text-white" data-i18n="guarantee_title">Our guarantee</h2>
++      <p class="mt-4 text-slate-600 dark:text-slate-300" data-i18n="guarantee_text">If you attend all scheduled sessions and complete assigned missions but feel no progress, we refund 100%—or coach you for free for another cycle. Applies within 30 days of purchase.</p>
++    </div>
++  </div>
++  <div class="fixed bottom-24 right-6 z-40">
++    <button id="chatToggle" class="px-4 py-3 rounded-full shadow-card bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold">BridgeWay bot</button>
++    <div id="chatWidget" class="hidden mt-3 w-72 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-card overflow-hidden">
++      <div class="px-4 py-3 bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-i18n="chat_title">Need assistance?</div>
++      <div class="p-4 space-y-4 text-sm text-slate-600 dark:text-slate-300">
++        <p data-i18n="chat_intro">Select a quick option or type a keyword.</p>
++        <div class="flex flex-wrap gap-2">
++          <button class="chat-quick px-3 py-2 rounded-full bg-slate-100 dark:bg-slate-800" data-key="class" data-i18n="chat_class">Book class</button>
++          <button class="chat-quick px-3 py-2 rounded-full bg-slate-100 dark:bg-slate-800" data-key="test" data-i18n="chat_test">Level test</button>
++          <button class="chat-quick px-3 py-2 rounded-full bg-slate-100 dark:bg-slate-800" data-key="question" data-i18n="chat_question">Quick question</button>
++        </div>
++        <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-3" id="chatResponses" role="status"></div>
++        <label class="block">
++          <span class="sr-only">Chat input</span>
++          <input type="text" id="chatInput" class="w-full rounded-full border border-slate-200 dark:border-slate-700 px-3 py-2" placeholder="Type price, company, kids..." />
++        </label>
++      </div>
+     </div>
+   </div>
++  <button id="backToTop" class="fixed bottom-28 left-4 hidden p-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white shadow-card" aria-label="Back to top">
++    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 15 7-7 7 7" /></svg>
++  </button>
++  <div id="toast" class="fixed top-28 right-6 hidden px-4 py-3 rounded-full bg-bw-way text-white shadow-card" role="status" aria-live="polite"></div>
+ 
+-  <!-- Scripts -->
+   <script>
+-    // Mobile nav toggle
+-    document.getElementById('menuBtn').addEventListener('click', () => {
+-      const nav = document.getElementById('mobileNav');
+-      nav.classList.toggle('hidden');
+-    });
++    const i18n = {
++      en: { nav_home: 'Home', nav_programs: 'Programs', nav_methodology: 'Methodology', nav_teachers: 'Teachers', nav_pricing: 'Pricing', nav_resources: 'Resources', nav_free_class: 'Free Class', cta_free_class: 'Book your free class', cta_level_test: 'Take the level test', cta_plan_companies: 'Plan for companies', cta_add_calendar: 'Add to calendar', cta_whatsapp: 'Confirm via WhatsApp', hero_title: 'Bridge your English to the world.', hero_subtitle: 'Personalized online English programs that adapt to your goals, pace, and schedule with a proven methodology.', hero_stat1: 'of learners move up one CEFR level in 12 weeks*', hero_stat2: 'access to resources & chat support', hero_personal: 'Your personalized launch checklist', hero_item1: 'Pick a program designed for your objectives.', hero_item2: 'Book a 20-minute diagnostic class.', hero_item3: 'Receive a roadmap and resources in your inbox.', hero_footnote: 'Based on 2023 BridgeWay learners completing at least 32 guided sessions.', resume_text: 'Resume your saved level test where you left off.', resume_cta: 'Resume test', programs_title: 'Programs built around your objectives', programs_subtitle: 'Choose a track and explore the mini-configurator to adapt availability, intensity, and payment. Each card shows live spots.', filter_all: 'All', filter_teens: 'Teens', filter_business: 'Business', filter_exam: 'Exam prep', configurator_title: 'Configure your perfect schedule', config_goal: 'Goal', config_goal_career: 'Advance my career', config_goal_travel: 'Travel fluently', config_goal_exam: 'Pass an international exam', config_availability: 'Availability', config_hours: '4 hours/week', config_payment: 'Payment preference', config_pay_monthly: 'Monthly', config_pay_quarterly: 'Quarterly (-12%)', config_submit: 'View suggested plan', faq_title: 'BridgeWay FAQ', faq_subtitle: 'Transparent answers to the most common questions.', method_title: 'Methodology that guides you step by step', method_subtitle: 'We combine diagnostics, human coaching, and smart technology to make progress inevitable.', method_socialproof: '+92% move up one level in 12 weeks', method_footnote: 'Measured for learners who complete the diagnostic, a minimum of 16 live classes, and continuous feedback loop.', method_followup: 'Follow-up you can feel', method_followup_text: 'Weekly nudges, micro goals, and transparent dashboards keep momentum high and reduce drop-off.', teachers_title: 'Meet the BridgeWay faculty', teachers_subtitle: 'Filter by specialization and languages spoken. Every teacher is certified and records a 20-second intro.', teacher_area_all: 'All areas', teacher_area_general: 'General', teacher_area_business: 'Business', teacher_area_exam: 'Exams', teacher_cert_all: 'All certifications', teacher_lang_all: 'All languages', teacher_cta: 'I want a class with the BridgeWay team', test_title: 'Fast, gamified level test', test_subtitle: 'Complete grammar, reading, and speaking in under 10 minutes. We save progress automatically.', test_start: 'Start', test_hint: 'Press start to begin. Your answers are saved instantly.', test_progress: 'Progress', test_result: 'Result', pricing_title: 'Transparent pricing & guarantee', pricing_subtitle: 'Compare plans, toggle between billing cycles, and calculate the investment per week.', pricing_monthly: 'Monthly', pricing_quarterly: 'Quarterly', pricing_addon: 'Add live pronunciation labs anytime.', pricing_guarantee: '100% money-back guarantee', calculator_title: 'Price calculator', calculator_hours: 'Hours per week', calculator_rate: 'Hourly rate (€)', calculator_weeks: 'Weeks', resources_title: 'Resource library', resources_subtitle: 'Search and filter by level, format, and goal. Add favourites to your calendar.', resources_search: 'Search', thanks_title: 'Thank you! You're scheduled.', thanks_subtitle: 'Add the class to your calendar and confirm via WhatsApp so we can assign the right specialist.', thanks_placeholder: 'Once you book a class, the summary appears here.', thanks_checklist_title: 'What to bring to your demo class', thanks_checklist1: 'Latest level test result or certificate', thanks_checklist2: 'Headset with microphone', thanks_checklist3: 'Goals or challenges you want to tackle', thanks_test_title: 'Your test result', thanks_cta: 'Book your free class for a personalized plan', cta_resources_title: 'Ready for more?', cta_resources_text: 'Take the test and unlock a tailored study plan with recommended resources.', footer_text: 'BridgeWay connects motivated learners with certified teachers. Remote-first, impact-driven.', footer_links: 'Quick links', footer_contact: 'Contact', label_language: 'Language', modal_title: 'Book your free class', modal_subtitle: 'Complete the form in under 20 seconds. We hold the slot for 10 minutes.', form_name: 'Name', form_email: 'Email', form_phone: 'Phone', form_goal: 'Goal', form_goal_career: 'Career', form_goal_exam: 'Exam prep', form_goal_travel: 'Travel', form_age: 'Age (if for kids)', form_date: 'Choose a date', form_slot: 'Pick a 20-min slot', modal_submit: 'Confirm booking', modal_success_title: 'You are all set!', modal_success_text: 'We are redirecting you to the summary below. Check your inbox for confirmation and WhatsApp for reminders.', chat_title: 'Need assistance?', chat_intro: 'Select a quick option or type a keyword.', chat_class: 'Book class', chat_test: 'Level test', chat_question: 'Quick question', guarantee_title: 'Our guarantee', guarantee_text: 'If you attend all scheduled sessions and complete assigned missions but feel no progress, we refund 100%—or coach you for free for another cycle. Applies within 30 days of purchase.' },
++      ru: { nav_home: 'Главная', nav_programs: 'Программы', nav_methodology: 'Методика', nav_teachers: 'Преподаватели', nav_pricing: 'Цены', nav_resources: 'Ресурсы', nav_free_class: 'Бесплатный урок', cta_free_class: 'Запишись на бесплатный урок', cta_level_test: 'Пройди тест на уровень', cta_plan_companies: 'План для компаний', cta_add_calendar: 'Добавить в календарь', cta_whatsapp: 'Подтвердить в WhatsApp', hero_title: 'Выведи свой английский на новый уровень.', hero_subtitle: 'Персональные онлайн-программы английского под твои цели, темп и график — с доказанной методикой.', hero_stat1: 'учеников переходят на новый уровень CEFR за 12 недель*', hero_stat2: 'доступ к ресурсам и чату 24/7', hero_personal: 'Твой стартовый чек-лист', hero_item1: 'Выбери программу под твои задачи.', hero_item2: 'Забронируй 20-минутный диагностический урок.', hero_item3: 'Получай дорожную карту и ресурсы на почту.', hero_footnote: 'По данным BridgeWay 2023 при прохождении минимум 32 занятий.', resume_text: 'Продолжи сохраненный тест с того места, где остановился.', resume_cta: 'Продолжить тест', programs_title: 'Программы под твои цели', programs_subtitle: 'Выбери направление и настрой интенсивность, расписание и оплату. Каждая карточка показывает свободные места.', filter_all: 'Все', filter_teens: 'Подростки', filter_business: 'Бизнес', filter_exam: 'Экзамен', configurator_title: 'Настрой идеальное расписание', config_goal: 'Цель', config_goal_career: 'Карьерный рост', config_goal_travel: 'Путешествия без стресса', config_goal_exam: 'Сдать международный экзамен', config_availability: 'Занятость', config_hours: '4 часа/неделя', config_payment: 'Способ оплаты', config_pay_monthly: 'Ежемесячно', config_pay_quarterly: 'Ежеквартально (-12%)', config_submit: 'Подобрать план', faq_title: 'FAQ BridgeWay', faq_subtitle: 'Прозрачные ответы на популярные вопросы.', method_title: 'Методика по шагам', method_subtitle: 'Диагностика, человеческий коучинг и технологии — прогресс неизбежен.', method_socialproof: '+92% переходят на новый уровень за 12 недель', method_footnote: 'Среди учеников, прошедших диагностику, 16+ занятий и обратную связь.', method_followup: 'Ощутимая поддержка', method_followup_text: 'Еженедельные напоминания, микрозадачи и прозрачные панели снижают отток.', teachers_title: 'Команда BridgeWay', teachers_subtitle: 'Фильтруй по специализации и языкам. Каждый преподаватель сертифицирован и записал 20-секундное интро.', teacher_area_all: 'Все направления', teacher_area_general: 'Общий', teacher_area_business: 'Бизнес', teacher_area_exam: 'Экзамены', teacher_cert_all: 'Все сертификаты', teacher_lang_all: 'Все языки', teacher_cta: 'Хочу урок с командой BridgeWay', test_title: 'Быстрый геймифицированный тест', test_subtitle: 'Грамматика, чтение и говорение менее чем за 10 минут. Прогресс сохраняется автоматически.', test_start: 'Начать', test_hint: 'Нажми «Начать», чтобы стартовать. Ответы сохраняются сразу.', test_progress: 'Прогресс', test_result: 'Результат', pricing_title: 'Прозрачные цены и гарантия', pricing_subtitle: 'Сравни планы, выбери биллинг и рассчитай инвестиции в неделю.', pricing_monthly: 'Ежемесячно', pricing_quarterly: 'Ежеквартально', pricing_addon: 'Добавляй произносительные лаборатории в любое время.', pricing_guarantee: '100% гарантия возврата', calculator_title: 'Калькулятор стоимости', calculator_hours: 'Часов в неделю', calculator_rate: 'Стоимость часа (€)', calculator_weeks: 'Недель', resources_title: 'Библиотека ресурсов', resources_subtitle: 'Ищи и фильтруй по уровню, формату и цели. Добавляй избранное в календарь.', resources_search: 'Поиск', thanks_title: 'Спасибо! Встреча назначена.', thanks_subtitle: 'Добавь урок в календарь и подтверди через WhatsApp, чтобы мы подобрали эксперта.', thanks_placeholder: 'После бронирования здесь появится сводка.', thanks_checklist_title: 'Что взять на демо-урок', thanks_checklist1: 'Свежий результат теста или сертификат', thanks_checklist2: 'Гарнитура с микрофоном', thanks_checklist3: 'Цели или сложности, которые хочешь решить', thanks_test_title: 'Результат теста', thanks_cta: 'Запишись на бесплатный урок для персонального плана', cta_resources_title: 'Готов к следующему шагу?', cta_resources_text: 'Пройди тест и получи персональный план со связанными материалами.', footer_text: 'BridgeWay соединяет мотивированных учеников с сертифицированными преподавателями. Работаем удаленно и на результат.', footer_links: 'Быстрые ссылки', footer_contact: 'Контакты', label_language: 'Язык', modal_title: 'Запишись на бесплатный урок', modal_subtitle: 'Заполни форму меньше чем за 20 секунд. Мы удержим слот 10 минут.', form_name: 'Имя', form_email: 'Email', form_phone: 'Телефон', form_goal: 'Цель', form_goal_career: 'Карьера', form_goal_exam: 'Экзамен', form_goal_travel: 'Путешествия', form_age: 'Возраст (для детей)', form_date: 'Выбери дату', form_slot: 'Выбери 20-минутное окно', modal_submit: 'Подтвердить запись', modal_success_title: 'Готово!', modal_success_text: 'Мы перенаправляем тебя к сводке ниже. Проверь почту и WhatsApp для подтверждения.', chat_title: 'Нужна помощь?', chat_intro: 'Выбери быстрый вариант или введи ключевое слово.', chat_class: 'Запись на урок', chat_test: 'Тест уровня', chat_question: 'Быстрый вопрос', guarantee_title: 'Наша гарантия', guarantee_text: 'Если ты посещаешь все занятия и выполняешь задания, но не чувствуешь прогресса, мы вернем 100% или обучим бесплатно еще один цикл. Действует 30 дней.' },
++      ro: { nav_home: 'Acasă', nav_programs: 'Programe', nav_methodology: 'Metodologie', nav_teachers: 'Profesori', nav_pricing: 'Prețuri', nav_resources: 'Resurse', nav_free_class: 'Lecție gratuită', cta_free_class: 'Programează lecția gratuită', cta_level_test: 'Fă testul de nivel', cta_plan_companies: 'Plan pentru companii', cta_add_calendar: 'Adaugă în calendar', cta_whatsapp: 'Confirmă pe WhatsApp', hero_title: 'Leagă-ți engleza de restul lumii.', hero_subtitle: 'Programe online personalizate de engleză care se adaptează obiectivelor, ritmului și programului tău, cu o metodologie dovedită.', hero_stat1: 'dintre cursanți urcă un nivel CEFR în 12 săptămâni*', hero_stat2: 'acces la resurse și suport chat non-stop', hero_personal: 'Lista ta de pornire personalizată', hero_item1: 'Alege un program creat pentru obiectivele tale.', hero_item2: 'Rezervă o lecție diagnostic de 20 de minute.', hero_item3: 'Primește un plan și resurse pe email.', hero_footnote: 'Bazat pe cursanții BridgeWay din 2023 care au finalizat cel puțin 32 de sesiuni.', resume_text: 'Reia testul salvat de unde l-ai lăsat.', resume_cta: 'Reia testul', programs_title: 'Programe adaptate obiectivelor tale', programs_subtitle: 'Alege traseul și folosește configuratorul pentru a regla disponibilitatea, intensitatea și plata. Fiecare card arată locurile libere.', filter_all: 'Toate', filter_teens: 'Adolescenți', filter_business: 'Business', filter_exam: 'Examene', configurator_title: 'Configurează-ți programul perfect', config_goal: 'Obiectiv', config_goal_career: 'Avans profesional', config_goal_travel: 'Călătorii fluente', config_goal_exam: 'Trecerea unui examen internațional', config_availability: 'Disponibilitate', config_hours: '4 ore/săptămână', config_payment: 'Preferință de plată', config_pay_monthly: 'Lunar', config_pay_quarterly: 'Trimestrial (-12%)', config_submit: 'Vezi planul propus', faq_title: 'Întrebări frecvente BridgeWay', faq_subtitle: 'Răspunsuri transparente la cele mai comune întrebări.', method_title: 'Metodologie ghidată pas cu pas', method_subtitle: 'Combinăm diagnosticarea, coaching-ul uman și tehnologia inteligentă pentru un progres inevitabil.', method_socialproof: '+92% urcă un nivel în 12 săptămâni', method_footnote: 'Măsurat pentru cursanții care finalizează diagnosticul, minimum 16 lecții live și feedback continuu.', method_followup: 'Urmărire pe care o simți', method_followup_text: 'Împingeri săptămânale, micro-obiective și panouri transparente mențin ritmul și reduc abandonul.', teachers_title: 'Cunoaște echipa BridgeWay', teachers_subtitle: 'Filtrează după specializare și limbile vorbite. Fiecare profesor este certificat și are un intro de 20 de secunde.', teacher_area_all: 'Toate ariile', teacher_area_general: 'General', teacher_area_business: 'Business', teacher_area_exam: 'Examene', teacher_cert_all: 'Toate certificările', teacher_lang_all: 'Toate limbile', teacher_cta: 'Vreau o lecție cu echipa BridgeWay', test_title: 'Test rapid și gamificat', test_subtitle: 'Gramatica, citirea și vorbirea în mai puțin de 10 minute. Progresul se salvează automat.', test_start: 'Start', test_hint: 'Apasă „Start” pentru a începe. Răspunsurile se salvează instant.', test_progress: 'Progres', test_result: 'Rezultat', pricing_title: 'Prețuri transparente & garanție', pricing_subtitle: 'Compară planurile, schimbă ciclul de facturare și calculează investiția săptămânală.', pricing_monthly: 'Lunar', pricing_quarterly: 'Trimestrial', pricing_addon: 'Adaugă laboratoare de pronunție oricând.', pricing_guarantee: 'Garanție 100% rambursare', calculator_title: 'Calculator de preț', calculator_hours: 'Ore pe săptămână', calculator_rate: 'Tarif orar (€)', calculator_weeks: 'Săptămâni', resources_title: 'Bibliotecă de resurse', resources_subtitle: 'Caută și filtrează după nivel, format și obiectiv. Adaugă favoritele în calendar.', resources_search: 'Căutare', thanks_title: 'Mulțumim! Programarea este confirmată.', thanks_subtitle: 'Adaugă lecția în calendar și confirmă pe WhatsApp pentru a primi profesorul potrivit.', thanks_placeholder: 'După rezervare, rezumatul apare aici.', thanks_checklist_title: 'Ce să aduci la lecția demo', thanks_checklist1: 'Ultimul rezultat de test sau certificat', thanks_checklist2: 'Căști cu microfon', thanks_checklist3: 'Obiective sau provocări pe care vrei să le abordezi', thanks_test_title: 'Rezultatul testului', thanks_cta: 'Programează lecția gratuită pentru un plan personalizat', cta_resources_title: 'Pregătit pentru mai mult?', cta_resources_text: 'Fă testul și descoperă un plan de studiu cu resurse recomandate.', footer_text: 'BridgeWay conectează cursanți motivați cu profesori certificați. Remote-first, orientați spre impact.', footer_links: 'Linkuri rapide', footer_contact: 'Contact', label_language: 'Limbă', modal_title: 'Programează lecția gratuită', modal_subtitle: 'Completează formularul în mai puțin de 20 de secunde. Păstrăm slotul 10 minute.', form_name: 'Nume', form_email: 'Email', form_phone: 'Telefon', form_goal: 'Obiectiv', form_goal_career: 'Carieră', form_goal_exam: 'Examen', form_goal_travel: 'Călătorii', form_age: 'Vârstă (pentru copii)', form_date: 'Alege data', form_slot: 'Alege intervalul de 20 de minute', modal_submit: 'Confirmă rezervarea', modal_success_title: 'Totul este gata!', modal_success_text: 'Te ducem la sumarul de mai jos. Verifică emailul și WhatsApp pentru confirmare.', chat_title: 'Ai nevoie de ajutor?', chat_intro: 'Alege o opțiune rapidă sau tastează un cuvânt cheie.', chat_class: 'Rezervă lecție', chat_test: 'Test de nivel', chat_question: 'Întrebare rapidă', guarantee_title: 'Garanția noastră', guarantee_text: 'Dacă participi la toate sesiunile și finalizezi misiunile dar nu simți progres, rambursăm 100% sau te coach-uim gratuit încă un ciclu. Valabil 30 de zile.' }
++    };
++
++    const qs = (sel, parent = document) => parent.querySelector(sel);
++    const qsa = (sel, parent = document) => Array.from(parent.querySelectorAll(sel));
++
++    const showToast = message => {
++      const toast = qs('#toast');
++      toast.textContent = message;
++      toast.classList.remove('hidden');
++      setTimeout(() => toast.classList.add('hidden'), 3200);
++    };
++
++    const programs = [
++      { id: 'career-pro', type: 'business', title: 'Career Accelerator', levels: 'B1–C2', spots: 6, description: 'Intensive coaching for presentations, negotiations, and leadership communication.', duration: '12 weeks', price: 189, features: ['Live coaching 2x/week', 'AI pronunciation labs', 'Executive feedback reports'] },
++      { id: 'exam-focus', type: 'exam', title: 'IELTS Mastery', levels: 'B1–C1', spots: 4, description: 'Task-based prep with mock exams, speaking simulators, and personalized analytics.', duration: '8 weeks', price: 149, features: ['Weekly mock tests', 'Writing clinic', 'Speaking partner rotation'] },
++      { id: 'teen-connect', type: 'teens', title: 'Teen Connect', levels: 'A2–B2', spots: 9, description: 'Gamified missions and group challenges to keep teens motivated and consistent.', duration: '10 weeks', price: 119, features: ['Gamified dashboard', 'Parent progress reports', 'Weekly missions'] },
++      { id: 'fluency-flow', type: 'general', title: 'Fluency Flow', levels: 'A2–C1', spots: 11, description: 'Adaptive pathway with conversation sprints, grammar refreshers, and social clubs.', duration: '12 weeks', price: 129, features: ['Conversation labs', 'Grammar refresh sessions', 'Friday social clubs'] }
++    ];
++
++    const faqItems = [
++      { question: { en: 'How fast can I see progress?', ru: 'Как быстро будет прогресс?', ro: 'Cât de repede văd progresul?' }, answer: { en: 'Most learners notice speaking confidence within 3 weeks. Full level jumps take 10–12 weeks with consistent attendance.', ru: 'Большинство учеников ощущают уверенность в речи через 3 недели. Повышение уровня занимает 10–12 недель при регулярных занятиях.', ro: 'Majoritatea cursanților simt mai multă încredere după 3 săptămâni. Un salt complet durează 10–12 săptămâni.' } },
++      { question: { en: 'Do you offer company plans?', ru: 'Есть ли планы для компаний?', ro: 'Aveți planuri pentru companii?' }, answer: { en: 'Yes, BridgeWay Business includes cohort onboarding, HR dashboards, and impact reports. Ask for the company plan in the hero.', ru: 'Да, BridgeWay Business включает запуск групп, HR-дэшборды и отчёты.', ro: 'Da, BridgeWay Business include onboarding, dashboard-uri HR și rapoarte.' } },
++      { question: { en: 'What if I need to pause?', ru: 'Что если нужно сделать паузу?', ro: 'Ce fac dacă trebuie să iau o pauză?' }, answer: { en: 'You can pause for up to 30 days with no extra cost. We keep your coach and roadmap ready when you return.', ru: 'Можно сделать паузу до 30 дней без доплат. Мы сохраним преподавателя и план.', ro: 'Poți pune pauză până la 30 de zile fără cost suplimentar. Păstrăm profesorul și planul.' } }
++    ];
++
++    const timeline = [
++      { icon: '🧪', key: 'Test', description: { en: 'Quick diagnostic with AI & coach review.', ru: 'Быстрая диагностика с AI и преподавателем.', ro: 'Diagnostic rapid cu AI și profesor.' } },
++      { icon: '🎥', key: 'Demo Class', description: { en: '20-min class to feel our coaching style.', ru: '20 минут, чтобы почувствовать подход.', ro: 'Lecție de 20 de minute pentru stilul nostru.' } },
++      { icon: '🧭', key: 'Plan', description: { en: 'Roadmap with milestones and resources.', ru: 'Дорожная карта с этапами и ресурсами.', ro: 'Plan cu etape și resurse.' } },
++      { icon: '📚', key: 'Classes', description: { en: 'Live sessions + adaptive missions.', ru: 'Живые уроки + адаптивные задания.', ro: 'Sesiuni live + misiuni adaptive.' } },
++      { icon: '🔁', key: 'Follow-up', description: { en: 'Weekly nudges & accountability.', ru: 'Еженедельные напоминания и поддержка.', ro: 'Reminder-e săptămânale și accountability.' } },
++      { icon: '🏁', key: 'Results', description: { en: 'Dashboards prove your progress.', ru: 'Дашборды показывают прогресс.', ro: 'Dashboard-uri care arată progresul.' } }
++    ];
++
++    const teachers = [
++      { name: 'Sara Blake', area: 'business', certifications: ['DELTA'], languages: ['en', 'es'], experience: 11, quote: 'Former HR manager helping professionals pitch with clarity.', badges: ['DELTA', 'MA Applied Linguistics'], video: 'https://www.w3schools.com/html/mov_bbb.mp4' },
++      { name: 'Alexei Morozov', area: 'exam', certifications: ['CELTA'], languages: ['en', 'ru'], experience: 9, quote: 'Cambridge examiner guiding you through every paper.', badges: ['CELTA'], video: 'https://www.w3schools.com/html/movie.mp4' },
++      { name: 'Irina Pop', area: 'general', certifications: ['CELTA'], languages: ['en', 'ro'], experience: 7, quote: 'Gamifies lessons to keep motivation high for adults and teens.', badges: ['CELTA'], video: 'https://www.w3schools.com/html/mov_bbb.mp4' }
++    ];
++
++    const pricingPlans = [
++      { id: 'essential', title: 'Essential', monthly: 129, quarterly: 115, description: 'Perfect for consistent progress with weekly live classes.', features: ['1 live class/week', 'Access to resource library', 'Monthly progress review'] },
++      { id: 'pro', title: 'Pro', monthly: 189, quarterly: 168, description: 'Double the live time plus tailored missions and labs.', features: ['2 live classes/week', 'Speaking labs + AI coach', 'Personal success manager'] },
++      { id: 'premium', title: 'Premium', monthly: 259, quarterly: 229, description: 'Our most intensive support with daily nudges and analytics.', features: ['3 live touchpoints/week', 'Dedicated WhatsApp coach', 'Custom analytics dashboard'] }
++    ];
++
++    const resources = [
++      { title: 'IELTS Writing Booster', level: 'B2', type: 'Guide', goal: 'Exam', minutes: 15 },
++      { title: 'Business Idioms Simulator', level: 'B2', type: 'Exercise', goal: 'Work', minutes: 10 },
++      { title: 'A2 Travel Dialogues', level: 'A2', type: 'Video', goal: 'Travel', minutes: 8 },
++      { title: 'B1 Grammar Mission: Present Perfect', level: 'B1', type: 'Exercise', goal: 'Work', minutes: 12 }
++    ];
++
++    const recommendedByLevel = { A1: ['A2 Travel Dialogues'], A2: ['A2 Travel Dialogues'], B1: ['B1 Grammar Mission: Present Perfect'], B2: ['IELTS Writing Booster', 'Business Idioms Simulator'], C1: ['Business Idioms Simulator'], C2: ['IELTS Writing Booster'] };
++
++    const applyTheme = theme => {
++      document.documentElement.classList.toggle('dark', theme === 'dark');
++      document.body.dataset.theme = theme;
++      localStorage.setItem('bw-theme', theme);
++    };
++
++    const toggleTheme = () => {
++      const current = document.body.dataset.theme || 'light';
++      applyTheme(current === 'dark' ? 'light' : 'dark');
++    };
++
++    const setLanguage = lang => {
++      const strings = i18n[lang] || i18n.en;
++      localStorage.setItem('bw-lang', lang);
++      document.documentElement.lang = lang;
++      qsa('[data-lang]').forEach(btn => {
++        btn.classList.toggle('bg-white/20', btn.dataset.lang === lang);
++        btn.classList.toggle('font-semibold', btn.dataset.lang === lang);
++      });
++      qsa('[data-i18n]').forEach(node => {
++        const key = node.dataset.i18n;
++        if (strings[key]) node.textContent = strings[key];
++      });
++      qs('#heroSecondaryCTA').textContent = document.referrer.includes('/business') ? strings.cta_plan_companies : strings.cta_level_test;
++      renderPricing(localStorage.getItem('bw-billing') || 'monthly');
++      renderResources();
++      renderFAQ(lang);
++      renderTimeline(lang);
++      renderTeachers(lang);
++    };
++
++    const initLanguageSwitcher = () => {
++      qsa('[data-lang]').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
++      const saved = localStorage.getItem('bw-lang') || (navigator.language.startsWith('ru') ? 'ru' : navigator.language.startsWith('ro') ? 'ro' : 'en');
++      setLanguage(saved);
++    };
++
++    const renderPrograms = () => {
++      const container = qs('#programCards');
++      container.innerHTML = '';
++      programs.forEach(program => {
++        const article = document.createElement('article');
++        article.dataset.type = program.type;
++        article.className = 'rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-card flex flex-col gap-4 transition hover:-translate-y-1';
++        article.innerHTML = `
++          <div class="flex items-center justify-between">
++            <h3 class="text-xl font-semibold text-bw-bridge dark:text-white">${program.title}</h3>
++            <span class="text-sm px-3 py-1 rounded-full bg-bw-way/10 text-bw-way">${program.levels}</span>
++          </div>
++          <p class="text-sm text-slate-600 dark:text-slate-300">${program.description}</p>
++          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">${program.features.map(item => `<li class="flex items-center gap-2"><span aria-hidden="true">✔</span><span>${item}</span></li>`).join('')}</ul>
++          <div class="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400"><span>${program.duration}</span><span>${program.spots} spots</span></div>
++          <div class="flex items-center justify-between">
++            <span class="text-2xl font-semibold text-bw-way">€${program.price}</span>
++            <button class="px-4 py-2 rounded-full border border-bw-way text-bw-way text-sm font-semibold hover:bg-bw-way hover:text-white transition" data-modal-open="freeClass">View program</button>
++          </div>`;
++        container.appendChild(article);
++      });
++    };
++
++    const filterPrograms = type => {
++      qsa('.program-filter').forEach(btn => btn.classList.toggle('active', btn.dataset.filter === type));
++      qsa('#programCards article').forEach(card => card.classList.toggle('hidden', type !== 'all' && card.dataset.type !== type));
++    };
++
++    const renderFAQ = lang => {
++      const container = qs('#faqAccordion');
++      const schema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [] };
++      container.innerHTML = '';
++      faqItems.forEach(item => {
++        const wrapper = document.createElement('div');
++        wrapper.className = 'py-4';
++        const q = item.question[lang] || item.question.en;
++        const a = item.answer[lang] || item.answer.en;
++        wrapper.innerHTML = `
++          <button class="w-full flex items-center justify-between text-left text-base font-semibold" aria-expanded="false">
++            <span>${q}</span>
++            <svg class="h-5 w-5 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.585l3.71-3.354a.75.75 0 0 1 1.04 1.08l-4.23 3.83a.75.75 0 0 1-1.04 0l-4.23-3.83a.75.75 0 0 1 .02-1.06Z" clip-rule="evenodd"/></svg>
++          </button>
++          <div class="mt-2 text-sm text-white/80 hidden">${a}</div>`;
++        const btn = wrapper.querySelector('button');
++        const panel = wrapper.querySelector('div');
++        btn.addEventListener('click', () => {
++          const expanded = btn.getAttribute('aria-expanded') === 'true';
++          btn.setAttribute('aria-expanded', String(!expanded));
++          panel.classList.toggle('hidden', expanded);
++          btn.querySelector('svg').classList.toggle('rotate-180', !expanded);
++        });
++        container.appendChild(wrapper);
++        schema.mainEntity.push({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } });
++      });
++      qs('#faqSchema').textContent = JSON.stringify(schema);
++    };
+ 
+-    // Year
+-    document.getElementById('year').textContent = new Date().getFullYear();
+-
+-    // Booking form (demo-only validation + confirmation)
+-    const bookingForm = document.getElementById('bookingForm');
+-    const bookingStatus = document.getElementById('bookingStatus');
+-    const toast = document.getElementById('toast');
+-    const toastMsg = document.getElementById('toastMsg');
+-
+-    bookingForm.addEventListener('submit', (e) => {
+-      e.preventDefault();
+-      const data = new FormData(bookingForm);
+-      const date = data.get('date');
+-      const time = data.get('time');
+-      const name = data.get('name');
+-      const guests = data.get('guests');
+-
+-      if(!date || !time || !name) {
+-        showStatus('Por favor completa los campos obligatorios.', true);
++    const renderTimeline = lang => {
++      const container = qs('#methodTimeline');
++      container.innerHTML = '';
++      timeline.forEach((step, idx) => {
++        const li = document.createElement('li');
++        li.className = 'flex-1 min-w-[180px] bg-white dark:bg-slate-800/80 rounded-3xl p-5 shadow-card transition-transform hover:-translate-y-1';
++        li.style.transitionDelay = `${idx * 40}ms`;
++        li.innerHTML = `<div class="text-3xl" aria-hidden="true">${step.icon}</div><p class="mt-3 text-lg font-semibold text-bw-bridge dark:text-white">${step.key}</p><p class="mt-2 text-sm text-slate-600 dark:text-slate-300">${step.description[lang] || step.description.en}</p>`;
++        container.appendChild(li);
++      });
++    };
++
++    const renderTeachers = lang => {
++      const grid = qs('#teacherGrid');
++      const area = qs('#filterArea').value;
++      const cert = qs('#filterCertification').value;
++      const language = qs('#filterLanguage').value;
++      grid.innerHTML = '';
++      teachers
++        .filter(t => area === 'all' || t.area === area)
++        .filter(t => cert === 'all' || t.certifications.includes(cert))
++        .filter(t => language === 'all' || t.languages.includes(language))
++        .forEach(teacher => {
++          const card = document.createElement('article');
++          card.className = 'rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-card space-y-4';
++          card.innerHTML = `
++            <div class="flex items-center justify-between">
++              <h3 class="text-xl font-semibold text-bw-bridge dark:text-white">${teacher.name}</h3>
++              <span class="text-sm text-slate-500">${teacher.experience} yrs</span>
++            </div>
++            <p class="text-sm text-slate-600 dark:text-slate-300">${teacher.quote}</p>
++            <div class="flex flex-wrap gap-2 text-xs text-bw-way">${teacher.badges.map(b => `<span class="px-2 py-1 bg-bw-way/10 rounded-full">${b}</span>`).join('')}</div>
++            <button class="px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white text-sm font-semibold">Play intro (20s)</button>`;
++          card.querySelector('button').addEventListener('click', () => {
++            const dialog = document.createElement('dialog');
++            dialog.className = 'fixed inset-0 bg-slate-900/70 backdrop-blur flex items-center justify-center p-4';
++            dialog.innerHTML = `<div class="bg-white dark:bg-slate-900 rounded-3xl p-6 max-w-xl w-full relative"><button class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800" aria-label="Close"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m6 18 12-12M6 6l12 12"/></svg></button><h3 class="text-lg font-semibold mb-3 text-bw-bridge dark:text-white">${teacher.name}</h3><video class="w-full rounded-2xl" controls preload="metadata" src="${teacher.video}" loading="lazy"></video></div>`;
++            dialog.querySelector('button').addEventListener('click', () => dialog.remove());
++            document.body.appendChild(dialog);
++          });
++          grid.appendChild(card);
++        });
++    };
++
++    const renderPricing = (billing = 'monthly') => {
++      localStorage.setItem('bw-billing', billing);
++      const grid = qs('#pricingGrid');
++      const lang = localStorage.getItem('bw-lang') || 'en';
++      grid.innerHTML = '';
++      pricingPlans.forEach(plan => {
++        const amount = billing === 'monthly' ? plan.monthly : plan.quarterly;
++        const cycle = billing === 'monthly' ? '/mo' : '/mo (quarterly)';
++        const article = document.createElement('article');
++        article.className = 'rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-card flex flex-col gap-4';
++        article.innerHTML = `
++          <div class="flex items-center justify-between">
++            <h3 class="text-xl font-semibold text-bw-bridge dark:text-white">${plan.title}</h3>
++            <span class="px-3 py-1 text-xs rounded-full bg-bw-way/10 text-bw-way">${lang === 'en' ? 'Most chosen' : lang === 'ru' ? 'Хит' : 'Preferat'}</span>
++          </div>
++          <p class="text-sm text-slate-600 dark:text-slate-300">${plan.description}</p>
++          <div class="text-3xl font-semibold text-bw-way">€${amount}<span class="text-base text-slate-500">${cycle}</span></div>
++          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">${plan.features.map(f => `<li class="flex items-center gap-2"><span aria-hidden="true">•</span><span>${f}</span></li>`).join('')}</ul>
++          <button class="mt-auto px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-modal-open="freeClass">${i18n[lang].cta_free_class}</button>`;
++        grid.appendChild(article);
++      });
++    };
++
++    const renderResources = () => {
++      const list = qs('#resourceList');
++      const term = qs('#resourceSearch').value.toLowerCase();
++      const level = qs('#resourceLevel').value;
++      const type = qs('#resourceType').value;
++      const goal = qs('#resourceGoal').value;
++      const lang = localStorage.getItem('bw-lang') || 'en';
++      const filtered = resources.filter(item => {
++        const termMatch = term ? item.title.toLowerCase().includes(term) : true;
++        return termMatch && (level === 'all' || item.level === level) && (type === 'all' || item.type === type) && (goal === 'all' || item.goal === goal);
++      });
++      if (!filtered.length) {
++        list.innerHTML = '<p class="text-sm text-slate-500">No resources found. Try another filter.</p>';
+         return;
+       }
++      list.innerHTML = '';
++      filtered.forEach(item => {
++        const article = document.createElement('article');
++        article.className = 'rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card';
++        article.innerHTML = `
++          <div class="flex items-center justify-between">
++            <h3 class="text-lg font-semibold text-bw-bridge dark:text-white">${item.title}</h3>
++            <span class="text-sm px-3 py-1 rounded-full bg-bw-way/10 text-bw-way">${item.level}</span>
++          </div>
++          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">${item.type} · ${item.goal}</p>
++          <p class="mt-2 text-xs text-slate-500">${item.minutes} min read</p>
++          <div class="mt-4 flex gap-3">
++            <button class="px-3 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white text-sm" data-scroll="#levelTest">${i18n[lang].cta_level_test}</button>
++            <button class="px-3 py-2 rounded-full border border-bw-way text-bw-way text-sm">Save</button>
++          </div>`;
++        list.appendChild(article);
++      });
++    };
+ 
+-      const message = `¡Gracias, ${name}! Tu reserva para ${guests} el ${new Date(date).toLocaleDateString()} a las ${time} ha sido registrada.`;
+-      showStatus(message);
+-      showToast('Reserva enviada. Te hemos enviado un email de confirmación (demo).');
+-      bookingForm.reset();
+-    });
++    const updateAutocomplete = () => {
++      const list = qs('#resourceAutocomplete');
++      const term = qs('#resourceSearch').value.toLowerCase();
++      if (!term) {
++        list.classList.add('hidden');
++        list.innerHTML = '';
++        return;
++      }
++      const matches = resources.filter(item => item.title.toLowerCase().includes(term)).slice(0, 5);
++      if (!matches.length) {
++        list.classList.add('hidden');
++        return;
++      }
++      list.classList.remove('hidden');
++      list.innerHTML = matches.map(item => `<li role="option" class="cursor-pointer px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800" data-value="${item.title}">${item.title}</li>`).join('');
++      qsa('[data-value]', list).forEach(el => el.addEventListener('click', () => {
++        qs('#resourceSearch').value = el.dataset.value;
++        list.classList.add('hidden');
++        renderResources();
++      }));
++    };
+ 
+-    function showStatus(msg, isError = false){
+-      bookingStatus.classList.remove('hidden');
+-      bookingStatus.classList.toggle('border-red-500/40', isError);
+-      bookingStatus.classList.toggle('bg-red-500/10', isError);
+-      bookingStatus.textContent = msg;
+-      bookingStatus.focus?.();
+-    }
++    const slots = ['09:00', '09:30', '10:00', '11:30', '15:00', '16:30', '18:00'];
+ 
+-    function showToast(msg){
+-      toastMsg.textContent = msg;
+-      toast.classList.remove('hidden');
+-      setTimeout(()=> toast.classList.add('hidden'), 3500);
+-    }
++    const renderSlots = () => {
++      const grid = qs('#slotGrid');
++      grid.innerHTML = '';
++      slots.forEach(slot => {
++        const btn = document.createElement('button');
++        btn.type = 'button';
++        btn.className = 'px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-bw-way hover:text-white';
++        btn.textContent = slot;
++        btn.addEventListener('click', () => {
++          qsa('#slotGrid button').forEach(b => b.classList.remove('bg-bw-way', 'text-white'));
++          btn.classList.add('bg-bw-way', 'text-white');
++          slots.selected = slot;
++        });
++        grid.appendChild(btn);
++      });
++    };
+ 
+-    // Simple slider
+-    const track = document.getElementById('sliderTrack');
+-    const slides = track.children;
+-    let index = 0;
++    const openModal = id => {
++      const modal = id === 'freeClass' ? qs('#freeClassModal') : qs('#guaranteeModal');
++      modal.classList.remove('hidden');
++      modal.setAttribute('aria-hidden', 'false');
++    };
+ 
+-    function updateSlider(){
+-      const w = track.querySelector('figure').clientWidth;
+-      track.style.transform = `translateX(-${index * w}px)`;
+-    }
++    const closeModal = modal => {
++      modal.classList.add('hidden');
++      modal.setAttribute('aria-hidden', 'true');
++    };
++
++    const initModals = () => {
++      qsa('[data-modal-open]').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.modalOpen)));
++      qsa('[data-modal-close]').forEach(btn => btn.addEventListener('click', () => closeModal(btn.closest('[role="dialog"]'))));
++      ['freeClassModal', 'guaranteeModal'].forEach(id => {
++        const modal = qs('#' + id);
++        modal.addEventListener('click', e => {
++          if (e.target === modal) closeModal(modal);
++        });
++      });
++    };
++
++    const formatDateTime = (date, time) => new Date(`${date}T${time}:00`).toISOString();
++
++    const updateThankYou = booking => {
++      const lang = localStorage.getItem('bw-lang') || 'en';
++      qs('#appointmentSummary').innerHTML = `
++        <div class="flex flex-col gap-2">
++          <p><strong>${booking.name}</strong></p>
++          <p>${booking.email} · ${booking.phone}</p>
++          <p>${booking.goal}</p>
++          <p>${new Date(booking.datetime).toLocaleString()}</p>
++        </div>`;
++      qs('#addCalendar').href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=BridgeWay%20class&dates=${booking.datetime.replace(/[-:]/g, '').slice(0, 15)}00/${booking.datetime.replace(/[-:]/g, '').slice(0, 15)}20&details=BridgeWay%20diagnostic&location=Online`;
++      const level = booking.level || 'B1';
++      qs('#testResultSummary').classList.remove('hidden');
++      qs('#testLevel').textContent = `Estimated level: ${level}`;
++      const list = qs('#recommendedResources');
++      list.innerHTML = '';
++      (recommendedByLevel[level] || ['Business Idioms Simulator']).forEach(item => {
++        list.innerHTML += `<li class="text-sm text-slate-600 dark:text-slate-300">${item}</li>`;
++      });
++    };
++
++    const initFreeClassForm = () => {
++      const form = qs('#freeClassForm');
++      renderSlots();
++      form.addEventListener('submit', e => {
++        e.preventDefault();
++        const data = Object.fromEntries(new FormData(form));
++        const errors = {};
++        if (!data.name.trim()) errors.name = 'Required';
++        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.email = 'Invalid email';
++        if (!/^[0-9+()\s-]{6,}$/.test(data.phone || '')) errors.phone = 'Invalid phone';
++        if (!data.date) errors.date = 'Select a date';
++        if (!slots.selected) errors.slot = 'Select a slot';
++        qsa('[data-error]').forEach(node => node.classList.add('hidden'));
++        if (Object.keys(errors).length) {
++          Object.entries(errors).forEach(([key, value]) => {
++            const node = qs(`[data-error="${key}"]`);
++            if (node) {
++              node.textContent = value;
++              node.classList.remove('hidden');
++            }
++          });
++          return;
++        }
++        const booking = { ...data, slot: slots.selected, datetime: formatDateTime(data.date, slots.selected) };
++        localStorage.setItem('bw-booking', JSON.stringify(booking));
++        qs('#formSuccess').classList.remove('hidden');
++        showToast('Booking confirmed! 🎉');
++        updateThankYou(booking);
++        setTimeout(() => closeModal(qs('#freeClassModal')), 900);
++      });
++    };
++
++    const initHeader = () => {
++      const header = qs('#siteHeader');
++      const cta = header.querySelector('button[data-modal-open="freeClass"]');
++      window.addEventListener('scroll', () => {
++        const scrolled = window.scrollY > 40;
++        header.classList.toggle('shadow-lg', scrolled);
++        header.style.transform = scrolled ? 'scaleY(0.94)' : 'scaleY(1)';
++        cta.classList.toggle('shadow-glow', scrolled);
++        qs('#backToTop').classList.toggle('hidden', window.scrollY < window.innerHeight * 0.5);
++      });
++    };
+ 
+-    document.getElementById('nextSlide').addEventListener('click', ()=>{ index = (index + 1) % slides.length; updateSlider(); });
+-    document.getElementById('prevSlide').addEventListener('click', ()=>{ index = (index - 1 + slides.length) % slides.length; updateSlider(); });
+-    window.addEventListener('resize', updateSlider);
+-    // Auto-play
+-    setInterval(()=>{ index = (index + 1) % slides.length; updateSlider(); }, 5000);
++    const initMenu = () => {
++      const btn = qs('#menuToggle');
++      const menu = qs('#mobileMenu');
++      btn.addEventListener('click', () => {
++        const expanded = btn.getAttribute('aria-expanded') === 'true';
++        btn.setAttribute('aria-expanded', String(!expanded));
++        menu.classList.toggle('hidden', expanded);
++      });
++      qsa('[data-scroll]').forEach(el => el.addEventListener('click', () => {
++        const target = qs(el.dataset.scroll);
++        if (target) target.scrollIntoView({ behavior: 'smooth' });
++      }));
++      qs('#backToTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
++    };
+ 
+-    // Scroll reveal
+-    const observer = new IntersectionObserver((entries)=>{
+-      entries.forEach(e=>{
+-        if(e.isIntersecting){ e.target.classList.add('animate-fadeUp'); observer.unobserve(e.target); }
+-      })
+-    }, { threshold: 0.15 });
++    const initDock = () => {
++      qs('#dockFreeClass').addEventListener('click', () => openModal('freeClass'));
++      qs('#dockTest').addEventListener('click', () => qs('#levelTest').scrollIntoView({ behavior: 'smooth' }));
++    };
+ 
+-    document.querySelectorAll('#reserva .bg-night-900\\/80, #carta .bg-night-900\\/70, #faq details').forEach(el=>observer.observe(el));
++    const initChat = () => {
++      const toggle = qs('#chatToggle');
++      const widget = qs('#chatWidget');
++      const responses = qs('#chatResponses');
++      const input = qs('#chatInput');
++      const lang = localStorage.getItem('bw-lang') || 'en';
++      const answers = {
++        class: { en: 'Ready to book! Hit any “Free class” button and pick your slot.', ru: 'Готовы записаться? Жмите «Бесплатный урок».', ro: 'Gata de rezervare! Apasă „Lecție gratuită”.' },
++        test: { en: 'Start the level test below and get instant feedback.', ru: 'Запускайте тест уровня ниже и получите ответ.', ro: 'Pornește testul de nivel mai jos pentru feedback instant.' },
++        question: { en: 'Need help? Email hello@bridgeway.ac or WhatsApp us anytime.', ru: 'Нужна помощь? hello@bridgeway.ac или WhatsApp в любое время.', ro: 'Ai nevoie de ajutor? hello@bridgeway.ac sau WhatsApp.' },
++        price: { en: 'Plans start at €129/month. Quarterly billing saves 12%.', ru: 'Планы от 129 € в месяц. Квартальная оплата экономит 12%.', ro: 'Planurile încep de la 129 €/lună. Trimestrial economisești 12%.' },
++        company: { en: 'Company plans include onboarding, dashboards, and impact reports. Let’s talk!', ru: 'Для компаний — запуск, дашборды, отчёты. Поговорим!', ro: 'Planurile pentru companii includ onboarding și rapoarte. Vorbim?' },
++        kids: { en: 'Teen Connect (A2–B2) keeps younger learners engaged with missions.', ru: 'Teen Connect (A2–B2) мотивирует подростков миссиями.', ro: 'Teen Connect (A2–B2) îi motivează pe tineri cu misiuni.' }
++      };
++      const reply = key => {
++        responses.innerHTML = `<p>${(answers[key] && (answers[key][lang] || answers[key].en)) || answers.question.en}</p>`;
++      };
++      toggle.addEventListener('click', () => widget.classList.toggle('hidden'));
++      qsa('.chat-quick').forEach(btn => btn.addEventListener('click', () => reply(btn.dataset.key)));
++      input.addEventListener('keydown', e => {
++        if (e.key === 'Enter') {
++          const value = input.value.toLowerCase();
++          const key = Object.keys(answers).find(k => value.includes(k));
++          reply(key || 'question');
++          input.value = '';
++        }
++      });
++    };
++
++    const testQuestions = {
++      grammar: [
++        { q: 'If I ____ more time, I would join the workshop.', options: ['had', 'have', 'will have'], answer: 0 },
++        { q: 'Which sentence is correct?', options: ['She don't like coffee.', 'She doesn't likes coffee.', 'She doesn't like coffee.'], answer: 2 },
++        { q: 'They have been ____ English for years.', options: ['study', 'studied', 'studying'], answer: 2 },
++        { q: 'The report ____ by Friday.', options: ['must finished', 'must be finished', 'must finishing'], answer: 1 },
++        { q: 'Hardly ____ the meeting started when the CEO joined.', options: ['had', 'have', 'has'], answer: 0 },
++        { q: 'Identify the error: “We discussed about the results.”', options: ['Correct', 'Incorrect – remove about', 'Incorrect – add the'], answer: 1 },
++        { q: 'By 2025, we ____ in the new office for two years.', options: ['will live', 'will have been living', 'are living'], answer: 1 },
++        { q: 'Pick the synonym of “essential”.', options: ['optional', 'crucial', 'unlikely'], answer: 1 },
++        { q: 'You've finished, ____?', options: ['haven't you', 'have you', 'did you'], answer: 0 },
++        { q: 'Which sentence uses the passive voice?', options: ['We closed the deal.', 'The deal was closed yesterday.', 'They are closing the deal.'], answer: 1 },
++        { q: 'It's high time we ____ the new platform.', options: ['launch', 'launched', 'have launched'], answer: 1 },
++        { q: 'I'm responsible ____ onboarding.', options: ['of', 'for', 'with'], answer: 1 }
++      ],
++      reading: {
++        passage: 'BridgeWay learners combine live coaching with micro-learning missions. Completing at least two missions between classes doubles the retention of new vocabulary.',
++        question: 'According to the passage, what doubles vocabulary retention?',
++        options: ['Attending more than two live classes', 'Completing two missions between classes', 'Watching extra videos'],
++        answer: 1
++      },
++      speaking: {
++        prompt: 'Record a 30-second answer: “Describe a project where English made a difference. What was the outcome?”',
++        fallback: 'Write a short answer about a project where English made a difference.'
++      }
++    };
++
++    const levelThresholds = [20, 40, 60, 80, 100];
++    const levelLabels = ['A2', 'B1', 'B2', 'C1', 'C2'];
++    let testState = { section: 'intro', index: 0, answers: { grammar: [], reading: null, speaking: null } };
++
++    const evaluateLevel = score => {
++      let level = 'A1';
++      levelThresholds.forEach((threshold, idx) => {
++        if (score >= threshold) level = levelLabels[idx];
++      });
++      return level;
++    };
++
++    const saveTestState = () => localStorage.setItem('bw-test-progress', JSON.stringify(testState));
++
++    const renderGrammarQuestion = () => {
++      const lang = localStorage.getItem('bw-lang') || 'en';
++      const question = testQuestions.grammar[testState.index];
++      const container = qs('#testContent');
++      container.innerHTML = `
++        <p class="text-sm font-semibold text-bw-bridge dark:text-white">${i18n[lang].test_progress || 'Progress'}: ${testState.index + 1}/12</p>
++        <p class="text-lg mt-3">${question.q}</p>
++        <div class="grid gap-3 mt-4">
++          ${question.options.map((option, idx) => `<button class="px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 text-left hover:bg-bw-way/10" data-option="${idx}">${option}</button>`).join('')}
++        </div>`;
++      qsa('[data-option]').forEach(btn => btn.addEventListener('click', () => {
++        const correct = Number(btn.dataset.option) === question.answer;
++        testState.answers.grammar[testState.index] = correct;
++        testState.index += 1;
++        saveTestState();
++        showToast(correct ? 'Correct!' : 'Noted for review.');
++        if (testState.index >= testQuestions.grammar.length) {
++          testState.section = 'reading';
++          testState.index = 0;
++          renderReadingQuestion();
++        } else {
++          renderGrammarQuestion();
++        }
++      }));
++    };
++
++    const renderReadingQuestion = () => {
++      const lang = localStorage.getItem('bw-lang') || 'en';
++      const { passage, question, options, answer } = testQuestions.reading;
++      const container = qs('#testContent');
++      container.innerHTML = `
++        <article class="bg-slate-100 dark:bg-slate-800/70 rounded-2xl p-4 text-sm text-slate-700 dark:text-slate-200">${passage}</article>
++        <p class="mt-4 text-lg font-semibold">${question}</p>
++        <div class="grid gap-3 mt-3">
++          ${options.map((option, idx) => `<button class="px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 text-left hover:bg-bw-way/10" data-option="${idx}">${option}</button>`).join('')}
++        </div>`;
++      qsa('[data-option]').forEach(btn => btn.addEventListener('click', () => {
++        testState.answers.reading = Number(btn.dataset.option) === answer;
++        testState.section = 'speaking';
++        saveTestState();
++        renderSpeakingQuestion();
++      }));
++    };
++
++    const renderSpeakingQuestion = () => {
++      const container = qs('#testContent');
++      const { prompt, fallback } = testQuestions.speaking;
++      container.innerHTML = `
++        <p class="text-lg font-semibold">${prompt}</p>
++        <div class="mt-4 space-y-3">
++          <button id="recordBtn" class="px-4 py-2 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white">Start recording</button>
++          <p class="text-sm text-slate-500 dark:text-slate-400">${fallback}</p>
++          <textarea id="speakingFallback" class="w-full rounded-2xl border border-slate-200 dark:border-slate-700" rows="4" placeholder="${fallback}"></textarea>
++          <button id="speakingSubmit" class="px-4 py-2 rounded-full bg-bw-way text-white">Submit</button>
++        </div>`;
++      const submit = () => {
++        const text = qs('#speakingFallback').value.trim();
++        testState.answers.speaking = text.length > 10;
++        concludeTest();
++      };
++      qs('#speakingSubmit').addEventListener('click', submit);
++      const recordBtn = qs('#recordBtn');
++      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
++        recordBtn.classList.add('hidden');
++        return;
++      }
++      let mediaRecorder;
++      recordBtn.addEventListener('click', async () => {
++        if (mediaRecorder && mediaRecorder.state === 'recording') {
++          mediaRecorder.stop();
++          recordBtn.textContent = 'Start recording';
++          return;
++        }
++        try {
++          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
++          mediaRecorder = new MediaRecorder(stream);
++          recordBtn.textContent = 'Stop recording';
++          const chunks = [];
++          mediaRecorder.ondataavailable = e => chunks.push(e.data);
++          mediaRecorder.onstop = () => {
++            testState.answers.speaking = chunks.length > 0;
++            concludeTest();
++          };
++          mediaRecorder.start();
++          setTimeout(() => {
++            if (mediaRecorder.state === 'recording') mediaRecorder.stop();
++          }, 30000);
++        } catch (err) {
++          recordBtn.classList.add('hidden');
++        }
++      });
++    };
++
++    const concludeTest = () => {
++      const lang = localStorage.getItem('bw-lang') || 'en';
++      const grammarScore = testState.answers.grammar.filter(Boolean).length * (100 / (testQuestions.grammar.length + 2));
++      const readingScore = (testState.answers.reading ? 1 : 0) * (100 / (testQuestions.grammar.length + 2));
++      const speakingScore = (testState.answers.speaking ? 1 : 0) * (100 / (testQuestions.grammar.length + 2));
++      const total = Math.round(grammarScore + readingScore + speakingScore);
++      const level = evaluateLevel(total);
++      const container = qs('#testContent');
++      container.innerHTML = `
++        <div class="space-y-4">
++          <h3 class="text-2xl font-bold text-bw-bridge dark:text-white">${i18n[lang].test_result || 'Result'}</h3>
++          <p class="text-lg">${level}</p>
++          <p class="text-sm text-slate-600 dark:text-slate-300">We emailed your roadmap with 3 tailored resources.</p>
++          <button class="px-5 py-3 rounded-full bg-gradient-to-r from-bw-bridge to-bw-way text-white font-semibold" data-modal-open="freeClass">${i18n[lang].cta_free_class}</button>
++        </div>`;
++      const booking = JSON.parse(localStorage.getItem('bw-booking') || '{}');
++      booking.level = level;
++      localStorage.setItem('bw-booking', JSON.stringify(booking));
++      updateThankYou(booking);
++      localStorage.removeItem('bw-test-progress');
++      showToast('Result emailed!');
++    };
++
++    const renderTestIntro = () => {
++      const lang = localStorage.getItem('bw-lang') || 'en';
++      const container = qs('#testContent');
++      container.innerHTML = `<p class="text-sm text-slate-500 dark:text-slate-400">${i18n[lang].test_hint}</p>`;
++      qs('#testProgress').style.width = '0%';
++    };
++
++    const runTest = () => {
++      if (testState.section === 'intro') {
++        testState.section = 'grammar';
++        testState.index = 0;
++      }
++      if (testState.section === 'grammar') renderGrammarQuestion();
++      else if (testState.section === 'reading') renderReadingQuestion();
++      else if (testState.section === 'speaking') renderSpeakingQuestion();
++      const answered = testState.answers.grammar.filter(Boolean).length + (testState.answers.reading ? 1 : 0) + (testState.answers.speaking ? 1 : 0);
++      const progress = Math.min(100, Math.round((answered / (testQuestions.grammar.length + 2)) * 100));
++      qs('#testProgress').style.width = `${progress}%`;
++      saveTestState();
++    };
++
++    const initTest = () => {
++      const saved = localStorage.getItem('bw-test-progress');
++      if (saved) testState = JSON.parse(saved);
++      qs('#startTest').addEventListener('click', () => {
++        testState = { section: 'grammar', index: 0, answers: { grammar: [], reading: null, speaking: null } };
++        saveTestState();
++        runTest();
++      });
++      if (saved) runTest(); else renderTestIntro();
++    };
++
++    const initPricingToggle = () => {
++      const toggle = qs('#billingToggle');
++      toggle.addEventListener('change', () => {
++        renderPricing(toggle.checked ? 'quarterly' : 'monthly');
++      });
++    };
++
++    const initCalculator = () => {
++      const form = qs('#priceCalculator');
++      const result = qs('#calculatorResult');
++      const update = () => {
++        const hours = Number(form.hours.value) || 0;
++        const rate = Number(form.rate.value) || 0;
++        const weeks = Number(form.weeks.value) || 0;
++        result.textContent = `€${hours * rate * weeks}`;
++      };
++      qsa('input', form).forEach(input => input.addEventListener('input', update));
++      update();
++    };
++
++    const initResources = () => {
++      ['resourceLevel', 'resourceType', 'resourceGoal'].forEach(id => qs('#' + id).addEventListener('change', renderResources));
++      qs('#resourceSearch').addEventListener('input', () => {
++        updateAutocomplete();
++        renderResources();
++      });
++      renderResources();
++    };
++
++    const initTheme = () => {
++      const saved = localStorage.getItem('bw-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
++      applyTheme(saved);
++      qs('#darkToggle').addEventListener('click', toggleTheme);
++    };
++
++    const initResumeBanner = () => {
++      const saved = localStorage.getItem('bw-test-progress');
++      if (saved) {
++        qs('#resumeBanner').classList.remove('hidden');
++        qs('#resumeTest').addEventListener('click', () => {
++          testState = JSON.parse(localStorage.getItem('bw-test-progress'));
++          runTest();
++        });
++      }
++    };
++
++    document.addEventListener('DOMContentLoaded', () => {
++      initTheme();
++      initLanguageSwitcher();
++      renderPrograms();
++      filterPrograms('all');
++      renderFAQ(localStorage.getItem('bw-lang') || 'en');
++      renderTimeline(localStorage.getItem('bw-lang') || 'en');
++      renderTeachers(localStorage.getItem('bw-lang') || 'en');
++      renderPricing(localStorage.getItem('bw-billing') || 'monthly');
++      initPricingToggle();
++      initResources();
++      initCalculator();
++      initModals();
++      initFreeClassForm();
++      initHeader();
++      initMenu();
++      initDock();
++      initChat();
++      initTest();
++      initResumeBanner();
++      const savedBooking = localStorage.getItem('bw-booking');
++      if (savedBooking) updateThankYou(JSON.parse(savedBooking));
++      const year = new Date().getFullYear();
++      qs('#year').textContent = year;
++      qsa('.program-filter').forEach(btn => btn.addEventListener('click', () => filterPrograms(btn.dataset.filter)));
++      qs('#filterArea').addEventListener('change', () => renderTeachers(localStorage.getItem('bw-lang') || 'en'));
++      qs('#filterCertification').addEventListener('change', () => renderTeachers(localStorage.getItem('bw-lang') || 'en'));
++      qs('#filterLanguage').addEventListener('change', () => renderTeachers(localStorage.getItem('bw-lang') || 'en'));
++    });
+   </script>
+ </body>
+ </html>
