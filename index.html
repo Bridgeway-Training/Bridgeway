@@ -1,15 +1,1207 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bridgeway Interaction Demo</title>
-    <link rel="stylesheet" href="/src/styles/variables.css" />
-    <link rel="stylesheet" href="/src/styles/a11y.css" />
+    <title>Bridgeway English Academy · Programs & Pricing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Inter"', 'system-ui', 'sans-serif'],
+            },
+            boxShadow: {
+              card: '0 20px 45px -25px rgba(15, 23, 42, 0.35)',
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+      .focus-ring:focus-visible {
+        outline: 2px solid transparent;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.5);
+      }
+    </style>
   </head>
-  <body>
-    <a href="#main" class="skip-link">Skip to content</a>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+    <a
+      href="#main"
+      class="skip-link focus-ring sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white"
+      >Skip to main content</a
+    >
+    <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-3 lg:px-6">
+        <div class="flex items-center gap-4">
+          <a href="#" class="flex items-center gap-2 focus-ring" aria-label="Bridgeway home">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-lg font-semibold text-white">B</span>
+            <span class="text-lg font-semibold tracking-tight">Bridgeway English Academy</span>
+          </a>
+        </div>
+        <nav aria-label="Primary" class="hidden items-center gap-1 text-sm font-medium md:flex">
+          <a href="#programs" class="rounded-full px-3 py-2 text-slate-600 transition hover:bg-blue-50 hover:text-blue-700 focus-ring dark:text-slate-300 dark:hover:bg-slate-900">Programs</a>
+          <a href="#schedules" class="rounded-full px-3 py-2 text-slate-600 transition hover:bg-blue-50 hover:text-blue-700 focus-ring dark:text-slate-300 dark:hover:bg-slate-900">Schedules & Prices</a>
+          <a href="#level-test" class="rounded-full px-3 py-2 text-slate-600 transition hover:bg-blue-50 hover:text-blue-700 focus-ring dark:text-slate-300 dark:hover:bg-slate-900">Level Test</a>
+          <a href="#cambridge" class="rounded-full px-3 py-2 text-slate-600 transition hover:bg-blue-50 hover:text-blue-700 focus-ring dark:text-slate-300 dark:hover:bg-slate-900">Cambridge</a>
+          <a href="#business" class="rounded-full px-3 py-2 text-slate-600 transition hover:bg-blue-50 hover:text-blue-700 focus-ring dark:text-slate-300 dark:hover:bg-slate-900">Businesses</a>
+          <a href="#faq" class="rounded-full px-3 py-2 text-slate-600 transition hover:bg-blue-50 hover:text-blue-700 focus-ring dark:text-slate-300 dark:hover:bg-slate-900">FAQ</a>
+          <a href="#checkout" class="rounded-full px-3 py-2 text-blue-600 transition hover:bg-blue-100 focus-ring dark:text-blue-300 dark:hover:bg-slate-900">Enroll</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <div class="hidden items-center gap-1 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-blue-500/40 dark:bg-blue-500/10 dark:text-blue-300 md:flex" aria-label="Language badges">
+            <span>ES</span>
+            <span class="text-slate-400">/</span>
+            <span>RO</span>
+            <span class="text-slate-400">/</span>
+            <span>RU</span>
+          </div>
+          <button id="themeToggle" type="button" class="focus-ring inline-flex items-center justify-center rounded-full border border-slate-200 p-2 text-slate-600 transition hover:border-blue-200 hover:text-blue-600 dark:border-slate-700 dark:text-slate-200 dark:hover:border-blue-500 dark:hover:text-blue-300" aria-pressed="false" aria-label="Toggle dark mode">
+            <svg id="themeIcon" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 3.25a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V4a.75.75 0 0 1 .75-.75Zm0 13.5a2.75 2.75 0 1 0 0-5.5 2.75 2.75 0 0 0 0 5.5Zm7.75-2.75a.75.75 0 0 1 .75.75 8.5 8.5 0 1 1-8.5-8.5.75.75 0 0 1 0 1.5 7 7 0 1 0 7 7 .75.75 0 0 1 .75-.75ZM19 11.25h1.5a.75.75 0 0 1 0 1.5H19a.75.75 0 0 1 0-1.5ZM12 18a.75.75 0 0 1 .75.75V20a.75.75 0 0 1-1.5 0v-1.25A.75.75 0 0 1 12 18ZM5 11.25h1.5a.75.75 0 0 1 0 1.5H5a.75.75 0 0 1 0-1.5Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="border-t border-slate-200 bg-blue-50 px-4 py-2 text-sm text-blue-800 dark:border-slate-800 dark:bg-blue-500/10 dark:text-blue-200 md:hidden">
+        <nav aria-label="Primary mobile" class="flex flex-wrap gap-2">
+          <a href="#programs" class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm focus-ring dark:bg-slate-900 dark:text-slate-200">Programs</a>
+          <a href="#schedules" class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm focus-ring dark:bg-slate-900 dark:text-slate-200">Schedules & Prices</a>
+          <a href="#cambridge" class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm focus-ring dark:bg-slate-900 dark:text-slate-200">Cambridge</a>
+          <a href="#faq" class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm focus-ring dark:bg-slate-900 dark:text-slate-200">FAQ</a>
+        </nav>
+      </div>
+      <div class="border-t border-slate-200 bg-blue-50 px-4 py-2 text-sm text-blue-800 dark:border-slate-800 dark:bg-blue-500/10 dark:text-blue-200">
+        <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
+          <p class="flex items-center gap-2 font-medium">
+            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-xs text-white">i</span>
+            <span>Prices in MDL. No enrollment fee. Cancel anytime. Groups of 6–10.</span>
+          </p>
+          <p class="text-xs text-blue-700 dark:text-blue-200">Free placement in 24 h · Flexible rescheduling · Cambridge-ready</p>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="mx-auto max-w-6xl px-4 pb-24 pt-12 lg:px-6">
+      <section id="programs" class="mb-20">
+        <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h1 class="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">Find your best-fit program</h1>
+            <p class="mt-2 text-lg text-slate-600 dark:text-slate-300">
+              Tailored English experiences for kids, teens, adults, and professionals—all powered by Cambridge-quality teaching.
+            </p>
+          </div>
+          <div class="hidden rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-700 dark:border-blue-500/40 dark:bg-blue-500/10 dark:text-blue-200 md:flex" aria-label="Language badges">
+            ES · RO · RU
+          </div>
+        </div>
+        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <button
+            data-preset='{"audience":"Kids","plan":"Standard"}'
+            class="focus-ring group flex flex-col rounded-2xl border border-blue-100 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900"
+            type="button"
+          >
+            <span class="text-sm font-semibold uppercase tracking-wide text-blue-600">Kids</span>
+            <span class="mt-3 text-xl font-semibold text-slate-900 dark:text-white">Playful immersion</span>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Cambridge Super Minds adventures with songs, crafts, and confident speaking.</p>
+            <span class="mt-auto pt-6 text-sm font-medium text-blue-600 group-hover:underline">Show schedules</span>
+          </button>
+          <button
+            data-preset='{"audience":"Youth & Adults (15+)","plan":"Standard","level":"B2"}'
+            class="focus-ring group flex flex-col rounded-2xl border border-blue-100 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900"
+            type="button"
+          >
+            <span class="text-sm font-semibold uppercase tracking-wide text-blue-600">Teens & Adults</span>
+            <span class="mt-3 text-xl font-semibold text-slate-900 dark:text-white">Career-driven fluency</span>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Goal-based group cohorts with evening and morning options up to C2.</p>
+            <span class="mt-auto pt-6 text-sm font-medium text-blue-600 group-hover:underline">Compare cohorts</span>
+          </button>
+          <button
+            data-preset='{"plan":"Individual"}'
+            class="focus-ring group flex flex-col rounded-2xl border border-blue-100 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900"
+            type="button"
+          >
+            <span class="text-sm font-semibold uppercase tracking-wide text-blue-600">1:1 Coaching</span>
+            <span class="mt-3 text-xl font-semibold text-slate-900 dark:text-white">Accelerated results</span>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Flexible packs assigned within 24 h with mentor feedback for each session.</p>
+            <span class="mt-auto pt-6 text-sm font-medium text-blue-600 group-hover:underline">View packs</span>
+          </button>
+          <button
+            data-preset='{"plan":"Cambridge"}'
+            class="focus-ring group flex flex-col rounded-2xl border border-blue-100 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900"
+            type="button"
+          >
+            <span class="text-sm font-semibold uppercase tracking-wide text-blue-600">Cambridge Exams</span>
+            <span class="mt-3 text-xl font-semibold text-slate-900 dark:text-white">Exam readiness labs</span>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Mock exams, rubric-based writing clinics, and speaking workshops included.</p>
+            <span class="mt-auto pt-6 text-sm font-medium text-blue-600 group-hover:underline">View exam prep</span>
+          </button>
+        </div>
+      </section>
+      <section id="schedules" aria-labelledby="schedules-heading" class="mb-20">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 id="schedules-heading" class="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">Schedules & Prices</h2>
+            <p class="mt-2 max-w-2xl text-base text-slate-600 dark:text-slate-300">
+              Filter the schedule in real time. All times local (Chisinau). Every enrolment includes smart homework tracking, parent/mentor feedback, and progress analytics.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">{</span>
+            <span>6–10 students per group guaranteed</span>
+          </div>
+        </div>
+        <div class="mt-10 space-y-6">
+          <div class="flex flex-wrap items-center gap-2 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <span>Audience</span>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-filter-key="audience" data-filter-value="Kids" class="filter-chip">Kids</button>
+              <button type="button" data-filter-key="audience" data-filter-value="Youth & Adults (15+)" class="filter-chip">Youth & Adults (15+)</button>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <span>Plan</span>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-filter-key="plan" data-filter-value="Standard" class="filter-chip">Standard (12 weeks)</button>
+              <button type="button" data-filter-key="plan" data-filter-value="Intensive" class="filter-chip">Intensive (8 weeks)</button>
+              <button type="button" data-filter-key="plan" data-filter-value="Individual" class="filter-chip">Individual</button>
+              <button type="button" data-filter-key="plan" data-filter-value="Speaking" class="filter-chip">Speaking</button>
+              <button type="button" data-filter-key="plan" data-filter-value="Cambridge" class="filter-chip">Cambridge</button>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <span>Level</span>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-filter-key="level" data-filter-value="PRE-A1" class="filter-chip">PRE-A1</button>
+              <button type="button" data-filter-key="level" data-filter-value="A1" class="filter-chip">A1</button>
+              <button type="button" data-filter-key="level" data-filter-value="A2" class="filter-chip">A2</button>
+              <button type="button" data-filter-key="level" data-filter-value="B1" class="filter-chip">B1</button>
+              <button type="button" data-filter-key="level" data-filter-value="B2" class="filter-chip">B2</button>
+              <button type="button" data-filter-key="level" data-filter-value="C1" class="filter-chip">C1</button>
+              <button type="button" data-filter-key="level" data-filter-value="C2" class="filter-chip">C2</button>
+            </div>
+          </div>
+          <div id="examFilter" class="hidden flex-wrap items-center gap-2 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <span>Exam</span>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-filter-key="exam" data-filter-value="Starters" class="filter-chip">Starters</button>
+              <button type="button" data-filter-key="exam" data-filter-value="Movers" class="filter-chip">Movers</button>
+              <button type="button" data-filter-key="exam" data-filter-value="Flyers" class="filter-chip">Flyers</button>
+              <button type="button" data-filter-key="exam" data-filter-value="A2 Key" class="filter-chip">A2 Key</button>
+              <button type="button" data-filter-key="exam" data-filter-value="B1 Preliminary" class="filter-chip">B1 Preliminary</button>
+              <button type="button" data-filter-key="exam" data-filter-value="B2 First" class="filter-chip">B2 First</button>
+              <button type="button" data-filter-key="exam" data-filter-value="C1 Advanced" class="filter-chip">C1 Advanced</button>
+              <button type="button" data-filter-key="exam" data-filter-value="C2 Proficiency" class="filter-chip">C2 Proficiency</button>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <span>Days</span>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-filter-key="days" data-filter-value="Mon–Fri" class="filter-chip">Mon–Fri</button>
+              <button type="button" data-filter-key="days" data-filter-value="Sat" class="filter-chip">Sat</button>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <span>Time</span>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-filter-key="time" data-filter-value="Morning" class="filter-chip">Morning</button>
+              <button type="button" data-filter-key="time" data-filter-value="Afternoon" class="filter-chip">Afternoon</button>
+              <button type="button" data-filter-key="time" data-filter-value="Evening" class="filter-chip">Evening</button>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="flex items-center gap-2 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+              <label for="sortSelect" class="font-semibold">Sort</label>
+              <select id="sortSelect" class="focus-ring rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm transition dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
+                <option value="nextStart">Next Start (default)</option>
+                <option value="price">Price</option>
+                <option value="seats">Seats Available</option>
+              </select>
+            </div>
+            <button id="clearFilters" type="button" class="focus-ring rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">Clear all</button>
+          </div>
+          <div class="flex flex-wrap items-center gap-2" aria-live="polite" aria-atomic="true">
+            <span id="resultsCount" class="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">0 courses</span>
+            <div id="activeFilters" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+        <div id="coursesGrid" class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3" aria-live="polite" aria-atomic="false"></div>
+        <div id="emptyState" class="mt-10 hidden rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center dark:border-slate-700 dark:bg-slate-900">
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">No schedules match right now</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Try resetting your filters or explore a different program—our advisors can customise a cohort for you.</p>
+          <div class="mt-6 flex justify-center">
+            <button id="resetEmptyState" type="button" class="focus-ring rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400">Reset filters</button>
+          </div>
+        </div>
+      </section>
+      <section id="level-test" class="mb-20 rounded-3xl bg-gradient-to-r from-blue-600 to-blue-700 p-10 text-white shadow-card">
+        <div class="grid gap-6 md:grid-cols-[1.2fr_1fr] md:items-center">
+          <div>
+            <h2 class="text-2xl font-semibold">Free level test in 24 hours</h2>
+            <p class="mt-3 text-base text-blue-100">
+              Submit a 5-minute smart placement and receive an action plan video with personalised recommendations from our academic team.
+            </p>
+            <ul class="mt-6 space-y-2 text-sm">
+              <li class="flex items-center gap-3">
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-sm font-semibold">1</span>
+                Online speaking & grammar diagnostics
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-sm font-semibold">2</span>
+                Advisor call with next steps & scholarship options
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-sm font-semibold">3</span>
+                Secure your seat or request a custom cohort
+              </li>
+            </ul>
+          </div>
+          <div class="rounded-2xl bg-white/10 p-6 backdrop-blur">
+            <form class="space-y-4" aria-label="Level test form">
+              <div>
+                <label for="testName" class="text-sm font-medium">Name</label>
+                <input id="testName" name="name" type="text" class="focus-ring mt-1 w-full rounded-xl border border-white/40 bg-white/20 px-4 py-2 text-sm text-white placeholder-blue-100" placeholder="Your full name" />
+              </div>
+              <div>
+                <label for="testEmail" class="text-sm font-medium">Email</label>
+                <input id="testEmail" name="email" type="email" class="focus-ring mt-1 w-full rounded-xl border border-white/40 bg-white/20 px-4 py-2 text-sm text-white placeholder-blue-100" placeholder="you@email.com" />
+              </div>
+              <div>
+                <label for="testAudience" class="text-sm font-medium">Who is taking the test?</label>
+                <select id="testAudience" class="focus-ring mt-1 w-full rounded-xl border border-white/40 bg-white/20 px-4 py-2 text-sm text-white">
+                  <option>Kids (7–12)</option>
+                  <option>Teens (13–17)</option>
+                  <option>Adults (18+)</option>
+                </select>
+              </div>
+              <button type="button" class="focus-ring inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-semibold text-blue-700 transition hover:bg-blue-100">
+                Book placement
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section id="cambridge" class="mb-20">
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 class="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">Cambridge Exams</h2>
+            <p class="mt-2 max-w-2xl text-base text-slate-600 dark:text-slate-300">Choose the exam you are targeting. We include mocks, official rubrics, and speaking labs.</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" data-preset='{"plan":"Cambridge","exam":"Starters"}' class="cambridge-chip">Starters</button>
+            <button type="button" data-preset='{"plan":"Cambridge","exam":"Movers"}' class="cambridge-chip">Movers</button>
+            <button type="button" data-preset='{"plan":"Cambridge","exam":"Flyers"}' class="cambridge-chip">Flyers</button>
+            <button type="button" data-preset='{"plan":"Cambridge","exam":"A2 Key"}' class="cambridge-chip">A2 Key</button>
+            <button type="button" data-preset='{"plan":"Cambridge","exam":"B1 Preliminary"}' class="cambridge-chip">B1 Preliminary</button>
+            <button type="button" data-preset='{"plan":"Cambridge","exam":"B2 First"}' class="cambridge-chip">B2 First</button>
+            <button type="button" data-preset='{"plan":"Cambridge","exam":"C1 Advanced"}' class="cambridge-chip">C1 Advanced</button>
+            <button type="button" data-preset='{"plan":"Cambridge","exam":"C2 Proficiency"}' class="cambridge-chip">C2 Proficiency</button>
+          </div>
+        </div>
+      </section>
+      <section id="business" class="mb-20 rounded-3xl border border-blue-100 bg-white p-10 shadow-card dark:border-slate-800 dark:bg-slate-900">
+        <div class="grid gap-8 md:grid-cols-2 md:items-center">
+          <div>
+            <h2 class="text-2xl font-semibold text-slate-900 dark:text-white">Corporate English, tailored for teams</h2>
+            <p class="mt-4 text-base text-slate-600 dark:text-slate-300">
+              Upskill your teams with bespoke training streams in customer success, aviation, healthcare, and IT. We deploy cohort and 1:1 blends with data-driven reporting.
+            </p>
+            <ul class="mt-6 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+              <li class="flex items-center gap-2">
+                <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-xs font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">1</span>
+                Skill mapping with CEFR benchmarking
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-xs font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">2</span>
+                Live progress dashboards & HR reports
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-xs font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">3</span>
+                Global Cambridge partner for certification
+              </li>
+            </ul>
+          </div>
+          <div class="rounded-2xl border border-dashed border-blue-200 bg-blue-50/50 p-6 text-sm text-slate-600 shadow-inner dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-100">
+            <p class="font-semibold text-blue-700 dark:text-blue-200">Looking for business English?</p>
+            <p class="mt-2 text-sm">Email <a href="mailto:teams@bridgeway.md" class="underline decoration-blue-400 decoration-2 underline-offset-2">teams@bridgeway.md</a> with your objectives—we craft proposals in 48 h.</p>
+            <p class="mt-4 text-xs uppercase tracking-wide text-blue-500 dark:text-blue-300">Popular add-ons</p>
+            <ul class="mt-2 space-y-1">
+              <li>• Cambridge Linguaskill certification</li>
+              <li>• Monthly executive reporting</li>
+              <li>• Industry-specific role-plays</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section id="faq" class="mb-20">
+        <h2 class="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">Frequently asked questions</h2>
+        <div class="mt-8 space-y-4" role="list">
+          <details class="group rounded-2xl border border-slate-200 bg-white p-6 transition dark:border-slate-800 dark:bg-slate-900">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-semibold text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:text-white">
+              How does placement work?
+              <span class="ml-3 text-blue-600 transition group-open:rotate-45">+</span>
+            </summary>
+            <p class="mt-4 text-sm text-slate-600 dark:text-slate-300">Complete the online level test and a live speaking check. Our academic team confirms your level within 24 h and proposes the best cohort with available seats.</p>
+          </details>
+          <details class="group rounded-2xl border border-slate-200 bg-white p-6 transition dark:border-slate-800 dark:bg-slate-900">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-semibold text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:text-white">
+              Can I pause or transfer my subscription?
+              <span class="ml-3 text-blue-600 transition group-open:rotate-45">+</span>
+            </summary>
+            <p class="mt-4 text-sm text-slate-600 dark:text-slate-300">Yes. You can pause for up to 4 weeks or transfer to a different cohort with 48 h notice. Individual packs can be reassigned once during their validity.</p>
+          </details>
+          <details class="group rounded-2xl border border-slate-200 bg-white p-6 transition dark:border-slate-800 dark:bg-slate-900">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-semibold text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:text-white">
+              What materials do you use?
+              <span class="ml-3 text-blue-600 transition group-open:rotate-45">+</span>
+            </summary>
+            <p class="mt-4 text-sm text-slate-600 dark:text-slate-300">Kids learn with Super Minds and Cambridge Storyfun. Teens and adults follow Open World or Speakout, complemented with digital practice and Cambridge Practice Tests.</p>
+          </details>
+          <details class="group rounded-2xl border border-slate-200 bg-white p-6 transition dark:border-slate-800 dark:bg-slate-900">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-semibold text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:text-white">
+              Are Cambridge exam fees included?
+              <span class="ml-3 text-blue-600 transition group-open:rotate-45">+</span>
+            </summary>
+            <p class="mt-4 text-sm text-slate-600 dark:text-slate-300">Course fees cover preparation, mocks, and assessor feedback. Official Cambridge exam registration fees are paid separately through authorised centres.</p>
+          </details>
+          <details class="group rounded-2xl border border-slate-200 bg-white p-6 transition dark:border-slate-800 dark:bg-slate-900">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-semibold text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:text-white">
+              How do I access speaking clubs?
+              <span class="ml-3 text-blue-600 transition group-open:rotate-45">+</span>
+            </summary>
+            <p class="mt-4 text-sm text-slate-600 dark:text-slate-300">Speaking club sessions are drop-in friendly. Subscribe online, choose your slots, and receive reminders with the weekly topics and vocabulary primer.</p>
+          </details>
+        </div>
+      </section>
+      <section id="checkout" class="rounded-3xl border border-slate-200 bg-white p-10 shadow-card dark:border-slate-800 dark:bg-slate-900">
+        <h2 class="text-2xl font-semibold text-slate-900 dark:text-white">Checkout preview</h2>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+          This is a demo summary. Your selected course will appear here when you click “Go to Checkout” in the enrolment modal.
+        </p>
+        <div id="checkoutSummary" class="mt-6 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-sm text-slate-600 dark:border-slate-700 dark:bg-slate-950/60 dark:text-slate-300">
+          No course selected yet.
+        </div>
+      </section>
+    </main>
+    <footer class="border-t border-slate-200 bg-white py-10 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400">
+      <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 lg:flex-row lg:items-center lg:justify-between lg:px-6">
+        <p class="font-semibold text-slate-900 dark:text-white">© <span id="year"></span> Bridgeway English Academy</p>
+        <nav aria-label="Footer" class="flex flex-wrap gap-4">
+          <a href="#" class="hover:text-blue-600 focus-ring">Terms</a>
+          <a href="#" class="hover:text-blue-600 focus-ring">Cancellations</a>
+          <a href="#" class="hover:text-blue-600 focus-ring">Privacy</a>
+          <a href="mailto:hello@bridgeway.md" class="hover:text-blue-600 focus-ring">Contact</a>
+          <span class="flex items-center gap-1 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">ES · RO · RU</span>
+        </nav>
+      </div>
+    </footer>
+
+    <div id="enrollModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" class="pointer-events-none fixed inset-0 z-50 hidden items-center justify-center px-4">
+      <div class="absolute inset-0 bg-slate-900/60 transition-opacity" data-modal-overlay></div>
+      <div class="relative w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-8 shadow-2xl transition dark:border-slate-700 dark:bg-slate-900" data-modal-card>
+        <button type="button" class="focus-ring absolute right-4 top-4 rounded-full border border-slate-200 bg-white p-2 text-slate-500 transition hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300" data-modal-close aria-label="Close enrollment modal">
+          <span aria-hidden="true">✕</span>
+        </button>
+        <div class="space-y-6">
+          <div>
+            <p class="text-sm uppercase tracking-wide text-blue-600 dark:text-blue-300">Enrollment summary</p>
+            <h3 id="modalTitle" class="mt-2 text-2xl font-semibold text-slate-900 dark:text-white"></h3>
+            <p id="modalSubtitle" class="text-sm text-slate-600 dark:text-slate-300"></p>
+          </div>
+          <dl class="grid gap-3 text-sm text-slate-600 dark:text-slate-300">
+            <div class="flex justify-between">
+              <dt class="font-medium">Schedule</dt>
+              <dd id="modalSchedule" class="text-right"></dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="font-medium">Price</dt>
+              <dd id="modalPrice" class="text-right text-blue-600 dark:text-blue-300"></dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="font-medium">Seats available</dt>
+              <dd id="modalSeats" class="text-right"></dd>
+            </div>
+          </dl>
+          <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
+            <button type="button" class="focus-ring w-full rounded-full border border-slate-200 px-5 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-600 dark:border-slate-700 dark:text-slate-200" data-modal-close>
+              Close
+            </button>
+            <a
+              href="#checkout"
+              id="modalCta"
+              class="focus-ring w-full rounded-full bg-blue-600 px-5 py-2 text-center text-sm font-semibold text-white transition hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400"
+              >Go to Checkout</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const docEl = document.documentElement;
+      const storedTheme = localStorage.getItem('bridgeway-theme');
+      if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        docEl.classList.add('dark');
+        document.getElementById('themeToggle').setAttribute('aria-pressed', 'true');
+      }
+      const updateThemeIcon = () => {
+        const icon = document.getElementById('themeIcon');
+        if (docEl.classList.contains('dark')) {
+          icon.innerHTML = '<path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79Z" />';
+        } else {
+          icon.innerHTML = '<path d="M12 3.25a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V4a.75.75 0 0 1 .75-.75Zm0 13.5a2.75 2.75 0 1 0 0-5.5 2.75 2.75 0 0 0 0 5.5Zm7.75-2.75a.75.75 0 0 1 .75.75 8.5 8.5 0 1 1-8.5-8.5.75.75 0 0 1 0 1.5 7 7 0 1 0 7 7 .75.75 0 0 1 .75-.75ZM19 11.25h1.5a.75.75 0 0 1 0 1.5H19a.75.75 0 0 1 0-1.5ZM12 18a.75.75 0 0 1 .75.75V20a.75.75 0 0 1-1.5 0v-1.25A.75.75 0 0 1 12 18ZM5 11.25h1.5a.75.75 0 0 1 0 1.5H5a.75.75 0 0 1 0-1.5Z" />';
+        }
+      };
+      updateThemeIcon();
+      document.getElementById('themeToggle').addEventListener('click', (event) => {
+        const isDark = docEl.classList.toggle('dark');
+        localStorage.setItem('bridgeway-theme', isDark ? 'dark' : 'light');
+        event.currentTarget.setAttribute('aria-pressed', String(isDark));
+        updateThemeIcon();
+      });
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const dataset = [
+        {
+          id: 'youth-b2-standard-evening',
+          audience: 'Youth & Adults (15+)',
+          plan: 'Standard',
+          planLabel: 'Group 12 weeks',
+          level: 'B2',
+          exam: null,
+          duration: "90’",
+          frequency: '3×90’/week',
+          weeks: 12,
+          totalHours: 54,
+          daysLabel: 'Mon–Wed–Fri',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Evening',
+          timeLabel: '19:00–20:30',
+          startDate: '2024-05-13',
+          endDate: '2024-08-02',
+          price: 6200,
+          seats: 6,
+          material: 'Speakout',
+          includes: null,
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'kids-a2-standard',
+          audience: 'Kids',
+          plan: 'Standard',
+          planLabel: 'Group 12 weeks',
+          level: 'A2',
+          exam: null,
+          duration: "60’",
+          frequency: '3×60’/week',
+          weeks: 12,
+          totalHours: 36,
+          daysLabel: 'Tue–Thu–Sat',
+          daysCategory: 'Sat',
+          timeCategory: 'Afternoon',
+          timeLabel: '17:00–18:00',
+          startDate: '2024-05-14',
+          endDate: '2024-08-03',
+          price: 4150,
+          seats: 8,
+          material: 'Super Minds',
+          includes: null,
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'cambridge-b2-first-intensive',
+          audience: 'Youth & Adults (15+)',
+          plan: 'Cambridge',
+          planLabel: 'Intensive 8 weeks',
+          level: 'B2',
+          exam: 'B2 First',
+          duration: "90’",
+          frequency: '5×90’/week',
+          weeks: 8,
+          totalHours: 60,
+          daysLabel: 'Mon–Fri',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Evening',
+          timeLabel: '18:00–19:30',
+          startDate: '2024-06-03',
+          endDate: '2024-07-26',
+          price: 6900,
+          seats: 5,
+          material: 'Open World',
+          includes: 'Includes 2 mocks',
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'youth-b1-standard-morning',
+          audience: 'Youth & Adults (15+)',
+          plan: 'Standard',
+          planLabel: 'Group 12 weeks',
+          level: 'B1',
+          exam: null,
+          duration: "90’",
+          frequency: '3×90’/week',
+          weeks: 12,
+          totalHours: 54,
+          daysLabel: 'Tue–Thu',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Morning',
+          timeLabel: '08:00–09:30',
+          startDate: '2024-05-21',
+          endDate: '2024-08-15',
+          price: 6200,
+          seats: 7,
+          material: 'Open World',
+          includes: null,
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'youth-c1-intensive',
+          audience: 'Youth & Adults (15+)',
+          plan: 'Intensive',
+          planLabel: 'Intensive 8 weeks',
+          level: 'C1',
+          exam: null,
+          duration: "90’",
+          frequency: '5×90’/week',
+          weeks: 8,
+          totalHours: 60,
+          daysLabel: 'Mon–Fri',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Afternoon',
+          timeLabel: '14:00–15:30',
+          startDate: '2024-06-10',
+          endDate: '2024-08-02',
+          price: 6900,
+          seats: 4,
+          material: 'Speakout',
+          includes: 'Includes writing lab',
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'youth-c2-standard',
+          audience: 'Youth & Adults (15+)',
+          plan: 'Standard',
+          planLabel: 'Group 12 weeks',
+          level: 'C2',
+          exam: null,
+          duration: "90’",
+          frequency: '3×90’/week',
+          weeks: 12,
+          totalHours: 54,
+          daysLabel: 'Mon–Wed–Fri',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Morning',
+          timeLabel: '07:30–09:00',
+          startDate: '2024-05-27',
+          endDate: '2024-08-16',
+          price: 6200,
+          seats: 3,
+          material: 'Speakout',
+          includes: null,
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'kids-a1-fast',
+          audience: 'Kids',
+          plan: 'Intensive',
+          planLabel: 'Fast 6 weeks',
+          level: 'A1',
+          exam: null,
+          duration: "60’",
+          frequency: '3×60’/week',
+          weeks: 6,
+          totalHours: 18,
+          daysLabel: 'Mon–Wed–Fri',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Afternoon',
+          timeLabel: '16:00–17:00',
+          startDate: '2024-07-01',
+          endDate: '2024-08-09',
+          price: 2200,
+          seats: 9,
+          material: 'Super Minds',
+          includes: null,
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'cambridge-flyers-standard',
+          audience: 'Kids',
+          plan: 'Cambridge',
+          planLabel: 'Standard 12 weeks',
+          level: 'A2',
+          exam: 'Flyers',
+          duration: "60’",
+          frequency: '3×60’/week',
+          weeks: 12,
+          totalHours: 36,
+          daysLabel: 'Mon–Wed–Fri',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Afternoon',
+          timeLabel: '15:30–16:30',
+          startDate: '2024-05-20',
+          endDate: '2024-08-09',
+          price: 4150,
+          seats: 7,
+          material: 'Super Minds',
+          includes: 'Includes mini-mock',
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'cambridge-starters-fast',
+          audience: 'Kids',
+          plan: 'Cambridge',
+          planLabel: 'Fast 6 weeks',
+          level: 'A1',
+          exam: 'Starters',
+          duration: "60’",
+          frequency: '3×60’/week',
+          weeks: 6,
+          totalHours: 18,
+          daysLabel: 'Tue–Thu–Sat',
+          daysCategory: 'Sat',
+          timeCategory: 'Morning',
+          timeLabel: '10:00–11:00',
+          startDate: '2024-07-06',
+          endDate: '2024-08-17',
+          price: 2200,
+          seats: 8,
+          material: 'Super Minds',
+          includes: 'Includes mini-mock',
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'cambridge-b1-preliminary-standard',
+          audience: 'Youth & Adults (15+)',
+          plan: 'Cambridge',
+          planLabel: 'Standard 12 weeks',
+          level: 'B1',
+          exam: 'B1 Preliminary',
+          duration: "90’",
+          frequency: '3×90’/week',
+          weeks: 12,
+          totalHours: 54,
+          daysLabel: 'Tue–Thu',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Evening',
+          timeLabel: '18:30–20:00',
+          startDate: '2024-05-28',
+          endDate: '2024-08-22',
+          price: 6200,
+          seats: 6,
+          material: 'Open World',
+          includes: 'Includes mock exam',
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'cambridge-c1-advanced-intensive',
+          audience: 'Youth & Adults (15+)',
+          plan: 'Cambridge',
+          planLabel: 'Intensive 8 weeks',
+          level: 'C1',
+          exam: 'C1 Advanced',
+          duration: "90’",
+          frequency: '5×90’/week',
+          weeks: 8,
+          totalHours: 60,
+          daysLabel: 'Mon–Fri',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Evening',
+          timeLabel: '19:00–20:30',
+          startDate: '2024-06-17',
+          endDate: '2024-08-09',
+          price: 6900,
+          seats: 4,
+          material: 'Open World',
+          includes: 'Includes speaking workshop',
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'cambridge-c2-proficiency-standard',
+          audience: 'Youth & Adults (15+)',
+          plan: 'Cambridge',
+          planLabel: 'Standard 12 weeks',
+          level: 'C2',
+          exam: 'C2 Proficiency',
+          duration: "90’",
+          frequency: '3×90’/week',
+          weeks: 12,
+          totalHours: 54,
+          daysLabel: 'Mon–Wed–Fri',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Evening',
+          timeLabel: '20:00–21:30',
+          startDate: '2024-05-27',
+          endDate: '2024-08-16',
+          price: 6200,
+          seats: 2,
+          material: 'Open World',
+          includes: 'Includes 2 mocks',
+          cta: 'Enroll',
+          capacity: 10,
+        },
+        {
+          id: 'individual-pack-10',
+          audience: 'Youth & Adults (15+)',
+          plan: 'Individual',
+          planLabel: '1:1 Pack 10×60’',
+          level: 'A2-C2',
+          exam: null,
+          duration: "60’",
+          frequency: 'Flexible scheduling',
+          weeks: 10,
+          totalHours: 10,
+          daysLabel: 'Flexible',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Afternoon',
+          timeLabel: 'Assigned within 24 h',
+          startDate: '2024-05-15',
+          endDate: '2024-10-15',
+          price: 4200,
+          seats: 10,
+          material: 'Personalised plan',
+          includes: 'Flexible schedule',
+          cta: 'Buy pack',
+          capacity: 1,
+        },
+        {
+          id: 'speaking-club-a2-b1',
+          audience: 'Youth & Adults (15+)',
+          plan: 'Speaking',
+          planLabel: 'Monthly subscription',
+          level: 'A2-B1',
+          exam: null,
+          duration: "60’",
+          frequency: '1×/week',
+          weeks: 4,
+          totalHours: 4,
+          daysLabel: 'Wed',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Evening',
+          timeLabel: '18:30–19:30',
+          startDate: '2024-05-22',
+          endDate: '2024-06-19',
+          price: 620,
+          seats: 9,
+          material: 'Topic packs',
+          includes: 'Monthly themes',
+          cta: 'Subscribe',
+          capacity: 10,
+        },
+        {
+          id: 'speaking-club-b2-c2',
+          audience: 'Youth & Adults (15+)',
+          plan: 'Speaking',
+          planLabel: 'Monthly subscription',
+          level: 'B2-C2',
+          exam: null,
+          duration: "90’",
+          frequency: '1×/week',
+          weeks: 4,
+          totalHours: 6,
+          daysLabel: 'Wed',
+          daysCategory: 'Mon–Fri',
+          timeCategory: 'Evening',
+          timeLabel: '19:00–20:30',
+          startDate: '2024-05-22',
+          endDate: '2024-06-19',
+          price: 620,
+          seats: 6,
+          material: 'Debate prompts',
+          includes: 'Moderator feedback',
+          cta: 'Subscribe',
+          capacity: 10,
+        },
+      ];
+
+      const chipBaseClasses = [
+        'focus-ring',
+        'rounded-full',
+        'border',
+        'border-slate-200',
+        'bg-white',
+        'px-4',
+        'py-2',
+        'text-sm',
+        'font-semibold',
+        'text-slate-600',
+        'transition',
+        'hover:border-blue-200',
+        'hover:text-blue-600',
+        'dark:border-slate-700',
+        'dark:bg-slate-900',
+        'dark:text-slate-300',
+        'dark:hover:border-blue-500',
+        'dark:hover:text-blue-300',
+      ];
+
+      const filterButtons = document.querySelectorAll('.filter-chip');
+      filterButtons.forEach((button) => {
+        button.classList.add(...chipBaseClasses);
+      });
+
+      document.querySelectorAll('.cambridge-chip').forEach((chip) => {
+        chip.classList.add(...chipBaseClasses);
+      });
+
+      const state = {
+        audience: null,
+        plan: null,
+        level: null,
+        exam: null,
+        days: null,
+        time: null,
+        sort: 'nextStart',
+      };
+
+      const parseQuery = () => {
+        const params = new URLSearchParams(window.location.search);
+        Object.keys(state).forEach((key) => {
+          const value = params.get(key);
+          if (value) {
+            state[key] = value;
+          }
+        });
+      };
+
+      const updateQuery = () => {
+        const params = new URLSearchParams();
+        Object.entries(state).forEach(([key, value]) => {
+          if (value && !(key === 'sort' && value === 'nextStart')) {
+            params.set(key, value);
+          }
+        });
+        const search = params.toString();
+        const newUrl = search ? `${window.location.pathname}?${search}${window.location.hash}` : `${window.location.pathname}${window.location.hash}`;
+        window.history.replaceState({}, '', newUrl);
+      };
+
+      const formatDateRange = (start, end) => {
+        const formatter = new Intl.DateTimeFormat('en-GB', { month: 'short', day: 'numeric' });
+        const startDate = new Date(start);
+        const endDate = new Date(end);
+        if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
+          return 'Dates to be confirmed';
+        }
+        return `${formatter.format(startDate)} – ${formatter.format(endDate)}`;
+      };
+
+      const formatPrice = (price) => new Intl.NumberFormat('en-GB').format(price);
+
+      const pricePerHour = (course) => {
+        if (!course.totalHours || !course.price) return null;
+        return Math.round(course.price / course.totalHours);
+      };
+
+      const seatBadgeColor = (seats) => {
+        if (seats <= 3) return 'bg-red-100 text-red-700 dark:bg-red-500/20 dark:text-red-200';
+        if (seats <= 6) return 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-200';
+        return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-200';
+      };
+
+      const courseMatches = (course) => {
+        if (state.audience && course.audience !== state.audience) return false;
+        if (state.plan && course.plan !== state.plan) return false;
+        if (state.level && course.level !== state.level) return false;
+        if (state.exam && course.exam !== state.exam) return false;
+        if (state.days && course.daysCategory !== state.days) return false;
+        if (state.time && course.timeCategory !== state.time) return false;
+        return true;
+      };
+
+      const sortCourses = (courses) => {
+        const sorted = [...courses];
+        if (state.sort === 'price') {
+          sorted.sort((a, b) => a.price - b.price);
+        } else if (state.sort === 'seats') {
+          sorted.sort((a, b) => b.seats - a.seats);
+        } else {
+          sorted.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+        }
+        return sorted;
+      };
+
+      const coursesGrid = document.getElementById('coursesGrid');
+      const resultsCount = document.getElementById('resultsCount');
+      const activeFilters = document.getElementById('activeFilters');
+      const emptyState = document.getElementById('emptyState');
+
+      const createFilterPill = (label, key) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'focus-ring inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 transition hover:bg-blue-200 dark:bg-blue-500/20 dark:text-blue-200';
+        button.innerHTML = `${label} <span aria-hidden="true">✕</span>`;
+        button.addEventListener('click', () => {
+          state[key] = null;
+          syncUI();
+        });
+        return button;
+      };
+
+      const renderCourses = () => {
+        coursesGrid.innerHTML = '';
+        const filtered = sortCourses(dataset.filter(courseMatches));
+        resultsCount.textContent = `${filtered.length} ${filtered.length === 1 ? 'course' : 'courses'}`;
+        activeFilters.innerHTML = '';
+        Object.entries(state).forEach(([key, value]) => {
+          if (value && !(key === 'sort' && value === 'nextStart')) {
+            const label = `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`;
+            activeFilters.appendChild(createFilterPill(label, key));
+          }
+        });
+        if (!filtered.length) {
+          emptyState.classList.remove('hidden');
+          return;
+        }
+        emptyState.classList.add('hidden');
+
+        filtered.forEach((course) => {
+          const card = document.createElement('article');
+          card.tabIndex = 0;
+          card.className = 'group flex h-full flex-col justify-between rounded-3xl border border-slate-200 bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:border-slate-800 dark:bg-slate-900';
+
+          const title = document.createElement('h3');
+          title.className = 'text-lg font-semibold text-slate-900 dark:text-white';
+          const titleLabel = `${course.exam ? course.exam : course.level} · ${course.planLabel}`;
+          title.textContent = titleLabel;
+
+          const meta = document.createElement('p');
+          meta.className = 'mt-2 text-sm text-slate-500 dark:text-slate-300';
+          meta.textContent = `${course.duration} · ${course.frequency} · ${course.weeks} weeks (${course.totalHours} h)`;
+
+          const schedule = document.createElement('div');
+          schedule.className = 'mt-4 space-y-1 text-sm text-slate-600 dark:text-slate-300';
+          schedule.innerHTML = `
+            <p><span class="font-semibold text-slate-900 dark:text-white">${course.daysLabel}</span> · ${course.timeLabel}</p>
+            <p>${formatDateRange(course.startDate, course.endDate)}</p>
+            <p class="text-slate-500 dark:text-slate-400">Group 6–10 students · Material: ${course.material}</p>
+            ${course.includes ? `<p class="text-slate-500 dark:text-slate-400">${course.includes}</p>` : ''}
+          `;
+
+          const price = document.createElement('p');
+          price.className = 'mt-4 text-2xl font-semibold text-blue-600 dark:text-blue-300';
+          price.textContent = `${formatPrice(course.price)} MDL`;
+
+          const seats = document.createElement('span');
+          seats.className = `${seatBadgeColor(course.seats)} mt-3 inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold`;
+          seats.textContent = `Seats ${course.seats}/${course.capacity}`;
+
+          const hourPrice = pricePerHour(course);
+          const note = document.createElement('p');
+          note.className = 'mt-2 text-xs text-slate-400 dark:text-slate-500';
+          note.textContent = hourPrice ? `≈ ${formatPrice(hourPrice)} MDL/hour` : '';
+
+          const cta = document.createElement('button');
+          cta.type = 'button';
+          cta.className = 'focus-ring mt-5 inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400';
+          cta.textContent = course.cta;
+          cta.setAttribute('aria-label', `Enroll in ${titleLabel}`);
+          cta.addEventListener('click', () => openModal(course, cta));
+
+          card.append(title, meta, schedule, price, seats, note, cta);
+          coursesGrid.appendChild(card);
+        });
+      };
+
+      const examFilterWrapper = document.getElementById('examFilter');
+
+      const applyFilterStateToUI = () => {
+        filterButtons.forEach((button) => {
+          const key = button.getAttribute('data-filter-key');
+          const value = button.getAttribute('data-filter-value');
+          const active = state[key] === value;
+          button.setAttribute('aria-pressed', String(active));
+          button.classList.toggle('bg-blue-600', active);
+          button.classList.toggle('text-white', active);
+          button.classList.toggle('border-blue-600', active);
+          button.classList.toggle('dark:bg-blue-500', active);
+          button.classList.toggle('dark:text-white', active);
+          button.classList.toggle('bg-white', !active);
+          button.classList.toggle('text-slate-600', !active);
+          button.classList.toggle('border-slate-200', !active);
+          button.classList.toggle('dark:bg-slate-900', !active);
+          button.classList.toggle('dark:text-slate-300', !active);
+          button.classList.toggle('dark:border-slate-700', !active);
+        });
+        document.getElementById('sortSelect').value = state.sort;
+        if (state.plan === 'Cambridge') {
+          examFilterWrapper.classList.remove('hidden');
+        } else {
+          examFilterWrapper.classList.add('hidden');
+          if (state.exam) state.exam = null;
+        }
+      };
+
+      const syncUI = () => {
+        updateQuery();
+        applyFilterStateToUI();
+        renderCourses();
+      };
+
+      filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const key = button.getAttribute('data-filter-key');
+          const value = button.getAttribute('data-filter-value');
+          state[key] = state[key] === value ? null : value;
+          syncUI();
+        });
+      });
+
+      document.getElementById('sortSelect').addEventListener('change', (event) => {
+        state.sort = event.target.value;
+        syncUI();
+      });
+
+      document.getElementById('clearFilters').addEventListener('click', () => {
+        Object.keys(state).forEach((key) => {
+          state[key] = key === 'sort' ? 'nextStart' : null;
+        });
+        syncUI();
+      });
+
+      document.getElementById('resetEmptyState').addEventListener('click', () => {
+        Object.keys(state).forEach((key) => {
+          state[key] = key === 'sort' ? 'nextStart' : null;
+        });
+        syncUI();
+      });
+
+      parseQuery();
+      syncUI();
+
+      const presetButtons = document.querySelectorAll('[data-preset]');
+      presetButtons.forEach((button) => {
+        button.classList.add('focus-ring');
+        button.addEventListener('click', () => {
+          const preset = JSON.parse(button.getAttribute('data-preset'));
+          Object.keys(state).forEach((key) => {
+            state[key] = preset[key] || (key === 'sort' ? state[key] : null);
+          });
+          window.location.hash = '#schedules';
+          syncUI();
+        });
+      });
+
+      const modal = document.getElementById('enrollModal');
+      const modalCard = modal.querySelector('[data-modal-card]');
+      const modalOverlay = modal.querySelector('[data-modal-overlay]');
+      const modalCloseButtons = modal.querySelectorAll('[data-modal-close]');
+      const focusableSelectors = 'a[href], button:not([disabled]), textarea, input, select';
+      let lastFocusedElement = null;
+      let keydownHandler = null;
+
+      const detachKeyHandler = () => {
+        if (keydownHandler) {
+          document.removeEventListener('keydown', keydownHandler);
+          keydownHandler = null;
+        }
+      };
+
+      const closeModal = () => {
+        detachKeyHandler();
+        modal.classList.add('hidden');
+        modal.classList.add('pointer-events-none');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('overflow-hidden');
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+        }
+      };
+
+      const openModal = (course, trigger) => {
+        lastFocusedElement = trigger;
+        document.getElementById('modalTitle').textContent = `${course.exam ? course.exam : course.level} · ${course.planLabel}`;
+        document.getElementById('modalSubtitle').textContent = `${course.daysLabel} · ${course.timeLabel}`;
+        document.getElementById('modalSchedule').textContent = `${formatDateRange(course.startDate, course.endDate)} · ${course.frequency}`;
+        document.getElementById('modalPrice').textContent = `${formatPrice(course.price)} MDL`;
+        document.getElementById('modalSeats').textContent = `${course.seats} of ${course.capacity} seats available`;
+        document.getElementById('modalCta').textContent = 'Go to Checkout';
+        modal.classList.remove('hidden');
+        modal.classList.remove('pointer-events-none');
+        modal.removeAttribute('aria-hidden');
+        document.body.classList.add('overflow-hidden');
+        const focusables = modalCard.querySelectorAll(focusableSelectors);
+        if (focusables.length) {
+          focusables[0].focus();
+        }
+
+        keydownHandler = (event) => {
+          if (event.key === 'Escape') {
+            closeModal();
+          } else if (event.key === 'Tab') {
+            const elements = Array.from(focusables);
+            if (!elements.length) return;
+            const first = elements[0];
+            const last = elements[elements.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+              event.preventDefault();
+              last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+              event.preventDefault();
+              first.focus();
+            }
+          }
+        };
+        document.addEventListener('keydown', keydownHandler);
+      };
+
+      modalCloseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          closeModal();
+        });
+      });
+
+      modalOverlay.addEventListener('click', () => {
+        closeModal();
+      });
+
+      modal.addEventListener('transitionend', () => {
+        if (modal.classList.contains('hidden')) {
+          detachKeyHandler();
+        }
+      });
+
+      const checkoutSummary = document.getElementById('checkoutSummary');
+      document.getElementById('modalCta').addEventListener('click', () => {
+        const title = document.getElementById('modalTitle').textContent;
+        const schedule = document.getElementById('modalSchedule').textContent;
+        const price = document.getElementById('modalPrice').textContent;
+        const seats = document.getElementById('modalSeats').textContent;
+        checkoutSummary.innerHTML = `
+          <div class="flex flex-col gap-2">
+            <p class="text-base font-semibold text-slate-900 dark:text-white">${title}</p>
+            <p class="text-sm text-slate-600 dark:text-slate-300">${schedule}</p>
+            <p class="text-sm text-slate-600 dark:text-slate-300">${price}</p>
+            <p class="text-sm text-slate-600 dark:text-slate-300">${seats}</p>
+          </div>
+        `;
+        closeModal();
+      });
+    </script>
   </body>
 </html>
