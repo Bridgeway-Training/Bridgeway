@@ -1,0 +1,1563 @@
+diff --git a/index.html b/index.html
+index 4e6fe2ad4e02139406778b9d25c8e3993b58d0e7..a269afc49958e27ef77a75ee9305ff407f92da97 100644
+--- a/index.html
++++ b/index.html
+@@ -1,15 +1,1549 @@
+-<!doctype html>
+-<html lang="en">
++<!DOCTYPE html>
++<html lang="en" class="scroll-smooth">
+   <head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+-    <title>Bridgeway Interaction Demo</title>
+-    <link rel="stylesheet" href="/src/styles/variables.css" />
+-    <link rel="stylesheet" href="/src/styles/a11y.css" />
++    <title>Bridgeway English Academy · Programs &amp; Pricing</title>
++    <link rel="preconnect" href="https://fonts.googleapis.com" />
++    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
++    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
++    <script src="https://cdn.tailwindcss.com"></script>
++    <script>
++      tailwind.config = {
++        darkMode: "class",
++        theme: {
++          extend: {
++            fontFamily: {
++              sans: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
++            },
++            boxShadow: {
++              soft: "0 20px 45px -20px rgba(15, 23, 42, 0.35)",
++            },
++          },
++        },
++      };
++    </script>
++    <style>
++      :root {
++        color-scheme: light dark;
++      }
++      @media (prefers-reduced-motion: reduce) {
++        *,
++        *::before,
++        *::after {
++          animation-duration: 0.01ms !important;
++          animation-iteration-count: 1 !important;
++          transition-duration: 0.01ms !important;
++          scroll-behavior: auto !important;
++        }
++      }
++      .filter-chip {
++        transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
++      }
++      .filter-chip[data-active="true"] {
++        background-color: rgb(37 99 235);
++        color: rgb(255 255 255);
++        border-color: rgb(37 99 235);
++      }
++      .dark .filter-chip[data-active="true"] {
++        background-color: rgb(59 130 246);
++        border-color: rgb(59 130 246);
++      }
++      .language-chip[data-active="true"] {
++        background-color: rgb(37 99 235);
++        color: #fff;
++      }
++      .dark .language-chip[data-active="true"] {
++        background-color: rgb(59 130 246);
++        color: #fff;
++      }
++    </style>
+   </head>
+-  <body>
+-    <a href="#main" class="skip-link">Skip to content</a>
+-    <div id="root"></div>
+-    <script type="module" src="/src/main.tsx"></script>
++  <body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
++    <a
++      href="#main"
++      class="skip-link absolute left-4 top-4 z-[100] -translate-y-20 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow focus-visible:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950"
++    >
++      Skip to content
++    </a>
++
++<header id="top" class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-slate-800/80 dark:bg-slate-950/80">
++  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
++    <div class="flex items-center gap-3">
++      <a
++        href="#top"
++        class="text-lg font-semibold tracking-tight text-blue-700 focus:outline-none focus-visible:rounded-full focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-blue-400 dark:focus-visible:ring-offset-slate-950"
++      >
++        Bridgeway
++      </a>
++      <button
++        type="button"
++        class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 shadow-sm transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950 lg:hidden"
++        id="mobile-nav-toggle"
++        aria-label="Toggle navigation"
++        aria-expanded="false"
++      >
++        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
++          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
++        </svg>
++      </button>
++    </div>
++    <nav aria-label="Primary" class="hidden lg:flex lg:items-center lg:gap-6">
++      <a href="#programs" class="rounded-full px-3 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Programs</a>
++      <a href="#schedules" class="rounded-full px-3 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Schedules &amp; Prices</a>
++      <a href="#level-test" class="rounded-full px-3 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Level Test</a>
++      <a href="#cambridge" class="rounded-full px-3 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Cambridge</a>
++      <a href="#businesses" class="rounded-full px-3 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Businesses</a>
++      <a href="#faq" class="rounded-full px-3 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">FAQ</a>
++      <a href="#enroll" class="rounded-full px-3 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Enroll</a>
++    </nav>
++    <div class="flex items-center gap-2">
++      <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white px-1 py-1 shadow-sm dark:border-slate-700 dark:bg-slate-900" role="group" aria-label="Switch language">
++        <button type="button" class="language-chip rounded-full px-2.5 py-1 text-xs font-semibold uppercase text-slate-600 transition hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-300 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-language="ES" aria-pressed="false">ES</button>
++        <button type="button" class="language-chip rounded-full px-2.5 py-1 text-xs font-semibold uppercase text-slate-600 transition hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-300 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-language="RO" aria-pressed="false">RO</button>
++        <button type="button" class="language-chip rounded-full px-2.5 py-1 text-xs font-semibold uppercase text-slate-600 transition hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-300 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-language="RU" aria-pressed="false">RU</button>
++      </div>
++      <button
++        type="button"
++        id="theme-toggle"
++        class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white p-2 text-slate-600 shadow-sm transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950"
++        aria-label="Toggle dark mode"
++      >
++        <svg id="theme-toggle-icon" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
++          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25M18.364 5.636l-1.591 1.591M21 12h-2.25M18.364 18.364l-1.591-1.591M12 18.75V21M7.227 16.773l-1.591 1.591M5.25 12H3M7.227 7.227 5.636 5.636M12 8.25a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5Z" />
++        </svg>
++      </button>
++    </div>
++  </div>
++  <div id="mobile-nav" class="border-t border-slate-200/80 bg-white/95 px-4 py-4 shadow-lg backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/95 lg:hidden" hidden>
++    <nav aria-label="Mobile" class="flex flex-col gap-3">
++      <a href="#programs" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Programs</a>
++      <a href="#schedules" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Schedules &amp; Prices</a>
++      <a href="#level-test" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Level Test</a>
++      <a href="#cambridge" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Cambridge</a>
++      <a href="#businesses" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Businesses</a>
++      <a href="#faq" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">FAQ</a>
++      <a href="#enroll" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Enroll</a>
++    </nav>
++  </div>
++</header>
++<div class="border-b border-slate-200 bg-blue-50/80 py-3 text-sm font-semibold text-blue-800 dark:border-slate-800 dark:bg-blue-900/20 dark:text-blue-200">
++  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-3 px-4 text-center sm:px-6">
++    <span class="inline-flex items-center gap-2">
++      <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
++        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l3 3" />
++      </svg>
++      Prices in MDL
++    </span>
++    <span class="inline-flex items-center gap-2">
++      <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
++        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
++      </svg>
++      No enrollment fee
++    </span>
++    <span class="inline-flex items-center gap-2">
++      <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
++        <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
++      </svg>
++      Groups of 6–10
++    </span>
++    <span class="inline-flex items-center gap-2">
++      <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
++        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 1 0-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 1 1-6 0v-1m6 0H9" />
++      </svg>
++      Cancel anytime
++    </span>
++  </div>
++</div>
++
++<main id="main" class="pb-24">
++  <section id="schedules" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
++    <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
++      <div>
++        <p class="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">Schedules &amp; Prices</p>
++        <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Plan your next English milestone</h1>
++        <p class="mt-4 max-w-2xl text-base text-slate-600 dark:text-slate-300">
++          Filter by audience, plan, level, schedule, and exam focus. Every cohort is capped to protect pace and attention. Tap a program to enroll instantly.
++        </p>
++      </div>
++      <div class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
++        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
++          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.008v.008H3.75zm0 5.25h.008v.008H3.75zm0 5.25h.008v.008H3.75z" />
++        </svg>
++        Updated weekly
++      </div>
++    </div>
++    <div class="mt-10 rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-soft dark:border-slate-800 dark:bg-slate-900/70">
++      <div class="flex flex-col gap-6">
++        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
++          <div class="flex flex-wrap items-center gap-2" data-filter-wrapper="audience">
++            <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Audience</span>
++            <div class="flex flex-wrap gap-2" data-filter-group="audience">
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="Kids" aria-pressed="false">Kids</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="Youth &amp; Adults (15+)" aria-pressed="false">Youth &amp; Adults (15+)</button>
++            </div>
++          </div>
++          <div class="flex flex-wrap items-center gap-2" data-filter-wrapper="plan">
++            <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Plan</span>
++            <div class="flex flex-wrap gap-2" data-filter-group="plan">
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="standard" aria-pressed="false">Standard (12 weeks)</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="intensive" aria-pressed="false">Intensive (8 weeks)</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="individual" aria-pressed="false">Individual</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="speaking" aria-pressed="false">Speaking</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="cambridge" aria-pressed="false">Cambridge</button>
++            </div>
++          </div>
++          <div class="flex flex-wrap items-center gap-2" data-filter-wrapper="level">
++            <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Level</span>
++            <div class="flex flex-wrap gap-2" data-filter-group="level">
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="PRE-A1" aria-pressed="false">PRE-A1</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="A1" aria-pressed="false">A1</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="A2" aria-pressed="false">A2</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="B1" aria-pressed="false">B1</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="B2" aria-pressed="false">B2</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="C1" aria-pressed="false">C1</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="C2" aria-pressed="false">C2</button>
++            </div>
++          </div>
++          <div id="exam-filter-row" class="flex flex-wrap items-center gap-2" hidden>
++            <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Exam</span>
++            <div class="flex flex-wrap gap-2" data-filter-group="exam">
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="Starters" aria-pressed="false">Starters</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="Movers" aria-pressed="false">Movers</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="Flyers" aria-pressed="false">Flyers</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="A2 Key" aria-pressed="false">A2</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="B1 Preliminary" aria-pressed="false">B1</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="B2 First" aria-pressed="false">B2</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="C1 Advanced" aria-pressed="false">C1</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="C2 Proficiency" aria-pressed="false">C2</button>
++            </div>
++          </div>
++          <div class="flex flex-wrap items-center gap-2" data-filter-wrapper="days">
++            <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Days</span>
++            <div class="flex flex-wrap gap-2" data-filter-group="days">
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="Mon–Fri" aria-pressed="false">Mon–Fri</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="Sat" aria-pressed="false">Sat</button>
++            </div>
++          </div>
++          <div class="flex flex-wrap items-center gap-2" data-filter-wrapper="time">
++            <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Time</span>
++            <div class="flex flex-wrap gap-2" data-filter-group="time">
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="Morning" aria-pressed="false">Morning</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="Afternoon" aria-pressed="false">Afternoon</button>
++              <button type="button" class="filter-chip rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950" data-filter-value="Evening" aria-pressed="false">Evening</button>
++            </div>
++          </div>
++          <div class="flex flex-wrap items-center gap-3" data-filter-wrapper="sort">
++            <label for="sort-select" class="text-sm font-semibold text-slate-700 dark:text-slate-200">Sort</label>
++            <select id="sort-select" class="w-full max-w-[210px] rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:focus-visible:ring-offset-slate-950" aria-label="Sort programs">
++              <option value="start">Next Start (default)</option>
++              <option value="price">Price</option>
++              <option value="seats">Seats Available</option>
++            </select>
++          </div>
++          <div class="flex flex-wrap items-center gap-3">
++            <button type="button" id="clear-filters" class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-blue-400 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">
++              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
++                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
++              </svg>
++              Clear all
++            </button>
++            <span id="result-count" class="text-sm font-medium text-slate-500 dark:text-slate-400">Loading programs…</span>
++          </div>
++        </div>
++        <div class="flex flex-wrap items-center gap-2" id="active-filters" aria-live="polite"></div>
++      </div>
++    </div>
++    <div class="mt-10">
++      <div id="course-results" class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3" aria-live="polite"></div>
++      <div id="empty-state" class="mt-12 hidden rounded-3xl border border-dashed border-slate-300 bg-white/70 p-10 text-center text-slate-600 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
++        <p class="text-lg font-semibold">No programs match these filters… yet.</p>
++        <p class="mt-2 text-sm">Try adjusting the filters or reset to explore all live cohorts.</p>
++        <button type="button" id="reset-filters-empty" class="mt-5 inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow transition hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-blue-500 dark:hover:bg-blue-400 dark:focus-visible:ring-offset-slate-950">
++          Reset filters
++        </button>
++      </div>
++    </div>
++  </section>
++
++<section id="programs" class="bg-white/60 py-16 dark:bg-slate-900/40">
++  <div class="mx-auto max-w-6xl px-4 sm:px-6">
++    <div class="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
++      <div>
++        <p class="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">Programs</p>
++        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Choose your track</h2>
++        <p class="mt-3 max-w-2xl text-base text-slate-600 dark:text-slate-300">Jump into a curated collection of programs. Each card opens the pricing grid with filters pre-applied.</p>
++      </div>
++    </div>
++    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
++      <a href="?audience=Kids&amp;plan=standard#schedules" data-prefill="audience=Kids&amp;plan=standard" class="group flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-900 dark:focus-visible:ring-offset-slate-950">
++        <div>
++          <p class="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">Kids</p>
++          <h3 class="mt-3 text-2xl font-semibold text-slate-900 transition group-hover:text-blue-700 dark:text-white group-hover:dark:text-blue-300">Adventure English</h3>
++          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Play-based learning with Cambridge Super Minds, ideal from PRE-A1 to A2.</p>
++        </div>
++        <span class="mt-6 inline-flex items-center text-sm font-semibold text-blue-600 transition group-hover:translate-x-1 dark:text-blue-400">View kids cohorts →</span>
++      </a>
++      <a href="?audience=Youth%20%26%20Adults%20(15%2B)&amp;plan=intensive&amp;level=B2#schedules" data-prefill="audience=Youth & Adults (15+)&amp;plan=intensive&amp;level=B2" class="group flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-900 dark:focus-visible:ring-offset-slate-950">
++        <div>
++          <p class="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">Youth &amp; Adults</p>
++          <h3 class="mt-3 text-2xl font-semibold text-slate-900 transition group-hover:text-blue-700 dark:text-white group-hover:dark:text-blue-300">Power Intensive</h3>
++          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Fast 8-week sprints to unlock B2–C1 confidence with daily contact hours.</p>
++        </div>
++        <span class="mt-6 inline-flex items-center text-sm font-semibold text-blue-600 transition group-hover:translate-x-1 dark:text-blue-400">Show intensive groups →</span>
++      </a>
++      <a href="?plan=individual#schedules" data-prefill="plan=individual" class="group flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-900 dark:focus-visible:ring-offset-slate-950">
++        <div>
++          <p class="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">1:1</p>
++          <h3 class="mt-3 text-2xl font-semibold text-slate-900 transition group-hover:text-blue-700 dark:text-white group-hover:dark:text-blue-300">Personal Coach</h3>
++          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Flexible 10-lesson packs allocated within 24 hours around your calendar.</p>
++        </div>
++        <span class="mt-6 inline-flex items-center text-sm font-semibold text-blue-600 transition group-hover:translate-x-1 dark:text-blue-400">Browse 1:1 options →</span>
++      </a>
++    </div>
++  </div>
++</section>
++<section id="level-test" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
++  <div class="grid gap-8 rounded-3xl border border-slate-200 bg-white/90 p-10 shadow-soft dark:border-slate-800 dark:bg-slate-900/70 lg:grid-cols-2">
++    <div>
++      <p class="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">Placement</p>
++      <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Not sure of your level?</h2>
++      <p class="mt-4 text-base text-slate-600 dark:text-slate-300">
++        Complete our adaptive level test in 15 minutes and receive your CEFR placement plus coaching recommendations. It’s free and available in English, Romanian, and Russian.
++      </p>
++      <ul class="mt-6 space-y-3 text-sm text-slate-600 dark:text-slate-300">
++        <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-blue-100 text-xs font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">1</span><span>Take the test on desktop or mobile.</span></li>
++        <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-blue-100 text-xs font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">2</span><span>Receive a detailed score report with skills breakdown.</span></li>
++        <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-blue-100 text-xs font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">3</span><span>Book a consult to match the right Bridgeway cohort.</span></li>
++      </ul>
++    </div>
++    <div class="flex flex-col justify-between gap-6 rounded-2xl bg-blue-50/70 p-8 dark:bg-blue-900/10">
++      <div>
++        <h3 class="text-2xl font-semibold text-blue-700 dark:text-blue-300">Free placement test</h3>
++        <p class="mt-3 text-sm text-blue-900/80 dark:text-blue-200/80">Average completion time 15 minutes • CEFR-aligned • Instant feedback</p>
++      </div>
++      <a href="#enroll" class="inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-blue-500 dark:hover:bg-blue-400 dark:focus-visible:ring-offset-slate-950">
++        Book level test →
++      </a>
++    </div>
++  </div>
++</section>
++<section id="cambridge" class="bg-white/60 py-16 dark:bg-slate-900/40">
++  <div class="mx-auto max-w-6xl px-4 sm:px-6">
++    <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
++      <div>
++        <p class="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">Cambridge Exams</p>
++        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Exam prep that feels personal</h2>
++        <p class="mt-3 max-w-2xl text-base text-slate-600 dark:text-slate-300">Certified trainers guide you through mocks, rubric-based feedback, and speaking workshops across the Cambridge pathway.</p>
++      </div>
++    </div>
++    <div class="flex flex-wrap items-center gap-3" aria-label="Cambridge quick filters">
++      <button type="button" data-prefill="plan=cambridge&amp;exam=Starters" class="filter-chip rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Starters</button>
++      <button type="button" data-prefill="plan=cambridge&amp;exam=Movers" class="filter-chip rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Movers</button>
++      <button type="button" data-prefill="plan=cambridge&amp;exam=Flyers" class="filter-chip rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Flyers</button>
++      <button type="button" data-prefill="plan=cambridge&amp;exam=A2 Key" class="filter-chip rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">A2 Key</button>
++      <button type="button" data-prefill="plan=cambridge&amp;exam=B1 Preliminary" class="filter-chip rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">B1 Preliminary</button>
++      <button type="button" data-prefill="plan=cambridge&amp;exam=B2 First" class="filter-chip rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">B2 First</button>
++      <button type="button" data-prefill="plan=cambridge&amp;exam=C1 Advanced" class="filter-chip rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">C1 Advanced</button>
++      <button type="button" data-prefill="plan=cambridge&amp;exam=C2 Proficiency" class="filter-chip rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-blue-300 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">C2 Proficiency</button>
++    </div>
++  </div>
++</section>
++<section id="businesses" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
++  <div class="grid gap-10 rounded-3xl border border-slate-200 bg-white/90 p-10 shadow-soft dark:border-slate-800 dark:bg-slate-900/70 lg:grid-cols-2">
++    <div>
++      <p class="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">For teams</p>
++      <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Bridgeway for business</h2>
++      <p class="mt-4 text-base text-slate-600 dark:text-slate-300">
++        Custom learning pathways for teams in fintech, outsourcing, and hospitality. We map role-based competencies, provide attendance analytics, and deliver quarterly ROI reports.
++      </p>
++      <ul class="mt-6 space-y-3 text-sm text-slate-600 dark:text-slate-300">
++        <li class="flex items-start gap-3"><svg class="mt-1 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg><span>In-company or virtual cohorts with 6–10 participants.</span></li>
++        <li class="flex items-start gap-3"><svg class="mt-1 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg><span>Industry-specific vocabulary and scenario practice.</span></li>
++        <li class="flex items-start gap-3"><svg class="mt-1 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg><span>Executive dashboards tracking hours, progress, and satisfaction.</span></li>
++      </ul>
++    </div>
++    <div class="flex flex-col justify-between gap-6 rounded-2xl border border-blue-100 bg-blue-50/80 p-8 dark:border-blue-500/20 dark:bg-blue-900/10">
++      <div>
++        <h3 class="text-2xl font-semibold text-blue-700 dark:text-blue-300">Corporate onboarding</h3>
++        <p class="mt-3 text-sm text-blue-900/80 dark:text-blue-200/80">We align to your EVP and internal communication rituals.</p>
++      </div>
++      <a href="#enroll" class="inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-blue-500 dark:hover:bg-blue-400 dark:focus-visible:ring-offset-slate-950">
++        Request proposal →
++      </a>
++    </div>
++  </div>
++</section>
++
++  <section id="faq" class="bg-white/60 py-16 dark:bg-slate-900/40">
++    <div class="mx-auto max-w-6xl px-4 sm:px-6">
++      <div class="mb-8">
++        <p class="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">FAQ</p>
++        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Answers before you enroll</h2>
++      </div>
++      <div class="space-y-4">
++        <details class="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-500 dark:focus-visible:ring-offset-slate-950">
++          <summary class="flex cursor-pointer items-center justify-between text-base font-semibold text-slate-900 focus:outline-none focus-visible:ring-0 dark:text-white">
++            How are groups formed?
++            <span class="ml-4 flex h-7 w-7 items-center justify-center rounded-full border border-blue-200 text-blue-600 group-open:rotate-45 dark:border-blue-500/40 dark:text-blue-300">+</span>
++          </summary>
++          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">We use level-test results, age, and learning goals to balance cohorts. Groups stay between six and ten learners for collaborative dynamics.</p>
++        </details>
++        <details class="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-500 dark:focus-visible:ring-offset-slate-950">
++          <summary class="flex cursor-pointer items-center justify-between text-base font-semibold text-slate-900 focus:outline-none focus-visible:ring-0 dark:text-white">
++            Can I pause or transfer?
++            <span class="ml-4 flex h-7 w-7 items-center justify-center rounded-full border border-blue-200 text-blue-600 group-open:rotate-45 dark:border-blue-500/40 dark:text-blue-300">+</span>
++          </summary>
++          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Yes. You can pause for up to two weeks or transfer to another schedule if seats are available. Individual packs can be rescheduled with 12-hour notice.</p>
++        </details>
++        <details class="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-500 dark:focus-visible:ring-offset-slate-950">
++          <summary class="flex cursor-pointer items-center justify-between text-base font-semibold text-slate-900 focus:outline-none focus-visible:ring-0 dark:text-white">
++            What materials are included?
++            <span class="ml-4 flex h-7 w-7 items-center justify-center rounded-full border border-blue-200 text-blue-600 group-open:rotate-45 dark:border-blue-500/40 dark:text-blue-300">+</span>
++          </summary>
++          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Kids work with Cambridge Super Minds, teens and adults use Open World or Speakout, and exam groups receive dedicated Cambridge practice kits with mocks.</p>
++        </details>
++        <details class="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-500 dark:focus-visible:ring-offset-slate-950">
++          <summary class="flex cursor-pointer items-center justify-between text-base font-semibold text-slate-900 focus:outline-none focus-visible:ring-0 dark:text-white">
++            Do you offer certificates?
++            <span class="ml-4 flex h-7 w-7 items-center justify-center rounded-full border border-blue-200 text-blue-600 group-open:rotate-45 dark:border-blue-500/40 dark:text-blue-300">+</span>
++          </summary>
++          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">All graduates receive a Bridgeway progress statement. Cambridge candidates also receive exam registration guidance and mock feedback reports.</p>
++        </details>
++        <details class="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-500 dark:focus-visible:ring-offset-slate-950">
++          <summary class="flex cursor-pointer items-center justify-between text-base font-semibold text-slate-900 focus:outline-none focus-visible:ring-0 dark:text-white">
++            How do payments work?
++            <span class="ml-4 flex h-7 w-7 items-center justify-center rounded-full border border-blue-200 text-blue-600 group-open:rotate-45 dark:border-blue-500/40 dark:text-blue-300">+</span>
++          </summary>
++          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Pay securely online in MDL. Installments are available for courses longer than eight weeks. Speaking club subscriptions renew monthly and can be canceled anytime.</p>
++        </details>
++      </div>
++    </div>
++  </section>
++  <section id="enroll" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
++    <div class="grid gap-8 rounded-3xl border border-slate-200 bg-white/90 p-10 shadow-soft dark:border-slate-800 dark:bg-slate-900/70 lg:grid-cols-[1.1fr,0.9fr]">
++      <div>
++        <p class="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">Ready when you are</p>
++        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Secure your seat in minutes</h2>
++        <p class="mt-4 text-base text-slate-600 dark:text-slate-300">Select any cohort to review schedule, trainer notes, and seats before checkout. Questions? Our advisors respond in under 24 hours.</p>
++        <div class="mt-8 grid gap-4 sm:grid-cols-2">
++          <div class="rounded-2xl border border-blue-100 bg-blue-50/60 p-5 dark:border-blue-500/20 dark:bg-blue-900/10">
++            <h3 class="text-base font-semibold text-blue-700 dark:text-blue-300">One-click re-enrollment</h3>
++            <p class="mt-2 text-sm text-blue-900/80 dark:text-blue-200/80">Existing families can reuse saved preferences and billing profiles.</p>
++          </div>
++          <div class="rounded-2xl border border-blue-100 bg-blue-50/60 p-5 dark:border-blue-500/20 dark:bg-blue-900/10">
++            <h3 class="text-base font-semibold text-blue-700 dark:text-blue-300">Need documentation?</h3>
++            <p class="mt-2 text-sm text-blue-900/80 dark:text-blue-200/80">We provide invoices, attendance letters, and HR-ready summaries.</p>
++          </div>
++        </div>
++      </div>
++      <div id="checkout" class="rounded-2xl border border-slate-200 bg-white p-6 shadow-inner dark:border-slate-800 dark:bg-slate-950/60">
++        <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Checkout preview</h3>
++        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Your selected program appears here before secure payment.</p>
++        <div id="checkout-summary" class="mt-5 space-y-3 rounded-2xl border border-dashed border-slate-300 p-5 text-sm text-slate-600 dark:border-slate-700 dark:text-slate-300">
++          <p>No program selected yet. Explore the schedules and tap “Enroll”.</p>
++        </div>
++        <p class="mt-4 text-xs text-slate-500 dark:text-slate-400">Bridgeway partners with Stripe for secure processing. Need help? <a href="mailto:hello@bridgeway.academy" class="font-medium text-blue-600 underline-offset-2 hover:underline dark:text-blue-400">Contact support</a>.</p>
++      </div>
++    </div>
++  </section>
++</main>
++<footer class="border-t border-slate-200 bg-white/90 py-10 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300">
++  <div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
++    <div>
++      <p class="text-base font-semibold text-slate-900 dark:text-white">Bridgeway English Academy</p>
++      <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">© <span id="year"></span> Bridgeway Learning SRL. All rights reserved.</p>
++    </div>
++    <nav class="flex flex-wrap items-center gap-4" aria-label="Footer">
++      <a href="#" class="hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Terms</a>
++      <a href="#" class="hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Cancellations</a>
++      <a href="#" class="hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Privacy</a>
++      <a href="mailto:hello@bridgeway.academy" class="hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">Contact</a>
++      <span class="font-semibold text-slate-900 dark:text-white">ES · RO · RU</span>
++    </nav>
++  </div>
++</footer>
++<div id="enroll-modal" class="fixed inset-0 z-[200] hidden items-center justify-center bg-slate-900/70 px-4 py-8 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="enroll-modal-title">
++  <div class="relative w-full max-w-xl rounded-3xl border border-slate-200 bg-white p-8 shadow-soft focus:outline-none dark:border-slate-700 dark:bg-slate-900">
++    <button type="button" id="modal-close" class="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:border-blue-400 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">
++      <span class="sr-only">Close modal</span>
++      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
++        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
++      </svg>
++    </button>
++    <h3 id="enroll-modal-title" class="text-2xl font-semibold text-slate-900 dark:text-white">Confirm your enrollment</h3>
++    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Review the course details and continue to checkout.</p>
++    <div id="modal-summary" class="mt-6 space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-200"></div>
++    <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-end">
++      <a href="#checkout" id="modal-checkout" class="inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-2 text-sm font-semibold text-white shadow transition hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-blue-500 dark:hover:bg-blue-400 dark:focus-visible:ring-offset-slate-950">
++        Go to Checkout
++      </a>
++      <button type="button" id="modal-cancel" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-2 text-sm font-semibold text-slate-600 transition hover:border-blue-400 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950">
++        Close
++      </button>
++    </div>
++  </div>
++</div>
++
++<script>
++  const programs = [
++    {
++      id: "b2-standard-evening",
++      title: "B2 · Group 12 weeks",
++      subtitle: "Group Standard 12 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "standard",
++      levels: ["B2"],
++      exam: null,
++      sessionLength: "90’",
++      frequency: "3×90’/week",
++      duration: "12 weeks",
++      totalHours: 54,
++      daysLabel: "Mon–Wed–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "19:00–20:30",
++      timeCategory: ["Evening"],
++      startDate: "2024-09-09",
++      endDate: "2024-12-02",
++      price: 6200,
++      priceUnit: "course",
++      material: "Open World / Speakout",
++      groupSize: "6–10 students",
++      seats: 6,
++      includes: "Includes checkpoint progress reports.",
++      cta: "Enroll",
++    },
++    {
++      id: "a2-kids-standard",
++      title: "A2 · Kids Group 12 weeks",
++      subtitle: "Kids Standard 12 weeks",
++      audiences: ["Kids"],
++      planTag: "standard",
++      levels: ["A2"],
++      exam: null,
++      sessionLength: "60’",
++      frequency: "3×60’/week",
++      duration: "12 weeks",
++      totalHours: 36,
++      daysLabel: "Tue–Thu–Sat",
++      daysCategory: ["Mon–Fri", "Sat"],
++      timeLabel: "17:00–18:00",
++      timeCategory: ["Afternoon", "Evening"],
++      startDate: "2024-09-10",
++      endDate: "2024-12-05",
++      price: 4150,
++      priceUnit: "course",
++      material: "Super Minds",
++      groupSize: "6–10 students",
++      seats: 8,
++      includes: "Story-based projects each module.",
++      cta: "Enroll",
++    },
++    {
++      id: "b2-first-intensive",
++      title: "B2 First · Intensive 8 weeks",
++      subtitle: "Cambridge Intensive 8 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "cambridge",
++      levels: ["B2"],
++      exam: "B2 First",
++      sessionLength: "90’",
++      frequency: "5×90’/week",
++      duration: "8 weeks",
++      totalHours: 60,
++      daysLabel: "Mon–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "18:00–19:30",
++      timeCategory: ["Evening"],
++      startDate: "2024-09-16",
++      endDate: "2024-11-08",
++      price: 6900,
++      priceUnit: "course",
++      material: "Cambridge B2 First Trainer",
++      groupSize: "6–10 students",
++      seats: 5,
++      includes: "Includes 2 mocks and speaking workshop.",
++      cta: "Enroll",
++    },
++    {
++      id: "kids-prea1-standard",
++      title: "PRE-A1 · Kids Group 12 weeks",
++      subtitle: "Kids Standard 12 weeks",
++      audiences: ["Kids"],
++      planTag: "standard",
++      levels: ["PRE-A1"],
++      exam: null,
++      sessionLength: "60’",
++      frequency: "3×60’/week",
++      duration: "12 weeks",
++      totalHours: 36,
++      daysLabel: "Mon–Wed–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "16:00–17:00",
++      timeCategory: ["Afternoon"],
++      startDate: "2024-09-09",
++      endDate: "2024-12-04",
++      price: 4150,
++      priceUnit: "course",
++      material: "Super Minds",
++      groupSize: "6–10 students",
++      seats: 9,
++      includes: "Phonics boost and family updates.",
++      cta: "Enroll",
++    },
++    {
++      id: "kids-a1-weekend",
++      title: "A1 · Kids Weekend 12 weeks",
++      subtitle: "Kids Standard 12 weeks",
++      audiences: ["Kids"],
++      planTag: "standard",
++      levels: ["A1"],
++      exam: null,
++      sessionLength: "60’",
++      frequency: "3×60’/week",
++      duration: "12 weeks",
++      totalHours: 36,
++      daysLabel: "Tue–Thu–Sat",
++      daysCategory: ["Mon–Fri", "Sat"],
++      timeLabel: "10:00–11:00",
++      timeCategory: ["Morning"],
++      startDate: "2024-09-17",
++      endDate: "2024-12-14",
++      price: 4150,
++      priceUnit: "course",
++      material: "Super Minds",
++      groupSize: "6–10 students",
++      seats: 7,
++      includes: "Saturday crafts lab.",
++      cta: "Enroll",
++    },
++    {
++      id: "kids-a2-fast",
++      title: "A2 · Kids Fast 6 weeks",
++      subtitle: "Kids Fast 6 weeks",
++      audiences: ["Kids"],
++      planTag: "standard",
++      levels: ["A2"],
++      exam: null,
++      sessionLength: "60’",
++      frequency: "3×60’/week",
++      duration: "6 weeks",
++      totalHours: 18,
++      daysLabel: "Mon–Wed–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "18:00–19:00",
++      timeCategory: ["Evening"],
++      startDate: "2024-10-21",
++      endDate: "2024-12-02",
++      price: 2200,
++      priceUnit: "course",
++      material: "Super Minds",
++      groupSize: "6–10 students",
++      seats: 4,
++      includes: "Ideal for revision before Cambridge Movers.",
++      cta: "Enroll",
++    },
++    {
++      id: "b1-standard-evening",
++      title: "B1 · Group 12 weeks",
++      subtitle: "Group Standard 12 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "standard",
++      levels: ["B1"],
++      exam: null,
++      sessionLength: "90’",
++      frequency: "3×90’/week",
++      duration: "12 weeks",
++      totalHours: 54,
++      daysLabel: "Tue–Thu",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "18:30–20:00",
++      timeCategory: ["Evening"],
++      startDate: "2024-09-10",
++      endDate: "2024-12-05",
++      price: 6200,
++      priceUnit: "course",
++      material: "Open World",
++      groupSize: "6–10 students",
++      seats: 9,
++      includes: "Mid-course speaking clinic.",
++      cta: "Enroll",
++    },
++    {
++      id: "c1-standard-morning",
++      title: "C1 · Group 12 weeks",
++      subtitle: "Group Standard 12 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "standard",
++      levels: ["C1"],
++      exam: null,
++      sessionLength: "90’",
++      frequency: "3×90’/week",
++      duration: "12 weeks",
++      totalHours: 54,
++      daysLabel: "Mon–Wed–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "08:00–09:30",
++      timeCategory: ["Morning"],
++      startDate: "2024-09-09",
++      endDate: "2024-12-02",
++      price: 6200,
++      priceUnit: "course",
++      material: "Speakout Advanced",
++      groupSize: "6–10 students",
++      seats: 7,
++      includes: "Weekly presentation labs.",
++      cta: "Enroll",
++    },
++    {
++      id: "b2-intensive-morning",
++      title: "B2 · Intensive 8 weeks",
++      subtitle: "Group Intensive 8 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "intensive",
++      levels: ["B2"],
++      exam: null,
++      sessionLength: "90’",
++      frequency: "5×90’/week",
++      duration: "8 weeks",
++      totalHours: 60,
++      daysLabel: "Mon–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "08:30–10:00",
++      timeCategory: ["Morning"],
++      startDate: "2024-09-23",
++      endDate: "2024-11-15",
++      price: 6900,
++      priceUnit: "course",
++      material: "Open World",
++      groupSize: "6–10 students",
++      seats: 6,
++      includes: "Daily feedback and study planner.",
++      cta: "Enroll",
++    },
++    {
++      id: "c1-intensive-evening",
++      title: "C1 · Intensive 8 weeks",
++      subtitle: "Group Intensive 8 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "intensive",
++      levels: ["C1"],
++      exam: null,
++      sessionLength: "90’",
++      frequency: "5×90’/week",
++      duration: "8 weeks",
++      totalHours: 60,
++      daysLabel: "Mon–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "19:00–20:30",
++      timeCategory: ["Evening"],
++      startDate: "2024-10-07",
++      endDate: "2024-11-29",
++      price: 6900,
++      priceUnit: "course",
++      material: "Speakout Advanced",
++      groupSize: "6–10 students",
++      seats: 4,
++      includes: "Essay lab with personalised rubrics.",
++      cta: "Enroll",
++    },
++    {
++      id: "c2-intensive-afternoon",
++      title: "C2 · Intensive 8 weeks",
++      subtitle: "Group Intensive 8 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "intensive",
++      levels: ["C2"],
++      exam: null,
++      sessionLength: "90’",
++      frequency: "5×90’/week",
++      duration: "8 weeks",
++      totalHours: 60,
++      daysLabel: "Mon–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "14:30–16:00",
++      timeCategory: ["Afternoon"],
++      startDate: "2024-09-30",
++      endDate: "2024-11-22",
++      price: 6900,
++      priceUnit: "course",
++      material: "Speakout Proficiency",
++      groupSize: "6–10 students",
++      seats: 3,
++      includes: "Capstone presentation with industry guests.",
++      cta: "Enroll",
++    },
++    {
++      id: "individual-pack",
++      title: "1:1 Coaching Pack",
++      subtitle: "10×60’ personalised",
++      audiences: ["Kids", "Youth & Adults (15+)"],
++      planTag: "individual",
++      levels: ["A1", "A2", "B1", "B2", "C1", "C2"],
++      exam: null,
++      sessionLength: "60’",
++      frequency: "10 lessons",
++      duration: "Flexible",
++      totalHours: 10,
++      daysLabel: "Flexible schedule",
++      daysCategory: ["Mon–Fri", "Sat"],
++      timeLabel: "Coordinated with trainer",
++      timeCategory: ["Morning", "Afternoon", "Evening"],
++      startDate: "2024-09-05",
++      endDate: "2024-10-31",
++      price: 4200,
++      priceUnit: "pack",
++      material: "Tailored resources",
++      groupSize: "1 learner",
++      seats: 10,
++      includes: "Assigned within 24 hours.",
++      cta: "Buy pack",
++    },
++    {
++      id: "speaking-a2-b1",
++      title: "Speaking Club A2–B1",
++      subtitle: "Weekly subscription",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "speaking",
++      levels: ["A2", "B1"],
++      exam: null,
++      sessionLength: "60’",
++      frequency: "1×/week",
++      duration: "Subscription",
++      totalHours: 4,
++      daysLabel: "Sat",
++      daysCategory: ["Sat"],
++      timeLabel: "11:00–12:00",
++      timeCategory: ["Morning"],
++      startDate: "2024-09-14",
++      endDate: "2024-12-21",
++      price: 620,
++      priceUnit: "month",
++      material: "Conversation guides",
++      groupSize: "6–10 students",
++      seats: 8,
++      includes: "Includes pronunciation warm-ups.",
++      cta: "Subscribe",
++    },
++    {
++      id: "speaking-b2-c2",
++      title: "Speaking Club B2–C2",
++      subtitle: "Weekly subscription",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "speaking",
++      levels: ["B2", "C1", "C2"],
++      exam: null,
++      sessionLength: "90’",
++      frequency: "1×/week",
++      duration: "Subscription",
++      totalHours: 6,
++      daysLabel: "Wed",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "19:00–20:30",
++      timeCategory: ["Evening"],
++      startDate: "2024-09-11",
++      endDate: "2024-12-18",
++      price: 620,
++      priceUnit: "month",
++      material: "Debate briefs",
++      groupSize: "6–10 students",
++      seats: 5,
++      includes: "Includes guest speaker sessions.",
++      cta: "Subscribe",
++    },
++    {
++      id: "cambridge-starters-12",
++      title: "Starters · Cambridge 12 weeks",
++      subtitle: "Cambridge Young Learners",
++      audiences: ["Kids"],
++      planTag: "cambridge",
++      levels: ["PRE-A1"],
++      exam: "Starters",
++      sessionLength: "60’",
++      frequency: "3×60’/week",
++      duration: "12 weeks",
++      totalHours: 36,
++      daysLabel: "Mon–Wed–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "16:30–17:30",
++      timeCategory: ["Afternoon"],
++      startDate: "2024-09-09",
++      endDate: "2024-12-02",
++      price: 4150,
++      priceUnit: "course",
++      material: "Cambridge Starters Pack",
++      groupSize: "6–10 students",
++      seats: 7,
++      includes: "Includes mini-mock and parent briefing.",
++      cta: "Enroll",
++    },
++    {
++      id: "cambridge-movers-12",
++      title: "Movers · Cambridge 12 weeks",
++      subtitle: "Cambridge Young Learners",
++      audiences: ["Kids"],
++      planTag: "cambridge",
++      levels: ["A1"],
++      exam: "Movers",
++      sessionLength: "60’",
++      frequency: "3×60’/week",
++      duration: "12 weeks",
++      totalHours: 36,
++      daysLabel: "Tue–Thu–Sat",
++      daysCategory: ["Mon–Fri", "Sat"],
++      timeLabel: "15:30–16:30",
++      timeCategory: ["Afternoon"],
++      startDate: "2024-09-17",
++      endDate: "2024-12-14",
++      price: 4150,
++      priceUnit: "course",
++      material: "Cambridge Movers Pack",
++      groupSize: "6–10 students",
++      seats: 6,
++      includes: "Includes full mock exam.",
++      cta: "Enroll",
++    },
++    {
++      id: "cambridge-flyers-6",
++      title: "Flyers · Cambridge Fast 6 weeks",
++      subtitle: "Cambridge Young Learners",
++      audiences: ["Kids"],
++      planTag: "cambridge",
++      levels: ["A2"],
++      exam: "Flyers",
++      sessionLength: "60’",
++      frequency: "3×60’/week",
++      duration: "6 weeks",
++      totalHours: 18,
++      daysLabel: "Mon–Wed–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "18:00–19:00",
++      timeCategory: ["Evening"],
++      startDate: "2024-10-21",
++      endDate: "2024-12-02",
++      price: 2200,
++      priceUnit: "course",
++      material: "Cambridge Flyers Pack",
++      groupSize: "6–10 students",
++      seats: 5,
++      includes: "Includes mock interview feedback.",
++      cta: "Enroll",
++    },
++    {
++      id: "cambridge-a2-key",
++      title: "A2 Key · Cambridge 12 weeks",
++      subtitle: "Cambridge Standard 12 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "cambridge",
++      levels: ["A2"],
++      exam: "A2 Key",
++      sessionLength: "90’",
++      frequency: "3×90’/week",
++      duration: "12 weeks",
++      totalHours: 54,
++      daysLabel: "Tue–Thu",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "17:00–18:30",
++      timeCategory: ["Afternoon"],
++      startDate: "2024-09-10",
++      endDate: "2024-12-05",
++      price: 6200,
++      priceUnit: "course",
++      material: "Cambridge A2 Key Trainer",
++      groupSize: "6–10 students",
++      seats: 9,
++      includes: "Includes writing rubric coaching.",
++      cta: "Enroll",
++    },
++    {
++      id: "cambridge-b1-preliminary",
++      title: "B1 Preliminary · Cambridge 12 weeks",
++      subtitle: "Cambridge Standard 12 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "cambridge",
++      levels: ["B1"],
++      exam: "B1 Preliminary",
++      sessionLength: "90’",
++      frequency: "3×90’/week",
++      duration: "12 weeks",
++      totalHours: 54,
++      daysLabel: "Mon–Wed–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "18:30–20:00",
++      timeCategory: ["Evening"],
++      startDate: "2024-09-09",
++      endDate: "2024-12-02",
++      price: 6200,
++      priceUnit: "course",
++      material: "Cambridge Preliminary Trainer",
++      groupSize: "6–10 students",
++      seats: 6,
++      includes: "Includes 1 full mock exam.",
++      cta: "Enroll",
++    },
++    {
++      id: "cambridge-b2-standard",
++      title: "B2 First · Cambridge 12 weeks",
++      subtitle: "Cambridge Standard 12 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "cambridge",
++      levels: ["B2"],
++      exam: "B2 First",
++      sessionLength: "90’",
++      frequency: "3×90’/week",
++      duration: "12 weeks",
++      totalHours: 54,
++      daysLabel: "Tue–Thu",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "07:30–09:00",
++      timeCategory: ["Morning"],
++      startDate: "2024-09-17",
++      endDate: "2024-12-12",
++      price: 6200,
++      priceUnit: "course",
++      material: "Cambridge B2 First Trainer",
++      groupSize: "6–10 students",
++      seats: 8,
++      includes: "Includes mock and feedback videos.",
++      cta: "Enroll",
++    },
++    {
++      id: "cambridge-c1-advanced",
++      title: "C1 Advanced · Cambridge 12 weeks",
++      subtitle: "Cambridge Standard 12 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "cambridge",
++      levels: ["C1"],
++      exam: "C1 Advanced",
++      sessionLength: "90’",
++      frequency: "3×90’/week",
++      duration: "12 weeks",
++      totalHours: 54,
++      daysLabel: "Mon–Wed–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "11:00–12:30",
++      timeCategory: ["Morning", "Afternoon"],
++      startDate: "2024-09-23",
++      endDate: "2024-12-16",
++      price: 6200,
++      priceUnit: "course",
++      material: "Cambridge Advanced Trainer",
++      groupSize: "6–10 students",
++      seats: 4,
++      includes: "Includes rubric-based writing labs.",
++      cta: "Enroll",
++    },
++    {
++      id: "cambridge-c2-proficiency",
++      title: "C2 Proficiency · Cambridge 8 weeks",
++      subtitle: "Cambridge Intensive 8 weeks",
++      audiences: ["Youth & Adults (15+)"],
++      planTag: "cambridge",
++      levels: ["C2"],
++      exam: "C2 Proficiency",
++      sessionLength: "90’",
++      frequency: "5×90’/week",
++      duration: "8 weeks",
++      totalHours: 60,
++      daysLabel: "Mon–Fri",
++      daysCategory: ["Mon–Fri"],
++      timeLabel: "18:30–20:00",
++      timeCategory: ["Evening"],
++      startDate: "2024-10-14",
++      endDate: "2024-12-06",
++      price: 6900,
++      priceUnit: "course",
++      material: "Cambridge Proficiency Trainer",
++      groupSize: "6–10 students",
++      seats: 2,
++      includes: "Includes speaking bootcamp and 2 mocks.",
++      cta: "Enroll",
++    },
++  ];
++
++      const state = {
++        audience: [],
++        plan: [],
++        level: [],
++        exam: [],
++        days: [],
++        time: [],
++        sort: "start",
++      };
++      const filterGroups = {
++        audience: document.querySelector('[data-filter-group="audience"]'),
++        plan: document.querySelector('[data-filter-group="plan"]'),
++        level: document.querySelector('[data-filter-group="level"]'),
++        exam: document.querySelector('[data-filter-group="exam"]'),
++        days: document.querySelector('[data-filter-group="days"]'),
++        time: document.querySelector('[data-filter-group="time"]'),
++      };
++      const examRow = document.getElementById("exam-filter-row");
++      const resultContainer = document.getElementById("course-results");
++      const emptyState = document.getElementById("empty-state");
++      const resultCount = document.getElementById("result-count");
++      const activeFilters = document.getElementById("active-filters");
++      const sortSelect = document.getElementById("sort-select");
++      const checkoutSummary = document.getElementById("checkout-summary");
++      const yearEl = document.getElementById("year");
++      const modal = document.getElementById("enroll-modal");
++      const modalSummary = document.getElementById("modal-summary");
++      const modalCheckout = document.getElementById("modal-checkout");
++      const modalClose = document.getElementById("modal-close");
++      const modalCancel = document.getElementById("modal-cancel");
++      let lastFocusedElement = null;
++      let focusTrapHandler = null;
++
++      const parsedPrograms = programs
++        .filter(Boolean)
++        .map((item) => {
++          const start = item.startDate ? new Date(item.startDate) : null;
++          const end = item.endDate ? new Date(item.endDate) : null;
++          return { ...item, start, end };
++        });
++
++      const dateFormatter = new Intl.DateTimeFormat("en-GB", {
++        day: "numeric",
++        month: "short",
++      });
++
++      function formatDateRange(start, end) {
++        if (!start || !end || Number.isNaN(start) || Number.isNaN(end)) {
++          return "Flexible dates";
++        }
++        return `${dateFormatter.format(start)} – ${dateFormatter.format(end)}`;
++      }
++
++      function formatPrice(amount) {
++        return `${amount.toLocaleString("en-US")} MDL`;
++      }
++
++      function getPriceSuffix(unit) {
++        if (unit === "month") return "/month";
++        if (unit === "pack") return " (pack)";
++        return "";
++      }
++
++      function computePricePerHour(item) {
++        if (!item.totalHours || item.totalHours <= 0) return null;
++        const perHour = item.price / item.totalHours;
++        if (!Number.isFinite(perHour)) return null;
++        return Math.round(perHour).toLocaleString("en-US");
++      }
++
++      function updateExamVisibility() {
++        if (state.plan.includes("cambridge")) {
++          examRow.hidden = false;
++        } else {
++          examRow.hidden = true;
++          state.exam = [];
++          if (filterGroups.exam) {
++            filterGroups.exam.querySelectorAll(".filter-chip").forEach((chip) => {
++              chip.dataset.active = "false";
++              chip.setAttribute("aria-pressed", "false");
++            });
++          }
++        }
++      }
++
++      function renderActiveFilters() {
++        activeFilters.innerHTML = "";
++        const entries = Object.entries(state).filter(([key, value]) => Array.isArray(value) && value.length > 0 && key !== "sort");
++        entries.forEach(([key, values]) => {
++          values.forEach((value) => {
++            const button = document.createElement("button");
++            button.type = "button";
++            button.className = "inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600 transition hover:border-blue-400 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950";
++            button.innerHTML = `<span class="uppercase tracking-wide text-[0.65rem] text-slate-400">${key}</span> ${value} <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>`;
++            button.addEventListener("click", () => {
++              state[key] = state[key].filter((item) => item !== value);
++              syncFilterUI();
++              applyFilters();
++            });
++            activeFilters.appendChild(button);
++          });
++        });
++        if (entries.length === 0) {
++          activeFilters.innerHTML = "";
++        }
++      }
++
++      function determineSeatClass(seats) {
++        if (seats > 6) {
++          return "bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-200";
++        }
++        if (seats > 3) {
++          return "bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-200";
++        }
++        return "bg-red-100 text-red-700 dark:bg-red-500/20 dark:text-red-200";
++      }
++
++      function renderPrograms(items) {
++        resultContainer.innerHTML = "";
++        items.forEach((item) => {
++          const card = document.createElement("article");
++          card.tabIndex = 0;
++          card.className = "group flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-900 dark:focus-visible:ring-offset-slate-950";
++          const metaSegments = [item.sessionLength, item.frequency, item.duration].filter(Boolean);
++          if (item.totalHours) {
++            metaSegments.push(`${item.totalHours} h`);
++          }
++          const metaLine = metaSegments.length ? metaSegments.join(" · ") : "Flexible format";
++          const scheduleLine = `${item.daysLabel} · ${item.timeLabel} · ${formatDateRange(item.start, item.end)}`;
++          const priceSuffix = getPriceSuffix(item.priceUnit);
++          const priceLabel = `${formatPrice(item.price)}${priceSuffix}`;
++          const seatClass = determineSeatClass(item.seats);
++          const pricePerHour = computePricePerHour(item);
++          const levelLabel = item.levels && item.levels.length ? item.levels.join(" · ") : "All levels";
++          card.innerHTML = `
++            <div class="flex flex-col gap-4">
++              <div class="flex flex-wrap items-center justify-between gap-2">
++                <h3 class="text-lg font-semibold text-slate-900 dark:text-white">${item.title}</h3>
++                <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600 dark:bg-blue-500/20 dark:text-blue-200">${item.subtitle}</span>
++              </div>
++              <div class="flex flex-wrap items-center gap-2 text-xs font-semibold text-blue-600 dark:text-blue-300">
++                <span class="rounded-full bg-blue-50 px-2.5 py-1 dark:bg-blue-500/20">${levelLabel}</span>
++                <span class="rounded-full bg-slate-100 px-2.5 py-1 text-slate-600 dark:bg-slate-800/60 dark:text-slate-200">${item.audiences.join(" · ")}</span>
++              </div>
++              <p class="text-sm font-medium text-slate-700 dark:text-slate-200">${metaLine}</p>
++              <p class="text-sm text-slate-600 dark:text-slate-300">${scheduleLine}</p>
++              <div class="grid gap-2 text-xs text-slate-500 dark:text-slate-300">
++                <span class="inline-flex items-center gap-2">📘 <span>${item.material}</span></span>
++                <span class="inline-flex items-center gap-2">👥 <span>${item.groupSize}</span></span>
++                ${item.includes ? `<span class="inline-flex items-center gap-2">✨ <span>${item.includes}</span></span>` : ""}
++              </div>
++            </div>
++            <div class="mt-6 flex flex-col gap-4">
++              <div class="flex items-center justify-between">
++                <span class="text-2xl font-bold text-slate-900 dark:text-white">${priceLabel}</span>
++                <span class="rounded-full px-3 py-1 text-xs font-semibold ${seatClass}">Seats ${item.seats}/10</span>
++              </div>
++              ${pricePerHour ? `<p class="text-xs text-slate-500 dark:text-slate-400">≈ ${pricePerHour} MDL/hour</p>` : ""}
++              <button type="button" class="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow transition hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-blue-500 dark:hover:bg-blue-400 dark:focus-visible:ring-offset-slate-950" data-program-id="${item.id}" aria-label="${item.cta} for ${item.title}">
++                ${item.cta}
++              </button>
++            </div>
++          `;
++          resultContainer.appendChild(card);
++        });
++      }
++
++      function applyFilters(pushState = true) {
++        updateExamVisibility();
++        const filtered = parsedPrograms.filter((item) => {
++          if (state.audience.length && !state.audience.some((aud) => item.audiences.includes(aud))) {
++            return false;
++          }
++          if (state.plan.length && !state.plan.includes(item.planTag)) {
++            return false;
++          }
++          if (state.level.length && !state.level.some((level) => (item.levels || []).includes(level))) {
++            return false;
++          }
++          if (state.exam.length) {
++            if (!item.exam) return false;
++            if (!state.exam.includes(item.exam)) return false;
++          }
++          if (state.days.length && !state.days.some((day) => (item.daysCategory || []).includes(day))) {
++            return false;
++          }
++          if (state.time.length && !state.time.some((time) => (item.timeCategory || []).includes(time))) {
++            return false;
++          }
++          return true;
++        });
++
++        filtered.sort((a, b) => {
++          if (state.sort === "price") {
++            return (a.price || 0) - (b.price || 0);
++          }
++          if (state.sort === "seats") {
++            return (b.seats || 0) - (a.seats || 0);
++          }
++          const aTime = a.start ? a.start.getTime() : Number.MAX_SAFE_INTEGER;
++          const bTime = b.start ? b.start.getTime() : Number.MAX_SAFE_INTEGER;
++          return aTime - bTime;
++        });
++
++        if (filtered.length === 0) {
++          resultContainer.innerHTML = "";
++          emptyState.classList.remove("hidden");
++        } else {
++          emptyState.classList.add("hidden");
++          renderPrograms(filtered);
++        }
++        renderActiveFilters();
++        resultCount.textContent = `${filtered.length} program${filtered.length === 1 ? "" : "s"}`;
++        if (pushState) {
++          updateURL();
++        }
++      }
++
++      function syncFilterUI() {
++        Object.entries(filterGroups).forEach(([key, group]) => {
++          if (!group) return;
++          group.querySelectorAll(".filter-chip").forEach((chip) => {
++            const value = chip.dataset.filterValue;
++            const isActive = state[key] && state[key].includes(value);
++            chip.dataset.active = isActive ? "true" : "false";
++            chip.setAttribute("aria-pressed", String(isActive));
++          });
++        });
++        sortSelect.value = state.sort;
++      }
++
++      function clearFilters() {
++        state.audience = [];
++        state.plan = [];
++        state.level = [];
++        state.exam = [];
++        state.days = [];
++        state.time = [];
++        state.sort = "start";
++        syncFilterUI();
++        applyFilters();
++      }
++
++      function updateURL() {
++        const params = new URLSearchParams();
++        ["audience", "plan", "level", "exam", "days", "time"].forEach((key) => {
++          if (state[key] && state[key].length) {
++            params.set(key, state[key].join(","));
++          }
++        });
++        if (state.sort && state.sort !== "start") {
++          params.set("sort", state.sort);
++        }
++        const newUrl = `${window.location.pathname}?${params.toString()}#schedules`;
++        window.history.replaceState(state, "", newUrl);
++      }
++
++      function parseURL() {
++        const params = new URLSearchParams(window.location.search);
++        ["audience", "plan", "level", "exam", "days", "time"].forEach((key) => {
++          const value = params.get(key);
++          state[key] = value ? value.split(",").filter(Boolean) : [];
++        });
++        const sortValue = params.get("sort");
++        state.sort = sortValue || "start";
++        syncFilterUI();
++        applyFilters(false);
++      }
++
++      function handlePrefill(target) {
++        const query = target.dataset.prefill;
++        if (!query) return;
++        const params = new URLSearchParams(query);
++        ["audience", "plan", "level", "exam", "days", "time"].forEach((key) => {
++          const value = params.get(key);
++          state[key] = value ? value.split(",").filter(Boolean) : [];
++        });
++        const sortValue = params.get("sort");
++        if (sortValue) {
++          state.sort = sortValue;
++        }
++        syncFilterUI();
++        applyFilters();
++        document.getElementById("schedules").scrollIntoView({ behavior: "smooth" });
++      }
++
++      document.querySelectorAll("[data-prefill]").forEach((el) => {
++        el.addEventListener("click", (event) => {
++          event.preventDefault();
++          handlePrefill(event.currentTarget);
++        });
++      });
++
++      Object.entries(filterGroups).forEach(([key, group]) => {
++        if (!group) return;
++        group.querySelectorAll(".filter-chip").forEach((chip) => {
++          chip.addEventListener("click", () => {
++            const value = chip.dataset.filterValue;
++            if (!value) return;
++            if (!state[key]) state[key] = [];
++            if (state[key].includes(value)) {
++              state[key] = state[key].filter((entry) => entry !== value);
++            } else {
++              state[key].push(value);
++            }
++            syncFilterUI();
++            applyFilters();
++          });
++        });
++      });
++
++      sortSelect.addEventListener("change", (event) => {
++        state.sort = event.target.value;
++        applyFilters();
++      });
++
++      document.getElementById("clear-filters").addEventListener("click", () => {
++        clearFilters();
++      });
++
++      document.getElementById("reset-filters-empty").addEventListener("click", () => {
++        clearFilters();
++      });
++
++      resultContainer.addEventListener("click", (event) => {
++        const button = event.target.closest("button[data-program-id]");
++        if (!button) return;
++        const program = parsedPrograms.find((item) => item.id === button.dataset.programId);
++        if (!program) return;
++        openModal(program);
++      });
++
++      function openModal(program) {
++        lastFocusedElement = document.activeElement;
++        modalSummary.innerHTML = `
++          <p class="text-base font-semibold text-slate-900 dark:text-white">${program.title}</p>
++          <p class="text-sm text-slate-600 dark:text-slate-300">${program.subtitle} · ${program.audiences.join(" · ")}</p>
++          <p class="text-sm text-slate-600 dark:text-slate-300">${program.daysLabel} · ${program.timeLabel}</p>
++          <p class="text-sm text-slate-600 dark:text-slate-300">${formatDateRange(program.start, program.end)}</p>
++          <p class="text-sm font-semibold text-slate-900 dark:text-white">${formatPrice(program.price)}${getPriceSuffix(program.priceUnit)}</p>
++          <p class="text-xs text-slate-500 dark:text-slate-400">Seats ${program.seats}/10 · ${program.groupSize}</p>
++        `;
++        checkoutSummary.innerHTML = `
++          <p class="text-base font-semibold text-slate-900 dark:text-white">${program.title}</p>
++          <ul class="mt-3 space-y-1 text-sm text-slate-600 dark:text-slate-300">
++            <li>${program.subtitle}</li>
++            <li>${program.daysLabel} · ${program.timeLabel}</li>
++            <li>${formatDateRange(program.start, program.end)}</li>
++            <li>${formatPrice(program.price)}${getPriceSuffix(program.priceUnit)}</li>
++          </ul>
++        `;
++        modal.classList.remove("hidden");
++        modal.classList.add("flex");
++        document.body.classList.add("overflow-hidden");
++        releaseFocus(modal);
++        trapFocus(modal);
++        modalCheckout.focus();
++      }
++
++      function closeModal() {
++        releaseFocus(modal);
++        modal.classList.add("hidden");
++        modal.classList.remove("flex");
++        document.body.classList.remove("overflow-hidden");
++        if (lastFocusedElement) {
++          lastFocusedElement.focus();
++        }
++      }
++
++      function trapFocus(container) {
++        const focusableSelectors = [
++          "a[href]",
++          "button:not([disabled])",
++          "textarea",
++          "input",
++          "select",
++          "[tabindex]:not([tabindex='-1'])",
++        ];
++        const focusable = Array.from(container.querySelectorAll(focusableSelectors.join(","))).filter((el) => !el.hasAttribute("disabled"));
++        if (!focusable.length) return;
++        const first = focusable[0];
++        const last = focusable[focusable.length - 1];
++        focusTrapHandler = function (event) {
++          if (event.key === "Tab") {
++            if (event.shiftKey) {
++              if (document.activeElement === first) {
++                event.preventDefault();
++                last.focus();
++              }
++            } else if (document.activeElement === last) {
++              event.preventDefault();
++              first.focus();
++            }
++          }
++          if (event.key === "Escape") {
++            event.preventDefault();
++            closeModal();
++          }
++        };
++        container.addEventListener("keydown", focusTrapHandler);
++      }
++
++      function releaseFocus(container) {
++        if (focusTrapHandler) {
++          container.removeEventListener("keydown", focusTrapHandler);
++          focusTrapHandler = null;
++        }
++      }
++
++      modal.addEventListener("click", (event) => {
++        if (event.target === modal) {
++          closeModal();
++        }
++      });
++      modalClose.addEventListener("click", closeModal);
++      modalCancel.addEventListener("click", closeModal);
++
++      window.addEventListener("keydown", (event) => {
++        if (event.key === "Escape" && !modal.classList.contains("hidden")) {
++          closeModal();
++        }
++      });
++
++      yearEl.textContent = new Date().getFullYear();
++
++      parseURL();
++
++      window.addEventListener("popstate", () => {
++        parseURL();
++      });
++
++      document.getElementById("mobile-nav-toggle").addEventListener("click", (event) => {
++        const nav = document.getElementById("mobile-nav");
++        const expanded = event.currentTarget.getAttribute("aria-expanded") === "true";
++        event.currentTarget.setAttribute("aria-expanded", String(!expanded));
++        if (expanded) {
++          nav.hidden = true;
++        } else {
++          nav.hidden = false;
++        }
++      });
++
++      const languageChips = document.querySelectorAll(".language-chip");
++      if (languageChips.length) {
++        languageChips[0].dataset.active = "true";
++        languageChips[0].setAttribute("aria-pressed", "true");
++      }
++      languageChips.forEach((chip) => {
++        chip.addEventListener("click", () => {
++          languageChips.forEach((item) => {
++            item.dataset.active = "false";
++            item.setAttribute("aria-pressed", "false");
++          });
++          chip.dataset.active = "true";
++          chip.setAttribute("aria-pressed", "true");
++        });
++      });
++
++      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
++      const rootEl = document.documentElement;
++      function setTheme(isDark) {
++        if (isDark) {
++          rootEl.classList.add("dark");
++          localStorage.setItem("theme", "dark");
++        } else {
++          rootEl.classList.remove("dark");
++          localStorage.setItem("theme", "light");
++        }
++      }
++      const storedTheme = localStorage.getItem("theme");
++      if (storedTheme === "dark" || (!storedTheme && prefersDark.matches)) {
++        setTheme(true);
++      }
++      prefersDark.addEventListener("change", (event) => {
++        const stored = localStorage.getItem("theme");
++        if (!stored) {
++          setTheme(event.matches);
++        }
++      });
++      document.getElementById("theme-toggle").addEventListener("click", () => {
++        const isDark = rootEl.classList.contains("dark");
++        setTheme(!isDark);
++      });
++    </script>
+   </body>
+ </html>
