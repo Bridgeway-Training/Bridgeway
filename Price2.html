@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bridge Way · Planes & Precios Premium</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap 5 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- DataTables -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"
+  />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1020;
+      --card: #0f172a;
+      --card-soft: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --danger: #f97373;
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --radius-xl: 1.5rem;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+    }
+
+    .page-wrap {
+      min-height: 100vh;
+      padding-bottom: 3rem;
+    }
+
+    .hero {
+      border-radius: 2rem;
+      padding: 2.75rem clamp(1.75rem, 3vw, 3rem);
+      margin-top: 1.75rem;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.24), transparent 55%),
+        radial-gradient(circle at top right, rgba(139, 92, 246, 0.18), transparent 55%),
+        linear-gradient(135deg, #020617, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at bottom right,
+        rgba(15, 23, 42, 0.8),
+        transparent 65%
+      );
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--text-soft);
+    }
+
+    .hero-badge span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.3);
+    }
+
+    .hero-title {
+      font-weight: 700;
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      margin-top: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 680px;
+    }
+
+    .hero-pills {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .hero-pill {
+      font-size: 0.78rem;
+      padding: 0.32rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .hero-pill i {
+      font-size: 0.9em;
+      color: var(--accent);
+    }
+
+    .hero-bottom {
+      margin-top: 1.35rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-claim {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+    }
+
+    .hero-claim strong {
+      color: var(--text-main);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .btn-main {
+      border-radius: 999px;
+      padding: 0.55rem 1.4rem;
+      border: none;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-main:hover {
+      opacity: 0.95;
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.55rem 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-soft);
+      font-size: 0.86rem;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text-main);
+    }
+
+    /* PLANES PRINCIPALES */
+
+    .plans-section {
+      margin-top: 2.75rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 1.4rem;
+    }
+
+    .nav-pills.rounded-pill .nav-link {
+      border-radius: 999px;
+      font-size: 0.85rem;
+      padding: 0.35rem 0.95rem;
+      color: var(--text-soft);
+      border: 1px solid transparent;
+      background: transparent;
+    }
+
+    .nav-pills.rounded-pill .nav-link.active {
+      background: var(--accent-soft);
+      border-color: rgba(56, 189, 248, 0.6);
+      color: var(--accent);
+    }
+
+    .plan-card {
+      border-radius: 1.4rem;
+      padding: 1.4rem 1.5rem;
+      height: 100%;
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), #020617);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.85);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plan-card.popular {
+      border-color: rgba(56, 189, 248, 0.8);
+      box-shadow: 0 18px 45px rgba(37, 99, 235, 0.7);
+    }
+
+    .plan-chip {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      opacity: 0.85;
+    }
+
+    .plan-name {
+      margin-top: 0.3rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .plan-tagline {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-bottom: 0.7rem;
+    }
+
+    .plan-price-main {
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+
+    .plan-price-main span {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-soft);
+    }
+
+    .plan-price-note {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .plan-divider {
+      border-top: 1px dashed rgba(148, 163, 184, 0.55);
+      margin: 0.8rem 0;
+    }
+
+    .plan-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0 0 0.8rem;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .plan-list li {
+      display: flex;
+      gap: 0.35rem;
+      align-items: flex-start;
+      margin-bottom: 0.25rem;
+    }
+
+    .plan-list li::before {
+      content: "•";
+      font-size: 0.7rem;
+      margin-top: 0.05rem;
+      color: var(--accent);
+    }
+
+    .plan-label {
+      position: absolute;
+      top: 0.9rem;
+      right: 1rem;
+      font-size: 0.7rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .plan-label-soft {
+      position: absolute;
+      top: 0.9rem;
+      right: 1rem;
+      font-size: 0.7rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .plan-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.8rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    .plan-cta i {
+      font-size: 0.9em;
+    }
+
+    .plan-cta:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* BLOQUE PROMOS RESUMEN */
+
+    .promo-summary {
+      margin-top: 3rem;
+      border-radius: 1.4rem;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-subtle);
+      padding: 1.5rem 1.6rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
+    }
+
+    .promo-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .promo-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 0.9rem;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .promo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.75rem;
+      margin-right: 0.35rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* DETALLE TÉCNICO */
+
+    .detail-toggle {
+      margin-top: 2.5rem;
+      text-align: center;
+    }
+
+    .detail-btn {
+      border-radius: 999px;
+      padding: 0.5rem 1.3rem;
+      font-size: 0.85rem;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-soft);
+    }
+
+    .detail-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .detail-panel {
+      margin-top: 1.25rem;
+      border-radius: 1.4rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--border-subtle);
+      padding: 1.5rem 1.4rem 1.8rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+      display: none;
+    }
+
+    #pricingTable_wrapper {
+      color: var(--text-main);
+      font-size: 0.78rem;
+    }
+
+    table.dataTable {
+      border-collapse: collapse !important;
+    }
+
+    table.dataTable thead th {
+      background-color: #020617;
+      color: var(--text-soft);
+    }
+
+    table.dataTable tbody tr {
+      background-color: rgba(15, 23, 42, 0.8) !important;
+    }
+
+    table.dataTable tbody tr:nth-child(even) {
+      background-color: rgba(15, 23, 42, 0.95) !important;
+    }
+
+    .dt-length,
+    .dt-info {
+      color: var(--text-soft) !important;
+    }
+
+    .dt-search label {
+      color: var(--text-soft) !important;
+    }
+
+    .badge-segmento {
+      font-size: 0.7rem;
+      border-radius: 999px;
+      padding: 0.15rem 0.55rem;
+    }
+
+    .badge-niños {
+      background: rgba(56, 189, 248, 0.18);
+      color: #7dd3fc;
+    }
+
+    .badge-teens {
+      background: rgba(129, 140, 248, 0.2);
+      color: #a5b4fc;
+    }
+
+    .badge-intensivo {
+      background: rgba(249, 115, 22, 0.2);
+      color: #fed7aa;
+    }
+
+    .badge-individual {
+      background: rgba(34, 197, 94, 0.18);
+      color: #bbf7d0;
+    }
+
+    .badge-club {
+      background: rgba(244, 114, 182, 0.2);
+      color: #f9a8d4;
+    }
+
+    @media (max-width: 767.98px) {
+      .hero {
+        padding: 1.9rem 1.35rem;
+      }
+
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <div class="container py-4 py-md-5">
+
+      <!-- HERO · POSICIONAMIENTO PREMIUM -->
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-badge">
+            <span class="dot"></span>
+            BRIDGE WAY · INGLÉS PREMIUM
+          </div>
+          <h1 class="hero-title">
+            Planes de inglés diseñados para la élite.<br />
+            <span style="color: var(--accent);">Todo incluido, sin letra pequeña.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Mismo sistema para todos. Niños, adolescentes y adultos aprenden con
+            la misma metodología premium; la única diferencia son las horas por clase
+            y el ritmo. Mismo resultado: inglés real.
+          </p>
+
+          <div class="hero-pills">
+            <div class="hero-pill"><i>▶</i> Niños · clases de 60 min</div>
+            <div class="hero-pill"><i>▶</i> Teens & adultos · 90 min</div>
+            <div class="hero-pill"><i>★</i> Grupos reducidos (6–10 alumnos)</div>
+            <div class="hero-pill"><i>★</i> Speaking Club incluido</div>
+            <div class="hero-pill"><i>✓</i> Sin matrícula · materiales digitales</div>
+          </div>
+
+          <div class="hero-bottom">
+            <div class="hero-claim">
+              <strong>Lema Bridge Way:</strong><br />
+              “Lo que ellos te prometen, nosotros te lo entregamos.”
+            </div>
+            <div class="hero-cta">
+              <button class="btn-main" type="button">
+                Quiero una propuesta personalizada
+              </button>
+              <button class="btn-ghost" type="button" onclick="document.getElementById('detailSection').scrollIntoView({behavior:'smooth'});">
+                Ver detalle técnico de precios
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PLANES PRINCIPALES (ESTILO APPLE) -->
+      <section class="plans-section">
+        <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+          <div>
+            <h2 class="section-title">Elige tu experiencia Bridge Way</h2>
+            <p class="section-subtitle mb-0">
+              Pocas opciones, muy claras. Todo el valor, sin ruido de descuentos.
+              Los detalles finos viven más abajo, en el bloque técnico.
+            </p>
+          </div>
+          <ul class="nav nav-pills rounded-pill mt-2 mt-md-0" id="planTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="kids-tab" data-bs-toggle="pill" data-bs-target="#kids" type="button" role="tab">
+                Niños (6–12 años)
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="teens-tab" data-bs-toggle="pill" data-bs-target="#teens" type="button" role="tab">
+                Teens & Adultos
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="intensive-tab" data-bs-toggle="pill" data-bs-target="#intensive" type="button" role="tab">
+                Plan Intensivo
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="custom-tab" data-bs-toggle="pill" data-bs-target="#custom" type="button" role="tab">
+                Individual & Club
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="tab-content mt-3" id="planTabsContent">
+          <!-- KIDS -->
+          <div class="tab-pane fade show active" id="kids" role="tabpanel" aria-labelledby="kids-tab">
+            <div class="row g-3 g-md-4">
+              <div class="col-md-6">
+                <article class="plan-card">
+                  <div class="plan-label-soft">Curso corto</div>
+                  <div class="plan-chip">Niños · 6 semanas</div>
+                  <h3 class="plan-name">Kids Express 6 semanas</h3>
+                  <p class="plan-tagline">
+                    Ideal para PRE-A1, A2+ y B2+. Primer salto potente o refuerzo rápido.
+                  </p>
+
+                  <div class="d-flex flex-column gap-1">
+                    <div class="plan-price-main">
+                      2.200 MDL <span>/ nivel completo</span>
+                    </div>
+                    <div class="plan-price-note">
+                      18 horas · 3 clases/semana · 60 min · ≈ 122 MDL/h.
+                    </div>
+                  </div>
+
+                  <div class="plan-divider"></div>
+
+                  <ul class="plan-list">
+                    <li>Mismo sistema Bridge Way para niños, con sesiones adaptadas a su concentración.</li>
+                    <li>Grupos reducidos (6–10 niños).</li>
+                    <li>Materiales digitales incluidos.</li>
+                    <li>Certificado premium de finalización.</li>
+                  </ul>
+
+                  <a href="#contact" class="plan-cta">
+                    Reservar plaza Kids Express <i>➜</i>
+                  </a>
+                </article>
+              </div>
+
+              <div class="col-md-6">
+                <article class="plan-card popular">
+                  <div class="plan-label">Más elegido</div>
+                  <div class="plan-chip">Niños · 12 semanas</div>
+                  <h3 class="plan-name">Kids Classic 12 semanas</h3>
+                  <p class="plan-tagline">
+                    Camino completo para A1, A2, B1 y B2. Estructura y resultados medibles.
+                  </p>
+
+                  <div class="d-flex flex-column gap-1">
+                    <div class="plan-price-main">
+                      4.150 MDL <span>/ nivel completo</span>
+                    </div>
+                    <div class="plan-price-note">
+                      36 horas · 3 clases/semana · 60 min · ≈ 115 MDL/h · ≈ 1.380 MDL/mes.
+                    </div>
+                  </div>
+
+                  <div class="plan-divider"></div>
+
+                  <ul class="plan-list">
+                    <li>Niños trabajan con <strong>Super Minds</strong> y materiales propios.</li>
+                    <li>Seguimiento por nivel y feedback para familias.</li>
+                    <li>Sin matrícula · garantía 15 días.</li>
+                    <li>Acceso al ecosistema Bridge Way (clubs, certificados, extras).</li>
+                  </ul>
+
+                  <a href="#contact" class="plan-cta">
+                    Quiero Kids Classic <i>➜</i>
+                  </a>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- TEENS & ADULTOS -->
+          <div class="tab-pane fade" id="teens" role="tabpanel" aria-labelledby="teens-tab">
+            <div class="row g-3 g-md-4">
+              <div class="col-md-6">
+                <article class="plan-card popular">
+                  <div class="plan-label">Recomendado</div>
+                  <div class="plan-chip">Teens & Adultos · 12 semanas</div>
+                  <h3 class="plan-name">Standard 12 semanas</h3>
+                  <p class="plan-tagline">
+                    Ideal para A1–B2, C1 y C2. El “core” de Bridge Way para adolescentes y adultos.
+                  </p>
+
+                  <div class="d-flex flex-column gap-1">
+                    <div class="plan-price-main">
+                      6.200 MDL <span>/ nivel completo</span>
+                    </div>
+                    <div class="plan-price-note">
+                      54 horas · 3 clases/semana · 90 min · ≈ 115 MDL/h · ≈ 2.070 MDL/mes.
+                    </div>
+                  </div>
+
+                  <div class="plan-divider"></div>
+
+                  <ul class="plan-list">
+                    <li>Metodología adaptada: <strong>Open World</strong> (público más joven) y <strong>Speak Out</strong> (adultos).</li>
+                    <li>Grupos reducidos 6–10 personas, foco en speaking real.</li>
+                    <li>Speaking Club incluido como práctica continua.</li>
+                    <li>Sin matrícula · materiales digitales · garantía 15 días.</li>
+                  </ul>
+
+                  <a href="#contact" class="plan-cta">
+                    Empezar Standard 12 semanas <i>➜</i>
+                  </a>
+                </article>
+              </div>
+
+              <div class="col-md-6">
+                <article class="plan-card">
+                  <div class="plan-label-soft">Alta exigencia</div>
+                  <div class="plan-chip">Niveles A2+ & B2+</div>
+                  <h3 class="plan-name">Avanzado Cambridge</h3>
+                  <p class="plan-tagline">
+                    Para A2+ y B2+ que buscan salto serio en comprensión y fluidez.
+                  </p>
+
+                  <div class="d-flex flex-column gap-1">
+                    <div class="plan-price-main">
+                      6.200 MDL <span>/ nivel completo</span>
+                    </div>
+                    <div class="plan-price-note">
+                      54 horas · 3 clases/semana · 90 min · ≈ 115 MDL/h.
+                    </div>
+                  </div>
+
+                  <div class="plan-divider"></div>
+
+                  <ul class="plan-list">
+                    <li>Enfoque Cambridge, simulaciones de exámenes y práctica intensiva de speaking.</li>
+                    <li>Perfecto puente hacia certificaciones oficiales.</li>
+                    <li>Acceso preferente a sesiones de examen & mock exams.</li>
+                  </ul>
+
+                  <a href="#contact" class="plan-cta">
+                    Quiero el plan Avanzado <i>➜</i>
+                  </a>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- INTENSIVO -->
+          <div class="tab-pane fade" id="intensive" role="tabpanel" aria-labelledby="intensive-tab">
+            <div class="row g-3 g-md-4">
+              <div class="col-md-7 col-lg-8">
+                <article class="plan-card popular">
+                  <div class="plan-label">Máxima velocidad</div>
+                  <div class="plan-chip">8 semanas · 7,5 h/semana</div>
+                  <h3 class="plan-name">Plan Intensivo Bridge Way</h3>
+                  <p class="plan-tagline">
+                    El plan para reventar el mercado (sin reventar tu margen): resultados en 8 semanas.
+                  </p>
+
+                  <div class="d-flex flex-column gap-1">
+                    <div class="plan-price-main">
+                      6.200 MDL <span>/ intensivo completo</span>
+                    </div>
+                    <div class="plan-price-note">
+                      54 horas · 5 clases/semana · 90 min · ≈ 115 MDL/h · ≈ 3.100 MDL/mes.
+                    </div>
+                  </div>
+
+                  <div class="plan-divider"></div>
+
+                  <ul class="plan-list">
+                    <li>Niveles: A1, A2, A2+, B1, B2, B2+, C1, C2 (mismos libros que en el plan estándar).</li>
+                    <li>Formato “bootcamp”: foco total en speaking y listening.</li>
+                    <li>Perfecto para verano, cambios de trabajo o deadlines claros.</li>
+                    <li>Compatible con campañas “Intensivos de verano”.</li>
+                  </ul>
+
+                  <a href="#contact" class="plan-cta">
+                    Reservar mi intensivo <i>➜</i>
+                  </a>
+                </article>
+              </div>
+
+              <div class="col-md-5 col-lg-4">
+                <article class="plan-card">
+                  <div class="plan-label-soft">Tip estratégico</div>
+                  <div class="plan-chip">Marketing & promos</div>
+                  <h3 class="plan-name">Cómo se comunica el intensivo</h3>
+                  <p class="plan-tagline">
+                    Inspirado en Apple: simple, escaso, sin rebajas eternas.
+                  </p>
+
+                  <ul class="plan-list">
+                    <li>Precio cerrado (sin % de descuento en público).</li>
+                    <li>Bonus en vez de rebaja: camiseta <em>Summer Edition</em> + acceso Speaking Club.</li>
+                    <li>Early Bird: pocas plazas con -10% máximo, solo primera semana.</li>
+                    <li>Última llamada: unas pocas plazas con -20% en las últimas 24–48 h.</li>
+                  </ul>
+
+                  <p class="plan-tagline mb-1">
+                    El usuario ve <strong>un precio claro y alto valor</strong>.
+                    Las promos viven en banners temporales, pop-ups y campañas segmentadas.
+                  </p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- INDIVIDUAL & CLUB -->
+          <div class="tab-pane fade" id="custom" role="tabpanel" aria-labelledby="custom-tab">
+            <div class="row g-3 g-md-4">
+              <div class="col-md-6">
+                <article class="plan-card">
+                  <div class="plan-label-soft">1:1 Premium</div>
+                  <div class="plan-chip">Clases individuales</div>
+                  <h3 class="plan-name">Bridge Way Individual</h3>
+                  <p class="plan-tagline">
+                    Para quien quiere foco total, agenda flexible y objetivos muy concretos.
+                  </p>
+
+                  <div class="d-flex flex-column gap-1">
+                    <div class="plan-price-main">
+                      420 MDL <span>/ hora</span>
+                    </div>
+                    <div class="plan-price-note">
+                      Pack mínimo de 10 horas · 4.200 MDL pack (precio mínimo 3.700 MDL según promos).
+                    </div>
+                  </div>
+
+                  <div class="plan-divider"></div>
+
+                  <ul class="plan-list">
+                    <li>Diseño a medida: entrevistas, presentaciones, proyectos concretos.</li>
+                    <li>Puede combinarse con grupos + Speaking Club.</li>
+                    <li>Posiciónalo como “tu entrenador personal de inglés”.</li>
+                  </ul>
+
+                  <a href="#contact" class="plan-cta">
+                    Diseñar un plan 1:1 <i>➜</i>
+                  </a>
+                </article>
+              </div>
+
+              <div class="col-md-6">
+                <article class="plan-card popular">
+                  <div class="plan-label">Motor de retención</div>
+                  <div class="plan-chip">Club de conversación</div>
+                  <h3 class="plan-name">Speaking Club Bridge Way</h3>
+                  <p class="plan-tagline">
+                    El club que convierte tu inglés en hábito. Niveles A2+–C2.
+                  </p>
+
+                  <div class="d-flex flex-column gap-1">
+                    <div class="plan-price-main">
+                      620 MDL <span>/ mes (externos)</span>
+                    </div>
+                    <div class="plan-price-note">
+                      1 sesión semanal · 60–90 min · grupos 8–10 alumnos.
+                    </div>
+                  </div>
+
+                  <div class="plan-divider"></div>
+
+                  <ul class="plan-list">
+                    <li>Para alumnos Bridge Way: se comunica muchas veces como <strong>incluido</strong> o <strong>bonus</strong>.</li>
+                    <li>Para externos o nivel PRO: modelo de suscripción mensual.</li>
+                    <li>Perfecto para promos: Early Bird, Última llamada, renovaciones, etc.</li>
+                  </ul>
+
+                  <a href="#contact" class="plan-cta">
+                    Unirme al Speaking Club <i>➜</i>
+                  </a>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESUMEN PROMOS (VERSION CORTA, SIN LIAR AL USUARIO) -->
+      <section class="promo-summary mt-5">
+        <div class="d-flex flex-wrap justify-content-between align-items-center">
+          <div>
+            <div class="promo-tag">Sistema de promociones inteligente</div>
+            <h2 class="section-title mb-1">Cómo ganas en marketing sin perder margen</h2>
+          </div>
+          <div class="text-end small text-muted">
+            <div class="promo-pill">Nunca acumular %</div>
+            <div class="promo-pill">Pocas plazas con descuento</div>
+            <div class="promo-pill">Valor añadido &gt; rebajas</div>
+          </div>
+        </div>
+
+        <div class="promo-columns">
+          <div>
+            <strong>1. Base siempre premium (sin tachar precios)</strong>
+            <ul class="mt-1 mb-0">
+              <li class="small">Sin matrícula · materiales digitales incluidos.</li>
+              <li class="small">Garantía 100% devolución 15 días.</li>
+              <li class="small">Speaking Club semanal incluido como “club VIP”.</li>
+            </ul>
+          </div>
+          <div>
+            <strong>2. Captación controlada</strong>
+            <ul class="mt-1 mb-0">
+              <li class="small">Early Bird: -10% pocas plazas, 1ª semana.</li>
+              <li class="small">Última llamada: hasta -20% en 3–5 plazas máximo.</li>
+              <li class="small">Flash 48h: campañas cortas, nunca permanentes.</li>
+            </ul>
+          </div>
+          <div>
+            <strong>3. Fidelización & segmentos</strong>
+            <ul class="mt-1 mb-0">
+              <li class="small">Renovación: -10% si suben de nivel antes de acabar.</li>
+              <li class="small">Segundo hermano -15% (no acumulable con Early).</li>
+              <li class="small">2x1 parcial parejas (solo 1 por grupo).</li>
+            </ul>
+          </div>
+          <div>
+            <strong>4. Regla Apple</strong>
+            <ul class="mt-1 mb-0">
+              <li class="small">En la web pública casi nunca hablas de %.</li>
+              <li class="small">Solo ves precios claros y valor brutal.</li>
+              <li class="small">Las promos viven en pop-ups, emails y mensajes segmentados.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DETALLE TÉCNICO · TABLA INTERACTIVA -->
+      <section id="detailSection">
+        <div class="detail-toggle">
+          <button class="detail-btn" type="button" id="detailToggle">
+            Mostrar / ocultar detalle técnico de precios
+          </button>
+        </div>
+
+        <div class="detail-panel mt-3" id="detailPanel">
+          <div class="d-flex flex-wrap justify-content-between align-items-center mb-2">
+            <div>
+              <h2 class="section-title mb-0">Detalle técnico de precios</h2>
+              <p class="section-subtitle mb-1">
+                Todas las modalidades, horas y precios Bridge Way vs mínimos de venta.
+              </p>
+            </div>
+            <div class="small text-muted">
+              Filtro rápido por segmento:
+              <select id="segmentFilter" class="form-select form-select-sm d-inline-block" style="width:auto;">
+                <option value="">Todos</option>
+                <option value="Individual">Individual</option>
+                <option value="Speaking Club">Speaking Club</option>
+                <option value="Niños">Niños</option>
+                <option value="Teens & Adultos">Teens & Adultos</option>
+                <option value="Plan Intensivo">Plan Intensivo</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table id="pricingTable" class="display nowrap" style="width:100%">
+              <thead>
+                <tr>
+                  <th>Segmento</th>
+                  <th>Modalidad / Curso</th>
+                  <th>Niveles</th>
+                  <th>Semanas</th>
+                  <th>Clases / semana</th>
+                  <th>Horas totales</th>
+                  <th>Duración clase</th>
+                  <th>Precio mercado / h (MDL)</th>
+                  <th>Precio Bridge Way total (MDL)</th>
+                  <th>Precio Bridge Way / h (MDL)</th>
+                  <th>Precio mínimo total (MDL)</th>
+                  <th>Precio mínimo / h (MDL)</th>
+                  <th>Tipo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Individual -->
+                <tr>
+                  <td><span class="badge badge-segmento badge-individual">Individual</span></td>
+                  <td>Clases individuales (pack 10h)</td>
+                  <td>Personalizado</td>
+                  <td>–</td>
+                  <td>1 (en grupo) / 3 (sin grupo)</td>
+                  <td>10</td>
+                  <td>60 min</td>
+                  <td>358</td>
+                  <td>4200</td>
+                  <td>420</td>
+                  <td>3700</td>
+                  <td>370</td>
+                  <td>Individual 1:1</td>
+                </tr>
+
+                <!-- Speaking Club -->
+                <tr>
+                  <td><span class="badge badge-segmento badge-club">Speaking Club</span></td>
+                  <td>Speaking Club mensual</td>
+                  <td>A2+–C2 adolescentes & adultos</td>
+                  <td>Mensual</td>
+                  <td>1</td>
+                  <td>≈ 4</td>
+                  <td>60–90 min</td>
+                  <td>–</td>
+                  <td>620</td>
+                  <td>–</td>
+                  <td>370</td>
+                  <td>–</td>
+                  <td>Club conversación</td>
+                </tr>
+
+                <!-- Niños 6 semanas -->
+                <tr>
+                  <td><span class="badge badge-segmento badge-niños">Niños</span></td>
+                  <td>Kids Express 6 semanas</td>
+                  <td>PRE-A1, A2+, B2+</td>
+                  <td>6</td>
+                  <td>3</td>
+                  <td>18</td>
+                  <td>60 min</td>
+                  <td>109</td>
+                  <td>2200</td>
+                  <td>122.22</td>
+                  <td>1800</td>
+                  <td>100</td>
+                  <td>Standard 6 semanas</td>
+                </tr>
+
+                <!-- Niños 12 semanas -->
+                <tr>
+                  <td><span class="badge badge-segmento badge-niños">Niños</span></td>
+                  <td>Kids Classic 12 semanas</td>
+                  <td>A1, A2, B1, B2</td>
+                  <td>12</td>
+                  <td>3</td>
+                  <td>36</td>
+                  <td>60 min</td>
+                  <td>109</td>
+                  <td>4150</td>
+                  <td>115.27</td>
+                  <td>2950</td>
+                  <td>81</td>
+                  <td>Standard 12 semanas</td>
+                </tr>
+
+                <!-- Teens & Adultos 12 semanas -->
+                <tr>
+                  <td><span class="badge badge-segmento badge-teens">Teens & Adultos</span></td>
+                  <td>Standard 12 semanas</td>
+                  <td>A1, A2, B1, B2, C1, C2</td>
+                  <td>12</td>
+                  <td>3</td>
+                  <td>54</td>
+                  <td>90 min</td>
+                  <td>114</td>
+                  <td>6200</td>
+                  <td>114.81</td>
+                  <td>4950</td>
+                  <td>91.66</td>
+                  <td>Standard 12 semanas</td>
+                </tr>
+
+                <!-- Teens & Adultos A2+ B2+ -->
+                <tr>
+                  <td><span class="badge badge-segmento badge-teens">Teens & Adultos</span></td>
+                  <td>Avanzado Cambridge 12 semanas</td>
+                  <td>A2+, B2+</td>
+                  <td>12</td>
+                  <td>3</td>
+                  <td>54</td>
+                  <td>90 min</td>
+                  <td>114</td>
+                  <td>6200</td>
+                  <td>114.81</td>
+                  <td>4950</td>
+                  <td>91.66</td>
+                  <td>Standard 12 semanas</td>
+                </tr>
+
+                <!-- Intensivo 8 semanas -->
+                <tr>
+                  <td><span class="badge badge-segmento badge-intensivo">Plan Intensivo</span></td>
+                  <td>Intensivo 8 semanas</td>
+                  <td>A1, A2, B1, C1, C2</td>
+                  <td>8 (7S + 1D)</td>
+                  <td>5</td>
+                  <td>54</td>
+                  <td>90 min</td>
+                  <td>114</td>
+                  <td>6200</td>
+                  <td>114.81</td>
+                  <td>4950</td>
+                  <td>91.66</td>
+                  <td>Intensivo 8 semanas</td>
+                </tr>
+
+                <!-- Intensivo 8 semanas A2+ / B2+ -->
+                <tr>
+                  <td><span class="badge badge-segmento badge-intensivo">Plan Intensivo</span></td>
+                  <td>Intensivo 8 semanas A2+ / B2+</td>
+                  <td>A2+, B2+</td>
+                  <td>8 (7S + 1D)</td>
+                  <td>5</td>
+                  <td>54</td>
+                  <td>90 min</td>
+                  <td>114</td>
+                  <td>6200</td>
+                  <td>114.81</td>
+                  <td>4950</td>
+                  <td>91.66</td>
+                  <td>Intensivo 8 semanas</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- jQuery (requerido por DataTables) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- DataTables -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      // Toggle panel técnico
+      $("#detailToggle").on("click", function () {
+        $("#detailPanel").slideToggle(200);
+      });
+
+      // DataTable
+      var table = $("#pricingTable").DataTable({
+        scrollX: true,
+        pageLength: 10,
+        lengthChange: false,
+        language: {
+          url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+        }
+      });
+
+      // Filtro por segmento (detalle técnico)
+      $("#segmentFilter").on("change", function () {
+        var val = $(this).val();
+        if (!val) {
+          table.column(0).search("").draw();
+        } else {
+          table.column(0).search(val, true, false).draw();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
