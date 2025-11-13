@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bridge Way · Tabla de precios & Promociones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap 5 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- DataTables -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"
+  />
+
+  <!-- Google Font (opcional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: #f5f7fb;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #283593, #5c6bc0);
+      border-radius: 1.5rem;
+      color: #fff;
+      padding: 2.5rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 10px 30px rgba(13, 27, 62, 0.35);
+    }
+
+    .hero-badge {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      padding: 0.25rem 0.9rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero h1 {
+      font-weight: 700;
+      margin-top: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      margin-bottom: 0.3rem;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      margin-right: 0.35rem;
+      margin-top: 0.35rem;
+    }
+
+    .card-highlight {
+      border-radius: 1rem;
+      border: none;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+    }
+
+    .card-highlight h5 {
+      font-weight: 600;
+    }
+
+    #pricingTable_wrapper {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    table.dataTable thead th {
+      background-color: #e8eaf6;
+    }
+
+    .badge-segmento {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 999px;
+    }
+
+    .badge-niños {
+      background-color: #e1f5fe;
+      color: #01579b;
+    }
+
+    .badge-teens-adults {
+      background-color: #ede7f6;
+      color: #4527a0;
+    }
+
+    .badge-intensivo {
+      background-color: #fff3e0;
+      color: #e65100;
+    }
+
+    .badge-individual {
+      background-color: #e0f2f1;
+      color: #004d40;
+    }
+
+    .badge-club {
+      background-color: #fce4ec;
+      color: #ad1457;
+    }
+
+    @media (max-width: 767.98px) {
+      .hero {
+        padding: 1.5rem;
+      }
+
+      #pricingTable_wrapper {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <!-- HERO / RESUMEN -->
+    <section class="hero">
+      <span class="hero-badge">Bridge Way · Academia de Inglés</span>
+      <h1 class="h2 h-lg-1 mb-2">
+        Tabla de precios interactiva & sistema de promociones
+      </h1>
+      <p class="tagline">
+        Mismo sistema para todos los públicos · Diferencia de horas → diferencia
+        de precio · Calidad premium, propuesta todo incluido.
+      </p>
+      <div class="mt-3">
+        <span class="pill">✔ Niños: clases de 60 min</span>
+        <span class="pill">✔ Adolescentes & adultos: 90 min</span>
+        <span class="pill">✔ Grupos de 6–10 alumnos</span>
+        <span class="pill">✔ Speaking Club incluido</span>
+      </div>
+      <div class="mt-3 small">
+        <strong>Lema:</strong> “Lo que ellos te prometen, nosotros te lo
+        entregamos.”
+      </div>
+    </section>
+
+    <!-- RESUMEN RÁPIDO -->
+    <section class="mt-4">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="card card-highlight h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-2">Oferta base Bridge Way</h5>
+              <ul class="small mb-0">
+                <li>Sin matrícula, sin costes ocultos.</li>
+                <li>Materiales digitales incluidos.</li>
+                <li>Garantía 100% devolución (15 días).</li>
+                <li>Speaking Club semanal incluido.</li>
+                <li>Certificado premium de finalización.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-highlight h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-2">Modalidades principales</h5>
+              <ul class="small mb-0">
+                <li>Individual 1:1 (packs de 10h).</li>
+                <li>Speaking Club mensual (A2+–C2).</li>
+                <li>Cursos estándar 6 y 12 semanas (niños).</li>
+                <li>Cursos estándar 12 semanas (teens & adultos).</li>
+                <li>Planes intensivos 8 semanas.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-highlight h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-2">Promos clave (sin perder margen)</h5>
+              <ul class="small mb-0">
+                <li>Early Bird: -10% primeras plazas.</li>
+                <li>Última llamada: hasta -20% (plazas muy limitadas).</li>
+                <li>Renovación alumnos: -10% al subir de nivel.</li>
+                <li>Segundo hermano: -15% (sobre el de menor precio).</li>
+                <li>2x1 parcial parejas: segundo -50% (cupos muy controlados).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTROS -->
+    <section class="mt-5">
+      <div class="d-flex flex-column flex-md-row gap-3 align-items-md-end mb-3">
+        <div class="flex-grow-1">
+          <label for="segmentFilter" class="form-label small mb-1">
+            Filtrar por segmento
+          </label>
+          <select id="segmentFilter" class="form-select form-select-sm">
+            <option value="">Todos los segmentos</option>
+            <option value="Individual">Individual</option>
+            <option value="Speaking Club">Speaking Club</option>
+            <option value="Niños">Niños</option>
+            <option value="Adolescentes & Adultos">
+              Adolescentes & Adultos
+            </option>
+            <option value="Plan Intensivo">Plan Intensivo</option>
+          </select>
+        </div>
+        <div>
+          <label for="priceView" class="form-label small mb-1">
+            Vista de precios
+          </label>
+          <select id="priceView" class="form-select form-select-sm">
+            <option value="all">Mostrar todos</option>
+            <option value="bridge">Solo precio Bridge Way</option>
+            <option value="min">Solo precio mínimo venta</option>
+            <option value="market">Solo precio medio mercado</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- TABLA DE PRECIOS -->
+      <div class="table-responsive">
+        <table id="pricingTable" class="display nowrap table table-striped" style="width:100%">
+          <thead>
+            <tr>
+              <th>Segmento</th>
+              <th>Modalidad / Curso</th>
+              <th>Niveles</th>
+              <th>Semanas</th>
+              <th>Clases / semana</th>
+              <th>Horas totales</th>
+              <th>Duración clase</th>
+              <th class="col-market">Precio mercado / hora (MDL)</th>
+              <th class="col-bridge">Precio Bridge Way total (MDL)</th>
+              <th class="col-bridge">Precio Bridge Way / hora (MDL)</th>
+              <th class="col-min">Precio mínimo total (MDL)</th>
+              <th class="col-min">Precio mínimo / hora (MDL)</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- INDIVIDUAL -->
+            <tr>
+              <td>
+                <span class="badge badge-segmento badge-individual">
+                  Individual
+                </span>
+              </td>
+              <td>Clases individuales (pack 10h)</td>
+              <td>Personalizado</td>
+              <td>–</td>
+              <td>1 (en grupo) / 3 (sin grupo)</td>
+              <td>10</td>
+              <td>60 min</td>
+              <td class="col-market">358</td>
+              <td class="col-bridge">4200</td>
+              <td class="col-bridge">420</td>
+              <td class="col-min">3700</td>
+              <td class="col-min">370</td>
+              <td>Individual 1:1</td>
+            </tr>
+
+            <!-- SPEAKING CLUB -->
+            <tr>
+              <td>
+                <span class="badge badge-segmento badge-club">
+                  Speaking Club
+                </span>
+              </td>
+              <td>Speaking Club mensual</td>
+              <td>Adolescentes & adultos A2+–C2</td>
+              <td>Mensual (renovable)</td>
+              <td>1</td>
+              <td>≈ 4</td>
+              <td>60–90 min</td>
+              <td class="col-market">–</td>
+              <td class="col-bridge">620</td>
+              <td class="col-bridge">–</td>
+              <td class="col-min">370</td>
+              <td class="col-min">–</td>
+              <td>Club conversación</td>
+            </tr>
+
+            <!-- NIÑOS · 6 SEMANAS -->
+            <tr>
+              <td>
+                <span class="badge badge-segmento badge-niños">
+                  Niños
+                </span>
+              </td>
+              <td>Curso 6 semanas (PRE-A1 / A2+ / B2+)</td>
+              <td>PRE-A1, A2+, B2+</td>
+              <td>6</td>
+              <td>3</td>
+              <td>18</td>
+              <td>60 min</td>
+              <td class="col-market">109</td>
+              <td class="col-bridge">2200</td>
+              <td class="col-bridge">122.22</td>
+              <td class="col-min">1800</td>
+              <td class="col-min">100</td>
+              <td>Standard 6 semanas</td>
+            </tr>
+
+            <!-- NIÑOS · 12 SEMANAS -->
+            <tr>
+              <td>
+                <span class="badge badge-segmento badge-niños">
+                  Niños
+                </span>
+              </td>
+              <td>Curso 12 semanas (A1 / A2 / B1 / B2)</td>
+              <td>A1, A2, B1, B2</td>
+              <td>12</td>
+              <td>3</td>
+              <td>36</td>
+              <td>60 min</td>
+              <td class="col-market">109</td>
+              <td class="col-bridge">4150</td>
+              <td class="col-bridge">115.27</td>
+              <td class="col-min">2950</td>
+              <td class="col-min">81</td>
+              <td>Standard 12 semanas</td>
+            </tr>
+
+            <!-- ADOLESCENTES & ADULTOS · 12 SEMANAS -->
+            <tr>
+              <td>
+                <span class="badge badge-segmento badge-teens-adults">
+                  Adolescentes & Adultos
+                </span>
+              </td>
+              <td>Curso 12 semanas (A1 / A2 / B1 / B2 / C1 / C2)</td>
+              <td>A1, A2, B1, B2, C1, C2</td>
+              <td>12</td>
+              <td>3</td>
+              <td>54</td>
+              <td>90 min</td>
+              <td class="col-market">114</td>
+              <td class="col-bridge">6200</td>
+              <td class="col-bridge">114.81</td>
+              <td class="col-min">4950</td>
+              <td class="col-min">91.66</td>
+              <td>Standard 12 semanas</td>
+            </tr>
+
+            <!-- ADOLESCENTES & ADULTOS · 12 SEMANAS · A2+ / B2+ -->
+            <tr>
+              <td>
+                <span class="badge badge-segmento badge-teens-adults">
+                  Adolescentes & Adultos
+                </span>
+              </td>
+              <td>Curso 12 semanas (A2+ / B2+)</td>
+              <td>A2+, B2+</td>
+              <td>12</td>
+              <td>3</td>
+              <td>54</td>
+              <td>90 min</td>
+              <td class="col-market">114</td>
+              <td class="col-bridge">6200</td>
+              <td class="col-bridge">114.81</td>
+              <td class="col-min">4950</td>
+              <td class="col-min">91.66</td>
+              <td>Standard 12 semanas</td>
+            </tr>
+
+            <!-- PLAN INTENSIVO · 8 SEMANAS -->
+            <tr>
+              <td>
+                <span class="badge badge-segmento badge-intensivo">
+                  Plan Intensivo
+                </span>
+              </td>
+              <td>Intensivo 8 semanas (A1 / A2 / B1 / C1 / C2)</td>
+              <td>A1, A2, B1, C1, C2</td>
+              <td>8 (7S + 1D)</td>
+              <td>5</td>
+              <td>54</td>
+              <td>90 min</td>
+              <td class="col-market">114</td>
+              <td class="col-bridge">6200</td>
+              <td class="col-bridge">114.81</td>
+              <td class="col-min">4950</td>
+              <td class="col-min">91.66</td>
+              <td>Intensivo 8 semanas</td>
+            </tr>
+
+            <!-- PLAN INTENSIVO · 8 SEMANAS · A2+ / B2+ -->
+            <tr>
+              <td>
+                <span class="badge badge-segmento badge-intensivo">
+                  Plan Intensivo
+                </span>
+              </td>
+              <td>Intensivo 8 semanas (A2+ / B2+)</td>
+              <td>A2+, B2+</td>
+              <td>8 (7S + 1D)</td>
+              <td>5</td>
+              <td>54</td>
+              <td>90 min</td>
+              <td class="col-market">114</td>
+              <td class="col-bridge">6200</td>
+              <td class="col-bridge">114.81</td>
+              <td class="col-min">4950</td>
+              <td class="col-min">91.66</td>
+              <td>Intensivo 8 semanas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PROMOCIONES CLAVE (RESUMEN VISUAL) -->
+    <section class="mt-5 mb-4">
+      <h2 class="h4 mb-3">Promociones Bridge Way (resumen operativo)</h2>
+      <div class="row g-3">
+        <!-- Promo base -->
+        <div class="col-md-4">
+          <div class="card card-highlight h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-2">1. Propuesta base (siempre activa)</h5>
+              <ul class="small mb-0">
+                <li>Sin matrícula, sin extras ocultos.</li>
+                <li>Materiales digitales incluidos.</li>
+                <li>Garantía 100% devolución (15 días).</li>
+                <li>Speaking Club semanal gratuito.</li>
+                <li>Certificado premium Bridge Way.</li>
+                <li>
+                  <strong>Mensaje:</strong> “En Bridge Way todo está incluido.”
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nuevos alumnos -->
+        <div class="col-md-4">
+          <div class="card card-highlight h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-2">
+                2. Captación (nuevos alumnos)
+              </h5>
+              <ul class="small mb-0">
+                <li>
+                  <strong>Early Bird:</strong> -10% primera semana de
+                  inscripciones (plazas limitadas por grupo).
+                </li>
+                <li>
+                  <strong>Última llamada:</strong> hasta -20% en las últimas
+                  plazas (3–5 máximo por grupo, pop-up tras 30–45s en la web).
+                </li>
+                <li>
+                  <strong>Flash Sales 48h:</strong> campañas cortas con -10% o
+                  regalos (test premium, ebook).
+                </li>
+                <li>Promos <em>no acumulables</em> entre sí.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fidelización -->
+        <div class="col-md-4">
+          <div class="card card-highlight h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-2">3. Fidelización (alumnos actuales)</h5>
+              <ul class="small mb-0">
+                <li>
+                  <strong>Sube de nivel:</strong> -10% si renuevan antes de
+                  acabar el curso (solo primeros alumnos del grupo).
+                </li>
+                <li>
+                  Bonus recomendado: 1 mes de acceso Speaking Club PRO o Business
+                  Club.
+                </li>
+                <li>
+                  Comunicación vía email / WhatsApp + banner interno en
+                  plataforma alumnos.
+                </li>
+                <li>Regla: no acumular con Early/Última llamada.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Segmentos -->
+        <div class="col-md-4">
+          <div class="card card-highlight h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-2">4. Promos por segmento</h5>
+              <ul class="small mb-0">
+                <li>
+                  <strong>Niños / Adolescentes:</strong> Back to School,
+                  segundo hermano -15%, pack materiales extra.
+                </li>
+                <li>
+                  <strong>Adultos:</strong> New Year &amp; Back to School:
+                  -10% + masterclass / Business Club.
+                </li>
+                <li>
+                  <strong>Mujeres (8M):</strong> matrícula gratis (reforzar),
+                  evento online motivacional.
+                </li>
+                <li>
+                  <strong>Hombres (Día del Padre):</strong> Gift Card -10% +
+                  libreta premium.
+                </li>
+                <li>Segmentar: no mostrar todo a todos.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cross & creativas -->
+        <div class="col-md-4">
+          <div class="card card-highlight h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-2">5. Cross selling & creativas</h5>
+              <ul class="small mb-0">
+                <li>
+                  <strong>2x1 parcial:</strong> amigos/pareja → segundo -50%
+                  (máx. 1 pareja por grupo).
+                </li>
+                <li>
+                  <strong>Mes extra gratis</strong> al terminar el curso
+                  completo (valor añadido, sin %).
+                </li>
+                <li>
+                  <strong>Grupos empresa:</strong> -10% a partir de 3 empleados
+                  (B2B, no acumulable).
+                </li>
+                <li>
+                  No acumular con otras promos de porcentaje para proteger
+                  margen.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Valor añadido -->
+        <div class="col-md-4">
+          <div class="card card-highlight h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-2">6. Valor añadido estratégico</h5>
+              <ul class="small mb-0">
+                <li>Speaking Club gratuito como beneficio base.</li>
+                <li>
+                  Opción Speaking Club PRO (grupos pequeños, feedback
+                  individual) como upsell.
+                </li>
+                <li>
+                  Certificado premium, materiales incluidos, garantías →
+                  refuerzan status sin bajar precio.
+                </li>
+                <li>
+                  Regla de oro: <strong>“Nunca acumules %”</strong>. Los
+                  regalos sí pueden acumularse.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="small text-muted mt-3">
+        <strong>Calendario sugerido:</strong> Enero (New Year adultos),
+        Febrero (San Valentín parejas), Marzo (8M mujeres), Junio (Día del
+        Padre + intensivos), Septiembre (Back to School niños/adultos),
+        Diciembre (Gift Cards Navidad), intercalando meses solo de valor
+        añadido para mantener percepción premium.
+      </p>
+    </section>
+  </div>
+
+  <!-- SCRIPTS -->
+
+  <!-- jQuery (requerido por DataTables) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- DataTables -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      // Inicializar DataTable
+      var table = $("#pricingTable").DataTable({
+        scrollX: true,
+        pageLength: 10,
+        lengthChange: false,
+        language: {
+          url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+        },
+      });
+
+      // Filtro por segmento
+      $("#segmentFilter").on("change", function () {
+        var val = $(this).val();
+        if (!val) {
+          table.column(0).search("").draw();
+        } else {
+          // búsqueda exacta por texto (Segmento)
+          table.column(0).search(val, true, false).draw();
+        }
+      });
+
+      // Vista de precios (mostrar / ocultar columnas)
+      function updatePriceColumns(view) {
+        var showMarket = view === "all" || view === "market";
+        var showBridge = view === "all" || view === "bridge";
+        var showMin = view === "all" || view === "min";
+
+        table.columns(".col-market").visible(showMarket);
+        table.columns(".col-bridge").visible(showBridge);
+        table.columns(".col-min").visible(showMin);
+      }
+
+      $("#priceView").on("change", function () {
+        updatePriceColumns(this.value);
+      });
+
+      // Vista inicial → mostrar todo
+      updatePriceColumns("all");
+    });
+  </script>
+</body>
+</html>
+
+
