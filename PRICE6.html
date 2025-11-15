@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bridge Way | Precios y Promociones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .fade-enter { opacity: 0; transform: translateY(8px); }
+    .fade-enter-active {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 200ms ease-out, transform 200ms ease-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-50 antialiased" id="top">
+
+<!-- HEADER -->
+<header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="#top" class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center font-bold text-white">
+        BW
+      </div>
+      <span class="font-semibold tracking-tight text-slate-50">Bridge Way</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-6 text-sm" aria-label="Navegación principal">
+      <a href="#precios" class="text-slate-50 font-medium">Precios</a>
+      <a href="#promos" class="text-slate-300 hover:text-white">Promociones</a>
+      <a href="#faq" class="text-slate-300 hover:text-white">Dudas frecuentes</a>
+      <button class="ml-2 px-4 py-2 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold shadow">
+        Clase gratis
+      </button>
+      <div class="flex items-center gap-2 text-xs font-medium border border-slate-700 rounded-full px-3 py-1">
+        <button class="hover:text-white" aria-label="Cambiar a español">ES</button>
+        <span class="text-slate-500">|</span>
+        <button class="hover:text-white" aria-label="Cambiar a inglés">EN</button>
+        <span class="text-slate-500">|</span>
+        <button class="hover:text-white" aria-label="Cambiar a rumano">RO</button>
+        <span class="text-slate-500">|</span>
+        <button class="hover:text-white" aria-label="Cambiar a ruso">RU</button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu button -->
+    <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center rounded-full border border-slate-700 w-9 h-9">
+      <span class="sr-only">Abrir menú</span>
+      <svg class="w-5 h-5 text-slate-200" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu panel -->
+  <div id="mobileMenu" class="md:hidden hidden border-t border-slate-800 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-3 text-sm">
+      <a href="#precios" class="text-slate-50 font-medium">Precios</a>
+      <a href="#promos" class="text-slate-300 hover:text-white">Promociones</a>
+      <a href="#faq" class="text-slate-300 hover:text-white">Dudas frecuentes</a>
+      <button class="mt-2 w-full px-4 py-2 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold shadow">
+        Clase gratis
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO PRECIOS -->
+  <section id="precios" class="pt-10 pb-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-[3fr,2fr] gap-10 items-center">
+        <div>
+          <span class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-400 mb-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            Precios Bridge Way
+          </span>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-50 mb-4">
+            Precios claros.<br class="hidden sm:block" />
+            Todo incluido. Sin letra pequeña.
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base max-w-xl mb-6">
+            En Bridge Way todos los alumnos comparten el mismo sistema:
+            grupos reducidos, profesores de alto nivel, enfoque 100% práctico
+            y acceso al Speaking Club. La estructura y metodología son las mismas
+            para niños, adolescentes y adultos. Lo único que cambia es la duración
+            de cada clase y el formato. Por eso cambian los precios.
+          </p>
+          <div class="flex flex-wrap gap-3 mb-5">
+            <button class="px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold shadow-md">
+              Reservar clase gratis
+            </button>
+            <button class="px-5 py-2.5 rounded-full border border-slate-700 text-slate-100 text-sm font-semibold hover:border-slate-500">
+              Hacer test de nivel
+            </button>
+          </div>
+          <p class="text-[11px] text-slate-400 max-w-md">
+            “Lo que otros te prometen, nosotros te lo entregamos.”
+          </p>
+        </div>
+
+        <!-- Bloque TODO INCLUIDO -->
+        <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-5 sm:p-6 flex flex-col gap-4 shadow-xl">
+          <h2 class="text-sm font-semibold text-slate-100">
+            Todo lo que incluye cualquier curso Bridge Way
+          </h2>
+          <ul class="space-y-2 text-xs sm:text-sm text-slate-200">
+            <li class="flex gap-2">
+              <span class="mt-0.5 w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
+              </span>
+              Matrícula gratuita – inscripción directa, sin costes ocultos.
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0.5 w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
+              </span>
+              Materiales digitales incluidos (libro físico opcional si lo deseas).
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0.5 w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
+              </span>
+              Garantía 100% devolución durante los primeros 15 días si no estás satisfecho.
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0.5 w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
+              </span>
+              Acceso semanal al Bridge Way Speaking Club: práctica real de conversación.
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0.5 w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
+              </span>
+              Certificado premium Bridge Way de finalización.
+            </li>
+          </ul>
+          <p class="text-[11px] text-slate-400">
+            Pagas el curso, y ya está. Nada de letra pequeña.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABS MODALIDADES -->
+  <section class="pb-12 border-t border-slate-900/60 pt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-6">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <h2 class="text-xl sm:text-2xl font-semibold text-slate-50">
+            Elige tu modalidad
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-400 max-w-md">
+            Mismo sistema para todos los públicos. Cambia la duración de las clases,
+            el nivel y si es grupo, intensivo o individual. Así se organizan tus opciones:
+          </p>
+        </div>
+
+        <!-- Tab buttons -->
+        <div class="flex flex-wrap gap-2 text-xs sm:text-sm border border-slate-800 rounded-full p-1 bg-slate-950/60">
+          <button data-tab="tab-ninos" class="tab-btn px-3 sm:px-4 py-1.5 rounded-full bg-slate-800 text-slate-50 font-medium">
+            Niños
+          </button>
+          <button data-tab="tab-ado-adultos" class="tab-btn px-3 sm:px-4 py-1.5 rounded-full text-slate-300 hover:text-white">
+            Adolescentes &amp; Adultos
+          </button>
+          <button data-tab="tab-intensivo" class="tab-btn px-3 sm:px-4 py-1.5 rounded-full text-slate-300 hover:text-white">
+            Intensivo
+          </button>
+          <button data-tab="tab-individual" class="tab-btn px-3 sm:px-4 py-1.5 rounded-full text-slate-300 hover:text-white">
+            Individual 1:1
+          </button>
+          <button data-tab="tab-speaking" class="tab-btn px-3 sm:px-4 py-1.5 rounded-full text-slate-300 hover:text-white">
+            Speaking Club
+          </button>
+          <button data-tab="tab-empresas" class="tab-btn px-3 sm:px-4 py-1.5 rounded-full text-slate-300 hover:text-white">
+            Empresas
+          </button>
+        </div>
+
+        <!-- TAB: NIÑOS -->
+        <div id="tab-ninos" class="tab-panel">
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Niños 6 semanas -->
+            <article class="bg-slate-900/70 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl flex flex-col h-full">
+              <header class="flex items-start justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="text-sm sm:text-base font-semibold text-slate-50">
+                    Niños – PRE-A1 / A2+ / B2+ (6 semanas)
+                  </h3>
+                  <p class="text-xs text-slate-400">
+                    3 clases de 60’ por semana · 18 clases · grupos de 6–10 alumnos
+                  </p>
+                </div>
+              </header>
+              <dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-slate-300 mb-4">
+                <div>
+                  <dt class="text-slate-500">Duración</dt>
+                  <dd>6 semanas</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Clases/semana</dt>
+                  <dd>3 clases</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Duración clase</dt>
+                  <dd>60 minutos</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Total clases</dt>
+                  <dd>18 clases</dd>
+                </div>
+              </dl>
+              <div class="mb-4">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500 mb-1">
+                  Precio del curso
+                </p>
+                <p class="text-2xl font-semibold text-emerald-400">2.200 MDL</p>
+              </div>
+              <p class="text-xs text-slate-400 mb-4">
+                Pensado para los más pequeños o niveles iniciales avanzando rápido:
+                PRE-A1, A2+ y B2+. Mismo sistema Bridge Way, adaptado a su capacidad
+                de concentración (60 minutos por clase).
+              </p>
+              <button class="w-full mt-auto px-4 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs sm:text-sm font-semibold">
+                Reservar clase gratis para mi hijo/a
+              </button>
+            </article>
+
+            <!-- Niños 12 semanas -->
+            <article class="bg-slate-900/70 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl flex flex-col h-full">
+              <header class="flex items-start justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="text-sm sm:text-base font-semibold text-slate-50">
+                    Niños – A1 / A2 / B1 / B2 (12 semanas)
+                  </h3>
+                  <p class="text-xs text-slate-400">
+                    3 clases de 60’ por semana · 36 clases · grupos de 6–10 alumnos
+                  </p>
+                </div>
+              </header>
+              <dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-slate-300 mb-4">
+                <div>
+                  <dt class="text-slate-500">Duración</dt>
+                  <dd>12 semanas</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Clases/semana</dt>
+                  <dd>3 clases</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Duración clase</dt>
+                  <dd>60 minutos</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Total clases</dt>
+                  <dd>36 clases</dd>
+                </div>
+              </dl>
+              <div class="mb-4">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500 mb-1">
+                  Precio del curso
+                </p>
+                <p class="text-2xl font-semibold text-emerald-400">4.150 MDL</p>
+              </div>
+              <p class="text-xs text-slate-400 mb-4">
+                Trabajamos con <span class="font-semibold text-slate-200">Super Minds</span> y materiales
+                propios para que tu hijo/a avance de forma sólida,
+                con motivación y sin sobrecarga.
+              </p>
+              <button class="w-full mt-auto px-4 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs sm:text-sm font-semibold">
+                Reservar clase gratis para A1–B2
+              </button>
+            </article>
+          </div>
+        </div>
+
+        <!-- TAB: ADOLESCENTES & ADULTOS -->
+        <div id="tab-ado-adultos" class="tab-panel hidden">
+          <div class="grid lg:grid-cols-[2fr,1.5fr] gap-6">
+            <article class="bg-slate-900/70 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl flex flex-col h-full">
+              <header class="flex items-start justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="text-sm sm:text-base font-semibold text-slate-50">
+                    Adolescentes &amp; Adultos – A1 a C2 (12 semanas)
+                  </h3>
+                  <p class="text-xs text-slate-400">
+                    3 clases de 90’ por semana · 36 clases · 54 horas en total · grupos de 6–10 alumnos
+                  </p>
+                </div>
+              </header>
+              <dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-slate-300 mb-4">
+                <div>
+                  <dt class="text-slate-500">Duración</dt>
+                  <dd>12 semanas</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Clases/semana</dt>
+                  <dd>3 clases</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Duración clase</dt>
+                  <dd>90 minutos</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Total horas</dt>
+                  <dd>54 horas</dd>
+                </div>
+              </dl>
+              <div class="mb-4">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500 mb-1">
+                  Precio del curso
+                </p>
+                <p class="text-2xl font-semibold text-emerald-400">6.200 MDL</p>
+              </div>
+              <p class="text-xs text-slate-400 mb-4">
+                Niveles: A1, A2, A2+, B1, B2, B2+, C1, C2. <br />
+                Libros: <span class="font-semibold text-slate-200">Open World</span> para público más joven
+                y <span class="font-semibold text-slate-200">Speak Out</span> para adultos (+30),
+                siempre combinados con materiales propios y práctica real orientada a tu vida
+                académica o profesional.
+              </p>
+              <button class="w-full mt-auto px-4 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs sm:text-sm font-semibold">
+                Reservar clase gratis para A1–C2
+              </button>
+            </article>
+
+            <article class="bg-slate-900/40 border border-dashed border-slate-700 rounded-3xl p-5 sm:p-6">
+              <h3 class="text-sm sm:text-base font-semibold text-slate-50 mb-2">
+                Cómo funciona para adolescentes y adultos
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-300 mb-3">
+                La estructura es la misma para ambos públicos: grupos reducidos,
+                enfoque comunicativo y resultados medibles. Lo que cambia es
+                el contexto: estudios, trabajo, entrevistas, certificaciones
+                o crecimiento personal.
+              </p>
+              <ul class="text-xs text-slate-300 space-y-1.5">
+                <li>• Seguimiento continuo y feedback personal.</li>
+                <li>• Trabajo en proyectos, role plays y situaciones reales.</li>
+                <li>• Posibilidad de reforzar con Speaking Club y clases 1:1.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <!-- TAB: INTENSIVO -->
+        <div id="tab-intensivo" class="tab-panel hidden">
+          <div class="grid lg:grid-cols-[2fr,1.5fr] gap-6">
+            <article class="bg-slate-900/70 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl flex flex-col h-full">
+              <header class="flex items-start justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="text-sm sm:text-base font-semibold text-slate-50">
+                    Intensivo – A1 a C2 (8 semanas)
+                  </h3>
+                  <p class="text-xs text-slate-400">
+                    5 clases de 90’ por semana · 36 clases · 54 horas en total · grupos de 6–10 alumnos
+                  </p>
+                </div>
+              </header>
+              <dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-slate-300 mb-4">
+                <div>
+                  <dt class="text-slate-500">Duración</dt>
+                  <dd>8 semanas (7 + 1 de consolidación)</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Clases/semana</dt>
+                  <dd>5 clases</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Duración clase</dt>
+                  <dd>90 minutos</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Total horas</dt>
+                  <dd>54 horas</dd>
+                </div>
+              </dl>
+              <div class="mb-4">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500 mb-1">
+                  Precio del curso
+                </p>
+                <p class="text-2xl font-semibold text-emerald-400">6.200 MDL</p>
+              </div>
+              <p class="text-xs text-slate-400 mb-4">
+                Mismas horas, mismo nivel y misma exigencia que el plan standard de 12 semanas,
+                concentrado en 8 semanas para un salto rápido. Ideal para verano,
+                cambios de trabajo o mudanzas.
+              </p>
+              <button class="w-full mt-auto px-4 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs sm:text-sm font-semibold">
+                Reservar clase gratis para intensivo
+              </button>
+            </article>
+
+            <article class="bg-slate-900/40 border border-dashed border-slate-700 rounded-3xl p-5 sm:p-6">
+              <h3 class="text-sm sm:text-base font-semibold text-slate-50 mb-2">
+                Intensivos de verano y campañas especiales
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-300 mb-3">
+                El plan intensivo es perfecto para campañas como
+                <span class="font-semibold text-slate-200">“Verano que transforma”</span>.
+                Puedes comunicarlo como un verano diseñado para dar un salto
+                real en tu nivel con resultados sólidos y bonus exclusivos.
+              </p>
+              <p class="text-xs text-slate-400">
+                Muchas academias prometen “intensivos”; Bridge Way lo acompaña con
+                seguimiento, Speaking Club y garantía de calidad.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <!-- TAB: INDIVIDUAL -->
+        <div id="tab-individual" class="tab-panel hidden">
+          <div class="grid lg:grid-cols-[2fr,1.5fr] gap-6">
+            <article class="bg-slate-900/70 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl flex flex-col h-full">
+              <header class="flex items-start justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="text-sm sm:text-base font-semibold text-slate-50">
+                    Clases individuales 1:1
+                  </h3>
+                  <p class="text-xs text-slate-400">
+                    Profesor dedicado solo para ti. Ritmo, enfoque y contenidos 100% personalizados.
+                  </p>
+                </div>
+              </header>
+              <dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-slate-300 mb-4">
+                <div>
+                  <dt class="text-slate-500">Duración clase</dt>
+                  <dd>60 minutos</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Pack mínimo</dt>
+                  <dd>10 clases (packs de 10 en 10)</dd>
+                </div>
+              </dl>
+              <div class="mb-4">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500 mb-1">
+                  Inversión
+                </p>
+                <p class="text-lg font-semibold text-emerald-400">
+                  Pack 10 clases desde 3.700 MDL
+                </p>
+                <p class="text-[11px] text-slate-500 mt-1">
+                  El precio exacto se define según horario, objetivo y tipo de programa.
+                </p>
+              </div>
+              <p class="text-xs text-slate-400 mb-4">
+                Recomendado para entrevistas de trabajo, presentaciones importantes,
+                exámenes concretos o directivos que necesitan máxima flexibilidad.
+              </p>
+              <button class="w-full mt-auto px-4 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs sm:text-sm font-semibold">
+                Hablar con un asesor
+              </button>
+            </article>
+
+            <article class="bg-slate-900/40 border border-dashed border-slate-700 rounded-3xl p-5 sm:p-6">
+              <h3 class="text-sm sm:text-base font-semibold text-slate-50 mb-2">
+                Cómo se integra en tu plan
+              </h3>
+              <ul class="text-xs sm:text-sm text-slate-300 space-y-1.5 mb-3">
+                <li>• Extra para alumnos de grupo antes de un examen.</li>
+                <li>• Entrenamiento intensivo previo a entrevistas laborales.</li>
+                <li>• Refuerzo específico en áreas débiles (speaking, writing, etc.).</li>
+              </ul>
+              <p class="text-xs text-slate-400">
+                La recomendación es vender primero el resultado (“lo que vas a conseguir”)
+                y después hablar de inversión, para evitar comparaciones con clases sueltas baratas
+                sin sistema detrás.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <!-- TAB: SPEAKING CLUB -->
+        <div id="tab-speaking" class="tab-panel hidden">
+          <div class="grid lg:grid-cols-[2fr,1.5fr] gap-6">
+            <article class="bg-slate-900/70 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl flex flex-col h-full">
+              <header class="flex items-start justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="text-sm sm:text-base font-semibold text-slate-50">
+                    Speaking Club – Adolescentes &amp; Adultos
+                  </h3>
+                  <p class="text-xs text-slate-400">
+                    1 sesión semanal de conversación · grupos de 8–10 alumnos · niveles A2+ a C2
+                  </p>
+                </div>
+              </header>
+              <dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-slate-300 mb-4">
+                <div>
+                  <dt class="text-slate-500">Frecuencia</dt>
+                  <dd>1 sesión por semana</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Duración sesión</dt>
+                  <dd>60–90 minutos</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Niveles</dt>
+                  <dd>A2+, B1, B2, C1, C2</dd>
+                </div>
+                <div>
+                  <dt class="text-slate-500">Formato</dt>
+                  <dd>Grupos 8–10 alumnos</dd>
+                </div>
+              </dl>
+              <div class="mb-4">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500 mb-1">
+                  Cuota mensual
+                </p>
+                <p class="text-2xl font-semibold text-emerald-400">620 MDL / mes</p>
+              </div>
+              <p class="text-xs text-slate-400 mb-4">
+                Todos los alumnos de programa tienen acceso al Speaking Club como parte de su
+                experiencia. Si ya tienes nivel y solo quieres mantenerte activo, también puedes
+                unirte exclusivamente al club.
+              </p>
+              <button class="w-full mt-auto px-4 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs sm:text-sm font-semibold">
+                Unirme al Speaking Club
+              </button>
+            </article>
+
+            <article class="bg-slate-900/40 border border-dashed border-slate-700 rounded-3xl p-5 sm:p-6">
+              <h3 class="text-sm sm:text-base font-semibold text-slate-50 mb-2">
+                No es un extra, es el corazón
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-300 mb-3">
+                El Speaking Club gratuito es una de las claves del sistema Bridge Way:
+                coste bajo para ti, pero valor enorme para el alumno. Refuerza tu imagen
+                premium y crea comunidad en torno al idioma.
+              </p>
+              <p class="text-xs text-slate-400">
+                Puedes comunicarlo como beneficio base (“Siempre incluido en nuestros programas”)
+                y ofrecer una versión PRO más pequeña y exclusiva como opción de valor añadido.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <!-- TAB: EMPRESAS -->
+        <div id="tab-empresas" class="tab-panel hidden">
+          <div class="grid lg:grid-cols-[2fr,1.5fr] gap-6">
+            <article class="bg-slate-900/70 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl flex flex-col h-full">
+              <header class="flex items-start justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="text-sm sm:text-base font-semibold text-slate-50">
+                    Formación en inglés para empresas
+                  </h3>
+                  <p class="text-xs text-slate-400">
+                    Planes a medida para equipos y directivos orientados a resultados.
+                  </p>
+                </div>
+              </header>
+              <ul class="text-xs sm:text-sm text-slate-300 space-y-1.5 mb-4">
+                <li>• Diagnóstico de nivel y objetivos de cada equipo.</li>
+                <li>• Programas a medida: reuniones, negociación, presentaciones, customer care…</li>
+                <li>• Reportes periódicos de progreso para RRHH y dirección.</li>
+                <li>• Combinación de grupos reducidos y sesiones 1:1 para perfiles clave.</li>
+              </ul>
+              <div class="mb-4">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500 mb-1">
+                  Inversión orientativa
+                </p>
+                <p class="text-sm font-semibold text-emerald-400">
+                  Planes desde XXXX MDL por empleado (según tamaño y formato)
+                </p>
+                <p class="text-[11px] text-slate-500 mt-1">
+                  Diseñamos una propuesta personalizada para cada empresa.
+                </p>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-2 mt-auto">
+                <button class="w-full px-4 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs sm:text-sm font-semibold">
+                  Solicitar propuesta
+                </button>
+                <button class="w-full px-4 py-2.5 rounded-full border border-slate-700 text-slate-100 text-xs sm:text-sm font-semibold hover:border-slate-500">
+                  Hablar con un asesor
+                </button>
+              </div>
+            </article>
+
+            <article class="bg-slate-900/40 border border-dashed border-slate-700 rounded-3xl p-5 sm:p-6">
+              <h3 class="text-sm sm:text-base font-semibold text-slate-50 mb-2">
+                Inglés como ventaja competitiva
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-300 mb-3">
+                El mensaje clave para empresas no es el descuento, sino el impacto:
+                <span class="font-semibold text-slate-200">“En negocios, el inglés no es opción, es poder.”</span>
+                Mejores reuniones, negociaciones y ventas internacionales.
+              </p>
+              <p class="text-xs text-slate-400">
+                Puedes ofrecer condiciones especiales para grupos de 3 o más empleados y
+                acompañarlo con bonus como una sesión de coaching laboral o acceso al Business Club.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMOCIONES ACTIVAS -->
+  <section id="promos" class="border-t border-slate-900/60 py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-semibold text-slate-50 mb-1">
+            Promociones activas ahora
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-400 max-w-xl">
+            A lo largo del año lanzamos campañas con plazas y fechas limitadas.
+            Aquí verás las que están activas en este momento. Siempre con urgencia real
+            y sin sacrificar la calidad.
+          </p>
+        </div>
+        <button id="toggleAllPromos" class="self-start px-3 py-1.5 rounded-full border border-slate-700 text-[11px] uppercase tracking-[0.18em] text-slate-300 hover:border-slate-500">
+          Ver todas nuestras campañas
+        </button>
+      </div>
+
+      <!-- EJEMPLOS DE PROMOS ACTIVAS (pueden cambiar según fecha) -->
+      <div class="grid md:grid-cols-3 gap-5 mb-8">
+        <!-- Early Bird -->
+        <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-[11px] font-semibold uppercase tracking-[0.18em]">
+              Early Bird
+            </span>
+            <span class="text-[11px] text-slate-500">Nuevos grupos adultos</span>
+          </div>
+          <h3 class="text-sm font-semibold text-slate-50">
+            -10% para quienes se apuntan primero
+          </h3>
+          <p class="text-xs text-slate-300">
+            Los primeros en inscribirse en los cursos de adolescentes y adultos
+            (12 semanas) obtienen un 10% de ventaja exclusiva.
+          </p>
+          <p class="text-[11px] text-slate-500">
+            Válido durante la primera semana de apertura de inscripciones.
+            Plazas limitadas por grupo.
+          </p>
+          <p class="text-[11px] text-slate-500">
+            No acumulable con otras promociones.
+          </p>
+          <button class="mt-auto w-full px-4 py-2 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold">
+            Aprovechar Early Bird
+          </button>
+        </article>
+
+        <!-- Back to School Niños -->
+        <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-300 text-[11px] font-semibold uppercase tracking-[0.18em]">
+              Back to School
+            </span>
+            <span class="text-[11px] text-slate-500">Niños &amp; Adolescentes</span>
+          </div>
+          <h3 class="text-sm font-semibold text-slate-50">
+            Segundo hijo con -15%
+          </h3>
+          <p class="text-xs text-slate-300">
+            En los cursos de Niños (6 y 12 semanas), el segundo hijo disfruta de un 15%
+            de ventaja en su curso. Empezar el año con sus hermanos también suma.
+          </p>
+          <p class="text-[11px] text-slate-500">
+            Válido en septiembre. El descuento aplica al curso de menor precio.
+          </p>
+          <p class="text-[11px] text-slate-500">
+            No acumulable con otras promociones.
+          </p>
+          <button class="mt-auto w-full px-4 py-2 rounded-full bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-semibold">
+            Ver cursos para niños
+          </button>
+        </article>
+
+        <!-- San Valentín Parejas -->
+        <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-300 text-[11px] font-semibold uppercase tracking-[0.18em]">
+              San Valentín
+            </span>
+            <span class="text-[11px] text-slate-500">Parejas</span>
+          </div>
+          <h3 class="text-sm font-semibold text-slate-50">
+            2x1 parcial: aprende en pareja
+          </h3>
+          <p class="text-xs text-slate-300">
+            Uno paga el curso completo, el otro solo la mitad. Aprender inglés juntos
+            es la mejor excusa para compartir objetivo.
+          </p>
+          <p class="text-[11px] text-slate-500">
+            Válido del 1 al 14 de febrero. Máx. 1 pareja por grupo.
+          </p>
+          <p class="text-[11px] text-slate-500">
+            No acumulable con otros descuentos.
+          </p>
+          <button class="mt-auto w-full px-4 py-2 rounded-full bg-rose-500 hover:bg-rose-400 text-slate-950 text-xs font-semibold">
+            Reservar en pareja
+          </button>
+        </article>
+      </div>
+
+      <!-- CATÁLOGO DE CAMPAÑAS ANUALES (información pública resumida) -->
+      <div id="allPromosBlock" class="hidden bg-slate-950/80 border border-dashed border-slate-700 rounded-3xl p-5 sm:p-6 text-xs text-slate-300 space-y-4">
+        <h3 class="text-sm font-semibold text-slate-50">
+          Campañas Bridge Way a lo largo del año
+        </h3>
+        <p class="text-[11px] text-slate-400">
+          No todas las campañas están activas a la vez. Elige el momento que mejor encaje contigo
+          y consulta siempre las fechas y plazas disponibles.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-4">
+          <!-- New Year -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-emerald-300">Enero</p>
+            <h4 class="text-sm font-semibold text-slate-50">New Year, New Skills</h4>
+            <p>
+              -10% en cursos de adultos al inicio de año + masterclass exclusiva
+              “Cómo lograr fluidez en el nuevo año”.
+            </p>
+          </article>
+
+          <!-- San Valentín -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-rose-300">Febrero</p>
+            <h4 class="text-sm font-semibold text-slate-50">San Valentín</h4>
+            <p>
+              Parejas: uno paga el curso completo, el otro solo la mitad.
+              “Aprender en pareja: el futuro compartido sabe mejor.”
+            </p>
+          </article>
+
+          <!-- Día de la Mujer -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-fuchsia-300">Marzo</p>
+            <h4 class="text-sm font-semibold text-slate-50">Día de la Mujer (8M)</h4>
+            <p>
+              Mujeres: matrícula gratis (comunicada como homenaje) + evento online
+              motivacional en inglés. “Celebramos tu futuro.”
+            </p>
+          </article>
+
+          <!-- Continuidad alumnos -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-slate-300">Abril / Noviembre</p>
+            <h4 class="text-sm font-semibold text-slate-50">Sube de nivel</h4>
+            <p>
+              Promos de renovación para alumnos actuales que reservan su siguiente nivel
+              antes de terminar el curso. “Tu inglés no se detiene aquí.”
+            </p>
+          </article>
+
+          <!-- Flash Value -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-amber-300">Mayo</p>
+            <h4 class="text-sm font-semibold text-slate-50">Flash Value</h4>
+            <p>
+              Campañas cortas de 48h con valor añadido: test premium, ebook,
+              acceso extra al Speaking Club… sin necesidad de grandes descuentos.
+            </p>
+          </article>
+
+          <!-- Día del Padre -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-sky-300">Junio</p>
+            <h4 class="text-sm font-semibold text-slate-50">Día del Padre</h4>
+            <p>
+              Gift Cards para padres con condiciones especiales.
+              “Ser padre también es crecer. Regálate inglés.”
+            </p>
+          </article>
+
+          <!-- Intensivos verano -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-teal-300">Junio / Julio</p>
+            <h4 class="text-sm font-semibold text-slate-50">Intensivos de verano</h4>
+            <p>
+              Campañas tipo “Verano que transforma” con intensivos sin descuento
+              pero con bonus (camiseta Bridge Way Summer, acceso Speaking Club PRO).
+            </p>
+          </article>
+
+          <!-- Pre Back to School -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-slate-300">Agosto</p>
+            <h4 class="text-sm font-semibold text-slate-50">Pre Back to School</h4>
+            <p>
+              Pre-lanzamiento de grupos de septiembre con Early Bird controlado
+              para quienes se adelantan.
+            </p>
+          </article>
+
+          <!-- Back to School full -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-sky-300">Septiembre</p>
+            <h4 class="text-sm font-semibold text-slate-50">Back to School</h4>
+            <p>
+              Niños y adolescentes: segundo hijo con ventajas especiales.
+              Adultos: “Septiembre también es para ti. Retoma tus estudios.”
+            </p>
+          </article>
+
+          <!-- Última llamada / plazas -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-red-300">Octubre</p>
+            <h4 class="text-sm font-semibold text-slate-50">Última llamada</h4>
+            <p>
+              Campañas de cierre de grupos con últimas plazas y ventajas puntuales.
+              “El último tren, para los que deciden.”
+            </p>
+          </article>
+
+          <!-- Black Friday -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-yellow-300">Noviembre</p>
+            <h4 class="text-sm font-semibold text-slate-50">Black Friday (48h)</h4>
+            <p>
+              Ventanas cortas de 48 horas con condiciones especiales muy claras
+              y plazas limitadas. Sin convertir el año en rebajas constantes.
+            </p>
+          </article>
+
+          <!-- Navidad Gift Cards -->
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 flex flex-col gap-2">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-amber-300">Diciembre</p>
+            <h4 class="text-sm font-semibold text-slate-50">Gift Cards Navidad</h4>
+            <p>
+              Tarjetas regalo premium para regalar inglés. “Este año no regales
+              juguetes que se olvidan. Regala inglés, regala futuro.”
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ PRECIOS Y PROMOS -->
+  <section id="faq" class="border-t border-slate-900/60 py-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-6 text-center">
+        <h2 class="text-xl sm:text-2xl font-semibold text-slate-50 mb-1">
+          Preguntas frecuentes sobre precios y promociones
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400">
+          Transparencia total. Sin letra pequeña, sin sorpresas.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <!-- FAQ 1 -->
+        <details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/60">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="text-sm font-medium text-slate-100">
+              ¿Las promociones se pueden acumular entre sí?
+            </span>
+            <span class="ml-4">
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M6 9l6 6 6-6" />
+              </svg>
+            </span>
+          </summary>
+          <div class="mt-3 text-xs text-slate-300">
+            No. En Bridge Way las promociones <span class="font-semibold">no son acumulables</span>.
+            Siempre te aplicamos la opción que más te beneficia en ese momento
+            (por ejemplo, Early Bird o promo de hermanos), pero nunca sumamos varios
+            descuentos sobre el mismo curso. Así protegemos la calidad de grupos y
+            la estabilidad de la academia.
+          </div>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/60">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="text-sm font-medium text-slate-100">
+              ¿El precio incluye matrícula y materiales?
+            </span>
+            <span class="ml-4">
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M6 9l6 6 6-6" />
+              </svg>
+            </span>
+          </summary>
+          <div class="mt-3 text-xs text-slate-300">
+            Sí. La matrícula y los materiales digitales están incluidos en el precio del curso.
+            Solo el libro físico, si lo quieres en papel, se paga aparte. No hay costes ocultos.
+          </div>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/60">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="text-sm font-medium text-slate-100">
+              ¿Qué pasa si el curso no es lo que esperaba?
+            </span>
+            <span class="ml-4">
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M6 9l6 6 6-6" />
+              </svg>
+            </span>
+          </summary>
+          <div class="mt-3 text-xs text-slate-300">
+            Dispones de una <span class="font-semibold">garantía 100% devolución durante los primeros 15 días</span>.
+            Si en ese periodo sientes que Bridge Way no encaja contigo,
+            te devolvemos el importe del curso.
+          </div>
+        </details>
+
+        <!-- FAQ 4 -->
+        <details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/60">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="text-sm font-medium text-slate-100">
+              ¿Hay condiciones especiales si renuevo al siguiente nivel?
+            </span>
+            <span class="ml-4">
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M6 9l6 6 6-6" />
+              </svg>
+            </span>
+          </summary>
+          <div class="mt-3 text-xs text-slate-300">
+            Sí. Bridge Way premia la continuidad. Periódicamente lanzamos
+            <span class="font-semibold">ventajas para alumnos que renuevan</span>
+            antes de terminar su curso (por ejemplo, condiciones especiales
+            o acceso VIP al Speaking Club PRO). Tu asesor te informará siempre
+            de las opciones disponibles en cada etapa.
+          </div>
+        </details>
+
+        <!-- FAQ 5 -->
+        <details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/60">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="text-sm font-medium text-slate-100">
+              ¿Cómo sé qué curso y modalidad son para mí?
+            </span>
+            <span class="ml-4">
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M6 9l6 6 6-6" />
+              </svg>
+            </span>
+          </summary>
+          <div class="mt-3 text-xs text-slate-300">
+            Lo primero es tu <span class="font-semibold">nivel</span> y tu objetivo.
+            Puedes hacer nuestro test de nivel online y, con el resultado, un asesor
+            te recomendará el programa (niños, adolescentes, adultos, intensivo, individual)
+            y te explicará si hay alguna promoción que encaje contigo en ese momento.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="border-t border-slate-900/60 py-10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-xl sm:text-2xl font-semibold text-slate-50 mb-2">
+        ¿No sabes por dónde empezar?
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-400 mb-5">
+        Haz nuestro test de nivel y te recomendaremos el curso, la modalidad y cómo aprovechar
+        mejor las promociones activas. O si lo tienes claro, reserva directamente tu clase gratis.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <button class="px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-semibold">
+          Hacer test de nivel
+        </button>
+        <button class="px-5 py-2.5 rounded-full border border-slate-700 text-slate-100 text-sm font-semibold hover:border-slate-500">
+          Reservar clase gratis
+        </button>
+      </div>
+      <p class="mt-4 text-[11px] text-slate-500">
+        “En Bridge Way no prometemos, entregamos.”
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- JS INTERACTIVO -->
+<script>
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  mobileBtn?.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Tabs
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-tab');
+
+      // Estilo de botones
+      tabButtons.forEach(b => {
+        b.classList.remove('bg-slate-800', 'text-slate-50', 'font-medium');
+        b.classList.add('text-slate-300');
+      });
+      btn.classList.add('bg-slate-800', 'text-slate-50', 'font-medium');
+      btn.classList.remove('text-slate-300');
+
+      // Mostrar/ocultar panels
+      tabPanels.forEach(panel => {
+        if (panel.id === targetId) {
+          panel.classList.remove('hidden');
+          panel.classList.add('fade-enter');
+          requestAnimationFrame(() => {
+            panel.classList.add('fade-enter-active');
+          });
+          setTimeout(() => {
+            panel.classList.remove('fade-enter', 'fade-enter-active');
+          }, 220);
+        } else {
+          panel.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Mostrar/ocultar bloque de todas las campañas
+  const toggleAllPromosBtn = document.getElementById('toggleAllPromos');
+  const allPromosBlock = document.getElementById('allPromosBlock');
+
+  toggleAllPromosBtn?.addEventListener('click', () => {
+    allPromosBlock.classList.toggle('hidden');
+    toggleAllPromosBtn.textContent = allPromosBlock.classList.contains('hidden')
+      ? 'Ver todas nuestras campañas'
+      : 'Ocultar campañas';
+  });
+</script>
+
+</body>
+</html>
