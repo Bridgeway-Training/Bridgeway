@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Academia de Engleză – Meniu Insuperabil</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{
+  --primary:#FF6B00;   /* ro */
+  --text:#111;
+  --bg:#fff;
+  --grey:#f5f5f5;
+  --radius:6px;
+  --max-width:1200px;
+  --tap:44px;
+}
+body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto;font-size:16px;background:var(--grey);color:var(--text)}
+a{text-decoration:none;color:inherit}
+ul{list-style:none;padding:0;margin:0}
+header{position:sticky;top:0;left:0;right:0;background:var(--bg);border-bottom:1px solid #ddd;z-index:1000}
+.header-inner{display:flex;align-items:center;max-width:var(--max-width);margin:auto;padding:0 16px;height:72px}
+.logo{font-weight:700;font-size:20px;margin-right:24px}
+nav{display:flex;flex:1;align-items:center;gap:8px}
+.nav-item{position:relative;padding:8px 12px;border-radius:var(--radius);transition:.15s}
+.nav-item:hover{background:var(--grey)}
+.nav-item span{font-size:14px;color:#666}
+.dropdown{position:absolute;top:100%;left:0;background:var(--bg);border:1px solid #ddd;border-radius:var(--radius);width:280px;padding:8px;display:none;flex-direction:column;gap:6px}
+.nav-item:hover .dropdown{display:flex}
+.dropdown a{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:var(--radius)}
+.dropdown a:hover{background:var(--grey)}
+.lang-switch{display:flex;gap:8px;margin-left:auto}
+.lang-switch button{background:none;border:1px solid #ccc;padding:6px 10px;border-radius:var(--radius);cursor:pointer}
+.lang-switch .active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.cta-header{margin-left:16px;background:var(--primary);color:#fff;padding:10px 16px;border-radius:var(--radius);font-weight:600}
+.cta-header:hover{filter:brightness(1.1)}
+.trust{margin-left:16px;font-size:13px;color:#555}
+.trust b{color:#111}
+
+/* Móvil */
+@media(max-width:768px){
+nav{display:none}
+.drawer{position:fixed;top:0;left:0;bottom:0;width:280px;background:var(--bg);border-right:1px solid #ddd;transform:translateX(-100%);transition:.3s;z-index:1001}
+.drawer.open{transform:translateX(0)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:16px}
+.drawer a{padding:14px 16px;border-bottom:1px solid #eee;display:block}
+.menu-toggle{margin-left:auto;padding:8px}
+.fab{position:fixed;bottom:24px;right:24px;background:var(--primary);color:#fff;padding:14px 20px;border-radius:50px;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:999}
+.fab.hidden{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="/">AcademiaEngleză.md</a>
+
+    <!-- NAV DESKTOP -->
+    <nav id="nav">
+      <div class="nav-item">
+        <a href="/ro/adulti/">Adulți 🎯<br><span>A1-B2 în 90 zile</span></a>
+        <div class="dropdown">
+          <a href="/ro/adulti/"><span>📘 Adulți A1-B2</span><span>Video 20 s</span></a>
+          <a href="/ro/business/"><span>💼 Business</span><span>+34 % vânzări</span></a>
+          <a href="/ro/copii/"><span>🧒 Copii 7-12</span><span>4,9 ⭐ părinți</span></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="/ro/business/">Business 🏢<br><span>ROI măsurat</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="/ro/copii/">Copii 🧒<br><span>25 min nativ</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="/ro/certificare/">Certificare 🏆</a>
+      </div>
+      <div class="nav-item">
+        <a href="/ro/povesti/">Povești 📈</a>
+      </div>
+    </nav>
+
+    <div class="trust">4,9 ⭐ <b>1.234</b> recenzii</div>
+    <a class="cta-header" href="/?modal=test">Test 3 min 🔥</a>
+
+    <!-- Selector limbă -->
+    <div class="lang-switch">
+      <button class="active" onclick="setLang('ro')">RO</button>
+      <button onclick="setLang('ru')">RU</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+
+    <!-- Móvil -->
+    <button class="menu-toggle" onclick="toggleDrawer()">☰</button>
+  </div>
+</header>
+
+<!-- DRAWER MÓVIL -->
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <b>Meniu</b>
+    <button onclick="toggleDrawer()">✕</button>
+  </div>
+  <a href="/ro/adulti/">Adulți 🎯</a>
+  <a href="/ro/copii/">Copii 🧒</a>
+  <a href="/ro/business/">Business 🏢</a>
+  <a href="/ro/certificare/">Certificare 🏆</a>
+  <a href="/ro/povesti/">Povești 📈</a>
+  <a href="/?modal=test">Test 3 min 🔥</a>
+</aside>
+
+<!-- FAB MÓVIL -->
+<button class="fab" id="fab" onclick="fabClick()">Test 3 min 🔥</button>
+
+<script>
+// LÓGICA BÁSICA (puedes ampliar)
+const texts={
+  ro:{logo:"AcademiaEngleză.md",adulti:"Adulți 🎯",copii:"Copii 🧒",business:"Business 🏢",certif:"Certificare 🏆",povesti:"Povești 📈",test:"Test 3 min 🔥"},
+  ru:{logo:"АкадемияАнглийского.md",adulti:"Взрослые 🎯",copii:"Дети 🧒",business:"Бизнес 🏢",certif:"Сертификат 🏆",povesti:"Истории 📈",test:"Тест 3 мин 🔥"},
+  en:{logo:"AcademyEnglish.md",adulti:"Adults 🎯",copii:"Kids 🧒",business:"Business 🏢",certif:"Certificate 🏆",povesti:"Stories 📈",test:"3-min Test 🔥"}
+};
+
+function setLang(l){
+  document.documentElement.lang=l;
+  // cambia colores
+  const root=document.documentElement;
+  if(l==='ru') root.style.setProperty('--primary','#0057FF');
+  else if(l==='en') root.style.setProperty('--primary','#FF3B30');
+  else root.style.setProperty('--primary','#FF6B00');
+  // actualiza textos
+  const t=texts[l];
+  document.querySelector('.logo').textContent=t.logo;
+  document.querySelector('.cta-header').textContent=t.test;
+  document.querySelector('#fab').textContent=t.test;
+  // actualiza links nav (simplificado)
+  document.querySelectorAll('.nav-item a')[0].innerHTML=`${t.adulti}<br><span>A1-B2 în 90 zile</span>`;
+  // ... puedes hacerlo más robusto
+  // cierra drawer
+  document.getElementById('drawer').classList.remove('open');
+  // guarda cookie
+  localStorage.setItem('pref_lang',l);
+}
+function toggleDrawer(){
+  document.getElementById('drawer').classList.toggle('open');
+}
+function fabClick(){
+  location.href='/?modal=test';
+}
+// esconder FAB cuando aparece teclado (simple)
+window.addEventListener('resize',()=>{
+  const fab=document.getElementById('fab');
+  if(window.innerHeight<500) fab.classList.add('hidden');
+  else fab.classList.remove('hidden');
+});
+// idioma inicial
+const lang=localStorage.getItem('pref_lang') || navigator.language.slice(0,2) || 'ro';
+setLang(['ro','ru','en'].includes(lang)?lang:'ro');
+</script>
+</body>
+</html>
