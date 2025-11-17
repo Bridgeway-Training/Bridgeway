@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Control Strategy OS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['system-ui', 'ui-sans-serif', 'SF Pro Text', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50:  '#ecfeff',
+              100: '#cffafe',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490'
+            },
+            dark: '#050816'
+          },
+          boxShadow: {
+            soft: '0 18px 45px rgba(15, 23, 42, 0.45)'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-dark text-slate-100 font-sans">
+  <div class="min-h-screen max-w-md mx-auto flex flex-col px-4 pt-4 pb-24">
+
+    <!-- HEADER -->
+    <header class="mb-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Elite Control</p>
+          <h1 class="text-2xl font-semibold tracking-tight mt-1">Control Strategy OS</h1>
+        </div>
+        <div class="flex -space-x-2">
+          <!-- Avatares simbólicos -->
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-[10px] font-semibold">SJ</div>
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-sky-400 to-blue-700 flex items-center justify-center text-[10px] font-semibold">WB</div>
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-[10px] font-semibold">JB</div>
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-lime-500 flex items-center justify-center text-[10px] font-semibold">RD</div>
+        </div>
+      </div>
+      <p class="mt-3 text-xs text-slate-400 leading-snug">
+        “Mide tu vida por lo que controlas a diario: <span class="text-sky-300">atención</span>,
+        <span class="text-sky-300">decisiones</span> y <span class="text-sky-300">palancas de impacto</span>.”
+      </p>
+    </header>
+
+    <!-- TOP CARD: FOCO DE HOY -->
+    <section id="tab-today" class="flex-1 overflow-y-auto space-y-4">
+      <div class="bg-gradient-to-br from-slate-900/80 via-slate-900 to-slate-950 rounded-3xl p-4 shadow-soft border border-slate-700/70">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.19em] text-slate-400">Foco de hoy</p>
+            <h2 class="text-lg font-semibold mt-1">Ganar el día, no el año</h2>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-[11px] text-emerald-300 border border-emerald-500/40">
+            Modo fundador
+          </span>
+        </div>
+
+        <div class="mt-4 grid grid-cols-3 gap-3 text-xs">
+          <div class="bg-slate-900/80 rounded-2xl p-3 border border-slate-700/70">
+            <p class="text-[10px] uppercase tracking-[0.16em] text-slate-400">Mindset</p>
+            <p class="mt-1 text-[13px] font-medium">Ecuanimidad</p>
+            <p class="mt-1 text-[11px] text-slate-400">Responder, no reaccionar.</p>
+          </div>
+          <div class="bg-slate-900/80 rounded-2xl p-3 border border-slate-700/70">
+            <p class="text-[10px] uppercase tracking-[0.16em] text-slate-400">Palanca</p>
+            <p class="mt-1 text-[13px] font-medium">Construir activo</p>
+            <p class="mt-1 text-[11px] text-slate-400">Producto / sistema que escala.</p>
+          </div>
+          <div class="bg-slate-900/80 rounded-2xl p-3 border border-slate-700/70">
+            <p class="text-[10px] uppercase tracking-[0.16em] text-slate-400">Resultado</p>
+            <p class="mt-1 text-[13px] font-medium">1 avance irreal</p>
+            <p class="mt-1 text-[11px] text-slate-400">Algo que tu “yo normal” no haría.</p>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <p class="text-[11px] uppercase tracking-[0.16em] text-slate-400 mb-1.5">Métrica de control</p>
+          <div class="flex items-center justify-between text-[11px]">
+            <span>Horas de trabajo profundo</span>
+            <span class="text-sky-300 font-semibold">0 / 4</span>
+          </div>
+          <div class="w-full h-2.5 mt-2 rounded-full bg-slate-800 overflow-hidden">
+            <div class="h-full w-1/6 bg-gradient-to-r from-primary-500 to-sky-400"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAPA DE CONTROL -->
+      <div class="bg-slate-900/70 rounded-3xl p-4 border border-slate-700/70">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-sm font-semibold">Mapa de Control</h3>
+          <span class="text-[11px] text-slate-400">Interno vs Externo</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 text-[11px]">
+          <!-- Interno -->
+          <div class="rounded-2xl p-3 bg-gradient-to-br from-primary-500/15 via-slate-900 to-slate-900 border border-primary-500/40">
+            <p class="uppercase tracking-[0.16em] text-[10px] text-primary-200">Lo que controlo</p>
+            <ul class="mt-2 space-y-1.5">
+              <li>• Enfoque de atención</li>
+              <li>• Calendario y energía</li>
+              <li>• Hábitos & sistema diario</li>
+              <li>• Calidad de decisiones</li>
+              <li>• Aprendizaje & lectura</li>
+              <li>• Carácter bajo presión</li>
+            </ul>
+          </div>
+
+          <!-- Externo -->
+          <div class="rounded-2xl p-3 bg-slate-950 border border-slate-700/80">
+            <p class="uppercase tracking-[0.16em] text-[10px] text-slate-400">Lo que NO controlo</p>
+            <ul class="mt-2 space-y-1.5 text-slate-400">
+              <li>• Mercado y ciclos</li>
+              <li>• Opiniones ajenas</li>
+              <li>• Suerte de corto plazo</li>
+              <li>• Regulación y política</li>
+              <li>• Pasado & errores previos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-3 text-[11px] text-slate-400">
+          <p class="flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary-500"></span>
+            Los millonarios juegan solo en el terreno de lo que pueden
+            mejorar hoy.
+          </p>
+        </div>
+      </div>
+
+      <!-- PALANCAS DE RIQUEZA (PROFESIONAL) -->
+      <div class="bg-slate-900/70 rounded-3xl p-4 border border-slate-700/70">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-sm font-semibold">Palancas profesionales</h3>
+          <span class="text-[11px] text-slate-400">De 0 a multimillonario</span>
+        </div>
+
+        <ul class="space-y-3 text-[12px]">
+          <li class="flex items-center justify-between">
+            <div>
+              <p class="font-medium">Construir / poseer activos</p>
+              <p class="text-slate-400 text-[11px]">Software, equity, audiencias, sistemas.</p>
+            </div>
+            <span class="px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/50 text-[11px]">
+              Día sí o sí
+            </span>
+          </li>
+          <li class="flex items-center justify-between">
+            <div>
+              <p class="font-medium">Decisiones de capital</p>
+              <p class="text-slate-400 text-[11px]">A dónde va el tiempo y el dinero.</p>
+            </div>
+            <span class="px-2 py-1 rounded-full bg-amber-500/10 border border-amber-400/60 text-[11px]">
+              Máx. apalanc.
+            </span>
+          </li>
+          <li class="flex items-center justify-between">
+            <div>
+              <p class="font-medium">Sistema de aprendizaje compuesto</p>
+              <p class="text-slate-400 text-[11px]">Lectura, modelos mentales, feedback real.</p>
+            </div>
+            <span class="px-2 py-1 rounded-full bg-sky-500/10 border border-sky-400/60 text-[11px]">
+              1% diario
+            </span>
+          </li>
+          <li class="flex items-center justify-between">
+            <div>
+              <p class="font-medium">Reputación y confiabilidad</p>
+              <p class="text-slate-400 text-[11px]">Que tu palabra sea un activo.</p>
+            </div>
+            <span class="px-2 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-400/60 text-[11px]">
+              No negociable
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SISTEMA OPERATIVO PERSONAL -->
+      <div class="bg-slate-900/70 rounded-3xl p-4 border border-slate-700/70">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-sm font-semibold">Sistema operativo personal</h3>
+          <span class="text-[11px] text-slate-400">Mañana · Profundo · Noche</span>
+        </div>
+
+        <div class="space-y-3 text-[12px]">
+          <div class="flex gap-3 items-start">
+            <div class="mt-1 w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
+            <div>
+              <p class="font-medium">Bloque de arranque (mañana)</p>
+              <p class="text-slate-400 text-[11px]">Silencio, cuerpo, intención: sin móvil, 10–20 min.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3 items-start">
+            <div class="mt-1 w-1.5 h-1.5 rounded-full bg-sky-400"></div>
+            <div>
+              <p class="font-medium">Deep Work fundador</p>
+              <p class="text-slate-400 text-[11px]">2–4h sin interrupciones a la palanca #1 del día.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3 items-start">
+            <div class="mt-1 w-1.5 h-1.5 rounded-full bg-amber-400"></div>
+            <div>
+              <p class="font-medium">Revisión / Journal de control</p>
+              <p class="text-slate-400 text-[11px]">¿Qué controlé bien? ¿Qué entregué al azar?</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 border-t border-slate-800 pt-3">
+          <p class="text-[11px] text-slate-400 mb-1.5">Score de control de hoy</p>
+          <div class="flex items-center gap-3">
+            <input type="range" min="0" max="10" value="3"
+                   class="w-full accent-primary-500">
+            <span class="w-8 text-center text-[13px] font-semibold text-primary-300" id="controlScore">3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRINCIPIOS DE LA ÉLITE -->
+      <div class="bg-slate-900/70 rounded-3xl p-4 border border-slate-700/70 mb-4">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-sm font-semibold">Principios de la élite</h3>
+          <span class="text-[11px] text-slate-400">Ravikant · Jobs · Buffett · Bezos · Dalio · Marco Aurelio · Musk · Gates</span>
+        </div>
+
+        <ul class="space-y-1.5 text-[11px]">
+          <li>1. <span class="text-sky-300">Controla el sistema, no el resultado.</span></li>
+          <li>2. Alinea tu día con una <span class="text-sky-300">palanca de riqueza</span> clara.</li>
+          <li>3. Evita juegos de estatus, juega juegos de <span class="text-sky-300">wealth + libertad</span>.</li>
+          <li>4. Piensa en décadas, ejecuta en días.</li>
+          <li>5. Mantén la ecuanimidad cuando todos entren en pánico.</li>
+          <li>6. Aprende más rápido que tu sector; documenta todo como un sistema.</li>
+          <li>7. Di “no” casi a todo; protege tu ventana de trabajo profundo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TAB BAR -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-slate-950/95 border-t border-slate-800">
+      <div class="max-w-md mx-auto flex">
+        <button data-tab="tab-today"
+                class="tab-btn flex-1 py-3 text-[11px] flex flex-col items-center gap-0.5 text-sky-300">
+          <span>Hoy</span>
+          <span class="w-6 h-0.5 rounded-full bg-sky-400"></span>
+        </button>
+        <button data-tab="tab-focus"
+                class="tab-btn flex-1 py-3 text-[11px] flex flex-col items-center gap-0.5 text-slate-400">
+          <span>Focus Map</span>
+          <span class="w-6 h-0.5 rounded-full bg-transparent"></span>
+        </button>
+        <button data-tab="tab-review"
+                class="tab-btn flex-1 py-3 text-[11px] flex flex-col items-center gap-0.5 text-slate-400">
+          <span>Revisión</span>
+          <span class="w-6 h-0.5 rounded-full bg-transparent"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Secciones extra ocultas (Focus & Review) -->
+    <section id="tab-focus" class="hidden flex-1 overflow-y-auto pt-2 pb-24 space-y-4 max-w-md mx-auto">
+      <div class="bg-slate-900/80 rounded-3xl p-4 border border-slate-700/70 shadow-soft mt-2">
+        <h3 class="text-sm font-semibold mb-2">Focus Map semanal</h3>
+        <p class="text-[11px] text-slate-400 mb-3">
+          Una mirada tipo “Ray Dalio”: qué estás testando, qué apuestas haces,
+          y qué dejarás morir esta semana.
+        </p>
+        <div class="space-y-3 text-[12px]">
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400">Hipótesis principal</p>
+            <div class="mt-1 rounded-2xl bg-slate-950 border border-slate-700/80 p-3">
+              <p class="text-slate-300">
+                “Si dedico el 70% de mi energía a <span class="text-sky-300">X</span>, el sistema crecerá 10x más rápido que diversificando.”
+              </p>
+            </div>
+          </div>
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400 mb-1.5">Experimentos en marcha</p>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center rounded-2xl bg-slate-950 border border-slate-800 p-2.5">
+                <div>
+                  <p class="font-medium">Canal de adquisición #1</p>
+                  <p class="text-[11px] text-slate-400">Test A/B mensajes a clientes clave.</p>
+                </div>
+                <span class="px-2 py-1 text-[10px] rounded-full bg-sky-500/10 border border-sky-400/60">Semana 1</span>
+              </div>
+              <div class="flex justify-between items-center rounded-2xl bg-slate-950 border border-slate-800 p-2.5">
+                <div>
+                  <p class="font-medium">Automatizar tarea repetitiva</p>
+                  <p class="text-[11px] text-slate-400">Liberar 5h/sem para deep work.</p>
+                </div>
+                <span class="px-2 py-1 text-[10px] rounded-full bg-emerald-500/10 border border-emerald-400/60">Leverage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-review" class="hidden flex-1 overflow-y-auto pt-2 pb-24 space-y-4 max-w-md mx-auto">
+      <div class="bg-slate-900/80 rounded-3xl p-4 border border-slate-700/70 shadow-soft mt-2">
+        <h3 class="text-sm font-semibold mb-2">Revisión brutalmente honesta</h3>
+        <p class="text-[11px] text-slate-400 mb-3">
+          Modo “Ray Dalio + Marco Aurelio”: conviertes errores en reglas nuevas de control.
+        </p>
+        <div class="space-y-3 text-[12px]">
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400">Lo que controlé bien</p>
+            <div class="mt-1 min-h-[64px] rounded-2xl bg-slate-950 border border-emerald-500/40 p-3 text-slate-300">
+              <!-- espacio para notas -->
+            </div>
+          </div>
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400">Donde entregué el control</p>
+            <div class="mt-1 min-h-[64px] rounded-2xl bg-slate-950 border border-rose-500/40 p-3 text-slate-300">
+            </div>
+          </div>
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400">Nueva regla / principio</p>
+            <div class="mt-1 min-h-[64px] rounded-2xl bg-slate-950 border border-sky-500/40 p-3 text-slate-300">
+              <!-- “Siempre que X, entonces haré Y.” -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- JS muy ligero para tabs y slider -->
+  <script>
+    // Tabs
+    const buttons = document.querySelectorAll('.tab-btn');
+    const sections = ['tab-today', 'tab-focus', 'tab-review'].map(id => document.getElementById(id));
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-tab');
+        sections.forEach(sec => sec.classList.toggle('hidden', sec.id !== target));
+        buttons.forEach(b => {
+          const bar = b.querySelector('span:last-child');
+          if (b === btn) {
+            b.classList.remove('text-slate-400');
+            b.classList.add('text-sky-300');
+            bar.classList.remove('bg-transparent');
+            bar.classList.add('bg-sky-400');
+          } else {
+            b.classList.remove('text-sky-300');
+            b.classList.add('text-slate-400');
+            bar.classList.remove('bg-sky-400');
+            bar.classList.add('bg-transparent');
+          }
+        });
+      });
+    });
+
+    // Slider de score de control
+    const range = document.querySelector('input[type="range"]');
+    const score = document.getElementById('controlScore');
+    if (range && score) {
+      range.addEventListener('input', () => {
+        score.textContent = range.value;
+      });
+    }
+  </script>
+</body>
+</html>
