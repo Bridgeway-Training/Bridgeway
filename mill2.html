@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Control Strategy Elite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#020617" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['system-ui', 'ui-sans-serif', 'SF Pro Text', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+            },
+            accent: {
+              500: '#38bdf8',
+              600: '#0ea5e9',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Suavizado de scroll para sensación de app nativa */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans">
+
+  <!-- Header superior -->
+  <header class="sticky top-0 z-20 bg-slate-950/80 backdrop-blur border-b border-slate-800">
+    <div class="px-4 pt-4 pb-3 flex items-center justify-between">
+      <div>
+        <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Control Strategy</p>
+        <h1 class="text-xl font-semibold mt-1">Sistema de la Elite</h1>
+        <p id="cs-date" class="text-[11px] text-slate-400 mt-0.5"></p>
+      </div>
+      <div class="text-right">
+        <p class="text-[11px] text-slate-400">Nivel de control</p>
+        <p id="cs-score" class="text-lg font-semibold text-primary-400">0%</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="flex-1 pb-20 pt-3">
+    <div class="px-4 space-y-6">
+
+      <!-- Sección: Mapa de Control -->
+      <section id="section-mapa" data-section class="space-y-4">
+        <h2 class="text-sm font-semibold tracking-wide text-slate-300 uppercase">Mapa de Control</h2>
+
+        <!-- Bloque interno -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <p class="text-xs font-semibold tracking-wide text-slate-400 uppercase">Lo que controlo (interno)</p>
+            <span class="text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">Zona de poder</span>
+          </div>
+          <div class="grid grid-cols-1 gap-3">
+            <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-3">
+              <p class="text-xs font-semibold text-slate-300 mb-1.5">Personal</p>
+              <ul class="text-[12px] text-slate-300 space-y-1">
+                <li>• Mentalidad y diálogo interno</li>
+                <li>• Disciplina y energía diaria</li>
+                <li>• Hábitos (sueño, entrenamiento, alimentación)</li>
+                <li>• Gestión del tiempo y foco profundo</li>
+                <li>• Aprendizaje continuo & lectura</li>
+              </ul>
+            </div>
+            <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-3">
+              <p class="text-xs font-semibold text-slate-300 mb-1.5">Profesional</p>
+              <ul class="text-[12px] text-slate-300 space-y-1">
+                <li>• Habilidades clave (hard & soft)</li>
+                <li>• Calidad de mi trabajo y decisiones</li>
+                <li>• Sistemas, procesos y prioridades</li>
+                <li>• Relaciones estratégicas que cultivo</li>
+                <li>• Riesgos que asumo y que rechazo</li>
+              </ul>
+            </div>
+            <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-3">
+              <p class="text-xs font-semibold text-slate-300 mb-1.5">Social / Interior</p>
+              <ul class="text-[12px] text-slate-300 space-y-1">
+                <li>• Mis valores y estándares</li>
+                <li>• Cómo respondo a la crítica</li>
+                <li>• Límites que pongo a personas y proyectos</li>
+                <li>• Uso de redes / distracciones</li>
+                <li>• Narrativa que cuento sobre mi vida</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloque externo -->
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <p class="text-xs font-semibold tracking-wide text-slate-400 uppercase">Lo que no controlo (externo)</p>
+            <span class="text-[11px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">Aceptar & usar</span>
+          </div>
+          <div class="grid grid-cols-1 gap-3 text-[12px] text-slate-300">
+            <ul class="space-y-1">
+              <li>• Opiniones, juicios y expectativas de otros</li>
+              <li>• Mercado, competencia, política, ciclos económicos</li>
+              <li>• Resultados exactos de mis decisiones</li>
+              <li>• Suerte, timing, noticias, crisis</li>
+            </ul>
+            <p class="text-[11px] text-slate-400 bg-slate-950/40 border border-slate-800 rounded-xl p-3">
+              <span class="font-semibold text-slate-200">Regla central:</span> La élite convierte lo incontrolable
+              en <span class="text-primary-300">información y contexto</span>, no en excusas.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección: Focus Diario -->
+      <section id="section-focus" data-section class="space-y-4 hidden">
+        <h2 class="text-sm font-semibold tracking-wide text-slate-300 uppercase">Focus diario</h2>
+
+        <!-- Top 3 -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <p class="text-xs font-semibold text-slate-300 uppercase tracking-wide">Top 3 movimientos</p>
+            <span class="text-[11px] text-slate-400">Sólo lo esencial</span>
+          </div>
+          <p class="text-[11px] text-slate-400">
+            Elige las 3 acciones que, si las completas hoy, acercan tu vida al nivel de un
+            <span class="text-primary-300 font-medium">fundador multimillonario</span>.
+          </p>
+          <div class="space-y-2 mt-1">
+            <input data-store-key="focus-top1" class="w-full text-[13px] px-3 py-2 rounded-xl bg-slate-950/70 border border-slate-800 focus:outline-none focus:border-primary-500" placeholder="Movimiento #1 (alto apalancamiento)" />
+            <input data-store-key="focus-top2" class="w-full text-[13px] px-3 py-2 rounded-xl bg-slate-950/70 border border-slate-800 focus:outline-none focus:border-primary-500" placeholder="Movimiento #2" />
+            <input data-store-key="focus-top3" class="w-full text-[13px] px-3 py-2 rounded-xl bg-slate-950/70 border border-slate-800 focus:outline-none focus:border-primary-500" placeholder="Movimiento #3" />
+          </div>
+          <div class="mt-3 grid grid-cols-3 gap-2 text-[11px] text-slate-300">
+            <label class="flex items-center gap-1">
+              <input type="checkbox" class="cs-checkbox rounded border-slate-600" data-store-key="focus-deepwork">
+              <span>2h trabajo profundo</span>
+            </label>
+            <label class="flex items-center gap-1">
+              <input type="checkbox" class="cs-checkbox rounded border-slate-600" data-store-key="focus-aprendizaje">
+              <span>30min estudio</span>
+            </label>
+            <label class="flex items-center gap-1">
+              <input type="checkbox" class="cs-checkbox rounded border-slate-600" data-store-key="focus-cuerpo">
+              <span>Cuerpo entrenado</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Bloque decisiones -->
+        <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 space-y-3">
+          <p class="text-xs font-semibold tracking-wide text-slate-300 uppercase">Filtro de decisiones</p>
+          <p class="text-[11px] text-slate-400">
+            Antes de decir <span class="font-semibold text-slate-200">SÍ</span>, pasa la decisión por este filtro:
+          </p>
+          <ul class="text-[12px] text-slate-300 space-y-1.5 mt-1">
+            <li>• ¿Esto multiplica mi tiempo, dinero o aprendizaje en 10x?</li>
+            <li>• ¿Está alineado con mi juego a 10–20 años?</li>
+            <li>• ¿Estoy diciendo SÍ por convicción o por miedo / ego?</li>
+            <li>• ¿Qué dejo de hacer si acepto esto?</li>
+          </ul>
+          <textarea
+            data-store-key="focus-decision"
+            class="mt-2 w-full text-[13px] px-3 py-2 rounded-xl bg-slate-950/80 border border-slate-800 focus:outline-none focus:border-primary-500"
+            rows="3"
+            placeholder="Decisión crítica de hoy y conclusión final..."></textarea>
+        </div>
+      </section>
+
+      <!-- Sección: Sistemas -->
+      <section id="section-sistemas" data-section class="space-y-4 hidden">
+        <h2 class="text-sm font-semibold tracking-wide text-slate-300 uppercase">Sistema operativo personal</h2>
+
+        <!-- Rutina mañana -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <p class="text-xs font-semibold text-slate-300 uppercase tracking-wide">Mañana</p>
+            <span class="text-[11px] text-primary-300">Ganar el día</span>
+          </div>
+          <div class="space-y-2 text-[12px] text-slate-300">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" class="cs-checkbox rounded border-slate-600" data-store-key="am-desconexion">
+              <span>Sin móvil 30–60 min al despertar</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" class="cs-checkbox rounded border-slate-600" data-store-key="am-cuerpo">
+              <span>Movimiento ligero / ejercicio</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" class="cs-checkbox rounded border-slate-600" data-store-key="am-plan">
+              <span>Revisión de Top 3 movimientos</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" class="cs-checkbox rounded border-slate-600" data-store-key="am-deep">
+              <span>Primer bloque de trabajo profundo sin interrupciones</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Rutina Deep Work -->
+        <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <p class="text-xs font-semibold text-slate-300 uppercase tracking-wide">Trabajo profundo</p>
+            <span class="text-[11px] text-slate-400">Modo fundador</span>
+          </div>
+          <ul class="text-[12px] text-slate-300 space-y-1.5">
+            <li>• 90–120 min sin notificaciones ni reuniones.</li>
+            <li>• Sólo tareas que crean activos: producto, sistemas, conocimiento, relaciones clave.</li>
+            <li>• Una cosa a la vez. Nada de multitarea.</li>
+          </ul>
+          <textarea
+            data-store-key="deepwork-actividad"
+            class="mt-2 w-full text-[13px] px-3 py-2 rounded-xl bg-slate-950/80 border border-slate-800 focus:outline-none focus:border-primary-500"
+            rows="3"
+            placeholder="¿Cuál es el activo que estoy construyendo hoy? (producto, skill, sistema, relación estratégica...)"></textarea>
+        </div>
+
+        <!-- Rutina noche -->
+        <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <p class="text-xs font-semibold text-slate-300 uppercase tracking-wide">Noche</p>
+            <span class="text-[11px] text-slate-400">Cerrar con intención</span>
+          </div>
+          <div class="space-y-2 text-[12px] text-slate-300">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" class="cs-checkbox rounded border-slate-600" data-store-key="pm-review">
+              <span>Revisión rápida del día (3–5 min)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" class="cs-checkbox rounded border-slate-600" data-store-key="pm-plan">
+              <span>Definir Top 3 de mañana</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" class="cs-checkbox rounded border-slate-600" data-store-key="pm-desconexion">
+              <span>Desconexión de pantallas antes de dormir</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección: Revisión -->
+      <section id="section-revision" data-section class="space-y-4 hidden">
+        <h2 class="text-sm font-semibold tracking-wide text-slate-300 uppercase">Revisión & reflexión</h2>
+
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 space-y-3">
+          <p class="text-xs font-semibold text-slate-300 uppercase tracking-wide">Revisión diaria</p>
+          <p class="text-[11px] text-slate-400">
+            No se trata de juzgarte, sino de iterar como lo haría un fundador de alto nivel.
+          </p>
+          <textarea
+            data-store-key="rev-hoy-bien"
+            class="mt-2 w-full text-[13px] px-3 py-2 rounded-xl bg-slate-950/80 border border-slate-800 focus:outline-none focus:border-primary-500"
+            rows="3"
+            placeholder="1. ¿Qué hice HOY que haría también Warren Buffett?"></textarea>
+          <textarea
+            data-store-key="rev-hoy-mejorar"
+            class="mt-2 w-full text-[13px] px-3 py-2 rounded-xl bg-slate-950/80 border border-slate-800 focus:outline-none focus:border-primary-500"
+            rows="3"
+            placeholder="2. ¿Qué patrón debo corregir si quiero jugar en la liga de Bezos / Jobs?"></textarea>
+          <textarea
+            data-store-key="rev-leccion"
+            class="mt-2 w-full text-[13px] px-3 py-2 rounded-xl bg-slate-950/80 border border-slate-800 focus:outline-none focus:border-primary-500"
+            rows="3"
+            placeholder="3. Una lección concreta de hoy (aplicarla mañana)."></textarea>
+        </div>
+
+        <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 space-y-3">
+          <p class="text-xs font-semibold text-slate-300 uppercase tracking-wide">Revisión semanal</p>
+          <p class="text-[11px] text-slate-400">
+            Una vez a la semana, contesta como si fueras tu propio consejo de administración.
+          </p>
+          <textarea
+            data-store-key="rev-semanal"
+            class="mt-2 w-full text-[13px] px-3 py-2 rounded-xl bg-slate-950/80 border border-slate-800 focus:outline-none focus:border-primary-500"
+            rows="4"
+            placeholder="¿Qué hice esta semana que tiene impacto real a 5–10 años? ¿Qué debo eliminar radicalmente?"></textarea>
+        </div>
+      </section>
+
+      <!-- Sección: Principios -->
+      <section id="section-principios" data-section class="space-y-4 hidden">
+        <h2 class="text-sm font-semibold tracking-wide text-slate-300 uppercase">Principios de la elite</h2>
+
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 space-y-3">
+          <p class="text-xs font-semibold text-slate-300 uppercase tracking-wide">Manifiesto de control</p>
+          <ul class="text-[12px] text-slate-300 space-y-1.5">
+            <li>1. <span class="font-semibold text-primary-300">Controlo lo controlable</span>. Ignoro lo demás.</li>
+            <li>2. Juego a décadas, actúo con urgencia hoy.</li>
+            <li>3. Construyo activos: código, capital, audiencia, reputación.</li>
+            <li>4. Diseño sistemas, no confío en la motivación.</li>
+            <li>5. Mi calendario refleja mis prioridades, no las de otros.</li>
+            <li>6. La fricción emocional es un dato, no una orden.</li>
+            <li>7. Regla de Naval: hago aquello donde mis esfuerzos se apalancan por capital, código o personas.</li>
+            <li>8. Regla de Buffett: sólo apuesto fuerte cuando el riesgo es limitado y la ventaja es enorme.</li>
+            <li>9. Regla estoica (Marco Aurelio): acepto todo lo externo y uso cada obstáculo como materia prima.</li>
+            <li>10. Regla de Jobs / Musk: mantengo estándares ridículamente altos en lo que importa.</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 space-y-3">
+          <p class="text-xs font-semibold text-slate-300 uppercase tracking-wide">Mi versión</p>
+          <p class="text-[11px] text-slate-400">
+            Rescribe estos principios con tus palabras. Esta es tu “constitución” personal.
+          </p>
+          <textarea
+            data-store-key="principios-personales"
+            class="mt-2 w-full text-[13px] px-3 py-2 rounded-xl bg-slate-950/80 border border-slate-800 focus:outline-none focus:border-primary-500"
+            rows="5"
+            placeholder="Redacta tus 5–10 principios innegociables de control, foco y riqueza."></textarea>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Navegación inferior -->
+  <nav class="fixed bottom-0 inset-x-0 z-30 bg-slate-900/95 border-t border-slate-800">
+    <div class="max-w-xl mx-auto px-4 py-2 flex justify-between text-[11px] text-slate-400">
+      <button data-nav="section-mapa" class="cs-nav flex flex-col items-center gap-0.5 flex-1">
+        <span>🧭</span>
+        <span>Mapa</span>
+      </button>
+      <button data-nav="section-focus" class="cs-nav flex flex-col items-center gap-0.5 flex-1">
+        <span>🎯</span>
+        <span>Focus</span>
+      </button>
+      <button data-nav="section-sistemas" class="cs-nav flex flex-col items-center gap-0.5 flex-1">
+        <span>⚙️</span>
+        <span>Sistemas</span>
+      </button>
+      <button data-nav="section-revision" class="cs-nav flex flex-col items-center gap-0.5 flex-1">
+        <span>📊</span>
+        <span>Revisión</span>
+      </button>
+      <button data-nav="section-principios" class="cs-nav flex flex-col items-center gap-0.5 flex-1">
+        <span>📜</span>
+        <span>Principios</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Lógica de la mini-app -->
+  <script>
+    // Fecha en header
+    (function () {
+      const el = document.getElementById('cs-date');
+      const now = new Date();
+      const formatter = new Intl.DateTimeFormat('es-ES', {
+        weekday: 'short',
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      });
+      el.textContent = formatter.format(now);
+    })();
+
+    // Navegación entre secciones
+    const navButtons = document.querySelectorAll('.cs-nav');
+    const sections = document.querySelectorAll('[data-section]');
+
+    function showSection(id) {
+      sections.forEach(sec => {
+        if (sec.id === id) sec.classList.remove('hidden');
+        else sec.classList.add('hidden');
+      });
+      navButtons.forEach(btn => {
+        if (btn.getAttribute('data-nav') === id) {
+          btn.classList.add('text-primary-300');
+        } else {
+          btn.classList.remove('text-primary-300');
+        }
+      });
+    }
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-nav');
+        showSection(id);
+      });
+    });
+
+    showSection('section-mapa');
+
+    // Persistencia básica con localStorage
+    const STORABLE_SELECTOR = '[data-store-key]';
+
+    function loadStoredValues() {
+      document.querySelectorAll(STORABLE_SELECTOR).forEach(el => {
+        const key = el.getAttribute('data-store-key');
+        const stored = localStorage.getItem('cs_' + key);
+        if (stored === null) return;
+        if (el.type === 'checkbox') {
+          el.checked = stored === '1';
+        } else {
+          el.value = stored;
+        }
+      });
+    }
+
+    function setupStoreListeners() {
+      document.querySelectorAll(STORABLE_SELECTOR).forEach(el => {
+        const key = el.getAttribute('data-store-key');
+        if (el.type === 'checkbox') {
+          el.addEventListener('change', () => {
+            localStorage.setItem('cs_' + key, el.checked ? '1' : '0');
+            updateControlScore();
+          });
+        } else {
+          el.addEventListener('input', () => {
+            localStorage.setItem('cs_' + key, el.value);
+          });
+        }
+      });
+    }
+
+    // Cálculo simple de "nivel de control"
+    function updateControlScore() {
+      const checkboxes = document.querySelectorAll('.cs-checkbox');
+      if (!checkboxes.length) return;
+      let total = 0, checked = 0;
+      checkboxes.forEach(cb => {
+        total++;
+        if (cb.checked) checked++;
+      });
+      const score = Math.round((checked / total) * 100);
+      document.getElementById('cs-score').textContent = score + '%';
+    }
+
+    loadStoredValues();
+    setupStoreListeners();
+    updateControlScore();
+  </script>
+</body>
+</html>
