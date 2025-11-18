@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>A Bridgeway - Academia de Inglés</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A Bridgeway, academia de inglés moderna con clases online y presenciales para todos los niveles. Prepara exámenes oficiales y mejora tu inglés profesional." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b1230;
+      --bg-alt: #050816;
+      --primary: #2563eb;
+      --primary-soft: rgba(37, 99, 235, 0.12);
+      --accent: #22c55e;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --card: #0f172a;
+      --border: #1f2937;
+      --danger: #ef4444;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.6);
+      --radius-lg: 18px;
+      --radius-md: 999px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1d2345 0, #020617 45%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* HEADER */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.7));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 20% 0, #38bdf8, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.6);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-text-sub {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .nav {
+      display: none; /* oculto en móvil */
+      align-items: center;
+      gap: 26px;
+      font-size: 14px;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-link:hover {
+      color: #e5e7eb;
+    }
+
+    .nav-link.active {
+      color: #e5e7eb;
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #38bdf8, #22c55e);
+    }
+
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      font-size: 13px;
+      border-radius: var(--radius-md);
+      padding: 7px 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .btn-outline {
+      border-color: rgba(148, 163, 184, 0.5);
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(209, 213, 219, 0.9);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #2563eb, #22c55e);
+      border: none;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.5);
+    }
+
+    .btn-primary span.icon {
+      font-size: 16px;
+      transform: translateY(1px);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-0.5px);
+    }
+
+    /* HERO - MOBILE FIRST */
+
+    .hero {
+      padding: 18px 0 28px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr); /* 1 columna en móvil */
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    /* Card primero en móvil */
+    .hero-card-wrap {
+      order: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-content {
+      order: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 4px 10px 4px 4px;
+      background: rgba(15, 23, 42, 0.9);
+      margin-bottom: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-badge-pill {
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 11px;
+      background: rgba(37, 99, 235, 0.18);
+      color: #e5f2ff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-badge-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-badge-text span {
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .hero-title {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .hero-title span.accent {
+      background: linear-gradient(120deg, #38bdf8, #22c55e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 480px;
+      margin-bottom: 14px;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-note strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-metas {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-meta-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.25);
+      position: relative;
+      margin-top: 4px;
+    }
+
+    .hero-meta-dot::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: 999px;
+      background: #60a5fa;
+    }
+
+    .hero-meta-title {
+      font-weight: 600;
+      color: #e5e7eb;
+      font-size: 11px;
+    }
+
+    /* HERO CARD */
+
+    .hero-card {
+      width: 100%;
+      max-width: 430px;
+      background: radial-gradient(circle at top left, #1f2937 0, #020617 52%);
+      border-radius: 26px;
+      padding: 14px 14px 16px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .hero-card-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hero-card-label-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .hero-card-label-main {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hero-card-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 10px;
+    }
+
+    .hero-card-logo-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 7px;
+      background: radial-gradient(circle at 20% 0, #38bdf8, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .hero-card-logo-text {
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      gap: 8px;
+    }
+
+    .hero-card-main-text {
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .hero-card-main-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-card-tag {
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .hero-card-tag span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero-progress {
+      margin: 12px 0 8px;
+    }
+
+    .hero-progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .hero-progress-bar {
+      position: relative;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-progress-fill {
+      position: absolute;
+      inset: 0;
+      width: 72%;
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+      border-radius: 999px;
+      box-shadow: 0 0 0 1px rgba(21, 128, 61, 0.4);
+    }
+
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .hero-card-stat {
+      padding: 8px 8px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .hero-card-stat-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .hero-card-stat-value {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .hero-card-stat-caption {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .hero-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2px;
+      gap: 8px;
+    }
+
+    .hero-card-avatars {
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-card-avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 2px solid #020617;
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      margin-left: -6px;
+    }
+
+    .hero-card-avatar:first-child {
+      margin-left: 0;
+    }
+
+    .hero-card-avatars-label {
+      font-size: 10px;
+      color: var(--muted);
+      margin-left: 4px;
+    }
+
+    .hero-card-cta {
+      font-size: 10px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.15);
+      color: #e5f2ff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .hero-card-cta span.icon {
+      font-size: 14px;
+      transform: translateY(1px);
+    }
+
+    /* SECCIONES GENERALES */
+
+    .section {
+      padding: 8px 0 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .section-kicker {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .benefit-card {
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), rgba(15, 23, 42, 0.96));
+      padding: 10px 11px 11px;
+      font-size: 12px;
+    }
+
+    .benefit-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .benefit-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .benefit-text {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* PLANES */
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .plan-card {
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 12px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .plan-top {
+      margin-bottom: 8px;
+    }
+
+    .plan-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .plan-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+    }
+
+    .plan-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .plan-subtitle {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .plan-price {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .plan-price span {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .plan-list {
+      margin: 6px 0 8px;
+      padding-left: 16px;
+      color: var(--muted);
+    }
+
+    .plan-list li {
+      margin-bottom: 3px;
+      font-size: 11px;
+    }
+
+    .plan-cta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2px;
+      gap: 8px;
+    }
+
+    .plan-cta-btn {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .plan-cta-btn.primary {
+      border: none;
+      background: linear-gradient(120deg, #2563eb, #22c55e);
+      color: #f9fafb;
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.6);
+    }
+
+    .plan-cta-note {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* TESTIMONIOS */
+
+    .testimonials {
+      margin-top: 4px;
+    }
+
+    .testimonials-strip {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .testimonials-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .testimonial-card {
+      min-width: 220px;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.22), rgba(15, 23, 42, 0.98));
+      padding: 10px 11px;
+      font-size: 11px;
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .testimonial-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    .testimonial-tag {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .testimonial-body {
+      color: #e5e7eb;
+    }
+
+    .testimonial-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 10px;
+      gap: 6px;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      padding: 12px 0 16px;
+      margin-top: auto;
+      background: rgba(2, 6, 23, 0.96);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 10px;
+      color: var(--muted);
+      gap: 6px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    /* RESPONSIVE PARA TABLET / DESKTOP */
+
+    @media (min-width: 600px) {
+      .hero-title {
+        font-size: 30px;
+      }
+      .hero-cta {
+        flex-direction: row;
+        align-items: center;
+      }
+      .hero-metas {
+        flex-direction: row;
+      }
+      .benefits-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .plans-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .nav {
+        display: flex;
+      }
+
+      .header-inner {
+        padding: 14px 16px;
+      }
+
+      .hero-inner {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+        gap: 30px;
+        align-items: center;
+      }
+
+      /* En escritorio, texto a la izquierda y card a la derecha */
+      .hero-card-wrap {
+        order: 2;
+        justify-content: flex-end;
+      }
+
+      .hero-content {
+        order: 1;
+      }
+
+      .hero-cta {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .hero-metas {
+        flex-direction: row;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-cta {
+        display: none; /* en móvil muy pequeño, sólo logo */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-inner">
+        <a href="#" class="logo">
+          <div class="logo-mark">AB</div>
+          <div class="logo-text">
+            <span class="logo-text-main">A Bridgeway</span>
+            <span class="logo-text-sub">English Academy</span>
+          </div>
+        </a>
+        <nav class="nav">
+          <a href="#planes" class="nav-link active">Planes</a>
+          <a href="#beneficios" class="nav-link">Por qué A Bridgeway</a>
+          <a href="#testimonios" class="nav-link">Opiniones</a>
+          <a href="#contacto" class="nav-link">Empresas</a>
+        </nav>
+        <div class="header-cta">
+          <button class="btn btn-outline">Iniciar sesión</button>
+          <button class="btn btn-primary">
+            <span>Empieza gratis</span> <span class="icon">→</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-inner">
+            <!-- CARD PRIMERO EN MÓVIL -->
+            <div class="hero-card-wrap">
+              <div class="hero-card">
+                <div class="hero-card-header">
+                  <div class="hero-card-label">
+                    <div class="hero-card-label-title">Tu progreso en inglés</div>
+                    <div class="hero-card-label-main">Panel A Bridgeway</div>
+                  </div>
+                  <div class="hero-card-logo">
+                    <div class="hero-card-logo-icon">AB</div>
+                    <div class="hero-card-logo-text">A Bridgeway</div>
+                  </div>
+                </div>
+
+                <div class="hero-card-body">
+                  <div class="hero-card-row">
+                    <div>
+                      <div class="hero-card-main-text">B1 → B2 en 7 meses</div>
+                      <div class="hero-card-main-sub">
+                        Según el ritmo medio de nuestros alumnos.
+                      </div>
+                    </div>
+                    <div class="hero-card-tag">
+                      <span class="dot"></span>
+                      Plan personalizado
+                    </div>
+                  </div>
+
+                  <div class="hero-progress">
+                    <div class="hero-progress-label">
+                      <span>Competencias cubiertas</span>
+                      <span>72%</span>
+                    </div>
+                    <div class="hero-progress-bar">
+                      <div class="hero-progress-fill"></div>
+                    </div>
+                  </div>
+
+                  <div class="hero-card-grid">
+                    <div class="hero-card-stat">
+                      <div class="hero-card-stat-label">Speaking</div>
+                      <div class="hero-card-stat-value">C1</div>
+                      <div class="hero-card-stat-caption">
+                        Conversaciones reales con nativos.
+                      </div>
+                    </div>
+                    <div class="hero-card-stat">
+                      <div class="hero-card-stat-label">Exámenes</div>
+                      <div class="hero-card-stat-value">93%</div>
+                      <div class="hero-card-stat-caption">
+                        Tasa de aprobados Cambridge.
+                      </div>
+                    </div>
+                    <div class="hero-card-stat">
+                      <div class="hero-card-stat-label">Clases/mes</div>
+                      <div class="hero-card-stat-value">12</div>
+                      <div class="hero-card-stat-caption">
+                        Flexibles y reprogramables.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="hero-card-footer">
+                    <div class="hero-card-avatars">
+                      <div class="hero-card-avatar">L</div>
+                      <div class="hero-card-avatar">M</div>
+                      <div class="hero-card-avatar">S</div>
+                      <div class="hero-card-avatars-label">
+                        +650 alumnos conectados ahora.
+                      </div>
+                    </div>
+                    <div class="hero-card-cta">
+                      Ver horarios en tu zona
+                      <span class="icon">→</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- TEXTO HERO -->
+            <div class="hero-content">
+              <div class="hero-badge">
+                <div class="hero-badge-pill">
+                  <span class="hero-badge-pill-dot"></span>
+                  Nuevos grupos · Enero 2026
+                </div>
+                <div class="hero-badge-text">
+                  Reserva tu plaza en <span>A Bridgeway</span>
+                </div>
+              </div>
+
+              <h1 class="hero-title">
+                Tu puente <span class="accent">al inglés real</span><br />para estudiar, viajar y trabajar.
+              </h1>
+              <p class="hero-subtitle">
+                En A Bridgeway conviertes tu inglés en una herramienta práctica:
+                <strong>clases online y presenciales</strong>, profesores nativos y
+                preparación de exámenes oficiales (Cambridge, IELTS, TOEFL).
+              </p>
+
+              <div class="hero-cta">
+                <button class="btn btn-primary">
+                  <span>Reserva una clase de prueba</span>
+                  <span class="icon">★</span>
+                </button>
+                <button class="btn btn-outline">
+                  <span>Habla con un asesor</span>
+                </button>
+              </div>
+
+              <div class="hero-note">
+                <strong>Sin matrícula</strong> · Cancelación flexible · Pago mensual seguro
+              </div>
+
+              <div class="hero-metas">
+                <div class="hero-meta-item">
+                  <span class="hero-meta-dot"></span>
+                  <div>
+                    <div class="hero-meta-title">+4.800 alumnos</div>
+                    <div>ya han mejorado su inglés con nosotros.</div>
+                  </div>
+                </div>
+                <div class="hero-meta-item">
+                  <span class="hero-meta-dot"></span>
+                  <div>
+                    <div class="hero-meta-title">Clases 100% aplicadas</div>
+                    <div>roleplays, speaking clubs, simulacros de examen.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- BENEFICIOS -->
+      <section class="section" id="beneficios">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-title">Aprender inglés nunca fue tan práctico.</div>
+            <div class="section-kicker">Ventajas de A Bridgeway</div>
+          </div>
+          <div class="benefits-grid">
+            <article class="benefit-card">
+              <div class="benefit-icon">🎧</div>
+              <h3 class="benefit-title">Clases online en directo</h3>
+              <p class="benefit-text">
+                Conecta desde cualquier dispositivo. Accede a las grabaciones
+                de tus clases para repasar cuando quieras.
+              </p>
+            </article>
+            <article class="benefit-card">
+              <div class="benefit-icon">👩‍🏫</div>
+              <h3 class="benefit-title">Profesores nativos y bilingües</h3>
+              <p class="benefit-text">
+                Especialistas en exámenes oficiales y en inglés profesional
+                para negocios, entrevistas y reuniones.
+              </p>
+            </article>
+            <article class="benefit-card">
+              <div class="benefit-icon">📈</div>
+              <h3 class="benefit-title">Seguimiento real de tu progreso</h3>
+              <p class="benefit-text">
+                Panel de nivel, tareas corregidas y recomendaciones SEMANALES
+                para que sepas exactamente qué mejorar.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PLANES -->
+      <section class="section" id="planes">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-title">Elige el plan que mejor encaja contigo.</div>
+            <div class="section-kicker">Planes flexibles</div>
+          </div>
+
+          <div class="plans-grid">
+            <!-- PLAN 1 -->
+            <article class="plan-card">
+              <div class="plan-top">
+                <div class="plan-badge">
+                  <span class="plan-badge-dot"></span>
+                  Starter
+                </div>
+                <h3 class="plan-title">Inglés Esencial</h3>
+                <p class="plan-subtitle">
+                  Ideal si estás empezando o quieres retomar el inglés.
+                </p>
+                <div class="plan-price">
+                  59€ / mes <span>sin matrícula</span>
+                </div>
+                <ul class="plan-list">
+                  <li>2 clases grupales a la semana.</li>
+                  <li>Acceso a plataforma de ejercicios.</li>
+                  <li>Nivel A1–B1.</li>
+                  <li>Cancelación mensual cuando quieras.</li>
+                </ul>
+              </div>
+              <div class="plan-cta">
+                <button class="plan-cta-btn">Más información</button>
+                <div class="plan-cta-note">Perfecto para empezar.</div>
+              </div>
+            </article>
+
+            <!-- PLAN 2 -->
+            <article class="plan-card">
+              <div class="plan-top">
+                <div class="plan-badge">
+                  <span class="plan-badge-dot"></span>
+                  Más elegido
+                </div>
+                <h3 class="plan-title">Pro English</h3>
+                <p class="plan-subtitle">
+                  Para avanzar rápido y preparar exámenes oficiales.
+                </p>
+                <div class="plan-price">
+                  89€ / mes <span>exámenes incluidos</span>
+                </div>
+                <ul class="plan-list">
+                  <li>3 clases grupales a la semana.</li>
+                  <li>1 sesión mensual 1 a 1 con tu tutor.</li>
+                  <li>Preparación Cambridge B2 / C1.</li>
+                  <li>Speaking clubs ilimitados.</li>
+                </ul>
+              </div>
+              <div class="plan-cta">
+                <button class="plan-cta-btn primary">Probar 7 días gratis</button>
+                <div class="plan-cta-note">El plan favorito de nuestros alumnos.</div>
+              </div>
+            </article>
+
+            <!-- PLAN 3 -->
+            <article class="plan-card">
+              <div class="plan-top">
+                <div class="plan-badge">
+                  <span class="plan-badge-dot"></span>
+                  Empresas
+                </div>
+                <h3 class="plan-title">Corporate English</h3>
+                <p class="plan-subtitle">
+                  Formación a medida para equipos y departamentos.
+                </p>
+                <div class="plan-price">
+                  A medida <span>según número de empleados</span>
+                </div>
+                <ul class="plan-list">
+                  <li>Programa adaptado a tu sector.</li>
+                  <li>Reportes mensuales de progreso.</li>
+                  <li>Clases in-company y online.</li>
+                  <li>Facturación centralizada y flexible.</li>
+                </ul>
+              </div>
+              <div class="plan-cta">
+                <button class="plan-cta-btn">Hablar con ventas</button>
+                <div class="plan-cta-note">Ideal para RRHH y managers.</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIOS -->
+      <section class="section" id="testimonios">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-title">Lo que dicen nuestros alumnos.</div>
+            <div class="section-kicker">Testimonios reales</div>
+          </div>
+          <div class="testimonials">
+            <div class="testimonials-strip">
+              <article class="testimonial-card">
+                <div class="testimonial-header">
+                  <div class="testimonial-avatar">M</div>
+                  <div>
+                    <div class="testimonial-name">María G.</div>
+                    <div class="testimonial-tag">Preparación Cambridge B2</div>
+                  </div>
+                </div>
+                <p class="testimonial-body">
+                  “En 8 meses he pasado de sentir pánico al speaking a aprobar
+                  el B2. Las simulaciones de examen y el feedback del profe han
+                  sido clave.”
+                </p>
+                <div class="testimonial-meta">
+                  <span>Plan Pro English</span>
+                  <span>Madrid · 27 años</span>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <div class="testimonial-header">
+                  <div class="testimonial-avatar">J</div>
+                  <div>
+                    <div class="testimonial-name">Jorge L.</div>
+                    <div class="testimonial-tag">Inglés para negocios</div>
+                  </div>
+                </div>
+                <p class="testimonial-body">
+                  “Ahora hago mis reuniones en inglés sin traducir en mi cabeza.
+                  Los roleplays de trabajo fueron exactamente lo que necesitaba.”
+                </p>
+                <div class="testimonial-meta">
+                  <span>Corporate English</span>
+                  <span>Barcelona · 35 años</span>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <div class="testimonial-header">
+                  <div class="testimonial-avatar">S</div>
+                  <div>
+                    <div class="testimonial-name">Sara P.</div>
+                    <div class="testimonial-tag">Nivel intermedio</div>
+                  </div>
+                </div>
+                <p class="testimonial-body">
+                  “Puedo viajar y entenderme sin problemas. Me gusta mucho
+                  poder cambiar de horario según mi turno de trabajo.”
+                </p>
+                <div class="testimonial-meta">
+                  <span>Inglés Esencial</span>
+                  <span>València · 29 años</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO / EMPRESAS -->
+      <section class="section" id="contacto">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-title">¿Eres una empresa o HR manager?</div>
+            <div class="section-kicker">Formación a medida</div>
+          </div>
+          <div class="benefits-grid">
+            <article class="benefit-card">
+              <div class="benefit-icon">🏢</div>
+              <h3 class="benefit-title">Programas por equipos y niveles</h3>
+              <p class="benefit-text">
+                Diseñamos itinerarios de formación por departamento y objetivos:
+                ventas, atención al cliente, management, etc.
+              </p>
+            </article>
+            <article class="benefit-card">
+              <div class="benefit-icon">📊</div>
+              <h3 class="benefit-title">Reportes claros de progreso</h3>
+              <p class="benefit-text">
+                Informes mensuales con asistencia, mejora de nivel y
+                recomendación de próximos pasos para cada empleado.
+              </p>
+            </article>
+            <article class="benefit-card">
+              <div class="benefit-icon">🤝</div>
+              <h3 class="benefit-title">Onboarding sencillo y soporte</h3>
+              <p class="benefit-text">
+                Nos integramos con tu equipo de RRHH y damos soporte directo a
+                los alumnos por chat y email.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div>© <span id="year">2025</span> A Bridgeway · Academia de Inglés</div>
+          <div class="footer-links">
+            <a href="#">Aviso legal</a>
+            <a href="#">Política de privacidad</a>
+            <a href="#">Cookies</a>
+            <a href="#">Contacto</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Actualizar año automáticamente
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
