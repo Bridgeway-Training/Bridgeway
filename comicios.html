@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cómic – Artículo 40 de la Constitución Española</title>
+
+  <!-- Fuente estilo cómic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-page: #f7f3e8;
+      --bg-panel: #fffdf7;
+      --border-panel: #111;
+      --accent: #ffcc00;
+      --accent-2: #ff5c5c;
+      --accent-3: #4ec5ff;
+      --shadow-panel: 6px 6px 0 #111;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: "Comic Neue", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 0 0, #fce38a 0, transparent 50%),
+        radial-gradient(circle at 100% 0, #f38181 0, transparent 50%),
+        radial-gradient(circle at 0 100%, #95e1d3 0, transparent 50%),
+        radial-gradient(circle at 100% 100%, #fce38a 0, transparent 50%),
+        var(--bg-page);
+      color: #111;
+    }
+
+    .page-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 18px;
+      padding: 2rem 2.2rem 2.5rem;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      border: 4px solid #000;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-family: "Bangers", system-ui;
+      font-size: 2.7rem;
+      margin: 0;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      display: inline-block;
+      background: #ffeb3b;
+      border: 4px solid #000;
+      box-shadow: 5px 5px 0 #000;
+      transform: rotate(-1deg);
+    }
+
+    header h2 {
+      margin: 0.7rem 0 0;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .subtitle-tag {
+      display: inline-block;
+      margin-top: 0.4rem;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      border-radius: 999px;
+      border: 2px solid #000;
+      background: #fff;
+    }
+
+    .legend {
+      margin-bottom: 1.3rem;
+      padding: 0.7rem 0.9rem;
+      border-radius: 12px;
+      border: 3px dashed #000;
+      background: #fff9c4;
+      font-size: 0.9rem;
+    }
+
+    .legend strong {
+      text-transform: uppercase;
+    }
+
+    .legend span {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .comic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .panel {
+      background: var(--bg-panel);
+      border: 4px solid var(--border-panel);
+      border-radius: 14px;
+      padding: 0.9rem 0.9rem 1.1rem;
+      box-shadow: var(--shadow-panel);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-number {
+      position: absolute;
+      top: -10px;
+      left: -8px;
+      background: var(--accent-2);
+      color: #fff;
+      font-family: "Bangers", system-ui;
+      font-size: 1.1rem;
+      padding: 0.2rem 0.7rem;
+      border: 3px solid #000;
+      transform: rotate(-6deg);
+      text-shadow: 1px 1px 0 #000;
+    }
+
+    .panel-header {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      padding-left: 1.3rem;
+    }
+
+    .panel-drawing {
+      font-size: 0.88rem;
+      margin: 0 0 0.5rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 10px;
+      background: #e3f2fd;
+      border: 2px dashed #000;
+    }
+
+    .panel-drawing strong {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .bubbles {
+      margin-top: 0.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .bubble {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      padding: 0.45rem 0.55rem;
+      border-radius: 16px;
+      border: 3px solid #000;
+      font-size: 0.9rem;
+      line-height: 1.25;
+      background: #fff;
+    }
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    /* Narrador (cuadro rectangular arriba) */
+    .bubble-narrator {
+      background: var(--accent);
+      font-weight: 700;
+      border-radius: 10px;
+    }
+
+    .bubble-narrator::after {
+      display: none;
+    }
+
+    /* Habla normal personaje */
+    .bubble-speech {
+      background: #ffffff;
+    }
+
+    .bubble-speech::after {
+      bottom: -10px;
+      left: 20px;
+      border-width: 10px 10px 0 0;
+      border-color: #000 transparent transparent transparent;
+    }
+
+    /* Pensamiento */
+    .bubble-think {
+      background: var(--accent-3);
+      font-style: italic;
+    }
+
+    .bubble-think::after {
+      bottom: -10px;
+      left: 20px;
+      border-width: 10px 10px 0 0;
+      border-color: #000 transparent transparent transparent;
+      border-radius: 50%;
+    }
+
+    .bubble small {
+      display: block;
+      font-size: 0.75rem;
+      opacity: 0.9;
+      margin-bottom: 0.1rem;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 1rem;
+      }
+
+      .page-wrapper {
+        padding: 1.2rem 1.1rem 1.6rem;
+      }
+
+      header h1 {
+        font-size: 2.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header>
+      <h1>La misión del Artículo 40</h1>
+      <h2>Constitución Española – Cómic para 1.º ESO</h2>
+      <div class="subtitle-tag">Trabajo de Sociales</div>
+    </header>
+
+    <section class="legend">
+      <strong>Cómo usar esta página:</strong><br>
+      <span>👉 <strong>Dibujo sugerido</strong>: lo que el alumno puede dibujar en la viñeta.</span>
+      <span>💬 <strong>Bocadillos</strong>: frases para copiar dentro de los personajes.</span>
+      <span>📦 <strong>Narrador</strong>: texto en cuadros rectangulares arriba o abajo.</span>
+    </section>
+
+    <section class="comic-grid">
+      <!-- VIÑETA 1 -->
+      <article class="panel">
+        <div class="panel-number">1</div>
+        <div class="panel-header">Clase de Sociales</div>
+        <p class="panel-drawing">
+          <strong>Dibujo sugerido:</strong> Aula de 1.º de ESO. La profesora Marta delante de la pizarra,
+          donde pone “ARTÍCULO 40”. Luna y Diego sentados en sus pupitres.
+        </p>
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            En clase de Sociales, la profe explica el Artículo 40 de la Constitución.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Profesora Marta</small>
+            Este artículo dice cómo debe cuidar el Estado el trabajo y la economía.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Luna</small>
+            ¿Y eso qué tiene que ver con nosotros?
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 2 -->
+      <article class="panel">
+        <div class="panel-number">2</div>
+        <div class="panel-header">Objetivo: más trabajo y progreso</div>
+        <p class="panel-drawing">
+          <strong>Dibujo sugerido:</strong> Primer plano de la profesora señalando un cartel en la pizarra
+          que dice “TRABAJO Y PROGRESO”.
+        </p>
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            Objetivo 1: más trabajo y progreso para la gente.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Profesora Marta</small>
+            El Estado debe ayudar a que haya trabajo para todas las personas.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Diego</small>
+            Como cuando intentan que haya más empresas y más empleos, ¿no?
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 3 -->
+      <article class="panel">
+        <div class="panel-number">3</div>
+        <div class="panel-header">Reparto más justo del dinero</div>
+        <p class="panel-drawing">
+          <strong>Dibujo sugerido:</strong> Mapa de España en la pizarra con monedas dibujadas repartidas
+          por diferentes zonas.
+        </p>
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            Objetivo 2: un reparto más justo del dinero.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Profesora Marta</small>
+            El Estado busca que el dinero se reparta mejor entre personas y regiones.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Luna</small>
+            Para que no haya sitios muy ricos y otros muy pobres.
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 4 -->
+      <article class="panel">
+        <div class="panel-number">4</div>
+        <div class="panel-header">Imaginando la ciudad</div>
+        <p class="panel-drawing">
+          <strong>Dibujo sugerido:</strong> Luna y Diego con una nube de pensamiento. Dentro se ve su barrio
+          con edificios, una fábrica y gente trabajando.
+        </p>
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            Luna y Diego imaginan su ciudad si el Artículo 40 se cumple bien.
+          </div>
+          <div class="bubble bubble-think">
+            <small>Luna (pensando)</small>
+            Mis padres tendrían un buen trabajo.
+          </div>
+          <div class="bubble bubble-think">
+            <small>Diego (pensando)</small>
+            Habría menos paro en el barrio.
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 5 -->
+      <article class="panel">
+        <div class="panel-number">5</div>
+        <div class="panel-header">Seguridad en el trabajo</div>
+        <p class="panel-drawing">
+          <strong>Dibujo sugerido:</strong> Trabajador con casco, chaleco y gafas protectoras en una fábrica.
+          Cartel detrás: “SEGURIDAD EN EL TRABAJO”.
+        </p>
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            El Estado cuida la seguridad e higiene en el trabajo.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Trabajador</small>
+            Gracias a las normas uso casco y revisan las máquinas. Estoy mucho más seguro.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Diego</small>
+            Así la gente no se hace daño mientras trabaja.
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 6 -->
+      <article class="panel">
+        <div class="panel-number">6</div>
+        <div class="panel-header">Descanso y vacaciones</div>
+        <p class="panel-drawing">
+          <strong>Dibujo sugerido:</strong> Reloj marcando la hora de salida y un calendario donde pone
+          “VACACIONES” con días marcados.
+        </p>
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            El Artículo 40 también garantiza el descanso.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Trabajador</small>
+            Tengo horario limitado, días libres y vacaciones pagadas.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Luna</small>
+            Así la gente no trabaja todo el día como robots.
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 7 -->
+      <article class="panel">
+        <div class="panel-number">7</div>
+        <div class="panel-header">Formación y nuevos trabajos</div>
+        <p class="panel-drawing">
+          <strong>Dibujo sugerido:</strong> Aula de adultos. Cartel en la pared: “CURSO DE FORMACIÓN /
+          READAPTACIÓN”. Madre de Luna con cuaderno en la mano.
+        </p>
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            El Estado ofrece formación y readaptación profesional.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Madre de Luna</small>
+            Estoy haciendo un curso para aprender un nuevo trabajo.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Luna</small>
+            El Artículo 40 ayuda a que la gente pueda encontrar empleo.
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 8 -->
+      <article class="panel">
+        <div class="panel-number">8</div>
+        <div class="panel-header">Resumen del Artículo 40</div>
+        <p class="panel-drawing">
+          <strong>Dibujo sugerido:</strong> De nuevo el aula. En la pizarra se lee:
+          “TRABAJO + DINERO JUSTO + SEGURIDAD + DESCANSO + FORMACIÓN”.
+        </p>
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            Resumen final del Artículo 40.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Profesora Marta</small>
+            Entonces, ¿qué intenta conseguir este artículo?
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Luna</small>
+            Que haya empleo y buenas condiciones de trabajo para las personas.
+          </div>
+          <div class="bubble bubble-speech">
+            <small>Diego</small>
+            Y que el dinero se reparta mejor, con seguridad, formación y descanso.
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+</body>
+</html>
