@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cómic – Artículo 40 de la Constitución Española</title>
+
+  <!-- Fuentes estilo cómic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-page: #f7f3e8;
+      --bg-panel: #fffdf7;
+      --border-panel: #111;
+      --accent: #ffcc00;
+      --accent-2: #ff5c5c;
+      --accent-3: #4ec5ff;
+      --shadow-panel: 6px 6px 0 #111;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: "Comic Neue", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 0 0, #fce38a 0, transparent 50%),
+        radial-gradient(circle at 100% 0, #f38181 0, transparent 50%),
+        radial-gradient(circle at 0 100%, #95e1d3 0, transparent 50%),
+        radial-gradient(circle at 100% 100%, #fce38a 0, transparent 50%),
+        var(--bg-page);
+      color: #111;
+    }
+
+    .page-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 18px;
+      padding: 2rem 2.2rem 2.5rem;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      border: 4px solid #000;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.7rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-family: "Bangers", system-ui;
+      font-size: 2.7rem;
+      margin: 0;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      display: inline-block;
+      background: #ffeb3b;
+      border: 4px solid #000;
+      box-shadow: 5px 5px 0 #000;
+      transform: rotate(-1deg);
+    }
+
+    header h2 {
+      margin: 0.7rem 0 0;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .subtitle-tag {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.25rem 0.9rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      border-radius: 999px;
+      border: 2px solid #000;
+      background: #fff;
+      letter-spacing: 0.08em;
+    }
+
+    .comic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .panel {
+      background: var(--bg-panel);
+      border: 4px solid var(--border-panel);
+      border-radius: 14px;
+      padding: 0.9rem 0.9rem 1.1rem;
+      box-shadow: var(--shadow-panel);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-number {
+      position: absolute;
+      top: -10px;
+      left: -8px;
+      background: var(--accent-2);
+      color: #fff;
+      font-family: "Bangers", system-ui;
+      font-size: 1.1rem;
+      padding: 0.2rem 0.7rem;
+      border: 3px solid #000;
+      transform: rotate(-6deg);
+      text-shadow: 1px 1px 0 #000;
+      z-index: 5;
+    }
+
+    .panel-header {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      padding-left: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ILUSTRACIONES DE LAS VIÑETAS */
+
+    .panel-illustration {
+      height: 150px;
+      border-radius: 12px;
+      border: 3px solid #000;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(180deg, #b3e5fc 0%, #e3f2fd 45%, #ffffff 46%, #ffffff 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 4px 4px 0 #000;
+    }
+
+    .panel-illustration .ground {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 32px;
+      background: #ffe0b2;
+      border-top: 3px solid #000;
+    }
+
+    .panel-drawing {
+      font-size: 0.85rem;
+      margin: 0 0 0.6rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 10px;
+      background: #fffde7;
+      border: 2px solid #000;
+      font-style: italic;
+    }
+
+    /* CABEZAS PARA ILUSTRACIONES DE CLASE */
+    .head {
+      position: absolute;
+      top: -26px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #ffe0b2;
+      border: 3px solid #000;
+      overflow: hidden;
+    }
+
+    .head::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 14px;
+      border-radius: 10px 10px 8px 8px;
+      background: #5d4037;
+    }
+
+    .head-luna::before {
+      background: #ec407a;
+    }
+
+    .head-diego::before {
+      background: #1e88e5;
+    }
+
+    /* AVATARES PARA LOS BOCADILLOS */
+
+    .bubble small {
+      display: flex;
+      align-items: center;
+      font-size: 0.75rem;
+      opacity: 0.9;
+      margin-bottom: 0.15rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #000;
+      background: #ffe0b2;
+      display: inline-block;
+      margin-right: 0.35rem;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar::before {
+      content: "";
+      position: absolute;
+      top: 1px;
+      left: 2px;
+      right: 2px;
+      height: 9px;
+      border-radius: 10px 10px 8px 8px;
+      background: #5d4037;
+    }
+
+    .avatar-marta::before {
+      background: #4e342e;
+    }
+
+    .avatar-luna::before {
+      background: #ec407a;
+    }
+
+    .avatar-diego::before {
+      background: #1e88e5;
+    }
+
+    .avatar-worker::before {
+      background: #fdd835;
+    }
+
+    .avatar-mother::before {
+      background: #8e24aa;
+    }
+
+    /* ESCENA 1: CLASE DE SOCIALES */
+
+    .scene-classroom .board {
+      position: absolute;
+      top: 12px;
+      left: 8%;
+      width: 60%;
+      height: 42%;
+      border-radius: 10px;
+      background: #263238;
+      border: 3px solid #000;
+      box-shadow: 3px 3px 0 #000;
+    }
+
+    .scene-classroom .board::after {
+      content: "ARTÍCULO 40";
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: "Bangers", system-ui;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+    }
+
+    .scene-classroom .teacher {
+      position: absolute;
+      bottom: 40px;
+      right: 10%;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #ffe0b2;
+      border: 3px solid #000;
+      overflow: hidden;
+    }
+
+    .scene-classroom .teacher::before {
+      content: "";
+      position: absolute;
+      top: 1px;
+      left: 3px;
+      right: 3px;
+      height: 18px;
+      border-radius: 12px 12px 10px 10px;
+      background: #4e342e;
+    }
+
+    .scene-classroom .teacher-body {
+      position: absolute;
+      top: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 40px 24px 0 24px;
+      border-color: #f06292 transparent transparent transparent;
+    }
+
+    .scene-classroom .desk-row {
+      position: absolute;
+      bottom: 10px;
+      left: 6%;
+      right: 28%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 0.4rem;
+    }
+
+    .scene-classroom .desk {
+      width: 80px;
+      height: 32px;
+      background: #ffcc80;
+      border-radius: 6px;
+      border: 3px solid #000;
+      position: relative;
+      box-shadow: 2px 2px 0 #000;
+    }
+
+    /* ESCENA 2: TRABAJO Y PROGRESO */
+
+    .scene-goals .big-card {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 72%;
+      height: 72%;
+      border-radius: 14px;
+      border: 3px solid #000;
+      background: #fffde7;
+      box-shadow: 3px 3px 0 #000;
+    }
+
+    .scene-goals .goal {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      height: 24px;
+      border-radius: 999px;
+      border: 3px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    .scene-goals .goal-work {
+      top: 18px;
+      background: #ffcc80;
+    }
+
+    .scene-goals .goal-progress {
+      top: 52px;
+      background: #c5e1a5;
+    }
+
+    .scene-goals .arrow-up {
+      position: absolute;
+      bottom: 20px;
+      left: 15%;
+      width: 60%;
+      height: 18px;
+      background: #fff59d;
+      border-radius: 999px;
+      border: 3px solid #000;
+    }
+
+    .scene-goals .arrow-up::after {
+      content: "";
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-style: solid;
+      border-width: 12px 0 12px 18px;
+      border-color: transparent transparent transparent #000;
+    }
+
+    /* ESCENA 3: REPARTO DEL DINERO */
+
+    .scene-money .map {
+      position: absolute;
+      top: 20px;
+      left: 16%;
+      width: 68%;
+      height: 70%;
+      background: #c5e1a5;
+      border-radius: 40% 60% 55% 45%;
+      border: 3px solid #000;
+      box-shadow: 3px 3px 0 #000;
+    }
+
+    .scene-money .map-title {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .scene-money .coin {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ffeb3b;
+      border: 3px solid #000;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+    }
+
+    .scene-money .coin::after {
+      content: "€";
+      position: absolute;
+      top: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .scene-money .coin-1 { top: 34%; left: 18%; }
+    .scene-money .coin-2 { top: 50%; left: 40%; }
+    .scene-money .coin-3 { top: 30%; right: 16%; }
+    .scene-money .coin-4 { bottom: 18%; left: 30%; }
+    .scene-money .coin-5 { bottom: 20%; right: 22%; }
+
+    /* ESCENA 4: CIUDAD CON FÁBRICA Y BARRIO */
+
+    .scene-city .building,
+    .scene-city .factory {
+      position: absolute;
+      bottom: 12px;
+      width: 64px;
+      border-radius: 8px 8px 4px 4px;
+      border: 3px solid #000;
+      box-shadow: 3px 3px 0 #000;
+    }
+
+    .scene-city .building.b1 {
+      left: 8%;
+      height: 78px;
+      background: #ffcc80;
+    }
+
+    .scene-city .building.b2 {
+      left: 30%;
+      height: 96px;
+      background: #ffab91;
+    }
+
+    .scene-city .factory {
+      right: 10%;
+      height: 60px;
+      background: #cfd8dc;
+    }
+
+    .scene-city .window {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 2px;
+    }
+
+    .scene-city .building.b1 .window:nth-child(1) { top: 14px; left: 10px; }
+    .scene-city .building.b1 .window:nth-child(2) { top: 14px; right: 10px; }
+    .scene-city .building.b1 .window:nth-child(3) { top: 36px; left: 10px; }
+    .scene-city .building.b1 .window:nth-child(4) { top: 36px; right: 10px; }
+
+    .scene-city .building.b2 .window:nth-child(1) { top: 14px; left: 11px; }
+    .scene-city .building.b2 .window:nth-child(2) { top: 14px; right: 11px; }
+    .scene-city .building.b2 .window:nth-child(3) { top: 38px; left: 11px; }
+    .scene-city .building.b2 .window:nth-child(4) { top: 38px; right: 11px; }
+    .scene-city .building.b2 .window:nth-child(5) { top: 62px; left: 11px; }
+    .scene-city .building.b2 .window:nth-child(6) { top: 62px; right: 11px; }
+
+    .scene-city .chimney {
+      position: absolute;
+      top: -32px;
+      width: 16px;
+      height: 32px;
+      background: #cfd8dc;
+      border: 3px solid #000;
+    }
+
+    .scene-city .chimney.c1 { left: 8px; }
+    .scene-city .chimney.c2 { left: 26px; }
+    .scene-city .chimney.c3 { left: 44px; }
+
+    .scene-city .smoke {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid #000;
+      background: #fafafa;
+    }
+
+    .scene-city .smoke.s1 { top: -44px; left: 10px; }
+    .scene-city .smoke.s2 { top: -52px; left: 28px; }
+    .scene-city .smoke.s3 { top: -46px; left: 46px; }
+
+    .scene-city .person {
+      position: absolute;
+      bottom: 16px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 3px solid #000;
+      background: #ffe0b2;
+    }
+
+    .scene-city .person::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 16px;
+      border-radius: 6px;
+      background: #4fc3f7;
+      border: 2px solid #000;
+    }
+
+    .scene-city .person.luna {
+      left: 18%;
+    }
+
+    .scene-city .person.diego {
+      left: 46%;
+    }
+
+    /* ESCENA 5: SEGURIDAD EN EL TRABAJO */
+
+    .scene-safety .safety-sign {
+      position: absolute;
+      top: 14px;
+      right: 12%;
+      width: 110px;
+      height: 40px;
+      background: #fff3e0;
+      border-radius: 8px;
+      border: 3px solid #000;
+      box-shadow: 2px 2px 0 #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .scene-safety .worker {
+      position: absolute;
+      bottom: 32px;
+      left: 16%;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #ffe0b2;
+      border: 3px solid #000;
+      overflow: hidden;
+    }
+
+    .scene-safety .worker::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: -2px;
+      right: -2px;
+      height: 20px;
+      background: #fdd835;
+      border-bottom: 3px solid #000;
+      border-radius: 50% 50% 12px 12px;
+    }
+
+    .scene-safety .worker-body {
+      position: absolute;
+      top: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 42px 26px 0 26px;
+      border-color: #4fc3f7 transparent transparent transparent;
+    }
+
+    /* ESCENA 6: DESCANSO Y VACACIONES */
+
+    .scene-rest .clock {
+      position: absolute;
+      top: 18px;
+      left: 14%;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid #000;
+      background: #fff;
+    }
+
+    .scene-rest .clock::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 4px;
+      height: 20px;
+      background: #000;
+      border-radius: 999px;
+    }
+
+    .scene-rest .clock::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 16px;
+      height: 4px;
+      background: #000;
+      border-radius: 999px;
+      transform-origin: left center;
+      transform: translate(-10%, -50%) rotate(45deg);
+    }
+
+    .scene-rest .calendar {
+      position: absolute;
+      top: 18px;
+      right: 10%;
+      width: 130px;
+      height: 90px;
+      border-radius: 8px;
+      border: 3px solid #000;
+      background: #fff;
+      box-shadow: 3px 3px 0 #000;
+    }
+
+    .scene-rest .calendar-header {
+      height: 28px;
+      background: #ff5252;
+      border-bottom: 3px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .scene-rest .calendar-days {
+      padding: 6px 8px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 3px;
+    }
+
+    .scene-rest .day {
+      width: 100%;
+      padding-top: 100%;
+      position: relative;
+      border-radius: 3px;
+      border: 2px solid #000;
+      background: #fafafa;
+    }
+
+    .scene-rest .day.marked {
+      background: #ffeb3b;
+    }
+
+    /* ESCENA 7: FORMACIÓN Y CURSO */
+
+    .scene-training .board {
+      position: absolute;
+      top: 16px;
+      left: 10%;
+      width: 60%;
+      height: 42%;
+      border-radius: 10px;
+      background: #1a237e;
+      border: 3px solid #000;
+      box-shadow: 3px 3px 0 #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .scene-training .student {
+      position: absolute;
+      bottom: 34px;
+      right: 12%;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ffe0b2;
+      border: 3px solid #000;
+    }
+
+    .scene-training .student::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 3px;
+      right: 3px;
+      height: 18px;
+      border-radius: 12px 12px 10px 10px;
+      background: #8e24aa;
+    }
+
+    .scene-training .student-body {
+      position: absolute;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 40px 24px 0 24px;
+      border-color: #ce93d8 transparent transparent transparent;
+    }
+
+    /* ESCENA 8: RESUMEN VISUAL */
+
+    .scene-summary .chips-row {
+      position: absolute;
+      top: 32px;
+      left: 8%;
+      right: 8%;
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .scene-summary .chip {
+      flex: 0 1 auto;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      border: 3px solid #000;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: #fff;
+      box-shadow: 2px 2px 0 #000;
+    }
+
+    .scene-summary .chip.work { background: #ffcc80; }
+    .scene-summary .chip.money { background: #ffe082; }
+    .scene-summary .chip.safety { background: #b3e5fc; }
+    .scene-summary .chip.rest { background: #c5e1a5; }
+    .scene-summary .chip.training { background: #f8bbd0; }
+
+    .scene-summary .ribbon {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      border: 3px solid #000;
+      background: #ffeb3b;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 3px 3px 0 #000;
+    }
+
+    /* BOCADILLOS */
+
+    .bubbles {
+      margin-top: 0.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .bubble {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      padding: 0.45rem 0.55rem;
+      border-radius: 16px;
+      border: 3px solid #000;
+      font-size: 0.9rem;
+      line-height: 1.25;
+      background: #fff;
+    }
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    .bubble-narrator {
+      background: var(--accent);
+      font-weight: 700;
+      border-radius: 10px;
+    }
+
+    .bubble-narrator::after {
+      display: none;
+    }
+
+    .bubble-speech {
+      background: #ffffff;
+    }
+
+    .bubble-speech::after {
+      bottom: -10px;
+      left: 20px;
+      border-width: 10px 10px 0 0;
+      border-color: #000 transparent transparent transparent;
+    }
+
+    .bubble-think {
+      background: var(--accent-3);
+      font-style: italic;
+    }
+
+    .bubble-think::after {
+      bottom: -10px;
+      left: 20px;
+      border-width: 10px 10px 0 0;
+      border-color: #000 transparent transparent transparent;
+      border-radius: 50%;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 1rem;
+      }
+
+      .page-wrapper {
+        padding: 1.2rem 1.1rem 1.6rem;
+      }
+
+      header h1 {
+        font-size: 2.1rem;
+      }
+
+      .panel-illustration {
+        height: 135px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header>
+      <h1>La misión del Artículo 40</h1>
+      <h2>Constitución Española – Cómic</h2>
+      <div class="subtitle-tag">1.º de ESO · Trabajo final</div>
+    </header>
+
+    <section class="comic-grid">
+      <!-- VIÑETA 1 -->
+      <article class="panel">
+        <div class="panel-number">1</div>
+        <div class="panel-header">Clase de Sociales</div>
+
+        <div class="panel-illustration scene-classroom">
+          <div class="board"></div>
+
+          <div class="teacher">
+            <div class="teacher-body"></div>
+          </div>
+
+          <div class="desk-row">
+            <div class="desk">
+              <div class="head head-luna"></div>
+            </div>
+            <div class="desk">
+              <div class="head head-diego"></div>
+            </div>
+          </div>
+
+          <div class="ground"></div>
+        </div>
+
+        <p class="panel-drawing">
+          Escena: Aula de 1.º de ESO. La profesora Marta explica a Luna y Diego qué es el Artículo 40.
+        </p>
+
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            En clase de Sociales, la profe presenta el Artículo 40 de la Constitución.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-marta"></span>Profesora Marta</small>
+            Este artículo dice cómo debe cuidar el Estado el trabajo y la economía.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-luna"></span>Luna</small>
+            ¿Y eso qué tiene que ver con nosotros?
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 2 -->
+      <article class="panel">
+        <div class="panel-number">2</div>
+        <div class="panel-header">Trabajo y progreso</div>
+
+        <div class="panel-illustration scene-goals">
+          <div class="big-card">
+            <div class="goal goal-work">Trabajo</div>
+            <div class="goal goal-progress">Progreso</div>
+            <div class="arrow-up"></div>
+          </div>
+          <div class="ground"></div>
+        </div>
+
+        <p class="panel-drawing">
+          Escena: Cartel grande en la clase donde se lee “Trabajo” y “Progreso” con una flecha hacia arriba.
+        </p>
+
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            Primer objetivo del Artículo 40: más trabajo y progreso para la gente.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-marta"></span>Profesora Marta</small>
+            El Estado debe ayudar a que haya trabajo para todas las personas.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-diego"></span>Diego</small>
+            Como cuando intentan que haya más empresas y más empleos, ¿no?
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 3 -->
+      <article class="panel">
+        <div class="panel-number">3</div>
+        <div class="panel-header">Un reparto más justo</div>
+
+        <div class="panel-illustration scene-money">
+          <div class="map">
+            <span class="map-title">España</span>
+            <div class="coin coin-1"></div>
+            <div class="coin coin-2"></div>
+            <div class="coin coin-3"></div>
+            <div class="coin coin-4"></div>
+            <div class="coin coin-5"></div>
+          </div>
+          <div class="ground"></div>
+        </div>
+
+        <p class="panel-drawing">
+          Escena: Mapa esquemático de España con monedas repartidas por distintas zonas del país.
+        </p>
+
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            Segundo objetivo: que el dinero se reparta de forma más justa.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-marta"></span>Profesora Marta</small>
+            El Estado busca que la riqueza se reparta mejor entre personas y regiones.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-luna"></span>Luna</small>
+            Para que no haya sitios muy ricos y otros muy pobres.
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 4 -->
+      <article class="panel">
+        <div class="panel-number">4</div>
+        <div class="panel-header">Imaginando su ciudad</div>
+
+        <div class="panel-illustration scene-city">
+          <div class="building b1">
+            <div class="window"></div>
+            <div class="window"></div>
+            <div class="window"></div>
+            <div class="window"></div>
+          </div>
+          <div class="building b2">
+            <div class="window"></div>
+            <div class="window"></div>
+            <div class="window"></div>
+            <div class="window"></div>
+            <div class="window"></div>
+            <div class="window"></div>
+          </div>
+          <div class="factory">
+            <div class="chimney c1"></div>
+            <div class="chimney c2"></div>
+            <div class="chimney c3"></div>
+            <div class="smoke s1"></div>
+            <div class="smoke s2"></div>
+            <div class="smoke s3"></div>
+          </div>
+          <div class="person luna"></div>
+          <div class="person diego"></div>
+          <div class="ground"></div>
+        </div>
+
+        <p class="panel-drawing">
+          Escena: El barrio de Luna y Diego con edificios, una fábrica y gente moviéndose por las calles.
+        </p>
+
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            Luna y Diego imaginan cómo sería su ciudad si el Artículo 40 se cumple bien.
+          </div>
+          <div class="bubble bubble-think">
+            <small><span class="avatar avatar-luna"></span>Luna (pensando)</small>
+            Mis padres tendrían un trabajo estable y tranquilo.
+          </div>
+          <div class="bubble bubble-think">
+            <small><span class="avatar avatar-diego"></span>Diego (pensando)</small>
+            Habría menos paro en el barrio.
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 5 -->
+      <article class="panel">
+        <div class="panel-number">5</div>
+        <div class="panel-header">Seguridad en el trabajo</div>
+
+        <div class="panel-illustration scene-safety">
+          <div class="safety-sign">Seguridad en el trabajo</div>
+          <div class="worker">
+            <div class="worker-body"></div>
+          </div>
+          <div class="ground"></div>
+        </div>
+
+        <p class="panel-drawing">
+          Escena: Trabajador con casco y chaleco en una fábrica, delante de un cartel de seguridad.
+        </p>
+
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            El Estado también protege la seguridad e higiene en el trabajo.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-worker"></span>Trabajador</small>
+            Gracias a las normas uso casco y revisan las máquinas. Estoy mucho más seguro.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-diego"></span>Diego</small>
+            Así la gente no se hace daño mientras trabaja.
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 6 -->
+      <article class="panel">
+        <div class="panel-number">6</div>
+        <div class="panel-header">Descanso y vacaciones</div>
+
+        <div class="panel-illustration scene-rest">
+          <div class="clock"></div>
+          <div class="calendar">
+            <div class="calendar-header">Vacaciones</div>
+            <div class="calendar-days">
+              <div class="day"></div>
+              <div class="day marked"></div>
+              <div class="day"></div>
+              <div class="day marked"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day marked"></div>
+              <div class="day"></div>
+              <div class="day"></div>
+              <div class="day marked"></div>
+            </div>
+          </div>
+          <div class="ground"></div>
+        </div>
+
+        <p class="panel-drawing">
+          Escena: Un reloj marcando la hora de salida y un calendario con varios días de vacaciones marcados.
+        </p>
+
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            El Artículo 40 también garantiza el descanso y el ocio.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-worker"></span>Trabajador</small>
+            Tengo horario limitado, días libres y vacaciones pagadas.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-luna"></span>Luna</small>
+            Así la gente no trabaja todo el día como robots.
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 7 -->
+      <article class="panel">
+        <div class="panel-number">7</div>
+        <div class="panel-header">Formación y nuevos trabajos</div>
+
+        <div class="panel-illustration scene-training">
+          <div class="board">Curso de formación</div>
+          <div class="student">
+            <div class="student-body"></div>
+          </div>
+          <div class="ground"></div>
+        </div>
+
+        <p class="panel-drawing">
+          Escena: Aula de adultos. La madre de Luna asiste a un curso para aprender una nueva profesión.
+        </p>
+
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            El Estado ofrece formación y readaptación profesional a quienes la necesitan.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-mother"></span>Madre de Luna</small>
+            Estoy haciendo un curso para aprender un nuevo trabajo.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-luna"></span>Luna</small>
+            El Artículo 40 ayuda a que la gente pueda encontrar empleo.
+          </div>
+        </div>
+      </article>
+
+      <!-- VIÑETA 8 -->
+      <article class="panel">
+        <div class="panel-number">8</div>
+        <div class="panel-header">Resumen del Artículo 40</div>
+
+        <div class="panel-illustration scene-summary">
+          <div class="chips-row">
+            <div class="chip work">Trabajo</div>
+            <div class="chip money">Dinero justo</div>
+            <div class="chip safety">Seguridad</div>
+            <div class="chip rest">Descanso</div>
+            <div class="chip training">Formación</div>
+          </div>
+          <div class="ribbon">Objetivo: bienestar de la gente</div>
+          <div class="ground"></div>
+        </div>
+
+        <p class="panel-drawing">
+          Escena: Pizarra imaginaria con las ideas clave: trabajo, dinero justo, seguridad, descanso y formación.
+        </p>
+
+        <div class="bubbles">
+          <div class="bubble bubble-narrator">
+            Resumen final del Artículo 40 de la Constitución Española.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-marta"></span>Profesora Marta</small>
+            Entonces, ¿qué intenta conseguir este artículo?
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-luna"></span>Luna</small>
+            Que haya empleo y buenas condiciones de trabajo para las personas.
+          </div>
+          <div class="bubble bubble-speech">
+            <small><span class="avatar avatar-diego"></span>Diego</small>
+            Y que el dinero se reparta mejor, con seguridad, formación y descanso.
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+</body>
+</html>
