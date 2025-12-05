@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Planes de inglés</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <!-- ENCABEZADO -->
+    <header class="mb-10 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-sky-400 tracking-tight">
+        Planes de inglés Bridge Way
+      </h1>
+      <p class="mt-3 text-slate-300 text-sm md:text-base">
+        Elige tu grupo, modalidad y duración. Aquí tienes todos los niveles, horas y precios de forma clara.
+      </p>
+    </header>
+
+    <!-- PESTAÑAS PRINCIPALES -->
+    <nav class="flex justify-center mb-8">
+      <div class="inline-flex rounded-full bg-slate-900 border border-sky-500/50 p-1">
+        <button
+          class="tab-button px-4 py-2 rounded-full text-sm md:text-base font-medium bg-sky-500 text-white shadow-md"
+          data-tab-button="kids"
+          aria-selected="true"
+        >
+          Niños
+        </button>
+        <button
+          class="tab-button px-4 py-2 rounded-full text-sm md:text-base font-medium text-slate-200 hover:bg-sky-500/20"
+          data-tab-button="teens"
+          aria-selected="false"
+        >
+          Adolescentes
+        </button>
+        <button
+          class="tab-button px-4 py-2 rounded-full text-sm md:text-base font-medium text-slate-200 hover:bg-sky-500/20"
+          data-tab-button="adults"
+          aria-selected="false"
+        >
+          Adultos
+        </button>
+      </div>
+    </nav>
+
+    <!-- PEQUEÑO RESUMEN DEL PROCESO -->
+    <section class="mb-10 grid gap-4 md:grid-cols-3 text-xs md:text-sm">
+      <div class="bg-slate-900/70 border border-sky-500/40 rounded-2xl p-4 flex items-start gap-3">
+        <div class="mt-1 h-8 w-8 rounded-full bg-sky-500/20 flex items-center justify-center">
+          <span class="text-sky-300 font-semibold">1</span>
+        </div>
+        <div>
+          <p class="font-semibold text-sky-300">Elige tu nivel</p>
+          <p class="text-slate-300">Desde Pre-A1 hasta C2.</p>
+        </div>
+      </div>
+      <div class="bg-slate-900/70 border border-sky-500/40 rounded-2xl p-4 flex items-start gap-3">
+        <div class="mt-1 h-8 w-8 rounded-full bg-sky-500/20 flex items-center justify-center">
+          <span class="text-sky-300 font-semibold">2</span>
+        </div>
+        <div>
+          <p class="font-semibold text-sky-300">Elige tu tipo de clase</p>
+          <p class="text-slate-300">Grupos, clases individuales o Speaking Club.</p>
+        </div>
+      </div>
+      <div class="bg-slate-900/70 border border-sky-500/40 rounded-2xl p-4 flex items-start gap-3">
+        <div class="mt-1 h-8 w-8 rounded-full bg-sky-500/20 flex items-center justify-center">
+          <span class="text-sky-300 font-semibold">3</span>
+        </div>
+        <div>
+          <p class="font-semibold text-sky-300">Consulta duración y precio</p>
+          <p class="text-slate-300">Aquí ves semanas, horas, clases y coste total.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================== NIÑOS ================== -->
+    <section class="tab-panel grid gap-6 md:grid-cols-2" data-tab-panel="kids">
+      <!-- GRUPOS NIÑOS -->
+      <article class="bg-slate-900/80 border border-sky-500/40 rounded-2xl p-6 shadow-lg">
+        <header class="flex items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-semibold text-sky-300">
+              Cursos en grupo para niños
+            </h2>
+            <p class="mt-1 text-xs text-slate-300">
+              Niveles: Pre-A1, A1, A2, A2+, B1, B2, B2+.
+            </p>
+          </div>
+          <!-- “Gráfico” circular simple -->
+          <div class="relative h-14 w-14 rounded-full border-2 border-sky-500 flex items-center justify-center">
+            <span class="text-[0.70rem] text-center leading-tight text-sky-200">
+              3 clases<br />por semana
+            </span>
+          </div>
+        </header>
+
+        <div class="mt-5 space-y-5 text-sm text-slate-100">
+          <!-- Plan corto -->
+          <div class="rounded-xl bg-slate-950/70 border border-sky-500/30 p-4">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="font-semibold text-sky-200">
+                Pre-A1, A2+, B2+
+              </h3>
+              <span class="px-3 py-1 rounded-full bg-sky-500/20 text-[0.75rem] text-sky-200">
+                6 semanas
+              </span>
+            </div>
+            <p class="mt-2 text-xs text-slate-300">
+              3 clases por semana, 18 clases en total, 60 minutos por clase.
+            </p>
+
+            <!-- Barra de duración -->
+            <div class="mt-3">
+              <p class="text-[0.70rem] text-slate-400 mb-1">Duración relativa del curso</p>
+              <div class="w-full h-2 rounded-full bg-slate-800">
+                <div class="h-2 rounded-full bg-sky-500 w-1/2"></div>
+              </div>
+            </div>
+
+            <p class="mt-3 font-semibold text-sky-100">
+              Precio total: <span class="text-sky-300">2200 MDL</span>
+            </p>
+          </div>
+
+          <!-- Plan estándar -->
+          <div class="rounded-xl bg-slate-950/70 border border-emerald-400/40 p-4">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="font-semibold text-emerald-200">
+                A1, A2, B1, B2
+              </h3>
+              <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-[0.75rem] text-emerald-100">
+                12 semanas
+              </span>
+            </div>
+            <p class="mt-2 text-xs text-slate-300">
+              3 clases por semana, 36 clases en total, 60 minutos por clase.
+            </p>
+
+            <!-- Barra de duración -->
+            <div class="mt-3">
+              <p class="text-[0.70rem] text-slate-400 mb-1">Duración relativa del curso</p>
+              <div class="w-full h-2 rounded-full bg-slate-800">
+                <div class="h-2 rounded-full bg-emerald-400 w-full"></div>
+              </div>
+            </div>
+
+            <p class="mt-3 font-semibold text-emerald-100">
+              Precio total: <span class="text-emerald-300">4150 MDL</span>
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- INDIVIDUAL NIÑOS -->
+      <article class="bg-slate-900/80 border border-sky-500/40 rounded-2xl p-6 shadow-lg flex flex-col">
+        <header class="flex items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-semibold text-sky-300">
+              Clases individuales para niños
+            </h2>
+          </div>
+          <!-- “Gráfico” de intensidad -->
+          <div class="w-24">
+            <p class="text-[0.70rem] text-slate-400 mb-1 text-right">Intensidad máxima semanal</p>
+            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-2 bg-sky-400 w-3/5"></div>
+            </div>
+            <p class="mt-1 text-[0.70rem] text-right text-slate-300">
+              Hasta 3 clases
+            </p>
+          </div>
+        </header>
+
+        <ul class="mt-4 space-y-2 text-sm text-slate-100 flex-1">
+          <li>Duración por clase: 60 minutos.</li>
+          <li>Máximo 3 clases por semana.</li>
+          <li>Packs de 10 clases.</li>
+          <li>Precio por pack de 10 clases: 4200 MDL.</li>
+          <li>Precio por hora: 420 MDL.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ================== ADOLESCENTES ================== -->
+    <section class="tab-panel hidden space-y-6" data-tab-panel="teens">
+      <div class="grid gap-6 md:grid-cols-3">
+        <!-- GRUPOS ADOLESCENTES -->
+        <article class="bg-slate-900/80 border border-sky-500/40 rounded-2xl p-6 shadow-lg md:col-span-2">
+          <header class="flex items-center justify-between gap-3">
+            <div>
+              <h2 class="text-xl font-semibold text-sky-300">
+                Cursos en grupo para adolescentes
+              </h2>
+              <p class="mt-1 text-xs text-slate-300">
+                Niveles: A1, A2, A2+, B1, B2, B2+, C1, C2.
+              </p>
+              <p class="mt-1 text-xs text-sky-200">
+                Frecuencia estándar: 3 clases por semana, 90 minutos por clase.
+              </p>
+            </div>
+            <!-- Bloque de datos global -->
+            <div class="bg-slate-950/70 rounded-2xl p-3 text-[0.70rem] text-slate-200 border border-sky-500/40">
+              <p><span class="text-sky-300 font-semibold">Formato:</span> grupos por nivel</p>
+              <p><span class="text-sky-300 font-semibold">Duración:</span> 8 o 12 semanas según curso</p>
+            </div>
+          </header>
+
+          <div class="mt-5 space-y-5 text-sm text-slate-100">
+            <!-- Regular -->
+            <div class="rounded-xl bg-slate-950/70 border border-sky-500/30 p-4">
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="font-semibold text-sky-200">
+                  A1, A2, B1, B2, C1, C2
+                </h3>
+                <div class="flex flex-col items-end gap-1">
+                  <span class="px-3 py-1 rounded-full bg-sky-500/20 text-[0.75rem] text-sky-100">
+                    12 semanas
+                  </span>
+                  <span class="text-[0.70rem] text-slate-300">
+                    54 horas en total
+                  </span>
+                </div>
+              </div>
+              <p class="mt-2 text-xs text-slate-300">
+                3 clases por semana, 36 clases en total, 90 minutos por clase.
+              </p>
+
+              <!-- Barra duración -->
+              <div class="mt-3">
+                <p class="text-[0.70rem] text-slate-400 mb-1">Duración relativa del curso</p>
+                <div class="w-full h-2 rounded-full bg-slate-800">
+                  <div class="h-2 rounded-full bg-sky-400 w-full"></div>
+                </div>
+              </div>
+
+              <p class="mt-3 font-semibold text-sky-100">
+                Precio total: <span class="text-sky-300">6200 MDL</span>
+              </p>
+            </div>
+
+            <!-- Semi-intensivo A2+ / B2+ -->
+            <div class="rounded-xl bg-slate-950/70 border border-emerald-400/40 p-4">
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="font-semibold text-emerald-200">
+                  A2+, B2+
+                </h3>
+                <div class="flex flex-col items-end gap-1">
+                  <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-[0.75rem] text-emerald-100">
+                    8 semanas
+                  </span>
+                  <span class="text-[0.70rem] text-slate-300">
+                    36 horas en total
+                  </span>
+                </div>
+              </div>
+              <p class="mt-2 text-xs text-slate-300">
+                3 clases por semana, 24 clases en total, 90 minutos por clase.
+              </p>
+
+              <!-- Barra duración -->
+              <div class="mt-3">
+                <p class="text-[0.70rem] text-slate-400 mb-1">Duración relativa del curso</p>
+                <div class="w-full h-2 rounded-full bg-slate-800">
+                  <div class="h-2 rounded-full bg-emerald-400 w-3/4"></div>
+                </div>
+              </div>
+
+              <p class="mt-3 font-semibold text-emerald-100">
+                Precio total: <span class="text-emerald-300">4200 MDL</span>
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- INDIVIDUAL ADOLESCENTES -->
+        <article class="bg-slate-900/80 border border-sky-500/40 rounded-2xl p-6 shadow-lg">
+          <h2 class="text-lg font-semibold text-sky-300">
+            Clases individuales adolescentes
+          </h2>
+          <div class="mt-4 space-y-2 text-sm text-slate-100">
+            <p>Duración por clase: 60 minutos.</p>
+            <p>Máximo 3 clases por semana.</p>
+            <p>Packs de 10 clases.</p>
+            <p>Precio por pack de 10 clases: 4200 MDL.</p>
+            <p>Precio por hora: 420 MDL.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- SPEAKING CLUB ADOLESCENTES -->
+      <article class="bg-slate-900/80 border border-sky-500/40 rounded-2xl p-6 shadow-lg grid gap-6 md:grid-cols-2">
+        <div>
+          <h2 class="text-lg font-semibold text-sky-300">
+            Speaking Club para adolescentes
+          </h2>
+          <ul class="mt-4 space-y-2 text-sm text-slate-100">
+            <li>Una clase por semana.</li>
+            <li>Duración de cada clase entre 60 y 90 minutos.</li>
+            <li>De 8 a 10 alumnos por grupo.</li>
+            <li>Suscripción mensual.</li>
+            <li>Precio mensual: 620 MDL.</li>
+          </ul>
+        </div>
+        <!-- Pequeño gráfico tipo “tarjeta de resumen” -->
+        <div class="bg-slate-950/80 border border-sky-500/30 rounded-2xl p-4 flex flex-col justify-center">
+          <p class="text-xs text-slate-300 mb-2">Resumen rápido</p>
+          <div class="grid grid-cols-3 gap-3 text-center text-[0.75rem]">
+            <div class="bg-sky-500/20 rounded-xl p-2">
+              <p class="text-sky-200 font-semibold">1</p>
+              <p class="text-slate-200 mt-1">Clase por semana</p>
+            </div>
+            <div class="bg-sky-500/20 rounded-xl p-2">
+              <p class="text-sky-200 font-semibold">60–90</p>
+              <p class="text-slate-200 mt-1">Minutos por clase</p>
+            </div>
+            <div class="bg-sky-500/20 rounded-xl p-2">
+              <p class="text-sky-200 font-semibold">620</p>
+              <p class="text-slate-200 mt-1">MDL al mes</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================== ADULTOS ================== -->
+    <section class="tab-panel hidden space-y-6" data-tab-panel="adults">
+      <div class="grid gap-6 md:grid-cols-3">
+        <!-- GRUPOS ADULTOS -->
+        <article class="bg-slate-900/80 border border-sky-500/40 rounded-2xl p-6 shadow-lg md:col-span-2">
+          <header class="flex items-center justify-between gap-3">
+            <div>
+              <h2 class="text-xl font-semibold text-sky-300">
+                Cursos en grupo para adultos
+              </h2>
+              <p class="mt-1 text-xs text-slate-300">
+                Niveles: A1, A2, A2+, B1, B2, B2+, C1, C2.
+              </p>
+              <p class="mt-1 text-xs text-sky-200">
+                Frecuencia estándar: 3 clases por semana, 90 minutos por clase.
+              </p>
+            </div>
+            <div class="bg-slate-950/70 rounded-2xl p-3 text-[0.70rem] text-slate-200 border border-sky-500/40">
+              <p><span class="text-sky-300 font-semibold">Formato:</span> grupos por nivel</p>
+              <p><span class="text-sky-300 font-semibold">Duración:</span> 8 o 12 semanas según curso</p>
+            </div>
+          </header>
+
+          <div class="mt-5 space-y-5 text-sm text-slate-100">
+            <!-- Regular -->
+            <div class="rounded-xl bg-slate-950/70 border border-sky-500/30 p-4">
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="font-semibold text-sky-200">
+                  A1, A2, B1, B2, C1, C2
+                </h3>
+                <div class="flex flex-col items-end gap-1">
+                  <span class="px-3 py-1 rounded-full bg-sky-500/20 text-[0.75rem] text-sky-100">
+                    12 semanas
+                  </span>
+                  <span class="text-[0.70rem] text-slate-300">
+                    54 horas en total
+                  </span>
+                </div>
+              </div>
+              <p class="mt-2 text-xs text-slate-300">
+                3 clases por semana, 36 clases en total, 90 minutos por clase.
+              </p>
+
+              <div class="mt-3">
+                <p class="text-[0.70rem] text-slate-400 mb-1">Duración relativa del curso</p>
+                <div class="w-full h-2 rounded-full bg-slate-800">
+                  <div class="h-2 rounded-full bg-sky-400 w-full"></div>
+                </div>
+              </div>
+
+              <p class="mt-3 font-semibold text-sky-100">
+                Precio total: <span class="text-sky-300">6200 MDL</span>
+              </p>
+            </div>
+
+            <!-- Semi-intensivo A2+ / B2+ -->
+            <div class="rounded-xl bg-slate-950/70 border border-emerald-400/40 p-4">
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="font-semibold text-emerald-200">
+                  A2+, B2+
+                </h3>
+                <div class="flex flex-col items-end gap-1">
+                  <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-[0.75rem] text-emerald-100">
+                    8 semanas
+                  </span>
+                  <span class="text-[0.70rem] text-slate-300">
+                    36 horas en total
+                  </span>
+                </div>
+              </div>
+              <p class="mt-2 text-xs text-slate-300">
+                3 clases por semana, 24 clases en total, 90 minutos por clase.
+              </p>
+
+              <div class="mt-3">
+                <p class="text-[0.70rem] text-slate-400 mb-1">Duración relativa del curso</p>
+                <div class="w-full h-2 rounded-full bg-slate-800">
+                  <div class="h-2 rounded-full bg-emerald-400 w-3/4"></div>
+                </div>
+              </div>
+
+              <p class="mt-3 font-semibold text-emerald-100">
+                Precio total: <span class="text-emerald-300">4200 MDL</span>
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- INDIVIDUAL ADULTOS -->
+        <article class="bg-slate-900/80 border border-sky-500/40 rounded-2xl p-6 shadow-lg">
+          <h2 class="text-lg font-semibold text-sky-300">
+            Clases individuales adultos
+          </h2>
+          <div class="mt-4 space-y-2 text-sm text-slate-100">
+            <p>Duración por clase: 60 minutos.</p>
+            <p>Máximo 3 clases por semana.</p>
+            <p>Packs de 10 clases.</p>
+            <p>Precio por pack de 10 clases: 4200 MDL.</p>
+            <p>Precio por hora: 420 MDL.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- SPEAKING CLUB ADULTOS -->
+      <article class="bg-slate-900/80 border border-sky-500/40 rounded-2xl p-6 shadow-lg grid gap-6 md:grid-cols-2">
+        <div>
+          <h2 class="text-lg font-semibold text-sky-300">
+            Speaking Club para adultos
+          </h2>
+          <ul class="mt-4 space-y-2 text-sm text-slate-100">
+            <li>Una clase por semana.</li>
+            <li>Duración de cada clase entre 60 y 90 minutos.</li>
+            <li>De 8 a 10 alumnos por grupo.</li>
+            <li>Suscripción mensual.</li>
+            <li>Precio mensual: 620 MDL.</li>
+          </ul>
+        </div>
+        <div class="bg-slate-950/80 border border-sky-500/30 rounded-2xl p-4 flex flex-col justify-center">
+          <p class="text-xs text-slate-300 mb-2">Resumen rápido</p>
+          <div class="grid grid-cols-3 gap-3 text-center text-[0.75rem]">
+            <div class="bg-sky-500/20 rounded-xl p-2">
+              <p class="text-sky-200 font-semibold">1</p>
+              <p class="text-slate-200 mt-1">Clase por semana</p>
+            </div>
+            <div class="bg-sky-500/20 rounded-xl p-2">
+              <p class="text-sky-200 font-semibold">60–90</p>
+              <p class="text-slate-200 mt-1">Minutos por clase</p>
+            </div>
+            <div class="bg-sky-500/20 rounded-xl p-2">
+              <p class="text-sky-200 font-semibold">620</p>
+              <p class="text-slate-200 mt-1">MDL al mes</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============== PLAN INTENSIVO ADOLESCENTES Y ADULTOS ============== -->
+    <section class="mt-10 bg-slate-900/90 border border-amber-400/60 rounded-2xl p-6 shadow-xl">
+      <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-semibold text-amber-300">
+            Plan intensivo para adolescentes y adultos
+          </h2>
+          <p class="mt-1 text-xs text-slate-200">
+            Niveles incluidos: A1, A2, A2+, B1, B2, B2+, C1, C2.
+          </p>
+        </div>
+        <!-- Gráfico de intensidad -->
+        <div class="w-full md:w-64">
+          <p class="text-[0.75rem] text-amber-100 mb-1 text-right">
+            Comparación de intensidad semanal
+          </p>
+          <div class="space-y-2 text-[0.70rem]">
+            <div>
+              <p class="flex justify-between text-slate-200">
+                <span>Curso regular</span><span>3 clases por semana</span>
+              </p>
+              <div class="w-full h-2 rounded-full bg-slate-800">
+                <div class="h-2 rounded-full bg-sky-500 w-3/5"></div>
+              </div>
+            </div>
+            <div>
+              <p class="flex justify-between text-amber-100">
+                <span>Plan intensivo</span><span>5 clases por semana</span>
+              </p>
+              <div class="w-full h-2 rounded-full bg-slate-800">
+                <div class="h-2 rounded-full bg-amber-400 w-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="mt-5 grid gap-6 md:grid-cols-[1.4fr,1fr] text-sm text-slate-100">
+        <div class="space-y-2">
+          <p>Duración total: 8 semanas.</p>
+          <p>Clases por semana: 5 clases por semana.</p>
+          <p>Total de clases: 36 clases.</p>
+          <p>Duración por clase: 90 minutos por clase.</p>
+          <p>Horas totales: 54 horas en total.</p>
+          <p class="mt-2 font-semibold text-amber-100">
+            Precio total: <span class="text-amber-300">6200 MDL</span>
+          </p>
+        </div>
+        <div class="bg-slate-950/80 rounded-2xl border border-amber-400/60 p-4 text-xs text-slate-200">
+          <p class="font-semibold text-amber-200 mb-2">
+            ¿Para quién es este plan?
+          </p>
+          <ul class="space-y-1">
+            <li>Adolescentes y adultos que necesitan avanzar más rápido.</li>
+            <li>Preparación intensiva de nivel desde A1 hasta C2.</li>
+            <li>Misma duración total de horas que el curso largo, pero concentrada en menos semanas.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- JAVASCRIPT PESTAÑAS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const buttons = document.querySelectorAll("[data-tab-button]");
+      const panels = document.querySelectorAll("[data-tab-panel]");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const target = button.getAttribute("data-tab-button");
+
+          // Actualizar aspecto de los botones
+          buttons.forEach((b) => {
+            b.classList.remove("bg-sky-500", "text-white", "shadow-md");
+            b.classList.add("text-slate-200");
+            b.setAttribute("aria-selected", "false");
+          });
+          button.classList.add("bg-sky-500", "text-white", "shadow-md");
+          button.setAttribute("aria-selected", "true");
+
+          // Mostrar panel correcto
+          panels.forEach((panel) => {
+            if (panel.getAttribute("data-tab-panel") === target) {
+              panel.classList.remove("hidden");
+            } else {
+              panel.classList.add("hidden");
+            }
+          });
+
+          // Desplazar un poco hacia arriba en móviles
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
