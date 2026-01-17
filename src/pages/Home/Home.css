@@ -1,5 +1,48 @@
 .home-hero {
+  --gradient-speed: 3;
+  --gradient-saturation: 1.7;
+  --gradient-brightness: 1;
+  position: relative;
   display: grid;
   gap: 1rem;
   text-align: center;
+  padding: 4rem 1.5rem;
+  color: #f5f9ff;
+  overflow: hidden;
+}
+
+.home-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #004e64;
+  background-image: linear-gradient(
+    120deg,
+    #0a2540 0%,
+    #0b5ed7 20%,
+    #2ec4ff 45%,
+    #0b5ed7 70%,
+    #000000 100%
+  );
+  background-size: 320% 320%;
+  animation: gradient-shift calc(30s / var(--gradient-speed)) ease-in-out infinite;
+  filter: saturate(var(--gradient-saturation)) brightness(var(--gradient-brightness));
+  z-index: 0;
+}
+
+.home-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
